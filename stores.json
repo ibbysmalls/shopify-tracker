@@ -1,0 +1,133 @@
+{
+  "stores": [
+    {
+      "name": "MYFITTEDS",
+      "domain": "www.myfitteds.com",
+      "verified": true
+    },
+    {
+      "name": "Hat Club",
+      "domain": "hatclub.com",
+      "verified": true
+    },
+    {
+      "name": "So Fresh Clothing",
+      "domain": "sofreshclothing.com",
+      "verified": true
+    },
+    {
+      "name": "Culture Kings US",
+      "domain": "culturekings.com",
+      "verified": true
+    },
+    {
+      "name": "Exclusive Fitted Inc.",
+      "domain": "exclusivefitted.com",
+      "verified": true
+    },
+    {
+      "name": "New Era Cap",
+      "domain": "www.neweracap.com",
+      "verified": true
+    },
+    {
+      "name": "Prociety",
+      "domain": "procietyshop.com",
+      "verified": true
+    },
+    {
+      "name": "4ucaps.com",
+      "domain": "4ucaps.com",
+      "verified": true
+    },
+    {
+      "name": "DREAMS H2H",
+      "domain": "www.hatdreams.com",
+      "verified": true
+    },
+    {
+      "name": "CROWN MINDED",
+      "domain": "crownminded.com",
+      "verified": true
+    },
+    {
+      "name": "ECAPCITY",
+      "domain": "www.ecapcity.com",
+      "verified": true
+    },
+    {
+      "name": "LidsHatDrop",
+      "domain": "www.lidshd.com",
+      "verified": true
+    },
+    {
+      "name": "Goodfellas SF",
+      "domain": "gf-sf.com",
+      "verified": true
+    },
+    {
+      "name": "incrediDeals",
+      "domain": "incredideals.ae",
+      "verified": true
+    },
+    {
+      "name": "The James Brand",
+      "domain": "thejamesbrand.com",
+      "verified": true
+    },
+    {
+      "name": "StylisticsJapan.com",
+      "domain": "stylisticsjapan.com",
+      "verified": true
+    },
+    {
+      "name": "COJP Gallery",
+      "domain": "www.cojpgallery.com",
+      "verified": true
+    },
+    {
+      "name": "SON OF A STAG",
+      "domain": "sonofastag.com",
+      "verified": true
+    },
+    {
+      "name": "Blue Beach Denim",
+      "domain": "www.bluebeachdenim.shop",
+      "verified": true
+    },
+    {
+      "name": "HARUYAMA",
+      "domain": "haruyama365.com",
+      "verified": true
+    },
+    {
+      "name": "Dant",
+      "domain": "www.dant.us",
+      "verified": true
+    },
+    {
+      "name": "HINOYA Online Store",
+      "domain": "hinoya.shop",
+      "verified": true
+    },
+    {
+      "name": "HOMEGAME NEW YORK",
+      "domain": "homegame-newyork.com",
+      "verified": true
+    },
+    {
+      "name": "Redcast Heritage Co.",
+      "domain": "redcastheritage.com",
+      "verified": true
+    }
+  ],
+  "filters": {
+    "include_keywords": [],
+    "exclude_keywords": [],
+    "include_product_types": [],
+    "notify_only_available": true
+  },
+  "poll": {
+    "products_per_store": 20
+  }
+}
