@@ -106,6 +106,103 @@ def cmd_verify(cfg):
     print("'run' includes it, or pass --all to poll everything regardless.")
 
 
+# ----------------------------------------------------- telegram commands ----
+
+import re
+
+URL_RE = re.compile(r"(?:https?://)?((?:[\w-]+\.)+[a-z]{2,})(?:/\S*)?", re.I)
+
+
+def telegram_api(method, params):
+    token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    if not token:
+        return None
+    url = f"https://api.telegram.org/bot{token}/{method}?" + urllib.parse.urlencode(params)
+    try:
+        return http_get_json(url)
+    except Exception as e:
+        print(f"[warn] telegram {method} failed: {e}", file=sys.stderr)
+        return None
+
+
+def derive_name(domain):
+    core = domain.replace("www.", "").split(".")[0]
+    return core.replace("-", " ").title()
+
+
+def process_telegram_commands(cfg, state):
+    """Read messages sent to the bot; add/remove stores accordingly.
+
+    Send the bot a store URL (or bare domain) to add it.
+    Send 'remove <domain>' to remove one.
+    Only messages from TELEGRAM_CHAT_ID are honored.
+    """
+    my_chat = os.environ.get("TELEGRAM_CHAT_ID")
+    if not my_chat:
+        return False
+
+    offset = state.get("_tg_offset", 0)
+    resp = telegram_api("getUpdates", {"offset": offset + 1, "timeout": 0})
+    if not resp or not resp.get("ok"):
+        return False
+
+    changed = False
+    for upd in resp.get("result", []):
+        state["_tg_offset"] = max(state.get("_tg_offset", 0), upd["update_id"])
+        msg = upd.get("message") or {}
+        if str(msg.get("chat", {}).get("id")) != str(my_chat):
+            continue
+        text = (msg.get("text") or "").strip()
+        if not text:
+            continue
+
+        existing = {s["domain"].replace("www.", ""): s for s in cfg["stores"]}
+
+        if text.lower().startswith("remove"):
+            m = URL_RE.search(text)
+            target = m.group(1).replace("www.", "") if m else None
+            if target and target in existing:
+                cfg["stores"] = [s for s in cfg["stores"]
+                                 if s["domain"].replace("www.", "") != target]
+                changed = True
+                send_telegram(f"➖ Removed {existing[target]['name']} ({target})")
+            else:
+                send_telegram(f"Couldn't find that store in the list: {text}")
+            continue
+
+        m = URL_RE.search(text)
+        if not m:
+            continue  # ordinary chatter, ignore
+        domain = m.group(1)
+        bare = domain.replace("www.", "")
+        if bare in existing:
+            send_telegram(f"Already tracking {existing[bare]['name']} ({bare})")
+            continue
+
+        # Validate: does it expose products.json? Try as given, then with www.
+        working = None
+        for candidate in (domain, f"www.{bare}"):
+            try:
+                fetch_products(candidate, 1)
+                working = candidate
+                break
+            except Exception:
+                continue
+
+        if working:
+            name = derive_name(working)
+            cfg["stores"].append(
+                {"name": name, "domain": working, "verified": True})
+            changed = True
+            send_telegram(f"➕ Added {name} ({working}). "
+                          f"Seeding now; notifications start next run.")
+        else:
+            send_telegram(f"⚠️ {bare} didn't respond to /products.json — "
+                          f"not a standard Shopify store, or a different domain. Not added.")
+
+    return changed
+
+
 # ------------------------------------------------------------------- run ----
 
 def passes_filters(product, filters):
@@ -165,6 +262,15 @@ def send_telegram(text):
 
 def cmd_run(cfg, dry_run=False, poll_all=False):
     state = load_json(STATE_PATH, {})
+
+    if not dry_run:
+        try:
+            cfg_changed = process_telegram_commands(cfg, state)
+            if cfg_changed:
+                save_json(CONFIG_PATH, cfg)
+        except Exception as e:
+            print(f"[warn] telegram command processing failed: {e}", file=sys.stderr)
+
     filters = cfg.get("filters", {})
     limit = cfg.get("poll", {}).get("products_per_store", 20)
     first_run_stores = 0

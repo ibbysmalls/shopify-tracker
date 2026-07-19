@@ -108,3 +108,11 @@ jobs:
 ```
 
 Note: GitHub schedules aren't exact; expect 15 to 30 minute effective intervals.
+
+## 7. Add or remove stores from Telegram
+
+Send your bot a store link (share it from the browser or paste it) and the next
+run validates it, adds it to stores.json, seeds it silently, and replies to
+confirm. Send `remove domain.com` to drop a store. Only messages from your own
+chat ID are honored. Requires the workflow to commit stores.json as well as
+seen.json (see track.yml).
