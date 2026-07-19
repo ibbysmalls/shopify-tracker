@@ -86,54 +86,54 @@
       "verified": true
     },
     {
-    "name": "Okayama Denim",
-    "domain": "okayamadenim.com",
-    "verified": true
-    },
-    { 
-    "name": "BEARS' Tokyo",
-    "domain": "bears-tokyo.myshopify.com",
-    "verified": true
+      "name": "Okayama Denim",
+      "domain": "okayamadenim.com",
+      "verified": true
     },
     {
-    "name": "Corlection",
-    "domain": "corlection.com",
-    "verified": true
+      "name": "BEARS' Tokyo",
+      "domain": "bears-tokyo.myshopify.com",
+      "verified": true
     },
     {
-    "name": "Iron Shop Provisions",
-    "domain": "ironshopprovisions.com",
-    "verified": true
+      "name": "Corlection",
+      "domain": "corlection.com",
+      "verified": true
     },
     {
-    "name": "Franklin & Poe",
-    "domain": "franklinandpoe.com",
-    "verified": true
+      "name": "Iron Shop Provisions",
+      "domain": "ironshopprovisions.com",
+      "verified": true
     },
     {
-    "name": "Canoe Club",
-    "domain": "shopcanoeclub.com",
-    "verified": true
+      "name": "Franklin & Poe",
+      "domain": "franklinandpoe.com",
+      "verified": true
     },
     {
-    "name": "Meadow",
-    "domain": "meadowweb.com",
-    "verified": true
+      "name": "Canoe Club",
+      "domain": "shopcanoeclub.com",
+      "verified": true
     },
     {
-    "name": "Mildblend Supply Co.",
-    "domain": "mildblend.com",
-    "verified": true
+      "name": "Meadow",
+      "domain": "meadowweb.com",
+      "verified": true
     },
     {
-    "name": "Rodeo Japan Pine Avenue",
-    "domain": "rodeo-japan-pine-avenue.com",
-    "verified": true
+      "name": "Mildblend Supply Co.",
+      "domain": "mildblend.com",
+      "verified": true
     },
     {
-    "name": "Klaxon Store",
-    "domain": "klaxon-store.com",
-    "verified": true
+      "name": "Rodeo Japan Pine Avenue",
+      "domain": "rodeo-japan-pine-avenue.com",
+      "verified": true
+    },
+    {
+      "name": "Klaxon Store",
+      "domain": "klaxon-store.com",
+      "verified": true
     },
     {
       "name": "Blue Beach Denim",
@@ -193,6 +193,11 @@
     {
       "name": "Witheredfig",
       "domain": "www.witheredfig.com",
+      "verified": true
+    },
+    {
+      "name": "Mentionclothing",
+      "domain": "www.mentionclothing.com",
       "verified": true
     }
   ],
