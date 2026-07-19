@@ -129,6 +129,21 @@
       "name": "Guiltyparty",
       "domain": "www.guiltyparty.co",
       "verified": true
+    },
+    {
+      "name": "Blueowl",
+      "domain": "www.blueowl.us",
+      "verified": true
+    },
+    {
+      "name": "Standardandstrange",
+      "domain": "standardandstrange.com",
+      "verified": true
+    },
+    {
+      "name": "Witheredfig",
+      "domain": "www.witheredfig.com",
+      "verified": true
     }
   ],
   "filters": {
