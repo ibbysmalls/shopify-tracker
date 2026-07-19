@@ -1,10 +1,13 @@
 name: track
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "7 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: track
+  cancel-in-progress: false
 jobs:
   poll:
     runs-on: ubuntu-latest
