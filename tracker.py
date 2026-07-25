@@ -47,7 +47,7 @@ def http_get_json(url, timeout=20, retries=3):
         except urllib.error.HTTPError as e:
             last_err = e
             if e.code in (429, 503) and attempt < retries - 1:
-                time.sleep(5 * (attempt + 1))  # back off: 5s, 10s
+                time.sleep(2 * (attempt + 1))  # back off: 2s, 4s
                 continue
             raise
     raise last_err
@@ -275,15 +275,21 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     limit = cfg.get("poll", {}).get("products_per_store", 20)
     first_run_stores = 0
     notified = 0
+    timings = []   # (seconds, name, status)
+    run_start = time.time()
 
     for s in cfg["stores"]:
         if not poll_all and not s.get("verified", False):
             continue
         name, domain = s["name"], s["domain"]
+        t0 = time.time()
         try:
             products = fetch_products(domain, limit)
+            timings.append((time.time() - t0, name, "ok"))
         except Exception as e:
-            print(f"[warn] {name}: fetch failed: {e}", file=sys.stderr)
+            timings.append((time.time() - t0, name, f"FAILED: {e}"))
+            print(f"[warn] {name}: fetch failed after {time.time()-t0:.1f}s: {e}",
+                  file=sys.stderr)
             continue
 
         seen = set(state.get(domain, []))
@@ -315,7 +321,21 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         time.sleep(1.5)  # be gentle with the stores too
 
     save_json(STATE_PATH, state)
-    print(f"Done. Seeded {first_run_stores} store(s), sent {notified} notification(s).")
+    total = time.time() - run_start
+    print(f"Done in {total:.1f}s. Seeded {first_run_stores} store(s), "
+          f"sent {notified} notification(s).")
+
+    # Timing report: anything slow or failed, slowest first.
+    problems = sorted(
+        [t for t in timings if t[0] >= 2.0 or t[2] != "ok"],
+        key=lambda t: t[0], reverse=True)
+    if problems:
+        print("\nSlow or failing stores (>=2s or errored), slowest first:")
+        for secs, name, status in problems:
+            tag = "" if status == "ok" else f"  [{status}]"
+            print(f"  {secs:6.1f}s  {name}{tag}")
+    else:
+        print("All stores responded in under 2s.")
 
 
 def main():
