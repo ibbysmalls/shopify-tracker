@@ -278,16 +278,27 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     timings = []   # (seconds, name, status)
     run_start = time.time()
 
+    total_configured = len(cfg["stores"])
+    skipped_unverified = []
+    polled_ok = 0
+    failed = []
+    empty = []
+
     for s in cfg["stores"]:
-        if not poll_all and not s.get("verified", False):
-            continue
         name, domain = s["name"], s["domain"]
+        if not poll_all and not s.get("verified", False):
+            skipped_unverified.append(name)
+            continue
         t0 = time.time()
         try:
             products = fetch_products(domain, limit)
             timings.append((time.time() - t0, name, "ok"))
+            polled_ok += 1
+            if not products:
+                empty.append(name)
         except Exception as e:
             timings.append((time.time() - t0, name, f"FAILED: {e}"))
+            failed.append(name)
             print(f"[warn] {name}: fetch failed after {time.time()-t0:.1f}s: {e}",
                   file=sys.stderr)
             continue
@@ -324,6 +335,17 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     total = time.time() - run_start
     print(f"Done in {total:.1f}s. Seeded {first_run_stores} store(s), "
           f"sent {notified} notification(s).")
+
+    # Census heartbeat: proof every store was actually reached.
+    print(f"Census: {polled_ok}/{total_configured} polled ok, "
+          f"{len(failed)} failed, {len(empty)} returned empty, "
+          f"{len(skipped_unverified)} skipped (unverified).")
+    if failed:
+        print(f"  FAILED: {', '.join(failed)}")
+    if empty:
+        print(f"  EMPTY (responded but no products): {', '.join(empty)}")
+    if skipped_unverified:
+        print(f"  SKIPPED (verified:false): {', '.join(skipped_unverified)}")
 
     # Timing report: anything slow or failed, slowest first.
     problems = sorted(
