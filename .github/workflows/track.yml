@@ -1,7 +1,5 @@
 name: track
 on:
-  schedule:
-    - cron: "7 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -12,7 +10,7 @@ jobs:
   poll:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: python3 tracker.py run
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
