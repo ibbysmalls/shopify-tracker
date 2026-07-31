@@ -219,6 +219,11 @@
       "name": "Berkeleysupply",
       "domain": "berkeleysupply.com",
       "verified": true
+    },
+    {
+      "name": "Statement Store",
+      "domain": "statement-store.com",
+      "verified": true
     }
   ],
   "filters": {
