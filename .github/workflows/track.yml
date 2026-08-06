@@ -7,8 +7,9 @@ concurrency:
   group: track
   cancel-in-progress: false
 jobs:
-  poll:
+poll:
     runs-on: ubuntu-latest
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v5
       - run: python3 tracker.py run
