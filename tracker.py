@@ -309,7 +309,7 @@ def process_telegram_commands(cfg, state):
 
 
 def report_health(state, ok_names, failed, skipped, empty, new_by_store,
-                  dry_run, hcfg=None):
+                  dry_run, hcfg=None, deferred=None):
     """Alert on Telegram when a store's health *changes*, not every run, and
     send a periodic digest of which stores have gone quiet.
 
@@ -388,7 +388,7 @@ def report_health(state, ok_names, failed, skipped, empty, new_by_store,
         quiet = sorted((((now - t) // 86400), n) for n, t in last_new.items())
         quiet.reverse()
         lines = [f"📊 Tracker digest, last {digest_days} days",
-                 f"{len(ok_names)} stores polling, {period_new} new listings."]
+                 f"{len(last_new)} stores polling, {period_new} new listings."]
         flagged = [(d, n) for d, n in quiet if d >= quiet_days]
         if flagged:
             lines.append("")
@@ -405,8 +405,9 @@ def report_health(state, ok_names, failed, skipped, empty, new_by_store,
         health["last_digest"] = now
         period_new = 0
 
-    # Prune bookkeeping so it doesn't grow with stores you've removed.
-    live = set(ok_names) | set(failed) | set(skipped)
+    # Prune bookkeeping so it doesn't grow with stores you've removed. Deferred
+    # stores are alive and merely not due, so their history must survive.
+    live = set(ok_names) | set(failed) | set(skipped) | set(deferred or [])
     health["alerted"] = sorted(n for n in alerted if n in live)
     health["fails"] = {k: v for k, v in fails.items() if k in live}
     health["empty_since"] = {k: v for k, v in empty_since.items() if k in live}
@@ -424,6 +425,17 @@ def report_health(state, ok_names, failed, skipped, empty, new_by_store,
                 print(f"[warn] health alert send failed: {e}", file=sys.stderr)
 
     return messages
+
+
+def store_interval(store, poll_cfg):
+    """Minimum seconds between polls for this store. Per-store override wins,
+    then a per-platform default, then 0 (poll every run)."""
+    if "min_interval_seconds" in store:
+        return int(store["min_interval_seconds"])
+    per_platform = poll_cfg.get("min_interval_seconds", {})
+    if isinstance(per_platform, dict):
+        return int(per_platform.get(store.get("platform", "shopify"), 0))
+    return int(per_platform or 0)
 
 
 # ------------------------------------------------------------------- run ----
@@ -496,7 +508,12 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
             print(f"[warn] telegram command processing failed: {e}", file=sys.stderr)
 
     filters = cfg.get("filters", {})
-    limit = cfg.get("poll", {}).get("products_per_store", 20)
+    poll_cfg = cfg.get("poll", {})
+    limit = poll_cfg.get("products_per_store", 20)
+    # Slack so a store due at exactly N seconds isn't pushed to the next
+    # trigger by a fraction of a second, which would slowly drift its cadence.
+    grace = poll_cfg.get("interval_grace_seconds", 60)
+    last_poll = state.setdefault("_last_poll", {})
     first_run_stores = 0
     notified = 0
     timings = []   # (seconds, name, status)
@@ -508,6 +525,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     ok_names = []
     failed = []
     empty = []
+    deferred = []
     new_by_store = {}
 
     for s in cfg["stores"]:
@@ -515,6 +533,15 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         if not poll_all and not s.get("verified", False):
             skipped_unverified.append(name)
             continue
+
+        # Not due yet: Woo stores poll less often than Shopify ones.
+        interval = store_interval(s, poll_cfg)
+        since_last = time.time() - last_poll.get(domain, 0)
+        if interval and since_last < interval - grace:
+            deferred.append(name)
+            continue
+        last_poll[domain] = int(time.time())
+
         t0 = time.time()
         try:
             products = fetch_products(domain, limit, s.get("platform", "shopify"))
@@ -560,8 +587,12 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         state[domain] = list(dict.fromkeys(current_ids + list(seen)))[:500]
         time.sleep(1.5)  # be gentle with the stores too
 
+    # Prune poll timestamps for stores that have been removed.
+    live_domains = {s["domain"] for s in cfg["stores"]}
+    state["_last_poll"] = {k: v for k, v in last_poll.items() if k in live_domains}
+
     report_health(state, ok_names, failed, skipped_unverified, empty,
-                  new_by_store, dry_run, cfg.get("health", {}))
+                  new_by_store, dry_run, cfg.get("health", {}), deferred)
 
     save_json(STATE_PATH, state)
     total = time.time() - run_start
@@ -571,6 +602,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     # Census heartbeat: proof every store was actually reached.
     print(f"Census: {polled_ok}/{total_configured} polled ok, "
           f"{len(failed)} failed, {len(empty)} returned empty, "
+          f"{len(deferred)} not due, "
           f"{len(skipped_unverified)} skipped (unverified).")
     if failed:
         print(f"  FAILED: {', '.join(failed)}")
