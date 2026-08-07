@@ -308,6 +308,61 @@ def process_telegram_commands(cfg, state):
     return changed
 
 
+def report_health(state, ok_names, failed, skipped, dry_run, threshold=3):
+    """Alert on Telegram when a store's health *changes*, not every run.
+
+    A store that fails transiently (GitHub blip, store hiccup) is ignored until
+    it has failed `threshold` consecutive runs. A store deactivated by verify
+    (verified:false) alerts immediately, since that is a config state rather
+    than a blip. Recoveries are announced so the alert always closes.
+    """
+    health = state.setdefault("_health", {})
+    fails = health.setdefault("fails", {})
+    alerted = set(health.setdefault("alerted", []))
+    messages = []
+
+    # Anything that polled cleanly resets, and closes any open alert.
+    for name in ok_names:
+        fails.pop(name, None)
+        if name in alerted:
+            alerted.discard(name)
+            messages.append(f"✅ {name} is back. Polling normally again.")
+
+    # Repeated failures cross the threshold and open an alert.
+    for name in failed:
+        fails[name] = fails.get(name, 0) + 1
+        if fails[name] >= threshold and name not in alerted:
+            alerted.add(name)
+            messages.append(
+                f"🔴 {name} has failed {fails[name]} runs in a row. "
+                f"No drops from this store are being caught.")
+
+    # Deactivated stores are silent holes, so flag them straight away.
+    for name in skipped:
+        if name not in alerted:
+            alerted.add(name)
+            messages.append(
+                f"⚠️ {name} is set verified:false and is not being polled. "
+                f"Re-run verify, or fix its domain in stores.json.")
+
+    health["alerted"] = sorted(alerted)
+    # Keep the counter dict from growing with stores that no longer exist.
+    live = set(ok_names) | set(failed) | set(skipped)
+    health["fails"] = {k: v for k, v in fails.items() if k in live}
+
+    for msg in messages:
+        if dry_run:
+            print("---\n" + msg)
+        else:
+            try:
+                send_telegram(msg)
+                time.sleep(1)
+            except Exception as e:
+                print(f"[warn] health alert send failed: {e}", file=sys.stderr)
+
+    return messages
+
+
 # ------------------------------------------------------------------- run ----
 
 def passes_filters(product, filters):
@@ -387,6 +442,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     total_configured = len(cfg["stores"])
     skipped_unverified = []
     polled_ok = 0
+    ok_names = []
     failed = []
     empty = []
 
@@ -400,6 +456,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
             products = fetch_products(domain, limit, s.get("platform", "shopify"))
             timings.append((time.time() - t0, name, "ok"))
             polled_ok += 1
+            ok_names.append(name)
             if not products:
                 empty.append(name)
         except Exception as e:
@@ -436,6 +493,9 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         # Keep a rolling window of known IDs so state doesn't grow forever.
         state[domain] = list(dict.fromkeys(current_ids + list(seen)))[:500]
         time.sleep(1.5)  # be gentle with the stores too
+
+    threshold = cfg.get("health", {}).get("fail_alerts_after", 3)
+    report_health(state, ok_names, failed, skipped_unverified, dry_run, threshold)
 
     save_json(STATE_PATH, state)
     total = time.time() - run_start
