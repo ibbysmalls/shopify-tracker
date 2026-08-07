@@ -308,27 +308,62 @@ def process_telegram_commands(cfg, state):
     return changed
 
 
-def report_health(state, ok_names, failed, skipped, dry_run, threshold=3):
-    """Alert on Telegram when a store's health *changes*, not every run.
+def report_health(state, ok_names, failed, skipped, empty, new_by_store,
+                  dry_run, hcfg=None):
+    """Alert on Telegram when a store's health *changes*, not every run, and
+    send a periodic digest of which stores have gone quiet.
 
-    A store that fails transiently (GitHub blip, store hiccup) is ignored until
-    it has failed `threshold` consecutive runs. A store deactivated by verify
-    (verified:false) alerts immediately, since that is a config state rather
-    than a blip. Recoveries are announced so the alert always closes.
+    Alerts (things that are probably broken):
+      - failed `fail_alerts_after` consecutive runs
+      - responded with an empty catalogue for `empty_alert_hours`
+      - deactivated by verify (verified:false), flagged immediately
+    Every alert closes with a recovery message so nothing stays open.
+
+    Digest (things that are merely suspicious): every `digest_every_days`,
+    a summary listing stores with no new listings in `quiet_flag_days`.
+    Deliberately not an alert, because a quiet store is usually just quiet.
     """
+    hcfg = hcfg or {}
+    threshold = hcfg.get("fail_alerts_after", 3)
+    empty_hours = hcfg.get("empty_alert_hours", 24)
+    digest_days = hcfg.get("digest_every_days", 7)
+    quiet_days = hcfg.get("quiet_flag_days", 14)
+
+    now = int(time.time())
     health = state.setdefault("_health", {})
     fails = health.setdefault("fails", {})
     alerted = set(health.setdefault("alerted", []))
+    empty_since = health.setdefault("empty_since", {})
+    last_new = health.setdefault("last_new", {})
+    period_new = health.get("period_new", 0)
     messages = []
+    empty_set = set(empty)
 
-    # Anything that polled cleanly resets, and closes any open alert.
+    # Anything that polled cleanly resets its failure counter.
     for name in ok_names:
         fails.pop(name, None)
-        if name in alerted:
-            alerted.discard(name)
-            messages.append(f"✅ {name} is back. Polling normally again.")
+        if name in empty_set:
+            empty_since.setdefault(name, now)
+        else:
+            empty_since.pop(name, None)
+            if name in alerted:
+                alerted.discard(name)
+                messages.append(f"✅ {name} is back. Polling normally again.")
+        n = new_by_store.get(name, 0)
+        if n:
+            last_new[name] = now
+            period_new += n
+        last_new.setdefault(name, now)
 
-    # Repeated failures cross the threshold and open an alert.
+    # Responding but returning nothing, for long enough that it isn't a blip.
+    for name, since in list(empty_since.items()):
+        if now - since >= empty_hours * 3600 and name not in alerted:
+            alerted.add(name)
+            messages.append(
+                f"🟠 {name} has returned an empty catalogue for "
+                f"{(now - since) // 3600}h. Its endpoint may be gated.")
+
+    # Repeated hard failures cross the threshold and open an alert.
     for name in failed:
         fails[name] = fails.get(name, 0) + 1
         if fails[name] >= threshold and name not in alerted:
@@ -345,10 +380,38 @@ def report_health(state, ok_names, failed, skipped, dry_run, threshold=3):
                 f"⚠️ {name} is set verified:false and is not being polled. "
                 f"Re-run verify, or fix its domain in stores.json.")
 
-    health["alerted"] = sorted(alerted)
-    # Keep the counter dict from growing with stores that no longer exist.
+    # Periodic digest of quiet stores.
+    last_digest = health.get("last_digest")
+    if digest_days and last_digest is None:
+        health["last_digest"] = now          # seed, don't fire on first run
+    elif digest_days and now - last_digest >= digest_days * 86400:
+        quiet = sorted((((now - t) // 86400), n) for n, t in last_new.items())
+        quiet.reverse()
+        lines = [f"📊 Tracker digest, last {digest_days} days",
+                 f"{len(ok_names)} stores polling, {period_new} new listings."]
+        flagged = [(d, n) for d, n in quiet if d >= quiet_days]
+        if flagged:
+            lines.append("")
+            lines.append(f"Nothing new in {quiet_days}+ days:")
+            lines += [f"  {d}d  {n}" for d, n in flagged[:15]]
+            if len(flagged) > 15:
+                lines.append(f"  ...and {len(flagged) - 15} more")
+            lines.append("")
+            lines.append("Usually just a quiet store. Worth a spot check if "
+                         "you know they've been dropping.")
+        else:
+            lines.append(f"Every store has listed something within {quiet_days} days.")
+        messages.append("\n".join(lines))
+        health["last_digest"] = now
+        period_new = 0
+
+    # Prune bookkeeping so it doesn't grow with stores you've removed.
     live = set(ok_names) | set(failed) | set(skipped)
+    health["alerted"] = sorted(n for n in alerted if n in live)
     health["fails"] = {k: v for k, v in fails.items() if k in live}
+    health["empty_since"] = {k: v for k, v in empty_since.items() if k in live}
+    health["last_new"] = {k: v for k, v in last_new.items() if k in live}
+    health["period_new"] = period_new
 
     for msg in messages:
         if dry_run:
@@ -445,6 +508,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     ok_names = []
     failed = []
     empty = []
+    new_by_store = {}
 
     for s in cfg["stores"]:
         name, domain = s["name"], s["domain"]
@@ -472,10 +536,12 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         if not seen:
             # First time seeing this store: seed silently.
             state[domain] = current_ids
+            new_by_store[name] = 0
             first_run_stores += 1
             continue
 
         new_products = [p for p in products if str(p.get("id")) not in seen]
+        new_by_store[name] = len(new_products)
         for p in new_products:
             if not passes_filters(p, filters):
                 continue
@@ -494,8 +560,8 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         state[domain] = list(dict.fromkeys(current_ids + list(seen)))[:500]
         time.sleep(1.5)  # be gentle with the stores too
 
-    threshold = cfg.get("health", {}).get("fail_alerts_after", 3)
-    report_health(state, ok_names, failed, skipped_unverified, dry_run, threshold)
+    report_health(state, ok_names, failed, skipped_unverified, empty,
+                  new_by_store, dry_run, cfg.get("health", {}))
 
     save_json(STATE_PATH, state)
     total = time.time() - run_start
