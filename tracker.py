@@ -146,7 +146,13 @@ def normalize_woo(products, domain):
 
 def fetch_products(domain, limit, platform="shopify"):
     """Return a list of products in Shopify shape, whatever the platform."""
-    if (platform or "shopify").lower() == "woocommerce":
+    platform = (platform or "shopify").lower()
+    if platform == "rss":
+        items, why = probe_rss(domain, limit)
+        if items is None:
+            raise RuntimeError(why)
+        return items
+    if platform == "woocommerce":
         data = http_get_json(woo_products_url(domain, limit))
         if not isinstance(data, list):
             raise RuntimeError("unexpected shape from Woo Store API")
@@ -155,16 +161,110 @@ def fetch_products(domain, limit, platform="shopify"):
     return data.get("products", [])
 
 
-def detect_platform(domain):
-    """Probe a domain. Returns 'shopify', 'woocommerce', or None.
-    At most two requests, one product each."""
-    data = try_json(products_url(domain, 1))
+def probe_json(url, timeout=10):
+    """Single attempt. Returns (parsed_or_None, reason) so callers can tell a
+    404 apart from a Cloudflare block apart from a timeout."""
+    try:
+        req = urllib.request.Request(url, headers=UA)
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            body = r.read().decode("utf-8", errors="replace")
+        try:
+            return json.loads(body), "ok"
+        except json.JSONDecodeError:
+            return None, "responded but not JSON"
+    except urllib.error.HTTPError as e:
+        body = ""
+        try:
+            body = e.read(2000).decode("utf-8", errors="replace").lower()
+        except Exception:
+            pass
+        if e.code in (403, 503) and "cloudflare" in body:
+            return None, f"blocked by Cloudflare ({e.code})"
+        if e.code == 404:
+            return None, "404, endpoint not present"
+        return None, f"HTTP {e.code}"
+    except Exception as e:
+        return None, f"{type(e).__name__}"
+
+
+def rss_url(domain):
+    return f"https://{domain}/?post_type=product&feed=rss2"
+
+
+def probe_rss(domain, limit=20, timeout=15):
+    """WordPress product feed. No price or stock, but title/link/date, and it
+    survives where /wp-json/ is disabled or gated. Returns (items, reason)."""
+    import xml.etree.ElementTree as ET
+    try:
+        req = urllib.request.Request(rss_url(domain), headers=dict(UA, Accept="application/rss+xml, text/xml"))
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            raw = r.read()
+    except urllib.error.HTTPError as e:
+        body = ""
+        try:
+            body = e.read(2000).decode("utf-8", errors="replace").lower()
+        except Exception:
+            pass
+        if e.code in (403, 503) and "cloudflare" in body:
+            return None, f"blocked by Cloudflare ({e.code})"
+        return None, f"HTTP {e.code}"
+    except Exception as e:
+        return None, f"{type(e).__name__}"
+
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError:
+        return None, "responded but not valid XML"
+
+    items = []
+    for item in root.iter("item"):
+        link = (item.findtext("link") or "").strip()
+        guid = (item.findtext("guid") or link).strip()
+        title = (item.findtext("title") or "").strip()
+        if not title or not link:
+            continue
+        items.append({
+            "id": guid or link,
+            "title": title,
+            "handle": link.rstrip("/").rsplit("/", 1)[-1],
+            "vendor": "",
+            "product_type": "",
+            "variants": [],
+            "_url": link,
+        })
+        if len(items) >= limit:
+            break
+    if not items:
+        return None, "feed had no product items"
+    return items, "ok"
+
+
+
+def detect_platform(domain, explain=False):
+    """Probe a domain. Returns 'shopify', 'woocommerce', 'rss', or None.
+
+    With explain=True returns (platform, reasons), where reasons records what
+    each endpoint said. That keeps a Cloudflare block from being mistaken for
+    a store that simply isn't on a supported platform.
+    """
+    reasons = []
+
+    data, why = probe_json(products_url(domain, 1))
     if isinstance(data, dict) and "products" in data:
-        return "shopify"
-    data = try_json(woo_products_url(domain, 1))
+        return ("shopify", reasons) if explain else "shopify"
+    reasons.append(f"shopify products.json: {why}")
+
+    data, why = probe_json(woo_products_url(domain, 1))
     if isinstance(data, list):
-        return "woocommerce"
-    return None
+        return ("woocommerce", reasons) if explain else "woocommerce"
+    reasons.append(f"woo store api: {why}")
+
+    items, why = probe_rss(domain, 1)
+    if items:
+        return ("rss", reasons) if explain else "rss"
+    reasons.append(f"wp product feed: {why}")
+
+    return (None, reasons) if explain else None
 
 
 # ---------------------------------------------------------------- verify ----
@@ -287,8 +387,9 @@ def process_telegram_commands(cfg, state):
         # Validate: what platform is it? Try as given, then with www.
         working = None
         platform = None
+        reasons = []
         for candidate in (domain, f"www.{bare}"):
-            platform = detect_platform(candidate)
+            platform, reasons = detect_platform(candidate, explain=True)
             if platform:
                 working = candidate
                 break
@@ -302,8 +403,11 @@ def process_telegram_commands(cfg, state):
             send_telegram(f"➕ Added {name} ({working}, {platform}). "
                           f"Seeding now; notifications start next run.")
         else:
-            send_telegram(f"⚠️ {bare} exposed neither a Shopify products.json "
-                          f"nor a WooCommerce Store API. Not added.")
+            detail = "\n".join(f"  \u2022 {r}" for r in reasons)
+            send_telegram(f"\u26a0\ufe0f Couldn't add {bare}.\n{detail}\n\n"
+                          f"'blocked by Cloudflare' means the store works but "
+                          f"refuses datacenter IPs. '404' means it isn't on a "
+                          f"supported platform.")
 
     return changed
 
@@ -470,12 +574,13 @@ def format_message(store_name, domain, product):
     # Woo products carry _url because their permalink shape differs.
     url = product.get("_url") or f"https://{domain}/products/{handle}"
     prices = sorted({v.get("price") for v in product.get("variants", []) if v.get("price")})
-    price = prices[0] if prices else "?"
+    price = prices[0] if prices else None
     vendor = product.get("vendor", "")
     lines = [f"🆕 {store_name}", title]
     if vendor and vendor.lower() not in title.lower():
         lines.append(vendor)
-    lines.append(f"${price}" if not str(price).startswith("$") else str(price))
+    if price:
+        lines.append(f"${price}" if not str(price).startswith("$") else str(price))
     lines.append(url)
     return "\n".join(lines)
 
