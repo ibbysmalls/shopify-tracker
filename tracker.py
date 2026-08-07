@@ -33,7 +33,18 @@ UA = {
     "User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
                    "AppleWebKit/537.36 (KHTML, like Gecko) "
                    "Chrome/126.0.0.0 Safari/537.36"),
-    "Accept": "application/json",
+    "Accept": "application/json, text/plain, */*",
+    # A real browser sends all of these. Some WAF rules reject requests that
+    # claim a browser User-Agent while omitting them, which is cheap to fix
+    # and occasionally the whole reason a store 403s.
+    "Accept-Language": "en-US,en;q=0.9",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-CH-UA": '"Chromium";v="126", "Not.A/Brand";v="24"',
+    "Sec-CH-UA-Mobile": "?0",
+    "Sec-CH-UA-Platform": '"macOS"',
+    "Connection": "keep-alive",
 }
 
 
