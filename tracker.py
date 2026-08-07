@@ -46,11 +46,29 @@ def http_get_json(url, timeout=20, retries=3):
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except urllib.error.HTTPError as e:
             last_err = e
+            # Cloudflare bot protection. Retrying cannot help: the challenge
+            # needs a JS engine and issues a cookie bound to IP + user agent,
+            # so a datacenter runner will never pass it. Fail loudly instead.
+            body = ""
+            try:
+                body = e.read(2000).decode("utf-8", errors="replace").lower()
+            except Exception:
+                pass
+            if e.code in (403, 503) and "cloudflare" in body:
+                raise RuntimeError(f"BLOCKED (Cloudflare {e.code})")
             if e.code in (429, 503) and attempt < retries - 1:
                 time.sleep(2 * (attempt + 1))  # back off: 2s, 4s
                 continue
             raise
     raise last_err
+
+
+def try_json(url, timeout=10):
+    """Non-raising probe. Returns parsed JSON or None."""
+    try:
+        return http_get_json(url, timeout=timeout, retries=1)
+    except Exception:
+        return None
 
 
 def load_json(path, default):
@@ -72,9 +90,81 @@ def products_url(domain, limit):
     return f"https://{domain}/products.json?limit={limit}"
 
 
-def fetch_products(domain, limit):
+def woo_products_url(domain, limit):
+    return (f"https://{domain}/wp-json/wc/store/v1/products"
+            f"?per_page={limit}&orderby=date&order=desc")
+
+
+def woo_price(prices):
+    """Woo returns prices as integer strings in minor units, with the exponent
+    in currency_minor_unit: "26900" + minor_unit 2 -> "269.00"."""
+    if not isinstance(prices, dict):
+        return None
+    raw = prices.get("price")
+    if raw in (None, ""):
+        return None
+    try:
+        minor = int(prices.get("currency_minor_unit", 2))
+        return f"{int(raw) / (10 ** minor):.{minor}f}"
+    except (TypeError, ValueError):
+        return str(raw)
+
+
+def normalize_woo(products, domain):
+    """Reshape WooCommerce Store API products into the Shopify shape the rest
+    of this script already understands. Adds _url, since Woo uses
+    /product/slug/ while Shopify uses /products/slug."""
+    out = []
+    for p in products:
+        price = woo_price(p.get("prices"))
+        in_stock = bool(p.get("is_in_stock"))
+        # Store API exposes variation ids and attribute values but not
+        # per-variation stock, so availability falls back to product level.
+        variants = []
+        for v in p.get("variations") or []:
+            label = " / ".join(str(a.get("value"))
+                               for a in (v.get("attributes") or [])
+                               if a.get("value"))
+            variants.append({"title": label or str(v.get("id")),
+                             "available": in_stock,
+                             "price": price})
+        if not variants:
+            variants = [{"title": "Default", "available": in_stock, "price": price}]
+
+        cats = p.get("categories") or []
+        out.append({
+            "id": p.get("id"),
+            "title": p.get("name"),
+            "handle": p.get("slug"),
+            "vendor": "",
+            "product_type": cats[0].get("name", "") if cats else "",
+            "variants": variants,
+            "_url": p.get("permalink") or f"https://{domain}/product/{p.get('slug')}/",
+        })
+    return out
+
+
+def fetch_products(domain, limit, platform="shopify"):
+    """Return a list of products in Shopify shape, whatever the platform."""
+    if (platform or "shopify").lower() == "woocommerce":
+        data = http_get_json(woo_products_url(domain, limit))
+        if not isinstance(data, list):
+            raise RuntimeError("unexpected shape from Woo Store API")
+        return normalize_woo(data, domain)
     data = http_get_json(products_url(domain, limit))
     return data.get("products", [])
+
+
+def detect_platform(domain):
+    """Probe a domain. Returns 'shopify', 'woocommerce', or None.
+    At most two requests, one product each."""
+    data = try_json(products_url(domain, 1))
+    if isinstance(data, dict) and "products" in data:
+        return "shopify"
+    data = try_json(woo_products_url(domain, 1))
+    if isinstance(data, list):
+        return "woocommerce"
+    return None
 
 
 # ---------------------------------------------------------------- verify ----
@@ -83,27 +173,42 @@ def cmd_verify(cfg):
     ok, failed = [], []
     for s in cfg["stores"]:
         domain = s["domain"]
+        platform = detect_platform(domain)
+        if platform is None:
+            s["verified"] = False
+            failed.append((s["name"], domain, "no shopify or woocommerce endpoint"))
+            print(f"  FAIL  {s['name']:<24} neither products.json nor wc/store responded")
+            time.sleep(0.5)
+            continue
         try:
-            products = fetch_products(domain, 1)
+            products = fetch_products(domain, 1, platform)
             if isinstance(products, list):
-                ok.append((s["name"], domain, len(products)))
-                print(f"  OK    {s['name']:<24} https://{domain}/products.json")
+                s["platform"] = platform
+                s["verified"] = True
+                ok.append((s["name"], domain, platform))
+                print(f"  OK    {s['name']:<24} {platform}")
             else:
+                s["verified"] = False
                 failed.append((s["name"], domain, "unexpected shape"))
                 print(f"  ????  {s['name']:<24} responded but not a product list")
         except Exception as e:
+            s["verified"] = False
             failed.append((s["name"], domain, str(e)))
             print(f"  FAIL  {s['name']:<24} {e}")
         time.sleep(0.5)
 
-    print(f"\n{len(ok)} working, {len(failed)} failed.")
+    save_json(CONFIG_PATH, cfg)
+    shopify = sum(1 for _, _, p in ok if p == "shopify")
+    woo = sum(1 for _, _, p in ok if p == "woocommerce")
+    print(f"\n{len(ok)} working ({shopify} shopify, {woo} woocommerce), "
+          f"{len(failed)} failed.")
     if failed:
         print("Failed stores (check the domain via shop.app or the store site,")
         print("then correct 'domain' in stores.json):")
         for name, domain, err in failed:
             print(f"  - {name}: {domain}  ({err})")
-    print("\nTip: set \"verified\": true in stores.json for every OK store so")
-    print("'run' includes it, or pass --all to poll everything regardless.")
+    print("\nstores.json has been updated with the detected platform and")
+    print("verified flags. Commit it to keep the results.")
 
 
 # ----------------------------------------------------- telegram commands ----
@@ -179,26 +284,26 @@ def process_telegram_commands(cfg, state):
             send_telegram(f"Already tracking {existing[bare]['name']} ({bare})")
             continue
 
-        # Validate: does it expose products.json? Try as given, then with www.
+        # Validate: what platform is it? Try as given, then with www.
         working = None
+        platform = None
         for candidate in (domain, f"www.{bare}"):
-            try:
-                fetch_products(candidate, 1)
+            platform = detect_platform(candidate)
+            if platform:
                 working = candidate
                 break
-            except Exception:
-                continue
 
         if working:
             name = derive_name(working)
             cfg["stores"].append(
-                {"name": name, "domain": working, "verified": True})
+                {"name": name, "domain": working,
+                 "platform": platform, "verified": True})
             changed = True
-            send_telegram(f"➕ Added {name} ({working}). "
+            send_telegram(f"➕ Added {name} ({working}, {platform}). "
                           f"Seeding now; notifications start next run.")
         else:
-            send_telegram(f"⚠️ {bare} didn't respond to /products.json — "
-                          f"not a standard Shopify store, or a different domain. Not added.")
+            send_telegram(f"⚠️ {bare} exposed neither a Shopify products.json "
+                          f"nor a WooCommerce Store API. Not added.")
 
     return changed
 
@@ -232,7 +337,8 @@ def passes_filters(product, filters):
 def format_message(store_name, domain, product):
     title = product.get("title", "Untitled")
     handle = product.get("handle", "")
-    url = f"https://{domain}/products/{handle}"
+    # Woo products carry _url because their permalink shape differs.
+    url = product.get("_url") or f"https://{domain}/products/{handle}"
     prices = sorted({v.get("price") for v in product.get("variants", []) if v.get("price")})
     price = prices[0] if prices else "?"
     vendor = product.get("vendor", "")
@@ -291,7 +397,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
             continue
         t0 = time.time()
         try:
-            products = fetch_products(domain, limit)
+            products = fetch_products(domain, limit, s.get("platform", "shopify"))
             timings.append((time.time() - t0, name, "ok"))
             polled_ok += 1
             if not products:
