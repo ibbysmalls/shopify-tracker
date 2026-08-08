@@ -234,6 +234,12 @@
       "name": "Motostyle",
       "domain": "www.motostyle.jp",
       "verified": true
+    },
+    {
+      "name": "Fittedunderground",
+      "domain": "fittedunderground.com",
+      "platform": "shopify",
+      "verified": true
     }
   ],
   "filters": {
