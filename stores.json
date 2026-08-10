@@ -240,6 +240,12 @@
       "domain": "fittedunderground.com",
       "platform": "shopify",
       "verified": true
+    },
+    {
+      "name": "Snakeoilprovisions",
+      "domain": "www.snakeoilprovisions.com",
+      "platform": "shopify",
+      "verified": true
     }
   ],
   "filters": {
