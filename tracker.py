@@ -12,7 +12,8 @@ Environment variables (required for notifications):
   TELEGRAM_CHAT_ID     your numeric chat id (message @userinfobot to get it)
 
 State is kept in seen.json next to this script. The first run seeds state
-silently (no notification flood); subsequent runs notify only on new product IDs.
+silently (no notification flood); subsequent runs notify on new product IDs
+and on restocks (a known variant going from unavailable to available).
 
 Designed to be run on a schedule: launchd/cron on a Mac, or GitHub Actions.
 """
@@ -97,8 +98,127 @@ def save_json(path, data):
     os.replace(tmp, path)
 
 
-def products_url(domain, limit):
+def products_url(domain, limit, collection=None):
+    if collection:
+        handle = str(collection).strip().strip("/")
+        return f"https://{domain}/collections/{handle}/products.json?limit={limit}"
     return f"https://{domain}/products.json?limit={limit}"
+
+
+def store_collections(store):
+    """Collection handles this store should poll, in config order."""
+    cols = []
+    if store.get("collection"):
+        cols.append(store["collection"])
+    for c in store.get("collections") or []:
+        if c not in cols:
+            cols.append(c)
+    return cols
+
+
+def variant_in_stock(variant):
+    """True when a variant is sellable. Shopify storefront JSON exposes
+    `available`; some payloads also include inventory_quantity."""
+    qty = variant.get("inventory_quantity")
+    try:
+        qty = int(qty) if qty is not None else None
+    except (TypeError, ValueError):
+        qty = None
+    if qty == 0 or variant.get("available") is False:
+        return False
+    if variant.get("available") is True:
+        return True
+    if qty is not None and qty > 0:
+        return True
+    return False
+
+
+def snapshot_variants(product):
+    """Map variant id -> {available, title} for restock comparisons."""
+    snap = {}
+    for v in product.get("variants") or []:
+        vid = v.get("id")
+        if vid is None:
+            vid = v.get("title") or "default"
+        snap[str(vid)] = {
+            "available": variant_in_stock(v),
+            "title": v.get("title") or str(vid),
+        }
+    return snap
+
+
+def restocked_titles(product, prev_snap):
+    """Variant titles that are in stock now and were missing or unavailable."""
+    titles = []
+    for vid, cur in snapshot_variants(product).items():
+        if not cur["available"]:
+            continue
+        prev = (prev_snap or {}).get(vid)
+        if prev is None or not prev.get("available"):
+            titles.append(cur["title"])
+    return titles
+
+
+def window_seed_ids(catalog_products, prev_limit, limit):
+    """IDs that are only visible because products_per_store grew.
+
+    Shopify /products.json is newest-created first. Positions after the
+    previously seeded window are older catalog items, not new drops.
+    """
+    try:
+        prev_limit = int(prev_limit)
+        limit = int(limit)
+    except (TypeError, ValueError):
+        return set()
+    if limit <= prev_limit:
+        return set()
+    ids = [str(p["id"]) for p in catalog_products if "id" in p]
+    return set(ids[prev_limit:])
+
+
+def diff_store(products, seen_ids, prev_stock, seed_ids=None):
+    """Compare one poll to persisted IDs and per-variant availability.
+
+    seen_ids: previously known product IDs.
+    prev_stock: product_id -> {variant_id: {available, title}}, or None if
+    this store has never recorded variant availability (first run or upgrade).
+    seed_ids: IDs to record silently (window-growth older catalog items).
+    They are not "new", and first sight of their variant state does not
+    emit a restock — same as the upgrade seed.
+
+    Returns (events, current_ids, next_stock). events is a list of
+    (kind, product, extra) where kind is "new" or "restock" and extra is
+    restocked variant titles for restocks. First sight of a store, or of
+    variant state, never emits restocks — that seeds silently so we don't
+    spam on deploy.
+    """
+    seen = {str(i) for i in seen_ids}
+    seed = {str(i) for i in (seed_ids or [])}
+    current_ids = [str(p["id"]) for p in products if "id" in p]
+    events = []
+    next_stock = {} if prev_stock is None else dict(prev_stock)
+    stock_ready = prev_stock is not None
+
+    if not seen:
+        next_stock = {str(p["id"]): snapshot_variants(p)
+                      for p in products if "id" in p}
+        return events, current_ids, next_stock
+
+    for p in products:
+        if "id" not in p:
+            continue
+        pid = str(p["id"])
+        snap = snapshot_variants(p)
+        if pid not in seen:
+            if pid not in seed:
+                events.append(("new", p, None))
+        elif stock_ready and pid in prev_stock:
+            titles = restocked_titles(p, prev_stock[pid])
+            if titles:
+                events.append(("restock", p, titles))
+        next_stock[pid] = snap
+
+    return events, current_ids, next_stock
 
 
 def woo_products_url(domain, limit):
@@ -155,21 +275,53 @@ def normalize_woo(products, domain):
     return out
 
 
-def fetch_products(domain, limit, platform="shopify"):
-    """Return a list of products in Shopify shape, whatever the platform."""
+def fetch_products(domain, limit, platform="shopify", collections=None,
+                   catalog=True):
+    """Return a list of products in Shopify shape, whatever the platform.
+
+    Shopify stores may list collection handles; those are fetched (and, by
+    default, the store-wide catalogue too) and merged by product id.
+    """
     platform = (platform or "shopify").lower()
     if platform == "rss":
         items, why = probe_rss(domain, limit)
         if items is None:
             raise RuntimeError(why)
-        return items
+        return items, items
     if platform == "woocommerce":
         data = http_get_json(woo_products_url(domain, limit))
         if not isinstance(data, list):
             raise RuntimeError("unexpected shape from Woo Store API")
-        return normalize_woo(data, domain)
-    data = http_get_json(products_url(domain, limit))
-    return data.get("products", [])
+        items = normalize_woo(data, domain)
+        return items, items
+    return fetch_shopify_products(domain, limit, collections, catalog)
+
+
+def fetch_shopify_products(domain, limit, collections=None, catalog=True):
+    """Pull /products.json and any configured collection product lists.
+
+    Returns (merged, catalog_products). catalog_products is the store-wide
+    newest-created list (empty when the catalogue is not fetched), used to
+    tell a real new drop from an older ID that only appeared because the
+    poll window grew.
+    """
+    collections = list(collections or [])
+    sources = list(collections)
+    if catalog or not collections:
+        sources.append(None)
+
+    merged = {}
+    catalog_products = []
+    for collection in sources:
+        data = http_get_json(products_url(domain, limit, collection))
+        batch = data.get("products", [])
+        if collection is None:
+            catalog_products = batch
+        for p in batch:
+            pid = p.get("id")
+            if pid is not None and pid not in merged:
+                merged[pid] = p
+    return list(merged.values()), catalog_products
 
 
 def probe_json(url, timeout=10):
@@ -292,7 +444,7 @@ def cmd_verify(cfg):
             time.sleep(0.5)
             continue
         try:
-            products = fetch_products(domain, 1, platform)
+            products, _ = fetch_products(domain, 1, platform)
             if isinstance(products, list):
                 s["platform"] = platform
                 s["verified"] = True
@@ -579,7 +731,7 @@ def passes_filters(product, filters):
     return True
 
 
-def format_message(store_name, domain, product):
+def format_message(store_name, domain, product, restocked=None):
     title = product.get("title", "Untitled")
     handle = product.get("handle", "")
     # Woo products carry _url because their permalink shape differs.
@@ -587,11 +739,14 @@ def format_message(store_name, domain, product):
     prices = sorted({v.get("price") for v in product.get("variants", []) if v.get("price")})
     price = prices[0] if prices else None
     vendor = product.get("vendor", "")
-    lines = [f"🆕 {store_name}", title]
+    badge = "♻️" if restocked else "🆕"
+    lines = [f"{badge} {store_name}", title]
     if vendor and vendor.lower() not in title.lower():
         lines.append(vendor)
     if price:
         lines.append(f"${price}" if not str(price).startswith("$") else str(price))
+    if restocked:
+        lines.append("Restocked: " + ", ".join(restocked))
     lines.append(url)
     return "\n".join(lines)
 
@@ -626,6 +781,13 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     filters = cfg.get("filters", {})
     poll_cfg = cfg.get("poll", {})
     limit = poll_cfg.get("products_per_store", 20)
+    # Missing/invalid means the implicit default this repo used before
+    # _poll_limit existed. Needed so 20 → 50 does not treat older catalog
+    # IDs as new.
+    try:
+        prev_limit = int(state.get("_poll_limit", 20))
+    except (TypeError, ValueError):
+        prev_limit = 20
     # Slack so a store due at exactly N seconds isn't pushed to the next
     # trigger by a fraction of a second, which would slowly drift its cadence.
     grace = poll_cfg.get("interval_grace_seconds", 60)
@@ -660,7 +822,10 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
 
         t0 = time.time()
         try:
-            products = fetch_products(domain, limit, s.get("platform", "shopify"))
+            products, catalog_products = fetch_products(
+                domain, limit, s.get("platform", "shopify"),
+                collections=store_collections(s),
+                catalog=s.get("catalog", True))
             timings.append((time.time() - t0, name, "ok"))
             polled_ok += 1
             ok_names.append(name)
@@ -673,22 +838,27 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
                   file=sys.stderr)
             continue
 
-        seen = set(state.get(domain, []))
-        current_ids = [str(p["id"]) for p in products if "id" in p]
+        seen = list(state.get(domain, []))
+        stock_all = state.setdefault("_stock", {})
+        prev_stock = stock_all.get(domain)  # None until variant state is seeded
+        seed_ids = window_seed_ids(catalog_products, prev_limit, limit)
+        events, current_ids, next_stock = diff_store(
+            products, seen, prev_stock, seed_ids=seed_ids)
 
         if not seen:
-            # First time seeing this store: seed silently.
+            # First time seeing this store: seed IDs and stock silently.
             state[domain] = current_ids
+            stock_all[domain] = next_stock
             new_by_store[name] = 0
             first_run_stores += 1
             continue
 
-        new_products = [p for p in products if str(p.get("id")) not in seen]
-        new_by_store[name] = len(new_products)
-        for p in new_products:
+        new_by_store[name] = len(events)
+        for kind, p, extra in events:
             if not passes_filters(p, filters):
                 continue
-            msg = format_message(name, domain, p)
+            msg = format_message(name, domain, p,
+                                 restocked=extra if kind == "restock" else None)
             if dry_run:
                 print("---\n" + msg)
             else:
@@ -700,12 +870,19 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
                     print(f"[warn] Telegram send failed: {e}", file=sys.stderr)
 
         # Keep a rolling window of known IDs so state doesn't grow forever.
-        state[domain] = list(dict.fromkeys(current_ids + list(seen)))[:500]
+        state[domain] = list(dict.fromkeys(current_ids + seen))[:500]
+        kept = set(state[domain])
+        stock_all[domain] = {pid: snap for pid, snap in next_stock.items()
+                             if pid in kept}
         time.sleep(1.5)  # be gentle with the stores too
 
-    # Prune poll timestamps for stores that have been removed.
+    # Prune poll timestamps and stock maps for stores that have been removed.
     live_domains = {s["domain"] for s in cfg["stores"]}
     state["_last_poll"] = {k: v for k, v in last_poll.items() if k in live_domains}
+    if "_stock" in state:
+        state["_stock"] = {d: snaps for d, snaps in state["_stock"].items()
+                           if d in live_domains}
+    state["_poll_limit"] = limit
 
     report_health(state, ok_names, failed, skipped_unverified, empty,
                   new_by_store, dry_run, cfg.get("health", {}), deferred)
