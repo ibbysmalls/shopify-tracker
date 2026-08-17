@@ -213,7 +213,8 @@
     {
       "name": "Okayamadenim",
       "domain": "www.okayamadenim.com",
-      "verified": true
+      "verified": true,
+      "collections": ["new-restocks"]
     },
     {
       "name": "Berkeleysupply",

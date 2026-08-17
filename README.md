@@ -1,6 +1,6 @@
 # Shopify New-Arrivals Tracker
 
-Polls the public `products.json` endpoint of every store you follow and sends a Telegram message when something new appears. No dependencies beyond Python 3 (standard library only).
+Polls the public `products.json` endpoint of every store you follow and sends a Telegram message when a new product ID appears, or when a previously seen variant comes back in stock. No dependencies beyond Python 3 (standard library only).
 
 ## 1. Verify the store list
 
@@ -47,6 +47,23 @@ Edit `filters` in `stores.json`:
 ```
 
 Empty `include_keywords` means notify on everything.
+
+Stores that restock existing product pages (instead of creating new IDs) need
+per-variant history, which is stored in `seen.json` under `_stock`. The first
+run after an upgrade seeds that silently. To also poll a Shopify collection
+such as Okayama Denim's new-restocks list:
+
+```json
+{
+  "name": "Okayamadenim",
+  "domain": "www.okayamadenim.com",
+  "verified": true,
+  "collections": ["new-restocks"]
+}
+```
+
+That hits `/collections/<handle>/products.json` in addition to the store-wide
+catalogue. Set `"catalog": false` to poll only the collection(s).
 
 ## 5. Schedule on the Mac Studio (launchd)
 
