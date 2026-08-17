@@ -256,6 +256,6 @@
     "notify_only_available": true
   },
   "poll": {
-    "products_per_store": 20
+    "products_per_store": 50
   }
 }

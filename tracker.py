@@ -159,12 +159,32 @@ def restocked_titles(product, prev_snap):
     return titles
 
 
-def diff_store(products, seen_ids, prev_stock):
+def window_seed_ids(catalog_products, prev_limit, limit):
+    """IDs that are only visible because products_per_store grew.
+
+    Shopify /products.json is newest-created first. Positions after the
+    previously seeded window are older catalog items, not new drops.
+    """
+    try:
+        prev_limit = int(prev_limit)
+        limit = int(limit)
+    except (TypeError, ValueError):
+        return set()
+    if limit <= prev_limit:
+        return set()
+    ids = [str(p["id"]) for p in catalog_products if "id" in p]
+    return set(ids[prev_limit:])
+
+
+def diff_store(products, seen_ids, prev_stock, seed_ids=None):
     """Compare one poll to persisted IDs and per-variant availability.
 
     seen_ids: previously known product IDs.
     prev_stock: product_id -> {variant_id: {available, title}}, or None if
     this store has never recorded variant availability (first run or upgrade).
+    seed_ids: IDs to record silently (window-growth older catalog items).
+    They are not "new", and first sight of their variant state does not
+    emit a restock — same as the upgrade seed.
 
     Returns (events, current_ids, next_stock). events is a list of
     (kind, product, extra) where kind is "new" or "restock" and extra is
@@ -173,6 +193,7 @@ def diff_store(products, seen_ids, prev_stock):
     spam on deploy.
     """
     seen = {str(i) for i in seen_ids}
+    seed = {str(i) for i in (seed_ids or [])}
     current_ids = [str(p["id"]) for p in products if "id" in p]
     events = []
     next_stock = {} if prev_stock is None else dict(prev_stock)
@@ -189,7 +210,8 @@ def diff_store(products, seen_ids, prev_stock):
         pid = str(p["id"])
         snap = snapshot_variants(p)
         if pid not in seen:
-            events.append(("new", p, None))
+            if pid not in seed:
+                events.append(("new", p, None))
         elif stock_ready and pid in prev_stock:
             titles = restocked_titles(p, prev_stock[pid])
             if titles:
@@ -265,30 +287,41 @@ def fetch_products(domain, limit, platform="shopify", collections=None,
         items, why = probe_rss(domain, limit)
         if items is None:
             raise RuntimeError(why)
-        return items
+        return items, items
     if platform == "woocommerce":
         data = http_get_json(woo_products_url(domain, limit))
         if not isinstance(data, list):
             raise RuntimeError("unexpected shape from Woo Store API")
-        return normalize_woo(data, domain)
+        items = normalize_woo(data, domain)
+        return items, items
     return fetch_shopify_products(domain, limit, collections, catalog)
 
 
 def fetch_shopify_products(domain, limit, collections=None, catalog=True):
-    """Pull /products.json and any configured collection product lists."""
+    """Pull /products.json and any configured collection product lists.
+
+    Returns (merged, catalog_products). catalog_products is the store-wide
+    newest-created list (empty when the catalogue is not fetched), used to
+    tell a real new drop from an older ID that only appeared because the
+    poll window grew.
+    """
     collections = list(collections or [])
     sources = list(collections)
     if catalog or not collections:
         sources.append(None)
 
     merged = {}
+    catalog_products = []
     for collection in sources:
         data = http_get_json(products_url(domain, limit, collection))
-        for p in data.get("products", []):
+        batch = data.get("products", [])
+        if collection is None:
+            catalog_products = batch
+        for p in batch:
             pid = p.get("id")
             if pid is not None and pid not in merged:
                 merged[pid] = p
-    return list(merged.values())
+    return list(merged.values()), catalog_products
 
 
 def probe_json(url, timeout=10):
@@ -411,7 +444,7 @@ def cmd_verify(cfg):
             time.sleep(0.5)
             continue
         try:
-            products = fetch_products(domain, 1, platform)
+            products, _ = fetch_products(domain, 1, platform)
             if isinstance(products, list):
                 s["platform"] = platform
                 s["verified"] = True
@@ -748,6 +781,13 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     filters = cfg.get("filters", {})
     poll_cfg = cfg.get("poll", {})
     limit = poll_cfg.get("products_per_store", 20)
+    # Missing/invalid means the implicit default this repo used before
+    # _poll_limit existed. Needed so 20 → 50 does not treat older catalog
+    # IDs as new.
+    try:
+        prev_limit = int(state.get("_poll_limit", 20))
+    except (TypeError, ValueError):
+        prev_limit = 20
     # Slack so a store due at exactly N seconds isn't pushed to the next
     # trigger by a fraction of a second, which would slowly drift its cadence.
     grace = poll_cfg.get("interval_grace_seconds", 60)
@@ -782,7 +822,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
 
         t0 = time.time()
         try:
-            products = fetch_products(
+            products, catalog_products = fetch_products(
                 domain, limit, s.get("platform", "shopify"),
                 collections=store_collections(s),
                 catalog=s.get("catalog", True))
@@ -801,7 +841,9 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         seen = list(state.get(domain, []))
         stock_all = state.setdefault("_stock", {})
         prev_stock = stock_all.get(domain)  # None until variant state is seeded
-        events, current_ids, next_stock = diff_store(products, seen, prev_stock)
+        seed_ids = window_seed_ids(catalog_products, prev_limit, limit)
+        events, current_ids, next_stock = diff_store(
+            products, seen, prev_stock, seed_ids=seed_ids)
 
         if not seen:
             # First time seeing this store: seed IDs and stock silently.
@@ -840,6 +882,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     if "_stock" in state:
         state["_stock"] = {d: snaps for d, snaps in state["_stock"].items()
                            if d in live_domains}
+    state["_poll_limit"] = limit
 
     report_health(state, ok_names, failed, skipped_unverified, empty,
                   new_by_store, dry_run, cfg.get("health", {}), deferred)

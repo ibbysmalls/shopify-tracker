@@ -153,6 +153,55 @@ class DiffStoreTests(unittest.TestCase):
         self.assertEqual(events, [])
         self.assertTrue(stock["10"]["1"]["available"])
 
+    def test_window_growth_seeds_older_ids_silently(self):
+        """Raising 20 → 50 must not treat catalog[20:] as new drops."""
+        catalog = [product(i, title=f"P{i}") for i in range(1, 51)]
+        seen = [str(i) for i in range(1, 21)]
+        prev_stock = {str(i): {"1": {"available": True, "title": "32"}}
+                      for i in range(1, 21)}
+        # A genuine new drop at the front, plus 30 older IDs now visible.
+        catalog[0] = product(99, title="Brand new")
+        seed = tracker.window_seed_ids(catalog, 20, 50)
+        self.assertEqual(len(seed), 30)
+        self.assertNotIn("99", seed)
+        self.assertIn("21", seed)
+        self.assertIn("50", seed)
+
+        events, ids, stock = tracker.diff_store(
+            catalog, seen, prev_stock, seed_ids=seed)
+        kinds = [(k, str(p["id"])) for k, p, _ in events]
+        self.assertEqual(kinds, [("new", "99")])
+        self.assertIn("50", ids)
+        self.assertIn("50", stock)
+        self.assertNotIn(("new", "21"), kinds)
+        self.assertNotIn(("restock", "21"), kinds)
+
+    def test_window_seed_first_sight_does_not_restock(self):
+        older = product(21, variants=[variant(1, "32", True)])
+        events, _, stock = tracker.diff_store(
+            [older], ["10"], {"10": {"1": {"available": True, "title": "32"}}},
+            seed_ids=["21"])
+        self.assertEqual(events, [])
+        self.assertTrue(stock["21"]["1"]["available"])
+
+    def test_window_seed_does_not_block_real_restock_of_known_id(self):
+        p = product(10, variants=[variant(1, "32", True)])
+        prev_stock = {"10": {"1": {"available": False, "title": "32"}}}
+        events, _, _ = tracker.diff_store(
+            [p], ["10"], prev_stock, seed_ids=["10"])
+        self.assertEqual(events[0][0], "restock")
+
+
+class WindowSeedIdsTests(unittest.TestCase):
+    def test_same_or_smaller_limit_is_noop(self):
+        catalog = [product(i) for i in range(50)]
+        self.assertEqual(tracker.window_seed_ids(catalog, 50, 50), set())
+        self.assertEqual(tracker.window_seed_ids(catalog, 50, 20), set())
+
+    def test_missing_prev_limit_is_noop(self):
+        catalog = [product(i) for i in range(50)]
+        self.assertEqual(tracker.window_seed_ids(catalog, None, 50), set())
+
 
 class FormatMessageTests(unittest.TestCase):
     def test_new_product_keeps_badge_and_url(self):
@@ -187,7 +236,7 @@ class FetchShopifyMergeTests(unittest.TestCase):
         orig = tracker.http_get_json
         tracker.http_get_json = fake_get
         try:
-            products = tracker.fetch_shopify_products(
+            products, catalog = tracker.fetch_shopify_products(
                 "www.okayamadenim.com", 20,
                 collections=["new-restocks"], catalog=True)
         finally:
@@ -200,6 +249,7 @@ class FetchShopifyMergeTests(unittest.TestCase):
         by_id = {p["id"]: p for p in products}
         self.assertEqual(by_id[10]["title"], "From collection")
         self.assertEqual(by_id[11]["title"], "Brand new")
+        self.assertEqual([p["id"] for p in catalog], [10, 11])
 
     def test_catalog_false_skips_storewide(self):
         calls = []
@@ -211,7 +261,7 @@ class FetchShopifyMergeTests(unittest.TestCase):
         orig = tracker.http_get_json
         tracker.http_get_json = fake_get
         try:
-            tracker.fetch_shopify_products(
+            products, catalog = tracker.fetch_shopify_products(
                 "www.okayamadenim.com", 20,
                 collections=["new-restocks"], catalog=False)
         finally:
@@ -219,6 +269,8 @@ class FetchShopifyMergeTests(unittest.TestCase):
 
         self.assertEqual(len(calls), 1)
         self.assertIn("/collections/new-restocks/", calls[0])
+        self.assertEqual([p["id"] for p in products], [10])
+        self.assertEqual(catalog, [])
 
 
 if __name__ == "__main__":
