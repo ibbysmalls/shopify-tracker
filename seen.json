@@ -5871,8 +5871,6 @@
     "15417943785812",
     "15067579515220",
     "15026345443668",
-    "12505740640596",
-    "12442394198356",
     "12320400965972",
     "15675713421652",
     "15677953343828",
@@ -5906,6 +5904,10 @@
     "15673260540244",
     "12497730928980",
     "15669878751572",
+    "15669875310932",
+    "15669869412692",
+    "12505740640596",
+    "12442394198356",
     "15657064857940",
     "12148505739604",
     "15662521385300",
@@ -5957,7 +5959,6 @@
     "15663894987092",
     "15657138487636",
     "12422522044756",
-    "15669875310932",
     "12148948074836",
     "15665961271636",
     "15668211056980",
@@ -6025,7 +6026,6 @@
     "15669718909268",
     "15669760557396",
     "15669769535828",
-    "15669869412692",
     "15669753151828",
     "15669861744980",
     "15669751382356",
@@ -6157,55 +6157,55 @@
     "period_new": 449
   },
   "_last_poll": {
-    "www.myfitteds.com": 1786967114,
-    "hatclub.com": 1786967115,
-    "sofreshclothing.com": 1786967117,
-    "culturekings.com": 1786967119,
-    "exclusivefitted.com": 1786967121,
-    "www.neweracap.com": 1786967123,
-    "procietyshop.com": 1786967125,
-    "4ucaps.com": 1786967126,
-    "www.hatdreams.com": 1786967128,
-    "crownminded.com": 1786967130,
-    "www.ecapcity.com": 1786967132,
-    "www.lidshd.com": 1786967134,
-    "gf-sf.com": 1786967135,
-    "incredideals.ae": 1786967137,
-    "stylisticsjapan.com": 1786967139,
-    "www.cojpgallery.com": 1786967141,
-    "sonofastag.com": 1786967143,
-    "bears-tokyo.myshopify.com": 1786967145,
-    "corlection.com": 1786967147,
-    "ironshopprovisions.com": 1786967149,
-    "franklinandpoe.com": 1786967150,
-    "shopcanoeclub.com": 1786967152,
-    "meadowweb.com": 1786967154,
-    "mildblend.com": 1786967156,
-    "rodeo-japan-pine-avenue.com": 1786967158,
-    "klaxon-store.com": 1786967160,
-    "www.bluebeachdenim.shop": 1786967162,
-    "www.dant.us": 1786967164,
-    "hinoya.shop": 1786967166,
-    "homegame-newyork.com": 1786967168,
-    "redcastheritage.com": 1786967170,
-    "www.panchoandlefty.se": 1786967176,
-    "totemshop.com": 1786967178,
-    "www.blueingreensoho.com": 1786967180,
-    "www.guiltyparty.co": 1786967182,
-    "www.blueowl.us": 1786967184,
-    "standardandstrange.com": 1786967186,
-    "www.witheredfig.com": 1786967188,
-    "www.mentionclothing.com": 1786967189,
-    "sakuraclientele.com": 1786967192,
-    "cultofindigo.com": 1786967193,
-    "www.limbro.id": 1786967195,
-    "www.okayamadenim.com": 1786967202,
-    "berkeleysupply.com": 1786967204,
-    "statement-store.com": 1786967206,
-    "cultizm.com": 1786967208,
-    "www.motostyle.jp": 1786967210,
-    "fittedunderground.com": 1786967213,
-    "www.snakeoilprovisions.com": 1786967214
+    "www.myfitteds.com": 1786968024,
+    "hatclub.com": 1786968026,
+    "sofreshclothing.com": 1786968028,
+    "culturekings.com": 1786968030,
+    "exclusivefitted.com": 1786968031,
+    "www.neweracap.com": 1786968033,
+    "procietyshop.com": 1786968035,
+    "4ucaps.com": 1786968037,
+    "www.hatdreams.com": 1786968039,
+    "crownminded.com": 1786968041,
+    "www.ecapcity.com": 1786968042,
+    "www.lidshd.com": 1786968044,
+    "gf-sf.com": 1786968046,
+    "incredideals.ae": 1786968048,
+    "stylisticsjapan.com": 1786968049,
+    "www.cojpgallery.com": 1786968051,
+    "sonofastag.com": 1786968053,
+    "bears-tokyo.myshopify.com": 1786968055,
+    "corlection.com": 1786968057,
+    "ironshopprovisions.com": 1786968059,
+    "franklinandpoe.com": 1786968061,
+    "shopcanoeclub.com": 1786968063,
+    "meadowweb.com": 1786968065,
+    "mildblend.com": 1786968067,
+    "rodeo-japan-pine-avenue.com": 1786968069,
+    "klaxon-store.com": 1786968070,
+    "www.bluebeachdenim.shop": 1786968072,
+    "www.dant.us": 1786968074,
+    "hinoya.shop": 1786968076,
+    "homegame-newyork.com": 1786968078,
+    "redcastheritage.com": 1786968080,
+    "www.panchoandlefty.se": 1786968082,
+    "totemshop.com": 1786968084,
+    "www.blueingreensoho.com": 1786968086,
+    "www.guiltyparty.co": 1786968088,
+    "www.blueowl.us": 1786968091,
+    "standardandstrange.com": 1786968093,
+    "www.witheredfig.com": 1786968095,
+    "www.mentionclothing.com": 1786968097,
+    "sakuraclientele.com": 1786968099,
+    "cultofindigo.com": 1786968101,
+    "www.limbro.id": 1786968103,
+    "www.okayamadenim.com": 1786968106,
+    "berkeleysupply.com": 1786968108,
+    "statement-store.com": 1786968110,
+    "cultizm.com": 1786968113,
+    "www.motostyle.jp": 1786968115,
+    "fittedunderground.com": 1786968117,
+    "www.snakeoilprovisions.com": 1786968119
   },
   "fittedunderground.com": [
     "7568978346042",
@@ -38745,7 +38745,7 @@
     "hinoya.shop": {
       "9893646762219": {
         "49238011937003": {
-          "available": true,
+          "available": false,
           "title": "Purple / M"
         },
         "49238011969771": {
@@ -38885,7 +38885,7 @@
       },
       "9888430948587": {
         "49225813786859": {
-          "available": true,
+          "available": false,
           "title": "Black Indigo / 36(S)"
         },
         "49225813819627": {
@@ -51519,7 +51519,7 @@
           "title": "30"
         },
         "42496622002328": {
-          "available": true,
+          "available": false,
           "title": "31"
         },
         "42496622035096": {
@@ -58495,6 +58495,70 @@
           "title": "36/34"
         },
         "56727889346900": {
+          "available": true,
+          "title": "38/34"
+        }
+      },
+      "15669875310932": {
+        "56727875060052": {
+          "available": true,
+          "title": "30/34"
+        },
+        "56727866704212": {
+          "available": true,
+          "title": "31/34"
+        },
+        "56727866736980": {
+          "available": true,
+          "title": "32/34"
+        },
+        "56727866769748": {
+          "available": true,
+          "title": "33/34"
+        },
+        "56727866802516": {
+          "available": true,
+          "title": "34/34"
+        },
+        "56727880958292": {
+          "available": true,
+          "title": "35/34"
+        },
+        "56727866835284": {
+          "available": true,
+          "title": "36/34"
+        },
+        "56727866868052": {
+          "available": false,
+          "title": "38/34"
+        }
+      },
+      "15669869412692": {
+        "56727812735316": {
+          "available": true,
+          "title": "30/34"
+        },
+        "56727819157844": {
+          "available": true,
+          "title": "31/34"
+        },
+        "56727812768084": {
+          "available": true,
+          "title": "32/34"
+        },
+        "56727819190612": {
+          "available": true,
+          "title": "33/34"
+        },
+        "56727812800852": {
+          "available": true,
+          "title": "34/34"
+        },
+        "56727812833620": {
+          "available": true,
+          "title": "36/34"
+        },
+        "56727819223380": {
           "available": true,
           "title": "38/34"
         }
