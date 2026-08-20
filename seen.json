@@ -5649,7 +5649,6 @@
     "9319981777132",
     "9300468564204",
     "9300468334828",
-    "9300468039916",
     "9299086868716",
     "9292662407404",
     "9292662145260",
@@ -5669,10 +5668,6 @@
     "9233030021356",
     "9230843183340",
     "9230840692972",
-    "9230831452396",
-    "9230825652460",
-    "9226510500076",
-    "9226510139628",
     "9226510106860",
     "9226311827692",
     "9226311532780",
@@ -5683,7 +5678,15 @@
     "9225915105516",
     "9221859541228",
     "9220947443948",
-    "9219748298988"
+    "9219748298988",
+    "9219745972460",
+    "9217916436716",
+    "9213067034860",
+    "9300468039916",
+    "9230831452396",
+    "9230825652460",
+    "9226510500076",
+    "9226510139628"
   ],
   "klaxon-store.com": [
     "9365016183020",
@@ -6466,7 +6469,7 @@
       "Canoe Club": 1787076136,
       "Meadow": 1787219209,
       "Mildblend Supply Co.": 1787079722,
-      "Rodeo Japan Pine Avenue": 1787218313,
+      "Rodeo Japan Pine Avenue": 1787224617,
       "Klaxon Store": 1787113924,
       "Blue Beach Denim": 1786722429,
       "Dant": 1787183208,
@@ -6493,58 +6496,58 @@
       "Snakeoilprovisions": 1787103116
     },
     "last_digest": 1786703513,
-    "period_new": 1242
+    "period_new": 1245
   },
   "_last_poll": {
-    "www.myfitteds.com": 1787223624,
-    "hatclub.com": 1787223626,
-    "sofreshclothing.com": 1787223628,
-    "culturekings.com": 1787223630,
-    "exclusivefitted.com": 1787223632,
-    "www.neweracap.com": 1787223633,
-    "procietyshop.com": 1787223635,
-    "4ucaps.com": 1787223637,
-    "www.hatdreams.com": 1787223639,
-    "crownminded.com": 1787223641,
-    "www.ecapcity.com": 1787223642,
-    "www.lidshd.com": 1787223644,
-    "gf-sf.com": 1787223646,
-    "incredideals.ae": 1787223648,
-    "stylisticsjapan.com": 1787223650,
-    "www.cojpgallery.com": 1787223652,
-    "sonofastag.com": 1787223654,
-    "bears-tokyo.myshopify.com": 1787223656,
-    "corlection.com": 1787223658,
-    "ironshopprovisions.com": 1787223659,
-    "franklinandpoe.com": 1787223661,
-    "shopcanoeclub.com": 1787223663,
-    "meadowweb.com": 1787223665,
-    "mildblend.com": 1787223667,
-    "rodeo-japan-pine-avenue.com": 1787223669,
-    "klaxon-store.com": 1787223671,
-    "www.bluebeachdenim.shop": 1787223673,
-    "www.dant.us": 1787223675,
-    "hinoya.shop": 1787223677,
-    "homegame-newyork.com": 1787223679,
-    "redcastheritage.com": 1787223681,
-    "www.panchoandlefty.se": 1787223683,
-    "totemshop.com": 1787223686,
-    "www.blueingreensoho.com": 1787223688,
-    "www.guiltyparty.co": 1787223690,
-    "www.blueowl.us": 1787223692,
-    "standardandstrange.com": 1787223694,
-    "www.witheredfig.com": 1787223696,
-    "www.mentionclothing.com": 1787223698,
-    "sakuraclientele.com": 1787223700,
-    "cultofindigo.com": 1787223702,
-    "www.limbro.id": 1787223704,
-    "www.okayamadenim.com": 1787223707,
-    "berkeleysupply.com": 1787223709,
-    "statement-store.com": 1787223711,
-    "cultizm.com": 1787223713,
-    "www.motostyle.jp": 1787223715,
-    "fittedunderground.com": 1787223717,
-    "www.snakeoilprovisions.com": 1787223719
+    "www.myfitteds.com": 1787224516,
+    "hatclub.com": 1787224518,
+    "sofreshclothing.com": 1787224519,
+    "culturekings.com": 1787224521,
+    "exclusivefitted.com": 1787224523,
+    "www.neweracap.com": 1787224525,
+    "procietyshop.com": 1787224527,
+    "4ucaps.com": 1787224529,
+    "www.hatdreams.com": 1787224531,
+    "crownminded.com": 1787224533,
+    "www.ecapcity.com": 1787224535,
+    "www.lidshd.com": 1787224537,
+    "gf-sf.com": 1787224539,
+    "incredideals.ae": 1787224541,
+    "stylisticsjapan.com": 1787224543,
+    "www.cojpgallery.com": 1787224545,
+    "sonofastag.com": 1787224546,
+    "bears-tokyo.myshopify.com": 1787224548,
+    "corlection.com": 1787224550,
+    "ironshopprovisions.com": 1787224552,
+    "franklinandpoe.com": 1787224554,
+    "shopcanoeclub.com": 1787224556,
+    "meadowweb.com": 1787224558,
+    "mildblend.com": 1787224561,
+    "rodeo-japan-pine-avenue.com": 1787224563,
+    "klaxon-store.com": 1787224568,
+    "www.bluebeachdenim.shop": 1787224570,
+    "www.dant.us": 1787224572,
+    "hinoya.shop": 1787224574,
+    "homegame-newyork.com": 1787224576,
+    "redcastheritage.com": 1787224578,
+    "www.panchoandlefty.se": 1787224580,
+    "totemshop.com": 1787224582,
+    "www.blueingreensoho.com": 1787224584,
+    "www.guiltyparty.co": 1787224586,
+    "www.blueowl.us": 1787224588,
+    "standardandstrange.com": 1787224590,
+    "www.witheredfig.com": 1787224592,
+    "www.mentionclothing.com": 1787224594,
+    "sakuraclientele.com": 1787224596,
+    "cultofindigo.com": 1787224598,
+    "www.limbro.id": 1787224600,
+    "www.okayamadenim.com": 1787224602,
+    "berkeleysupply.com": 1787224605,
+    "statement-store.com": 1787224607,
+    "cultizm.com": 1787224609,
+    "www.motostyle.jp": 1787224611,
+    "fittedunderground.com": 1787224613,
+    "www.snakeoilprovisions.com": 1787224615
   },
   "fittedunderground.com": [
     "7502607777850",
@@ -42036,6 +42039,76 @@
           "available": true,
           "title": "Tagged Size XXL"
         }
+      },
+      "9219745972460": {
+        "47510707437804": {
+          "available": false,
+          "title": "Size 29"
+        },
+        "47510707470572": {
+          "available": true,
+          "title": "Size 30"
+        },
+        "47510707503340": {
+          "available": true,
+          "title": "Size 31"
+        },
+        "47510707536108": {
+          "available": true,
+          "title": "Size 32"
+        },
+        "47510707568876": {
+          "available": false,
+          "title": "Size 33"
+        },
+        "47510707601644": {
+          "available": true,
+          "title": "Size 34"
+        },
+        "47510707634412": {
+          "available": true,
+          "title": "Size 36"
+        },
+        "47510707667180": {
+          "available": true,
+          "title": "Size 38"
+        }
+      },
+      "9217916436716": {
+        "47486560600300": {
+          "available": true,
+          "title": "Size 36"
+        },
+        "47486560633068": {
+          "available": false,
+          "title": "Size 38"
+        },
+        "47486560665836": {
+          "available": true,
+          "title": "Size 40"
+        },
+        "47486560698604": {
+          "available": true,
+          "title": "Size 42"
+        }
+      },
+      "9213067034860": {
+        "47475756892396": {
+          "available": false,
+          "title": "Size S"
+        },
+        "47475756925164": {
+          "available": false,
+          "title": "Size M"
+        },
+        "47475756957932": {
+          "available": false,
+          "title": "Size L"
+        },
+        "47475756990700": {
+          "available": false,
+          "title": "Size XL"
+        }
       }
     },
     "klaxon-store.com": {
@@ -48055,7 +48128,7 @@
           "title": "Cafe Au Lait / L"
         },
         "49258151248107": {
-          "available": true,
+          "available": false,
           "title": "Cafe Au Lait / XL"
         },
         "49258151280875": {
