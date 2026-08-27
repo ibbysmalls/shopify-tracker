@@ -1521,6 +1521,7 @@
     "7655990427761"
   ],
   "exclusivefitted.com": [
+    "10723427352741",
     "10721834533029",
     "10719382306981",
     "10719502237861",
@@ -4162,6 +4163,8 @@
     "9842021368043"
   ],
   "homegame-newyork.com": [
+    "7605318221870",
+    "7558234898478",
     "7647328698414",
     "7600919871534",
     "7644390686766",
@@ -4609,6 +4612,7 @@
     "10775332520282"
   ],
   "totemshop.com": [
+    "8235129733229",
     "8235118755949",
     "8235116134509",
     "8167750336621",
@@ -5699,6 +5703,7 @@
     "8018657050677"
   ],
   "ironshopprovisions.com": [
+    "10401914454323",
     "9669027070259",
     "10396703654195",
     "10396696543539",
@@ -7432,7 +7437,7 @@
   ],
   "_health": {
     "fails": {
-      "Prociety": 3
+      "Prociety": 4
     },
     "alerted": [
       "Prociety"
@@ -7443,7 +7448,7 @@
       "Hat Club": 1787846592,
       "So Fresh Clothing": 1787436122,
       "Culture Kings US": 1787851922,
-      "Exclusive Fitted Inc.": 1787842957,
+      "Exclusive Fitted Inc.": 1787858255,
       "New Era Cap": 1787839346,
       "Prociety": 1787784411,
       "4ucaps.com": 1787434317,
@@ -7458,7 +7463,7 @@
       "SON OF A STAG": 1787844723,
       "BEARS' Tokyo": 1787712406,
       "Corlection": 1787819518,
-      "Iron Shop Provisions": 1787840215,
+      "Iron Shop Provisions": 1787858255,
       "Franklin & Poe": 1787843829,
       "Canoe Club": 1787852822,
       "Meadow": 1787695327,
@@ -7468,10 +7473,10 @@
       "Blue Beach Denim": 1787577434,
       "Dant": 1787851922,
       "HINOYA Online Store": 1787827613,
-      "HOMEGAME NEW YORK": 1787776338,
+      "HOMEGAME NEW YORK": 1787858255,
       "Redcast Heritage Co.": 1787847423,
       "Pancho and Lefty": 1787839346,
-      "Totem Brand Co.": 1787857322,
+      "Totem Brand Co.": 1787858255,
       "Blue in Green": 1787780815,
       "Guiltyparty": 1787683621,
       "Blueowl": 1787779939,
@@ -7490,58 +7495,58 @@
       "Snakeoilprovisions": 1787778125
     },
     "last_digest": 1787308321,
-    "period_new": 1735
+    "period_new": 1740
   },
   "_last_poll": {
-    "www.myfitteds.com": 1787857226,
-    "hatclub.com": 1787857228,
-    "sofreshclothing.com": 1787857230,
-    "culturekings.com": 1787857231,
-    "exclusivefitted.com": 1787857233,
-    "www.neweracap.com": 1787857235,
-    "procietyshop.com": 1787857237,
-    "4ucaps.com": 1787857237,
-    "www.hatdreams.com": 1787857239,
-    "crownminded.com": 1787857240,
-    "www.ecapcity.com": 1787857242,
-    "www.lidshd.com": 1787857244,
-    "gf-sf.com": 1787857246,
-    "incredideals.ae": 1787857247,
-    "stylisticsjapan.com": 1787857249,
-    "www.cojpgallery.com": 1787857251,
-    "sonofastag.com": 1787857253,
-    "bears-tokyo.myshopify.com": 1787857255,
-    "corlection.com": 1787857257,
-    "ironshopprovisions.com": 1787857258,
-    "franklinandpoe.com": 1787857260,
-    "shopcanoeclub.com": 1787857262,
-    "meadowweb.com": 1787857264,
-    "mildblend.com": 1787857266,
-    "rodeo-japan-pine-avenue.com": 1787857268,
-    "klaxon-store.com": 1787857270,
-    "www.bluebeachdenim.shop": 1787857272,
-    "www.dant.us": 1787857274,
-    "hinoya.shop": 1787857276,
-    "homegame-newyork.com": 1787857278,
-    "redcastheritage.com": 1787857279,
-    "www.panchoandlefty.se": 1787857282,
-    "totemshop.com": 1787857284,
-    "www.blueingreensoho.com": 1787857288,
-    "www.guiltyparty.co": 1787857289,
-    "www.blueowl.us": 1787857291,
-    "standardandstrange.com": 1787857293,
-    "www.witheredfig.com": 1787857295,
-    "www.mentionclothing.com": 1787857296,
-    "sakuraclientele.com": 1787857299,
-    "cultofindigo.com": 1787857301,
-    "www.limbro.id": 1787857303,
-    "www.okayamadenim.com": 1787857307,
-    "berkeleysupply.com": 1787857309,
-    "statement-store.com": 1787857311,
-    "cultizm.com": 1787857314,
-    "www.motostyle.jp": 1787857316,
-    "fittedunderground.com": 1787857318,
-    "www.snakeoilprovisions.com": 1787857320
+    "www.myfitteds.com": 1787858115,
+    "hatclub.com": 1787858117,
+    "sofreshclothing.com": 1787858122,
+    "culturekings.com": 1787858126,
+    "exclusivefitted.com": 1787858128,
+    "www.neweracap.com": 1787858131,
+    "procietyshop.com": 1787858135,
+    "4ucaps.com": 1787858136,
+    "www.hatdreams.com": 1787858138,
+    "crownminded.com": 1787858139,
+    "www.ecapcity.com": 1787858141,
+    "www.lidshd.com": 1787858146,
+    "gf-sf.com": 1787858148,
+    "incredideals.ae": 1787858150,
+    "stylisticsjapan.com": 1787858152,
+    "www.cojpgallery.com": 1787858154,
+    "sonofastag.com": 1787858156,
+    "bears-tokyo.myshopify.com": 1787858158,
+    "corlection.com": 1787858162,
+    "ironshopprovisions.com": 1787858164,
+    "franklinandpoe.com": 1787858170,
+    "shopcanoeclub.com": 1787858172,
+    "meadowweb.com": 1787858178,
+    "mildblend.com": 1787858180,
+    "rodeo-japan-pine-avenue.com": 1787858182,
+    "klaxon-store.com": 1787858186,
+    "www.bluebeachdenim.shop": 1787858188,
+    "www.dant.us": 1787858190,
+    "hinoya.shop": 1787858192,
+    "homegame-newyork.com": 1787858196,
+    "redcastheritage.com": 1787858201,
+    "www.panchoandlefty.se": 1787858203,
+    "totemshop.com": 1787858205,
+    "www.blueingreensoho.com": 1787858210,
+    "www.guiltyparty.co": 1787858212,
+    "www.blueowl.us": 1787858214,
+    "standardandstrange.com": 1787858216,
+    "www.witheredfig.com": 1787858218,
+    "www.mentionclothing.com": 1787858220,
+    "sakuraclientele.com": 1787858223,
+    "cultofindigo.com": 1787858225,
+    "www.limbro.id": 1787858227,
+    "www.okayamadenim.com": 1787858234,
+    "berkeleysupply.com": 1787858243,
+    "statement-store.com": 1787858245,
+    "cultizm.com": 1787858247,
+    "www.motostyle.jp": 1787858249,
+    "fittedunderground.com": 1787858251,
+    "www.snakeoilprovisions.com": 1787858253
   },
   "fittedunderground.com": [
     "7502607777850",
@@ -25614,6 +25619,44 @@
         },
         "48185852559525": {
           "available": false,
+          "title": "8"
+        }
+      },
+      "10723427352741": {
+        "48188943368357": {
+          "available": true,
+          "title": "7"
+        },
+        "48188943401125": {
+          "available": true,
+          "title": "7 1/8"
+        },
+        "48188943433893": {
+          "available": true,
+          "title": "7 1/4"
+        },
+        "48188943466661": {
+          "available": true,
+          "title": "7 3/8"
+        },
+        "48188943499429": {
+          "available": true,
+          "title": "7 1/2"
+        },
+        "48188943532197": {
+          "available": true,
+          "title": "7 5/8"
+        },
+        "48188943564965": {
+          "available": true,
+          "title": "7 3/4"
+        },
+        "48188943597733": {
+          "available": true,
+          "title": "7 7/8"
+        },
+        "48188943630501": {
+          "available": true,
           "title": "8"
         }
       }
@@ -58982,6 +59025,44 @@
           "available": false,
           "title": "6"
         }
+      },
+      "10401914454323": {
+        "53911339368755": {
+          "available": true,
+          "title": "8"
+        },
+        "53911339401523": {
+          "available": true,
+          "title": "8.5"
+        },
+        "53911339434291": {
+          "available": true,
+          "title": "9"
+        },
+        "53911339467059": {
+          "available": true,
+          "title": "9.5"
+        },
+        "53911339499827": {
+          "available": true,
+          "title": "10"
+        },
+        "53911339532595": {
+          "available": true,
+          "title": "10.5"
+        },
+        "53911339565363": {
+          "available": true,
+          "title": "11"
+        },
+        "53911339598131": {
+          "available": false,
+          "title": "11.5"
+        },
+        "53911339630899": {
+          "available": true,
+          "title": "12"
+        }
       }
     },
     "franklinandpoe.com": {
@@ -77910,6 +77991,90 @@
           "available": false,
           "title": "8"
         }
+      },
+      "7605318221870": {
+        "42461336076334": {
+          "available": true,
+          "title": "Multi Pinwheel 6 7/8"
+        },
+        "42461336109102": {
+          "available": true,
+          "title": "Multi Pinwheel 7"
+        },
+        "42461336141870": {
+          "available": true,
+          "title": "Multi Pinwheel 7 1/8"
+        },
+        "42461336174638": {
+          "available": true,
+          "title": "Multi Pinwheel 7 1/4"
+        },
+        "42461336207406": {
+          "available": true,
+          "title": "Multi Pinwheel 7 3/8"
+        },
+        "42461336240174": {
+          "available": true,
+          "title": "Multi Pinwheel 7 1/2"
+        },
+        "42461336272942": {
+          "available": true,
+          "title": "Multi Pinwheel 7 5/8"
+        },
+        "42461336305710": {
+          "available": true,
+          "title": "Multi Pinwheel 7 3/4"
+        },
+        "42461336338478": {
+          "available": true,
+          "title": "Multi Pinwheel 7 7/8"
+        },
+        "42461336371246": {
+          "available": true,
+          "title": "Multi Pinwheel 8"
+        }
+      },
+      "7558234898478": {
+        "42262713860142": {
+          "available": false,
+          "title": "Light Royal 6 7/8"
+        },
+        "42262713892910": {
+          "available": true,
+          "title": "Light Royal  7"
+        },
+        "42262713925678": {
+          "available": true,
+          "title": "Light Royal  7 1/8"
+        },
+        "42262713958446": {
+          "available": true,
+          "title": "Light Royal  7 1/4"
+        },
+        "42262713991214": {
+          "available": true,
+          "title": "Light Royal  7 3/8"
+        },
+        "42262714023982": {
+          "available": false,
+          "title": "Light Royal  7 1/2"
+        },
+        "42262714056750": {
+          "available": true,
+          "title": "Light Royal  7 5/8"
+        },
+        "42262714089518": {
+          "available": true,
+          "title": "Light Royal  7 3/4"
+        },
+        "42262714122286": {
+          "available": false,
+          "title": "Light Royal  7 7/8"
+        },
+        "42262714155054": {
+          "available": true,
+          "title": "Light Royal  8"
+        }
       }
     },
     "redcastheritage.com": {
@@ -82957,6 +83122,12 @@
       },
       "8235118755949": {
         "45710579728493": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "8235129733229": {
+        "45710620917869": {
           "available": true,
           "title": "Default Title"
         }
