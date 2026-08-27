@@ -3212,6 +3212,11 @@
     "7619408855110"
   ],
   "stylisticsjapan.com": [
+    "11161995018276",
+    "11161994985508",
+    "11161994952740",
+    "11161994821668",
+    "11161994788900",
     "11161173688356",
     "11161173655588",
     "11161173622820",
@@ -6743,6 +6748,7 @@
     "10374977683752",
     "4852006289496",
     "9458571706664",
+    "10413643956520",
     "10357165654312",
     "10362570342696",
     "9658222215464",
@@ -6750,8 +6756,6 @@
     "10356935393576",
     "9557588181288",
     "9686188425512",
-    "9546259988776",
-    "10413643956520",
     "10121368043816",
     "10277357420840",
     "6612968439896",
@@ -6775,6 +6779,7 @@
     "9204721618",
     "10359046635816",
     "10357021147432",
+    "9546259988776",
     "10357030617384",
     "10357027275048",
     "10356991361320",
@@ -7328,9 +7333,7 @@
     "9212187574446"
   ],
   "_health": {
-    "fails": {
-      "Dant": 1
-    },
+    "fails": {},
     "alerted": [],
     "empty_since": {},
     "last_new": {
@@ -7348,7 +7351,7 @@
       "LidsHatDrop": 1787785341,
       "Goodfellas SF": 1787784411,
       "incrediDeals": 1787671921,
-      "StylisticsJapan.com": 1787734933,
+      "StylisticsJapan.com": 1787815014,
       "COJP Gallery": 1787808712,
       "SON OF A STAG": 1787570220,
       "BEARS' Tokyo": 1787712406,
@@ -7385,58 +7388,58 @@
       "Snakeoilprovisions": 1787778125
     },
     "last_digest": 1787308321,
-    "period_new": 1561
+    "period_new": 1566
   },
   "_last_poll": {
-    "www.myfitteds.com": 1787814022,
-    "hatclub.com": 1787814024,
-    "sofreshclothing.com": 1787814026,
-    "culturekings.com": 1787814028,
-    "exclusivefitted.com": 1787814030,
-    "www.neweracap.com": 1787814031,
-    "procietyshop.com": 1787814033,
-    "4ucaps.com": 1787814035,
-    "www.hatdreams.com": 1787814037,
-    "crownminded.com": 1787814039,
-    "www.ecapcity.com": 1787814040,
-    "www.lidshd.com": 1787814042,
-    "gf-sf.com": 1787814044,
-    "incredideals.ae": 1787814046,
-    "stylisticsjapan.com": 1787814048,
-    "www.cojpgallery.com": 1787814049,
-    "sonofastag.com": 1787814051,
-    "bears-tokyo.myshopify.com": 1787814053,
-    "corlection.com": 1787814055,
-    "ironshopprovisions.com": 1787814057,
-    "franklinandpoe.com": 1787814059,
-    "shopcanoeclub.com": 1787814061,
-    "meadowweb.com": 1787814062,
-    "mildblend.com": 1787814064,
-    "rodeo-japan-pine-avenue.com": 1787814066,
-    "klaxon-store.com": 1787814068,
-    "www.bluebeachdenim.shop": 1787814070,
-    "www.dant.us": 1787814072,
-    "hinoya.shop": 1787814073,
-    "homegame-newyork.com": 1787814074,
-    "redcastheritage.com": 1787814076,
-    "www.panchoandlefty.se": 1787814079,
-    "totemshop.com": 1787814080,
-    "www.blueingreensoho.com": 1787814082,
-    "www.guiltyparty.co": 1787814084,
-    "www.blueowl.us": 1787814086,
-    "standardandstrange.com": 1787814088,
-    "www.witheredfig.com": 1787814090,
-    "www.mentionclothing.com": 1787814092,
-    "sakuraclientele.com": 1787814094,
-    "cultofindigo.com": 1787814096,
-    "www.limbro.id": 1787814097,
-    "www.okayamadenim.com": 1787814104,
-    "berkeleysupply.com": 1787814106,
-    "statement-store.com": 1787814108,
-    "cultizm.com": 1787814111,
-    "www.motostyle.jp": 1787814112,
-    "fittedunderground.com": 1787814115,
-    "www.snakeoilprovisions.com": 1787814117
+    "www.myfitteds.com": 1787814913,
+    "hatclub.com": 1787814915,
+    "sofreshclothing.com": 1787814916,
+    "culturekings.com": 1787814918,
+    "exclusivefitted.com": 1787814920,
+    "www.neweracap.com": 1787814922,
+    "procietyshop.com": 1787814924,
+    "4ucaps.com": 1787814925,
+    "www.hatdreams.com": 1787814927,
+    "crownminded.com": 1787814929,
+    "www.ecapcity.com": 1787814931,
+    "www.lidshd.com": 1787814933,
+    "gf-sf.com": 1787814934,
+    "incredideals.ae": 1787814936,
+    "stylisticsjapan.com": 1787814938,
+    "www.cojpgallery.com": 1787814945,
+    "sonofastag.com": 1787814948,
+    "bears-tokyo.myshopify.com": 1787814949,
+    "corlection.com": 1787814951,
+    "ironshopprovisions.com": 1787814953,
+    "franklinandpoe.com": 1787814955,
+    "shopcanoeclub.com": 1787814957,
+    "meadowweb.com": 1787814958,
+    "mildblend.com": 1787814960,
+    "rodeo-japan-pine-avenue.com": 1787814962,
+    "klaxon-store.com": 1787814964,
+    "www.bluebeachdenim.shop": 1787814966,
+    "www.dant.us": 1787814968,
+    "hinoya.shop": 1787814970,
+    "homegame-newyork.com": 1787814972,
+    "redcastheritage.com": 1787814973,
+    "www.panchoandlefty.se": 1787814975,
+    "totemshop.com": 1787814978,
+    "www.blueingreensoho.com": 1787814979,
+    "www.guiltyparty.co": 1787814981,
+    "www.blueowl.us": 1787814983,
+    "standardandstrange.com": 1787814985,
+    "www.witheredfig.com": 1787814987,
+    "www.mentionclothing.com": 1787814989,
+    "sakuraclientele.com": 1787814991,
+    "cultofindigo.com": 1787814993,
+    "www.limbro.id": 1787814995,
+    "www.okayamadenim.com": 1787815000,
+    "berkeleysupply.com": 1787815002,
+    "statement-store.com": 1787815004,
+    "cultizm.com": 1787815006,
+    "www.motostyle.jp": 1787815008,
+    "fittedunderground.com": 1787815010,
+    "www.snakeoilprovisions.com": 1787815012
   },
   "fittedunderground.com": [
     "7502607777850",
@@ -48600,6 +48603,36 @@
       },
       "11161173557284": {
         "51307873730596": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "11161995018276": {
+        "51310281228324": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "11161994985508": {
+        "51310281195556": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "11161994952740": {
+        "51310281162788": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "11161994821668": {
+        "51310281031716": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "11161994788900": {
+        "51310280998948": {
           "available": true,
           "title": "Default Title"
         }
