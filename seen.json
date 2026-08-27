@@ -4618,6 +4618,10 @@
     "10775332520282"
   ],
   "totemshop.com": [
+    "8235223253101",
+    "8235222696045",
+    "8235222073453",
+    "8235221024877",
     "8235219746925",
     "8235218665581",
     "8235217387629",
@@ -7458,7 +7462,7 @@
   ],
   "_health": {
     "fails": {
-      "Prociety": 11
+      "Prociety": 12
     },
     "alerted": [
       "Prociety"
@@ -7470,7 +7474,7 @@
       "So Fresh Clothing": 1787436122,
       "Culture Kings US": 1787851922,
       "Exclusive Fitted Inc.": 1787858255,
-      "New Era Cap": 1787839346,
+      "New Era Cap": 1787865416,
       "Prociety": 1787784411,
       "4ucaps.com": 1787434317,
       "DREAMS H2H": 1787522519,
@@ -7497,7 +7501,7 @@
       "HOMEGAME NEW YORK": 1787858255,
       "Redcast Heritage Co.": 1787847423,
       "Pancho and Lefty": 1787839346,
-      "Totem Brand Co.": 1787864520,
+      "Totem Brand Co.": 1787865416,
       "Blue in Green": 1787780815,
       "Guiltyparty": 1787683621,
       "Blueowl": 1787779939,
@@ -7516,58 +7520,58 @@
       "Snakeoilprovisions": 1787778125
     },
     "last_digest": 1787308321,
-    "period_new": 1761
+    "period_new": 1766
   },
   "_last_poll": {
-    "www.myfitteds.com": 1787864424,
-    "hatclub.com": 1787864426,
-    "sofreshclothing.com": 1787864427,
-    "culturekings.com": 1787864429,
-    "exclusivefitted.com": 1787864431,
-    "www.neweracap.com": 1787864433,
-    "procietyshop.com": 1787864435,
-    "4ucaps.com": 1787864435,
-    "www.hatdreams.com": 1787864437,
-    "crownminded.com": 1787864438,
-    "www.ecapcity.com": 1787864440,
-    "www.lidshd.com": 1787864442,
-    "gf-sf.com": 1787864444,
-    "incredideals.ae": 1787864445,
-    "stylisticsjapan.com": 1787864447,
-    "www.cojpgallery.com": 1787864449,
-    "sonofastag.com": 1787864451,
-    "bears-tokyo.myshopify.com": 1787864453,
-    "corlection.com": 1787864455,
-    "ironshopprovisions.com": 1787864457,
-    "franklinandpoe.com": 1787864459,
-    "shopcanoeclub.com": 1787864460,
-    "meadowweb.com": 1787864462,
-    "mildblend.com": 1787864464,
-    "rodeo-japan-pine-avenue.com": 1787864466,
-    "klaxon-store.com": 1787864468,
-    "www.bluebeachdenim.shop": 1787864470,
-    "www.dant.us": 1787864472,
-    "hinoya.shop": 1787864474,
-    "homegame-newyork.com": 1787864476,
-    "redcastheritage.com": 1787864478,
-    "www.panchoandlefty.se": 1787864480,
-    "totemshop.com": 1787864482,
-    "www.blueingreensoho.com": 1787864489,
-    "www.guiltyparty.co": 1787864491,
-    "www.blueowl.us": 1787864493,
-    "standardandstrange.com": 1787864494,
-    "www.witheredfig.com": 1787864496,
-    "www.mentionclothing.com": 1787864498,
-    "sakuraclientele.com": 1787864500,
-    "cultofindigo.com": 1787864502,
-    "www.limbro.id": 1787864504,
-    "www.okayamadenim.com": 1787864507,
-    "berkeleysupply.com": 1787864509,
-    "statement-store.com": 1787864511,
-    "cultizm.com": 1787864513,
-    "www.motostyle.jp": 1787864515,
-    "fittedunderground.com": 1787864517,
-    "www.snakeoilprovisions.com": 1787864519
+    "www.myfitteds.com": 1787865315,
+    "hatclub.com": 1787865317,
+    "sofreshclothing.com": 1787865319,
+    "culturekings.com": 1787865320,
+    "exclusivefitted.com": 1787865322,
+    "www.neweracap.com": 1787865324,
+    "procietyshop.com": 1787865327,
+    "4ucaps.com": 1787865327,
+    "www.hatdreams.com": 1787865329,
+    "crownminded.com": 1787865331,
+    "www.ecapcity.com": 1787865333,
+    "www.lidshd.com": 1787865334,
+    "gf-sf.com": 1787865336,
+    "incredideals.ae": 1787865338,
+    "stylisticsjapan.com": 1787865340,
+    "www.cojpgallery.com": 1787865342,
+    "sonofastag.com": 1787865343,
+    "bears-tokyo.myshopify.com": 1787865345,
+    "corlection.com": 1787865347,
+    "ironshopprovisions.com": 1787865349,
+    "franklinandpoe.com": 1787865351,
+    "shopcanoeclub.com": 1787865352,
+    "meadowweb.com": 1787865354,
+    "mildblend.com": 1787865356,
+    "rodeo-japan-pine-avenue.com": 1787865358,
+    "klaxon-store.com": 1787865360,
+    "www.bluebeachdenim.shop": 1787865362,
+    "www.dant.us": 1787865364,
+    "hinoya.shop": 1787865366,
+    "homegame-newyork.com": 1787865367,
+    "redcastheritage.com": 1787865369,
+    "www.panchoandlefty.se": 1787865372,
+    "totemshop.com": 1787865374,
+    "www.blueingreensoho.com": 1787865382,
+    "www.guiltyparty.co": 1787865384,
+    "www.blueowl.us": 1787865386,
+    "standardandstrange.com": 1787865388,
+    "www.witheredfig.com": 1787865389,
+    "www.mentionclothing.com": 1787865391,
+    "sakuraclientele.com": 1787865393,
+    "cultofindigo.com": 1787865395,
+    "www.limbro.id": 1787865398,
+    "www.okayamadenim.com": 1787865402,
+    "berkeleysupply.com": 1787865404,
+    "statement-store.com": 1787865406,
+    "cultizm.com": 1787865408,
+    "www.motostyle.jp": 1787865410,
+    "fittedunderground.com": 1787865412,
+    "www.snakeoilprovisions.com": 1787865414
   },
   "fittedunderground.com": [
     "7502607777850",
@@ -30091,7 +30095,7 @@
           "title": "7 1/8"
         },
         "49443007168739": {
-          "available": false,
+          "available": true,
           "title": "7 1/4"
         },
         "49443007267043": {
@@ -47815,7 +47819,7 @@
           "title": "7 3/4"
         },
         "47316893991100": {
-          "available": true,
+          "available": false,
           "title": "7 7/8"
         },
         "47316894023868": {
@@ -83287,6 +83291,30 @@
       },
       "8235217387629": {
         "45713261527149": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "8235223253101": {
+        "45713299734637": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "8235222696045": {
+        "45713298718829": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "8235222073453": {
+        "45713297211501": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "8235221024877": {
+        "45713295343725": {
           "available": true,
           "title": "Default Title"
         }
