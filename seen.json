@@ -7555,63 +7555,63 @@
       "Berkeleysupply": 1787875330,
       "Statement Store": 1787842957,
       "Cultizm": 1787841112,
-      "Motostyle": 1787041028,
+      "Motostyle": 1787887914,
       "Fittedunderground": 1787344325,
       "Snakeoilprovisions": 1787778125
     },
     "last_digest": 1787308321,
-    "period_new": 1923
+    "period_new": 1925
   },
   "_last_poll": {
-    "www.myfitteds.com": 1787886026,
-    "hatclub.com": 1787886028,
-    "sofreshclothing.com": 1787886030,
-    "culturekings.com": 1787886032,
-    "exclusivefitted.com": 1787886106,
-    "www.neweracap.com": 1787886108,
-    "procietyshop.com": 1787886110,
-    "4ucaps.com": 1787886112,
-    "www.hatdreams.com": 1787886114,
-    "crownminded.com": 1787886116,
-    "www.ecapcity.com": 1787886118,
-    "www.lidshd.com": 1787886120,
-    "gf-sf.com": 1787886122,
-    "incredideals.ae": 1787886124,
-    "stylisticsjapan.com": 1787886126,
-    "www.cojpgallery.com": 1787886128,
-    "sonofastag.com": 1787886130,
-    "bears-tokyo.myshopify.com": 1787886132,
-    "corlection.com": 1787886134,
-    "ironshopprovisions.com": 1787886136,
-    "franklinandpoe.com": 1787886138,
-    "shopcanoeclub.com": 1787886140,
-    "meadowweb.com": 1787886142,
-    "mildblend.com": 1787886144,
-    "rodeo-japan-pine-avenue.com": 1787886146,
-    "klaxon-store.com": 1787886148,
-    "www.bluebeachdenim.shop": 1787886151,
-    "www.dant.us": 1787886153,
-    "hinoya.shop": 1787886155,
-    "homegame-newyork.com": 1787886157,
-    "redcastheritage.com": 1787886159,
-    "www.panchoandlefty.se": 1787886161,
-    "totemshop.com": 1787886163,
-    "www.blueingreensoho.com": 1787886165,
-    "www.guiltyparty.co": 1787886167,
-    "www.blueowl.us": 1787886169,
-    "standardandstrange.com": 1787886171,
-    "www.witheredfig.com": 1787886173,
-    "www.mentionclothing.com": 1787886175,
-    "sakuraclientele.com": 1787886177,
-    "cultofindigo.com": 1787886179,
-    "www.limbro.id": 1787886182,
-    "www.okayamadenim.com": 1787886186,
-    "berkeleysupply.com": 1787886190,
-    "statement-store.com": 1787886192,
-    "cultizm.com": 1787886194,
-    "www.motostyle.jp": 1787886196,
-    "fittedunderground.com": 1787886198,
-    "www.snakeoilprovisions.com": 1787886200
+    "www.myfitteds.com": 1787887818,
+    "hatclub.com": 1787887820,
+    "sofreshclothing.com": 1787887821,
+    "culturekings.com": 1787887823,
+    "exclusivefitted.com": 1787887825,
+    "www.neweracap.com": 1787887827,
+    "procietyshop.com": 1787887829,
+    "4ucaps.com": 1787887830,
+    "www.hatdreams.com": 1787887832,
+    "crownminded.com": 1787887834,
+    "www.ecapcity.com": 1787887836,
+    "www.lidshd.com": 1787887838,
+    "gf-sf.com": 1787887839,
+    "incredideals.ae": 1787887841,
+    "stylisticsjapan.com": 1787887843,
+    "www.cojpgallery.com": 1787887845,
+    "sonofastag.com": 1787887847,
+    "bears-tokyo.myshopify.com": 1787887849,
+    "corlection.com": 1787887850,
+    "ironshopprovisions.com": 1787887852,
+    "franklinandpoe.com": 1787887854,
+    "shopcanoeclub.com": 1787887856,
+    "meadowweb.com": 1787887858,
+    "mildblend.com": 1787887860,
+    "rodeo-japan-pine-avenue.com": 1787887862,
+    "klaxon-store.com": 1787887863,
+    "www.bluebeachdenim.shop": 1787887866,
+    "www.dant.us": 1787887867,
+    "hinoya.shop": 1787887869,
+    "homegame-newyork.com": 1787887871,
+    "redcastheritage.com": 1787887873,
+    "www.panchoandlefty.se": 1787887875,
+    "totemshop.com": 1787887877,
+    "www.blueingreensoho.com": 1787887879,
+    "www.guiltyparty.co": 1787887881,
+    "www.blueowl.us": 1787887883,
+    "standardandstrange.com": 1787887885,
+    "www.witheredfig.com": 1787887886,
+    "www.mentionclothing.com": 1787887888,
+    "sakuraclientele.com": 1787887891,
+    "cultofindigo.com": 1787887892,
+    "www.limbro.id": 1787887894,
+    "www.okayamadenim.com": 1787887897,
+    "berkeleysupply.com": 1787887899,
+    "statement-store.com": 1787887901,
+    "cultizm.com": 1787887903,
+    "www.motostyle.jp": 1787887905,
+    "fittedunderground.com": 1787887910,
+    "www.snakeoilprovisions.com": 1787887912
   },
   "fittedunderground.com": [
     "7502607777850",
@@ -57949,7 +57949,7 @@
           "title": "Khaki / L size"
         },
         "43989756084283": {
-          "available": true,
+          "available": false,
           "title": "Khaki / XL size"
         }
       },
@@ -71063,7 +71063,7 @@
           "title": "4"
         },
         "48391465173213": {
-          "available": true,
+          "available": false,
           "title": "5"
         }
       },
@@ -89943,7 +89943,7 @@
       },
       "10315020861750": {
         "52886875275574": {
-          "available": true,
+          "available": false,
           "title": "2 (M)"
         },
         "52886875308342": {
@@ -110463,7 +110463,7 @@
       },
       "8838615924910": {
         "46912148996270": {
-          "available": false,
+          "available": true,
           "title": "\u30d6\u30e9\u30a6\u30f3(BROWN) / \u24ea\uff0824.0cm\uff09"
         },
         "46912149029038": {
@@ -110481,7 +110481,7 @@
       },
       "8838616154286": {
         "46912149422254": {
-          "available": false,
+          "available": true,
           "title": "\u30b0\u30ec\u30fc(GRAY) / \u24ea\uff0824.0cm\uff09"
         },
         "46912149455022": {
