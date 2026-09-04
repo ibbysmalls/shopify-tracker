@@ -6333,6 +6333,10 @@
     "8018657050677"
   ],
   "ironshopprovisions.com": [
+    "10428801745203",
+    "10428798632243",
+    "10428783657267",
+    "10428780347699",
     "10428727263539",
     "9718188605747",
     "6726841466964",
@@ -8447,7 +8451,9 @@
     "9212187574446"
   ],
   "_health": {
-    "fails": {},
+    "fails": {
+      "BEARS' Tokyo": 1
+    },
     "alerted": [],
     "empty_since": {},
     "last_new": {
@@ -8470,7 +8476,7 @@
       "SON OF A STAG": 1788519718,
       "BEARS' Tokyo": 1788514317,
       "Corlection": 1788501719,
-      "Iron Shop Provisions": 1788548527,
+      "Iron Shop Provisions": 1788549435,
       "Franklin & Poe": 1788461217,
       "Canoe Club": 1788542227,
       "Meadow": 1788356818,
@@ -8502,58 +8508,58 @@
       "Snakeoilprovisions": 1788545814
     },
     "last_digest": 1788519718,
-    "period_new": 261
+    "period_new": 265
   },
   "_last_poll": {
-    "www.myfitteds.com": 1788548425,
-    "hatclub.com": 1788548427,
-    "sofreshclothing.com": 1788548429,
-    "culturekings.com": 1788548430,
-    "exclusivefitted.com": 1788548432,
-    "www.neweracap.com": 1788548434,
-    "procietyshop.com": 1788548436,
-    "4ucaps.com": 1788548438,
-    "www.hatdreams.com": 1788548439,
-    "crownminded.com": 1788548441,
-    "www.ecapcity.com": 1788548443,
-    "www.lidshd.com": 1788548445,
-    "gf-sf.com": 1788548447,
-    "incredideals.ae": 1788548449,
-    "stylisticsjapan.com": 1788548451,
-    "www.cojpgallery.com": 1788548453,
-    "sonofastag.com": 1788548454,
-    "bears-tokyo.myshopify.com": 1788548456,
-    "corlection.com": 1788548458,
-    "ironshopprovisions.com": 1788548460,
-    "franklinandpoe.com": 1788548465,
-    "shopcanoeclub.com": 1788548468,
-    "meadowweb.com": 1788548469,
-    "mildblend.com": 1788548472,
-    "rodeo-japan-pine-avenue.com": 1788548474,
-    "klaxon-store.com": 1788548476,
-    "www.bluebeachdenim.shop": 1788548478,
-    "www.dant.us": 1788548480,
-    "hinoya.shop": 1788548482,
-    "homegame-newyork.com": 1788548484,
-    "redcastheritage.com": 1788548486,
-    "www.panchoandlefty.se": 1788548488,
-    "totemshop.com": 1788548491,
-    "www.blueingreensoho.com": 1788548494,
-    "www.guiltyparty.co": 1788548496,
-    "www.blueowl.us": 1788548498,
-    "standardandstrange.com": 1788548500,
-    "www.witheredfig.com": 1788548501,
-    "www.mentionclothing.com": 1788548503,
-    "sakuraclientele.com": 1788548506,
-    "cultofindigo.com": 1788548508,
-    "www.limbro.id": 1788548510,
-    "www.okayamadenim.com": 1788548512,
-    "berkeleysupply.com": 1788548515,
-    "statement-store.com": 1788548517,
-    "cultizm.com": 1788548519,
-    "www.motostyle.jp": 1788548521,
-    "fittedunderground.com": 1788548523,
-    "www.snakeoilprovisions.com": 1788548525
+    "www.myfitteds.com": 1788549314,
+    "hatclub.com": 1788549316,
+    "sofreshclothing.com": 1788549321,
+    "culturekings.com": 1788549323,
+    "exclusivefitted.com": 1788549324,
+    "www.neweracap.com": 1788549326,
+    "procietyshop.com": 1788549328,
+    "4ucaps.com": 1788549330,
+    "www.hatdreams.com": 1788549333,
+    "crownminded.com": 1788549336,
+    "www.ecapcity.com": 1788549338,
+    "www.lidshd.com": 1788549340,
+    "gf-sf.com": 1788549342,
+    "incredideals.ae": 1788549344,
+    "stylisticsjapan.com": 1788549346,
+    "www.cojpgallery.com": 1788549351,
+    "sonofastag.com": 1788549354,
+    "bears-tokyo.myshopify.com": 1788549356,
+    "corlection.com": 1788549363,
+    "ironshopprovisions.com": 1788549365,
+    "franklinandpoe.com": 1788549373,
+    "shopcanoeclub.com": 1788549375,
+    "meadowweb.com": 1788549378,
+    "mildblend.com": 1788549380,
+    "rodeo-japan-pine-avenue.com": 1788549381,
+    "klaxon-store.com": 1788549383,
+    "www.bluebeachdenim.shop": 1788549385,
+    "www.dant.us": 1788549388,
+    "hinoya.shop": 1788549390,
+    "homegame-newyork.com": 1788549391,
+    "redcastheritage.com": 1788549393,
+    "www.panchoandlefty.se": 1788549395,
+    "totemshop.com": 1788549398,
+    "www.blueingreensoho.com": 1788549399,
+    "www.guiltyparty.co": 1788549401,
+    "www.blueowl.us": 1788549404,
+    "standardandstrange.com": 1788549405,
+    "www.witheredfig.com": 1788549409,
+    "www.mentionclothing.com": 1788549411,
+    "sakuraclientele.com": 1788549413,
+    "cultofindigo.com": 1788549415,
+    "www.limbro.id": 1788549417,
+    "www.okayamadenim.com": 1788549420,
+    "berkeleysupply.com": 1788549423,
+    "statement-store.com": 1788549425,
+    "cultizm.com": 1788549426,
+    "www.motostyle.jp": 1788549428,
+    "fittedunderground.com": 1788549430,
+    "www.snakeoilprovisions.com": 1788549433
   },
   "fittedunderground.com": [
     "7502607777850",
@@ -67206,7 +67212,7 @@
           "title": "7 5/8"
         },
         "47397159239868": {
-          "available": true,
+          "available": false,
           "title": "7 3/4"
         },
         "47397159272636": {
@@ -68431,93 +68437,93 @@
       "10327179067693": {
         "52282839367981": {
           "available": true,
-          "title": "iPhone 17 Pro / Transparent"
+          "title": "iPhone 18 Pro / 17 Pro / Transparent"
         },
         "52282839400749": {
           "available": true,
-          "title": "iPhone 17 Pro Max / Transparent"
+          "title": "iPhone 18 Pro Max / 17 Pro Max / Transparent"
         },
         "52282839433517": {
           "available": true,
-          "title": "iPhone 17 Pro / Metal Black"
+          "title": "iPhone 18 Pro / 17 Pro / Metal Black"
         },
         "52282839466285": {
           "available": true,
-          "title": "iPhone 17 Pro Max / Metal Black"
+          "title": "iPhone 18 Pro Max / 17 Pro Max / Metal Black"
         }
       },
       "10327179002157": {
         "52282839073069": {
           "available": true,
-          "title": "iPhone 17 Pro"
+          "title": "iPhone 18 Pro / 17 Pro"
         },
         "52282839105837": {
           "available": true,
-          "title": "iPhone 17 Pro Max"
+          "title": "iPhone 18 Pro Max / 17 Pro Max"
         }
       },
       "10327178805549": {
         "52282837893421": {
           "available": true,
-          "title": "iPhone 17 Pro"
+          "title": "iPhone 18 Pro / 17 Pro"
         },
         "52282837926189": {
           "available": true,
-          "title": "iPhone 17 Pro Max"
+          "title": "iPhone 18 Pro Max / 17 Pro Max"
         }
       },
       "10327178314029": {
         "52282836222253": {
           "available": true,
-          "title": "iPhone 17 Pro / ArmorEdge Red"
+          "title": "iPhone 18 Pro / 17 Pro / ArmorEdge Red"
         },
         "52282836255021": {
           "available": true,
-          "title": "iPhone 17 Pro Max / ArmorEdge Red"
+          "title": "iPhone 18 Pro Max / 17 Pro Max / ArmorEdge Red"
         },
         "52282836287789": {
           "available": true,
-          "title": "iPhone 17 Pro Max / Beyond Blue"
+          "title": "iPhone 18 Pro Max / 17 Pro Max / Beyond Blue"
         },
         "52338817433901": {
           "available": false,
-          "title": "iPhone 17 Pro / Beyond Blue"
+          "title": "iPhone 18 Pro / 17 Pro / Beyond Blue"
         }
       },
       "10327178182957": {
         "52282834551085": {
           "available": true,
-          "title": "iPhone 17 Pro / Black"
+          "title": "iPhone 18 Pro / 17 Pro / Black"
         },
         "52282834583853": {
           "available": true,
-          "title": "iPhone 17 Pro / Blue"
+          "title": "iPhone 18 Pro / 17 Pro / Blue"
         }
       },
       "10327178084653": {
         "52282834321709": {
           "available": true,
-          "title": "iPhone 17 Pro"
+          "title": "iPhone 18 Pro / 17 Pro"
         },
         "52282834354477": {
           "available": true,
-          "title": "iPhone 17 Pro Max"
+          "title": "iPhone 18 Pro Max / 17 Pro Max"
         }
       },
       "10327177986349": {
         "52282832814381": {
           "available": true,
-          "title": "iPhone 17 Pro"
+          "title": "iPhone 18 Pro / 17 Pro"
         }
       },
       "10327177920813": {
         "52282832683309": {
           "available": true,
-          "title": "iPhone 17 Pro"
+          "title": "iPhone 18 Pro / 17 Pro"
         },
         "52282832716077": {
           "available": true,
-          "title": "iPhone 17 Pro Max"
+          "title": "iPhone 18 Pro Max / 17 Pro Max"
         }
       },
       "10326033072429": {
@@ -81551,6 +81557,78 @@
           "available": false,
           "title": "2X"
         }
+      },
+      "10428801745203": {
+        "54012037202227": {
+          "available": true,
+          "title": "6 (L)"
+        },
+        "54012037234995": {
+          "available": true,
+          "title": "7 (XL)"
+        },
+        "54012037267763": {
+          "available": true,
+          "title": "8 (2X)"
+        }
+      },
+      "10428798632243": {
+        "54012033696051": {
+          "available": true,
+          "title": "6 (L)"
+        },
+        "54012033728819": {
+          "available": true,
+          "title": "7 (XL)"
+        },
+        "54012033761587": {
+          "available": true,
+          "title": "8 (2X)"
+        }
+      },
+      "10428783657267": {
+        "54012017082675": {
+          "available": true,
+          "title": "5 (M)"
+        },
+        "54012017115443": {
+          "available": true,
+          "title": "6 (L)"
+        },
+        "54012017148211": {
+          "available": true,
+          "title": "7 (XL)"
+        },
+        "54012017180979": {
+          "available": true,
+          "title": "8 (2X)"
+        },
+        "54012017213747": {
+          "available": true,
+          "title": "9 (3X)"
+        }
+      },
+      "10428780347699": {
+        "54012013543731": {
+          "available": true,
+          "title": "5 (M)"
+        },
+        "54012013576499": {
+          "available": true,
+          "title": "6 (L)"
+        },
+        "54012013609267": {
+          "available": true,
+          "title": "7 (XL)"
+        },
+        "54012013642035": {
+          "available": true,
+          "title": "8 (2X)"
+        },
+        "54012013674803": {
+          "available": true,
+          "title": "9 (3X)"
+        }
       }
     },
     "franklinandpoe.com": {
@@ -91854,7 +91932,7 @@
       },
       "9625051365597": {
         "48391330988253": {
-          "available": true,
+          "available": false,
           "title": "2"
         },
         "48391331021021": {
@@ -92586,7 +92664,7 @@
           "title": "XL"
         },
         "48430513193181": {
-          "available": true,
+          "available": false,
           "title": "XXL"
         },
         "48430513225949": {
