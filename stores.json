@@ -214,7 +214,9 @@
       "name": "Okayamadenim",
       "domain": "www.okayamadenim.com",
       "verified": true,
-      "collections": ["new-restocks"]
+      "collections": [
+        "new-restocks"
+      ]
     },
     {
       "name": "Berkeleysupply",
@@ -245,6 +247,12 @@
     {
       "name": "Snakeoilprovisions",
       "domain": "www.snakeoilprovisions.com",
+      "platform": "shopify",
+      "verified": true
+    },
+    {
+      "name": "Glasswingshop",
+      "domain": "glasswingshop.com",
       "platform": "shopify",
       "verified": true
     }
