@@ -5517,6 +5517,8 @@
     "10775332520282"
   ],
   "totemshop.com": [
+    "8177047699565",
+    "8175342321773",
     "8175365259373",
     "8260725899373",
     "8176979542125",
@@ -6014,9 +6016,7 @@
     "8155423998061",
     "8155423670381",
     "8155444412525",
-    "8155424522349",
-    "8155453358189",
-    "8169579577453"
+    "8155424522349"
   ],
   "_tg_offset": 578972118,
   "www.guiltyparty.co": [
@@ -7273,6 +7273,7 @@
     "9448378761462"
   ],
   "shopcanoeclub.com": [
+    "10551025926437",
     "10424380653861",
     "10019935813925",
     "10019930505509",
@@ -7771,8 +7772,7 @@
     "10574210990373",
     "10551028187429",
     "10509501661477",
-    "10563300950309",
-    "10547462242597"
+    "10563300950309"
   ],
   "meadowweb.com": [
     "15597436010844",
@@ -9265,7 +9265,7 @@
       "Corlection": 1789096628,
       "Iron Shop Provisions": 1789156970,
       "Franklin & Poe": 1789153338,
-      "Canoe Club": 1789155140,
+      "Canoe Club": 1789159622,
       "Meadow": 1788797825,
       "Mildblend Supply Co.": 1789153338,
       "Rodeo Japan Pine Avenue": 1789094813,
@@ -9276,7 +9276,7 @@
       "HOMEGAME NEW YORK": 1789153338,
       "Redcast Heritage Co.": 1789123611,
       "Pancho and Lefty": 1789138938,
-      "Totem Brand Co.": 1789158732,
+      "Totem Brand Co.": 1789159622,
       "Blue in Green": 1789142632,
       "Guiltyparty": 1789145212,
       "Blueowl": 1789150618,
@@ -9296,59 +9296,59 @@
       "Glasswingshop": 1789090315
     },
     "last_digest": 1789124523,
-    "period_new": 281
+    "period_new": 284
   },
   "_last_poll": {
-    "www.myfitteds.com": 1789158618,
-    "hatclub.com": 1789158620,
-    "sofreshclothing.com": 1789158622,
-    "culturekings.com": 1789158624,
-    "exclusivefitted.com": 1789158625,
-    "www.neweracap.com": 1789158627,
-    "procietyshop.com": 1789158629,
-    "4ucaps.com": 1789158631,
-    "www.hatdreams.com": 1789158633,
-    "crownminded.com": 1789158635,
-    "www.ecapcity.com": 1789158637,
-    "www.lidshd.com": 1789158638,
-    "gf-sf.com": 1789158640,
-    "incredideals.ae": 1789158642,
-    "stylisticsjapan.com": 1789158644,
-    "www.cojpgallery.com": 1789158646,
-    "sonofastag.com": 1789158648,
-    "bears-tokyo.myshopify.com": 1789158650,
-    "corlection.com": 1789158652,
-    "ironshopprovisions.com": 1789158654,
-    "franklinandpoe.com": 1789158656,
-    "shopcanoeclub.com": 1789158657,
-    "meadowweb.com": 1789158659,
-    "mildblend.com": 1789158661,
-    "rodeo-japan-pine-avenue.com": 1789158663,
-    "klaxon-store.com": 1789158666,
-    "www.bluebeachdenim.shop": 1789158668,
-    "www.dant.us": 1789158670,
-    "hinoya.shop": 1789158672,
-    "homegame-newyork.com": 1789158674,
-    "redcastheritage.com": 1789158676,
-    "www.panchoandlefty.se": 1789158678,
-    "totemshop.com": 1789158680,
-    "www.blueingreensoho.com": 1789158688,
-    "www.guiltyparty.co": 1789158690,
-    "www.blueowl.us": 1789158692,
-    "standardandstrange.com": 1789158694,
-    "www.witheredfig.com": 1789158705,
-    "www.mentionclothing.com": 1789158707,
-    "sakuraclientele.com": 1789158709,
-    "cultofindigo.com": 1789158711,
-    "www.limbro.id": 1789158713,
-    "www.okayamadenim.com": 1789158716,
-    "berkeleysupply.com": 1789158718,
-    "statement-store.com": 1789158720,
-    "cultizm.com": 1789158722,
-    "www.motostyle.jp": 1789158724,
-    "fittedunderground.com": 1789158727,
-    "www.snakeoilprovisions.com": 1789158729,
-    "glasswingshop.com": 1789158730
+    "www.myfitteds.com": 1789159513,
+    "hatclub.com": 1789159517,
+    "sofreshclothing.com": 1789159519,
+    "culturekings.com": 1789159520,
+    "exclusivefitted.com": 1789159522,
+    "www.neweracap.com": 1789159524,
+    "procietyshop.com": 1789159526,
+    "4ucaps.com": 1789159528,
+    "www.hatdreams.com": 1789159530,
+    "crownminded.com": 1789159532,
+    "www.ecapcity.com": 1789159533,
+    "www.lidshd.com": 1789159535,
+    "gf-sf.com": 1789159537,
+    "incredideals.ae": 1789159540,
+    "stylisticsjapan.com": 1789159543,
+    "www.cojpgallery.com": 1789159545,
+    "sonofastag.com": 1789159547,
+    "bears-tokyo.myshopify.com": 1789159549,
+    "corlection.com": 1789159551,
+    "ironshopprovisions.com": 1789159553,
+    "franklinandpoe.com": 1789159555,
+    "shopcanoeclub.com": 1789159557,
+    "meadowweb.com": 1789159561,
+    "mildblend.com": 1789159563,
+    "rodeo-japan-pine-avenue.com": 1789159565,
+    "klaxon-store.com": 1789159568,
+    "www.bluebeachdenim.shop": 1789159570,
+    "www.dant.us": 1789159572,
+    "hinoya.shop": 1789159574,
+    "homegame-newyork.com": 1789159576,
+    "redcastheritage.com": 1789159578,
+    "www.panchoandlefty.se": 1789159580,
+    "totemshop.com": 1789159582,
+    "www.blueingreensoho.com": 1789159587,
+    "www.guiltyparty.co": 1789159589,
+    "www.blueowl.us": 1789159591,
+    "standardandstrange.com": 1789159592,
+    "www.witheredfig.com": 1789159594,
+    "www.mentionclothing.com": 1789159596,
+    "sakuraclientele.com": 1789159599,
+    "cultofindigo.com": 1789159601,
+    "www.limbro.id": 1789159603,
+    "www.okayamadenim.com": 1789159605,
+    "berkeleysupply.com": 1789159608,
+    "statement-store.com": 1789159610,
+    "cultizm.com": 1789159613,
+    "www.motostyle.jp": 1789159614,
+    "fittedunderground.com": 1789159616,
+    "www.snakeoilprovisions.com": 1789159618,
+    "glasswingshop.com": 1789159620
   },
   "fittedunderground.com": [
     "7502607777850",
@@ -75773,7 +75773,7 @@
           "title": "Size 7 7/8"
         },
         "53257500754101": {
-          "available": true,
+          "available": false,
           "title": "Size 8"
         }
       }
@@ -102748,6 +102748,20 @@
           "available": false,
           "title": "XL"
         }
+      },
+      "10551025926437": {
+        "52759001858341": {
+          "available": true,
+          "title": "3"
+        },
+        "52759001891109": {
+          "available": true,
+          "title": "4"
+        },
+        "52759001923877": {
+          "available": true,
+          "title": "5"
+        }
       }
     },
     "meadowweb.com": {
@@ -127103,20 +127117,6 @@
           "title": "Default Title"
         }
       },
-      "8155453358189": {
-        "45455655960685": {
-          "available": true,
-          "title": "1"
-        },
-        "45455655993453": {
-          "available": true,
-          "title": "2"
-        },
-        "45455656026221": {
-          "available": false,
-          "title": "3"
-        }
-      },
       "8180070711405": {
         "45527237558381": {
           "available": true,
@@ -127447,12 +127447,6 @@
         "41813655847021": {
           "available": true,
           "title": "Default Title"
-        }
-      },
-      "8169579577453": {
-        "45483208638573": {
-          "available": true,
-          "title": "One Size Fits Most"
         }
       },
       "8224479543405": {
@@ -133482,6 +133476,38 @@
           "available": false,
           "title": "XL"
         }
+      },
+      "8177047699565": {
+        "45512047132781": {
+          "available": true,
+          "title": "S"
+        },
+        "45512047165549": {
+          "available": true,
+          "title": "M"
+        },
+        "45512047198317": {
+          "available": false,
+          "title": "L"
+        }
+      },
+      "8175342321773": {
+        "45505205272685": {
+          "available": true,
+          "title": "S"
+        },
+        "45505205305453": {
+          "available": false,
+          "title": "M"
+        },
+        "45505205338221": {
+          "available": true,
+          "title": "L"
+        },
+        "45505205370989": {
+          "available": true,
+          "title": "XL"
+        }
       }
     },
     "www.blueingreensoho.com": {
@@ -138399,7 +138425,7 @@
       },
       "10832444752182": {
         "54504916025654": {
-          "available": true,
+          "available": false,
           "title": "S"
         },
         "54504916058422": {
@@ -144195,7 +144221,7 @@
           "title": "Extra Large"
         },
         "47348284358829": {
-          "available": true,
+          "available": false,
           "title": "XXL"
         }
       },
