@@ -2,6 +2,11 @@
 """Unit tests for restock detection and collection-aware polling."""
 
 import unittest
+import copy
+import io
+import sys
+from contextlib import ExitStack, redirect_stdout, redirect_stderr
+from unittest.mock import patch
 
 import tracker
 
@@ -333,6 +338,258 @@ class FetchShopifyMergeTests(unittest.TestCase):
         self.assertIn("/collections/new-restocks/", calls[0])
         self.assertEqual([p["id"] for p in products], [10])
         self.assertEqual(catalog, [])
+
+
+class AdaptiveRunTests(unittest.TestCase):
+    def run_poll(self, normal, expanded=None, state=None, poll=None,
+                 store=None, dry_run=False, send_error=False):
+        cfg = {"stores": [{"name": "Test Store", "domain": "example.com",
+                           "verified": True, **(store or {})}],
+               "poll": {"products_per_store": 50, **(poll or {})},
+               "filters": {}}
+        if state is None:
+            state = {"example.com": [str(i) for i in range(1, 51)],
+                     "_poll_limit": 50}
+        state = copy.deepcopy(state)
+        stdout, stderr = io.StringIO(), io.StringIO()
+        responses = [normal]
+        if expanded is not None:
+            responses.append(expanded)
+        with ExitStack() as stack:
+            fetch = stack.enter_context(patch.object(
+                tracker, "fetch_products", side_effect=responses))
+            stack.enter_context(patch.object(tracker, "load_json", return_value=state))
+            save = stack.enter_context(patch.object(tracker, "save_json"))
+            send = stack.enter_context(patch.object(
+                tracker, "send_telegram",
+                side_effect=RuntimeError("delivery failed") if send_error else None))
+            stack.enter_context(patch.object(tracker, "process_telegram_commands",
+                                            return_value=False))
+            stack.enter_context(patch.object(tracker.time, "sleep"))
+            stack.enter_context(redirect_stdout(stdout))
+            stack.enter_context(redirect_stderr(stderr))
+            tracker.cmd_run(cfg, dry_run=dry_run)
+        return fetch, send, save, state, stdout.getvalue(), stderr.getvalue()
+
+    @staticmethod
+    def batch(ids):
+        products = [product(i, title=f"Product {i}") for i in ids]
+        return products, products
+
+    def test_sixty_new_products(self):
+        result = self.run_poll(self.batch(range(101, 151)),
+                               self.batch(list(range(101, 161)) + list(range(1, 51))))
+        fetch, send, _, state, _, _ = result
+        self.assertEqual([c.args[1] for c in fetch.call_args_list], [50, 250])
+        self.assertEqual(send.call_count, 60)
+        self.assertTrue(all(c.args[0].startswith("🆕") for c in send.call_args_list))
+        self.assertEqual(len(state["example.com"]), 110)
+        print("60-new-products: fetch limits=[50, 250], new alerts=60, suppressed=0")
+
+    def test_older_inventory_after_anchor_seeds_silently(self):
+        fetch, send, _, state, _, _ = self.run_poll(
+            self.batch(range(101, 151)),
+            self.batch(list(range(101, 161)) + [1, 70, 71]))
+        self.assertEqual(send.call_count, 60)
+        self.assertTrue({"70", "71"}.issubset(state["example.com"]))
+
+    def test_no_anchor_default_cap(self):
+        _, send, _, state, _, err = self.run_poll(
+            self.batch(range(101, 151)), self.batch(range(101, 161)))
+        messages = [c.args[0] for c in send.call_args_list]
+        self.assertEqual(sum(m.startswith("🆕") for m in messages), 25)
+        self.assertEqual(len(messages), 26)
+        self.assertIn("Test Store: suppressed 35", messages[-1])
+        self.assertTrue(all(str(i) in state["example.com"] for i in range(101, 161)))
+        self.assertIn("no known product ID", err)
+        # Suppression is permanent, not deferred to the next poll.
+        self.assertEqual(self.run_poll(self.batch(range(101, 151)),
+                                      state=state)[1].call_count, 0)
+        print("no-anchor: eligible=60, new alerts=25, suppressed=35, summaries=1")
+
+    def test_custom_and_zero_caps(self):
+        for cap in [0, 3]:
+            with self.subTest(cap=cap):
+                _, send, _, _, _, _ = self.run_poll(
+                    self.batch(range(101, 151)), self.batch(range(101, 161)),
+                    poll={"max_alerts_per_store": cap})
+                self.assertEqual(send.call_count, cap + 1)
+                self.assertIn(f"suppressed {60-cap}", send.call_args.args[0])
+
+    def test_filtering_before_cap(self):
+        _, send, _, _, _, _ = self.run_poll(
+            self.batch(range(101, 151)), self.batch(range(101, 161)),
+            poll={"max_alerts_per_store": 3},
+            store={"filters": {"include_keywords": ["Product 15"]}})
+        self.assertEqual(send.call_count, 4)
+        self.assertIn("suppressed 7", send.call_args.args[0])
+        self.assertIn("Product 150", send.call_args_list[0].args[0])
+
+    def test_first_run(self):
+        fetch, send, _, state, _, err = self.run_poll(
+            self.batch(range(101, 151)), state={})
+        self.assertEqual(fetch.call_count, 1)
+        self.assertEqual(fetch.call_args.args[1], 50)
+        send.assert_not_called()
+        self.assertEqual(len(state["example.com"]), 50)
+        self.assertNotIn("no known product ID", err)
+
+    def test_expansion_failure_uses_original_results(self):
+        _, send, _, state, _, err = self.run_poll(
+            self.batch(range(101, 151)), RuntimeError("fetch failed"))
+        self.assertEqual(send.call_count, 26)
+        self.assertIn("suppressed 25", send.call_args.args[0])
+        self.assertIn("expanded fetch failed", err)
+        self.assertTrue(all(str(i) in state["example.com"] for i in range(101, 151)))
+
+    def test_large_configured_window_does_not_expand(self):
+        for limit in [250, 300]:
+            with self.subTest(limit=limit):
+                fetch, send, _, _, _, _ = self.run_poll(
+                    self.batch(range(101, 161)), poll={"products_per_store": limit})
+                self.assertEqual(fetch.call_count, 1)
+                self.assertEqual(fetch.call_args.args[1], limit)
+                self.assertEqual(send.call_count, 26)
+
+    def test_collection_only_no_anchor(self):
+        normal = self.batch(range(101, 151))[0]
+        expanded = self.batch(range(101, 161))[0]
+        fetch, send, _, _, _, _ = self.run_poll(
+            (normal, []), (expanded, []),
+            store={"collections": ["new-restocks"], "catalog": False})
+        self.assertEqual(send.call_count, 26)
+        for call in fetch.call_args_list:
+            self.assertEqual(call.kwargs, {"collections": ["new-restocks"],
+                                          "catalog": False})
+
+    def test_collection_items_and_restocks_not_seeded_by_merged_position(self):
+        known = product(1)
+        old = {"example.com": ["1"], "_poll_limit": 50,
+               "_stock": {"example.com": {
+                   "1": {"1": {"available": False, "title": "32"}}}}}
+        catalog = [product(101), known, product(70)]
+        # Collection-only new product comes after the known ID in merged order.
+        merged = catalog + [product(999)]
+        _, send, _, _, _, _ = self.run_poll(
+            ([product(101)], [product(101)]), (merged, catalog),
+            state=old, store={"collections": ["new-restocks"]},
+            poll={"max_alerts_per_store": 0})
+        messages = [c.args[0] for c in send.call_args_list]
+        self.assertEqual(len(messages), 3)  # 101, restock 1, collection-only 999
+        self.assertEqual(sum(m.startswith("♻️") for m in messages), 1)
+
+    def test_collection_only_anchor_preserves_normal_comparison(self):
+        old = {"example.com": ["1"], "_poll_limit": 50,
+               "_stock": {"example.com": {
+                   "1": {"1": {"available": False, "title": "32"}}}}}
+        _, send, _, _, _, _ = self.run_poll(
+            ([product(101)], []), ([product(1), product(101), product(999)], []),
+            state=old, store={"collections": ["new-restocks"], "catalog": False})
+        self.assertEqual(send.call_count, 3)
+        self.assertEqual(sum(c.args[0].startswith("♻️")
+                             for c in send.call_args_list), 1)
+
+    def test_configured_growth_keeps_existing_seed_behavior(self):
+        fetch, send, _, state, _, _ = self.run_poll(
+            self.batch([101] + list(range(1, 100))),
+            poll={"products_per_store": 100})
+        self.assertEqual(fetch.call_count, 1)
+        self.assertEqual(send.call_count, 1)
+        self.assertIn("99", state["example.com"])
+
+    def test_dry_run(self):
+        _, send, _, _, out, _ = self.run_poll(
+            self.batch(range(101, 151)), self.batch(range(101, 161)), dry_run=True)
+        send.assert_not_called()
+        self.assertEqual(out.count("🆕"), 25)
+        self.assertEqual(out.count("Test Store: suppressed 35"), 1)
+
+    def test_invalid_cap_rejected_before_side_effects(self):
+        for cap in [-1, True, 1.5, "25", None]:
+            with self.subTest(cap=cap), patch.object(tracker, "load_json") as load, \
+                    patch.object(tracker, "fetch_products") as fetch, \
+                    patch.object(tracker, "save_json") as save, \
+                    patch.object(tracker, "process_telegram_commands") as commands:
+                with self.assertRaisesRegex(ValueError, "nonnegative integer"):
+                    tracker.cmd_run({"poll": {"max_alerts_per_store": cap}})
+                for mock in [load, fetch, save, commands]:
+                    mock.assert_not_called()
+
+    def test_delivery_failures_do_not_increase_suppression(self):
+        _, send, _, _, _, err = self.run_poll(
+            self.batch(range(101, 151)), self.batch(range(101, 161)), send_error=True)
+        self.assertEqual(send.call_count, 26)
+        self.assertIn("suppressed 35", send.call_args.args[0])
+        self.assertIn("delivery failed", err)
+
+    def test_below_cap_logs_without_summary(self):
+        _, send, _, _, _, err = self.run_poll(self.batch([101]), self.batch([101]))
+        self.assertEqual(send.call_count, 1)
+        self.assertIn("no known product ID", err)
+
+
+class NumericPriceTests(unittest.TestCase):
+    def message(self, prices):
+        return tracker.format_message("Store", "example.com",
+                                      product(1, variants=[{"price": p} for p in prices]))
+
+    def test_numeric_minimum(self):
+        self.assertIn("\n$9.00\n", self.message(["9.00", "10.00"]))
+
+    def test_invalid_and_valid(self):
+        self.assertIn("\n$12.00\n", self.message(["abc", "12.00"]))
+
+    def test_all_invalid_omits_line(self):
+        msg = self.message(["abc", None, "", "NaN", "Infinity", "-Infinity", "12,50"])
+        self.assertEqual(msg.splitlines(), ["🆕 Store", "Jeans", "OD",
+                                           "https://example.com/products/jeans"])
+
+    def test_grouping_and_original_display(self):
+        self.assertIn("\n$1,234.5600\n", self.message(["1,234.5600", "2000"]))
+        for symbol in ["$", "€", "¥", "£", "S$"]:
+            with self.subTest(symbol=symbol):
+                self.assertIn(f"\n{symbol}9.000\n",
+                              self.message([symbol + "9.000", "10"]))
+
+    def test_ambiguous_and_nonfinite_skipped(self):
+        self.assertIn("\n$12.00\n",
+                      self.message(["12,50", "NaN", "sNaN", "Infinity", "12.00"]))
+
+    def test_numeric_zero_is_a_price(self):
+        self.assertIn("\n$0\n", self.message([0, "12.00"]))
+
+
+class FilterRegressionTests(unittest.TestCase):
+    def test_nonempty_globals_empty_and_false_overrides(self):
+        global_filters = {"include_keywords": ["global"], "exclude_keywords": ["old"],
+                          "include_product_types": ["Jeans"],
+                          "notify_only_available": True}
+        resolved = tracker.resolve_filters(
+            {"filters": {"include_keywords": ["local"], "exclude_keywords": [],
+                         "notify_only_available": False}}, global_filters)
+        self.assertEqual(resolved, {"include_keywords": ["local"], "exclude_keywords": [],
+                                    "include_product_types": ["Jeans"],
+                                    "notify_only_available": False})
+        self.assertEqual(global_filters["include_keywords"], ["global"])
+
+    def test_preview_has_no_state_or_telegram_side_effects(self):
+        cfg = {"stores": [{"name": "Store", "domain": "example.com"}]}
+        for failed in [False, True]:
+            with self.subTest(failed=failed), ExitStack() as stack:
+                load = stack.enter_context(patch.object(tracker, "load_json", return_value=cfg))
+                stack.enter_context(patch.object(
+                    tracker, "fetch_products", return_value=([product(1)], []),
+                    side_effect=RuntimeError("blocked") if failed else None))
+                forbidden = [stack.enter_context(patch.object(tracker, name))
+                             for name in ["save_json", "send_telegram", "telegram_api",
+                                          "process_telegram_commands"]]
+                stack.enter_context(patch.object(sys, "argv", ["tracker.py", "filters"]))
+                stack.enter_context(patch.object(tracker.time, "sleep"))
+                stack.enter_context(redirect_stdout(io.StringIO()))
+                tracker.main()
+                load.assert_called_once_with(tracker.CONFIG_PATH, None)
+                for mock in forbidden:
+                    mock.assert_not_called()
 
 
 if __name__ == "__main__":

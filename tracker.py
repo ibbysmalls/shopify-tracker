@@ -21,6 +21,7 @@ Designed to be run on a schedule: launchd/cron on a Mac, or GitHub Actions.
 """
 
 import argparse
+from decimal import Decimal, InvalidOperation
 import json
 import os
 import sys
@@ -763,22 +764,47 @@ def currency_symbol(currency=None):
     return _CURRENCY_SYMBOLS.get(str(currency).upper(), "$")
 
 
+def numeric_price(raw):
+    """Parse decimal prices and conventional thousands groups, without guessing
+    comma decimals. Keep the original value separately for message display."""
+    text = str(raw).strip()
+    for symbol in sorted(set(_CURRENCY_SYMBOLS.values()), key=len, reverse=True):
+        if text.startswith(symbol):
+            text = text[len(symbol):].strip()
+            break
+    if "," in text:
+        if not re.fullmatch(r"[+-]?[0-9]{1,3}(?:,[0-9]{3})+(?:\.[0-9]+)?", text):
+            return None
+        text = text.replace(",", "")
+    try:
+        value = Decimal(text)
+    except (InvalidOperation, ValueError):
+        return None
+    return value if value.is_finite() else None
+
+
 def format_message(store_name, domain, product, restocked=None, currency=None):
     title = product.get("title", "Untitled")
     handle = product.get("handle", "")
     # Woo products carry _url because their permalink shape differs.
     url = product.get("_url") or f"https://{domain}/products/{handle}"
-    prices = sorted({v.get("price") for v in product.get("variants", []) if v.get("price")})
-    price = prices[0] if prices else None
+    prices = []
+    for variant in product.get("variants") or []:
+        raw = variant.get("price")
+        value = numeric_price(raw)
+        if value is not None:
+            prices.append((value, str(raw)))
+    price = min(prices, key=lambda item: item[0])[1] if prices else None
     vendor = product.get("vendor", "")
     badge = "♻️" if restocked else "🆕"
     lines = [f"{badge} {store_name}", title]
     if vendor and vendor.lower() not in title.lower():
         lines.append(vendor)
-    if price:
+    if price is not None:
         price_s = str(price)
         symbol = currency_symbol(currency)
-        if price_s.startswith("$") or price_s.startswith(symbol):
+        if any(price_s.lstrip().startswith(prefix)
+               for prefix in _CURRENCY_SYMBOLS.values()):
             lines.append(price_s)
         else:
             lines.append(f"{symbol}{price_s}")
@@ -805,6 +831,10 @@ def send_telegram(text):
 
 
 def cmd_run(cfg, dry_run=False, poll_all=False):
+    poll_cfg = cfg.get("poll", {})
+    max_alerts = poll_cfg.get("max_alerts_per_store", 25)
+    if type(max_alerts) is not int or max_alerts < 0:
+        raise ValueError("poll.max_alerts_per_store must be a nonnegative integer")
     state = load_json(STATE_PATH, {})
 
     if not dry_run:
@@ -878,11 +908,11 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         seen = list(state.get(domain, []))
         stock_all = state.setdefault("_stock", {})
         prev_stock = stock_all.get(domain)  # None until variant state is seeded
-        used_limit = limit
+        expanded = False
         # If every product in the regular window is new, the window was
         # probably truncated. Re-fetch once at 250 and diff that set.
         # Never during initial seeding — every product is new then.
-        if seen:
+        if seen and limit < 250:
             seen_set = {str(i) for i in seen}
             fetched_ids = [str(p["id"]) for p in products if "id" in p]
             if fetched_ids and all(pid not in seen_set for pid in fetched_ids):
@@ -891,11 +921,35 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
                         domain, 250, s.get("platform", "shopify"),
                         collections=store_collections(s),
                         catalog=s.get("catalog", True))
-                    used_limit = 250
+                    expanded = True
                 except Exception as e:
                     print(f"[warn] {name}: expanded fetch failed: {e}",
                           file=sys.stderr)
-        seed_ids = window_seed_ids(catalog_products, prev_limit, used_limit)
+        seen_set = {str(i) for i in seen}
+        fetched_ids = [str(p["id"]) for p in products if "id" in p]
+        no_anchor = bool(seen and fetched_ids
+                         and not any(pid in seen_set for pid in fetched_ids))
+        if no_anchor:
+            # A rebuilt catalogue is indistinguishable from a very large drop.
+            # Keep candidates, but bound eligible alerts below.
+            seed_ids = set()
+            print(f"[warn] {name}: no known product ID in fetched response; "
+                  f"new-product alerts capped at {max_alerts}", file=sys.stderr)
+        elif expanded:
+            # Only the catalogue has newest-first ordering. Never seed a
+            # collection-only product based on its position in merged results.
+            seed_ids = set()
+            anchored = False
+            for p in catalog_products:
+                if "id" not in p:
+                    continue
+                pid = str(p["id"])
+                if pid in seen_set:
+                    anchored = True
+                elif anchored:
+                    seed_ids.add(pid)
+        else:
+            seed_ids = window_seed_ids(catalog_products, prev_limit, limit)
         events, current_ids, next_stock = diff_store(
             products, seen, prev_stock, seed_ids=seed_ids)
 
@@ -909,9 +963,18 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
 
         new_by_store[name] = len(events)
         store_filters = resolve_filters(s, global_filters)
+        new_alerts = 0
+        suppressed = 0
         for kind, p, extra in events:
             if not passes_filters(p, store_filters):
                 continue
+            if no_anchor and kind == "new":
+                if new_alerts >= max_alerts:
+                    suppressed += 1
+                    continue
+                # Count selected alerts, including failed delivery attempts;
+                # delivery failures are not suppression by the cap.
+                new_alerts += 1
             msg = format_message(name, domain, p,
                                  restocked=extra if kind == "restock" else None,
                                  currency=s.get("currency"))
@@ -922,6 +985,18 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
                     send_telegram(msg)
                     notified += 1
                     time.sleep(1)  # be gentle with Telegram rate limits
+                except Exception as e:
+                    print(f"[warn] Telegram send failed: {e}", file=sys.stderr)
+
+        if suppressed:
+            summary = (f"⚠️ {name}: suppressed {suppressed} new-product alerts "
+                       f"(no known catalogue boundary; cap {max_alerts}). "
+                       "These products were marked seen; alerts are not deferred.")
+            if dry_run:
+                print("---\n" + summary)
+            else:
+                try:
+                    send_telegram(summary)
                 except Exception as e:
                     print(f"[warn] Telegram send failed: {e}", file=sys.stderr)
 
