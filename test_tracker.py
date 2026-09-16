@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Unit tests for restock detection and collection-aware polling."""
 
+import io
+import sys
 import unittest
 
 import tracker
@@ -202,6 +204,16 @@ class WindowSeedIdsTests(unittest.TestCase):
         catalog = [product(i) for i in range(50)]
         self.assertEqual(tracker.window_seed_ids(catalog, None, 50), set())
 
+    def test_expanded_catalog_only_seeds_configured_window(self):
+        """A 250-item adaptive catalog must not seed past products_per_store."""
+        catalog = [product(i) for i in range(250)]
+        self.assertEqual(tracker.window_seed_ids(catalog, 50, 50), set())
+        growth = tracker.window_seed_ids(catalog, 20, 50)
+        self.assertEqual(len(growth), 30)
+        self.assertEqual(growth, {str(i) for i in range(20, 50)})
+        self.assertNotIn("50", growth)
+        self.assertNotIn("60", growth)
+
 
 class ResolveFiltersTests(unittest.TestCase):
     def test_store_overrides_key_by_key(self):
@@ -283,6 +295,18 @@ class FormatMessageTests(unittest.TestCase):
         self.assertNotIn("€", msg)
         self.assertNotIn("$", msg)
 
+    def test_lowest_price_is_numeric_not_lexical(self):
+        """'9.00' vs '10.00' must pick 9.00; string sort would pick 10.00."""
+        p = product(10, title="Cap", variants=[
+            variant(1, "S", True),
+            variant(2, "M", True),
+        ])
+        p["variants"][0]["price"] = "10.00"
+        p["variants"][1]["price"] = "9.00"
+        msg = tracker.format_message("US", "us.com", p, currency="USD")
+        self.assertIn("$9.00", msg)
+        self.assertNotIn("$10.00", msg)
+
 
 class FetchShopifyMergeTests(unittest.TestCase):
     def test_merges_collection_and_catalog_by_id(self):
@@ -333,6 +357,119 @@ class FetchShopifyMergeTests(unittest.TestCase):
         self.assertIn("/collections/new-restocks/", calls[0])
         self.assertEqual([p["id"] for p in products], [10])
         self.assertEqual(catalog, [])
+
+
+class AdaptiveFetchTests(unittest.TestCase):
+    """50-window / 60-new: extra IDs must notify, first run must not expand."""
+
+    DOMAIN = "adaptive.test"
+    STORE = {
+        "name": "Adaptive",
+        "domain": "adaptive.test",
+        "verified": True,
+        "platform": "shopify",
+    }
+
+    def _cfg(self):
+        return {
+            "stores": [dict(self.STORE)],
+            "poll": {"products_per_store": 50},
+            "filters": {},
+            "health": {"digest_every_days": 0},
+        }
+
+    def _run(self, state, catalog_for_limit):
+        """Poll once with mocked fetch/state so seen.json is never touched."""
+        fetch_limits = []
+        saved = {}
+
+        def fake_fetch(domain, limit, platform="shopify", collections=None,
+                       catalog=True):
+            fetch_limits.append(limit)
+            items = list(catalog_for_limit(limit))
+            return items, items
+
+        def fake_load(path, default=None):
+            if path == tracker.STATE_PATH:
+                return state
+            return default
+
+        def fake_save(path, data):
+            saved["path"] = path
+            saved["data"] = data
+
+        orig_fetch = tracker.fetch_products
+        orig_load = tracker.load_json
+        orig_save = tracker.save_json
+        orig_sleep = tracker.time.sleep
+        tracker.fetch_products = fake_fetch
+        tracker.load_json = fake_load
+        tracker.save_json = fake_save
+        tracker.time.sleep = lambda *a, **k: None
+        buf = io.StringIO()
+        old_out = sys.stdout
+        try:
+            sys.stdout = buf
+            tracker.cmd_run(self._cfg(), dry_run=True, poll_all=True)
+        finally:
+            sys.stdout = old_out
+            tracker.fetch_products = orig_fetch
+            tracker.load_json = orig_load
+            tracker.save_json = orig_save
+            tracker.time.sleep = orig_sleep
+        return fetch_limits, saved.get("data") or {}, buf.getvalue()
+
+    def test_sixty_new_products_notify_beyond_fifty_window(self):
+        """All 50 in-window IDs are new → expand to 250 → extra 10 notify.
+
+        Passing used_limit=250 into window_seed_ids used to seed catalog[50:]
+        silently, persist those IDs as seen, and permanently suppress them.
+        """
+        new_products = [product(101 + i, title=f"Drop {i + 1}")
+                        for i in range(60)]
+        old_products = [product(i, title=f"Old {i}") for i in range(1, 51)]
+        seen = [str(i) for i in range(1, 51)]
+        prev_stock = {str(i): {"1": {"available": True, "title": "32"}}
+                      for i in range(1, 51)}
+        state = {
+            self.DOMAIN: seen,
+            "_poll_limit": 50,
+            "_stock": {self.DOMAIN: prev_stock},
+            "_last_poll": {},
+        }
+
+        def catalog_for_limit(limit):
+            catalog = new_products + old_products
+            return catalog[:limit]
+
+        fetch_limits, saved, out = self._run(state, catalog_for_limit)
+        self.assertEqual(fetch_limits, [50, 250])
+
+        # Every new title is printed; the 10 past the 50-window must appear.
+        for i in range(1, 61):
+            self.assertIn(f"Drop {i}", out)
+        extra_ids = [str(i) for i in range(151, 161)]
+        persisted = saved.get(self.DOMAIN, [])
+        for pid in extra_ids:
+            self.assertIn(pid, persisted)
+
+        # Reproducing the bug: extras were seeded and would never notify later.
+        # They must have been treated as new on this poll (🆕 lines), not only
+        # persisted.
+        self.assertGreaterEqual(out.count("🆕 Adaptive"), 60)
+
+    def test_first_run_does_not_expand(self):
+        catalog = [product(i, title=f"Seed {i}") for i in range(1, 61)]
+        state = {"_poll_limit": 50, "_last_poll": {}}
+
+        def catalog_for_limit(limit):
+            return catalog[:limit]
+
+        fetch_limits, saved, out = self._run(state, catalog_for_limit)
+        self.assertEqual(fetch_limits, [50])
+        self.assertNotIn("🆕", out)
+        self.assertIn("Seeded 1 store", out)
+        self.assertEqual(saved.get(self.DOMAIN), [str(i) for i in range(1, 51)])
 
 
 if __name__ == "__main__":

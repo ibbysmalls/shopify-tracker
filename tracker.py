@@ -165,7 +165,9 @@ def window_seed_ids(catalog_products, prev_limit, limit):
     """IDs that are only visible because products_per_store grew.
 
     Shopify /products.json is newest-created first. Positions after the
-    previously seeded window are older catalog items, not new drops.
+    previously seeded window, up to the configured `limit`, are older
+    catalog items, not new drops. Adaptive 250 re-fetches must still
+    pass the configured limit so extra new products are not seeded.
     """
     try:
         prev_limit = int(prev_limit)
@@ -175,7 +177,10 @@ def window_seed_ids(catalog_products, prev_limit, limit):
     if limit <= prev_limit:
         return set()
     ids = [str(p["id"]) for p in catalog_products if "id" in p]
-    return set(ids[prev_limit:])
+    # Slice to the configured window only. An adaptive 250 re-fetch can
+    # return a longer catalog; IDs past `limit` are not window-growth
+    # seeds and must still be eligible for new-product alerts.
+    return set(ids[prev_limit:limit])
 
 
 def diff_store(products, seen_ids, prev_stock, seed_ids=None):
@@ -763,13 +768,39 @@ def currency_symbol(currency=None):
     return _CURRENCY_SYMBOLS.get(str(currency).upper(), "$")
 
 
+def lowest_variant_price(product):
+    """Lowest variant price by numeric value, not lexicographic string sort.
+
+    Shopify prices are strings ("9.00", "10.00"); sorted() would pick 10.00.
+    Returns the original string of the minimum, or None if none parse.
+    """
+    best = None
+    best_val = None
+    for v in product.get("variants") or []:
+        raw = v.get("price")
+        if raw in (None, ""):
+            continue
+        text = str(raw).strip()
+        for prefix in ("S$", "$", "€", "¥", "£"):
+            if text.startswith(prefix):
+                text = text[len(prefix):]
+                break
+        try:
+            val = float(text.replace(",", ""))
+        except ValueError:
+            continue
+        if best_val is None or val < best_val:
+            best_val = val
+            best = raw
+    return best
+
+
 def format_message(store_name, domain, product, restocked=None, currency=None):
     title = product.get("title", "Untitled")
     handle = product.get("handle", "")
     # Woo products carry _url because their permalink shape differs.
     url = product.get("_url") or f"https://{domain}/products/{handle}"
-    prices = sorted({v.get("price") for v in product.get("variants", []) if v.get("price")})
-    price = prices[0] if prices else None
+    price = lowest_variant_price(product)
     vendor = product.get("vendor", "")
     badge = "♻️" if restocked else "🆕"
     lines = [f"{badge} {store_name}", title]
@@ -878,10 +909,12 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         seen = list(state.get(domain, []))
         stock_all = state.setdefault("_stock", {})
         prev_stock = stock_all.get(domain)  # None until variant state is seeded
-        used_limit = limit
         # If every product in the regular window is new, the window was
         # probably truncated. Re-fetch once at 250 and diff that set.
         # Never during initial seeding — every product is new then.
+        # Adaptive expansion is not a products_per_store change: pass the
+        # configured `limit` (not 250) into window_seed_ids so extra new
+        # products past the regular window are notified instead of seeded.
         if seen:
             seen_set = {str(i) for i in seen}
             fetched_ids = [str(p["id"]) for p in products if "id" in p]
@@ -891,11 +924,10 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
                         domain, 250, s.get("platform", "shopify"),
                         collections=store_collections(s),
                         catalog=s.get("catalog", True))
-                    used_limit = 250
                 except Exception as e:
                     print(f"[warn] {name}: expanded fetch failed: {e}",
                           file=sys.stderr)
-        seed_ids = window_seed_ids(catalog_products, prev_limit, used_limit)
+        seed_ids = window_seed_ids(catalog_products, prev_limit, limit)
         events, current_ids, next_stock = diff_store(
             products, seen, prev_stock, seed_ids=seed_ids)
 
