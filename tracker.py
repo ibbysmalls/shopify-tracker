@@ -6,6 +6,8 @@ Usage:
   python3 tracker.py verify          # check which stores expose products.json
   python3 tracker.py run             # poll all verified stores once, notify on new items
   python3 tracker.py run --dry-run   # poll but print instead of sending Telegram messages
+  python3 tracker.py filters         # preview which catalogue items pass each store's filters
+  python3 tracker.py filters --store "hat club"  # same, for matching store names only
 
 Environment variables (required for notifications):
   TELEGRAM_BOT_TOKEN   from @BotFather
@@ -707,6 +709,20 @@ def store_interval(store, poll_cfg):
 
 # ------------------------------------------------------------------- run ----
 
+def resolve_filters(store, global_filters):
+    """A store's own filters override the global block key by key.
+
+    Keys the store omits fall through to the top-level filters. A store
+    include/exclude list replaces the global list for that key; it is not
+    concatenated.
+    """
+    resolved = dict(global_filters or {})
+    store_filters = store.get("filters") if store else None
+    if store_filters:
+        resolved.update(store_filters)
+    return resolved
+
+
 def passes_filters(product, filters):
     title = (product.get("title") or "").lower()
     ptype = (product.get("product_type") or "").lower()
@@ -731,7 +747,23 @@ def passes_filters(product, filters):
     return True
 
 
-def format_message(store_name, domain, product, restocked=None):
+_CURRENCY_SYMBOLS = {
+    "USD": "$",
+    "EUR": "€",
+    "JPY": "¥",
+    "GBP": "£",
+    "SGD": "S$",
+}
+
+
+def currency_symbol(currency=None):
+    """Map an optional ISO currency code to a display symbol. Default $."""
+    if not currency:
+        return "$"
+    return _CURRENCY_SYMBOLS.get(str(currency).upper(), "$")
+
+
+def format_message(store_name, domain, product, restocked=None, currency=None):
     title = product.get("title", "Untitled")
     handle = product.get("handle", "")
     # Woo products carry _url because their permalink shape differs.
@@ -744,7 +776,12 @@ def format_message(store_name, domain, product, restocked=None):
     if vendor and vendor.lower() not in title.lower():
         lines.append(vendor)
     if price:
-        lines.append(f"${price}" if not str(price).startswith("$") else str(price))
+        price_s = str(price)
+        symbol = currency_symbol(currency)
+        if price_s.startswith("$") or price_s.startswith(symbol):
+            lines.append(price_s)
+        else:
+            lines.append(f"{symbol}{price_s}")
     if restocked:
         lines.append("Restocked: " + ", ".join(restocked))
     lines.append(url)
@@ -778,7 +815,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         except Exception as e:
             print(f"[warn] telegram command processing failed: {e}", file=sys.stderr)
 
-    filters = cfg.get("filters", {})
+    global_filters = cfg.get("filters", {})
     poll_cfg = cfg.get("poll", {})
     limit = poll_cfg.get("products_per_store", 20)
     # Missing/invalid means the implicit default this repo used before
@@ -841,7 +878,24 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         seen = list(state.get(domain, []))
         stock_all = state.setdefault("_stock", {})
         prev_stock = stock_all.get(domain)  # None until variant state is seeded
-        seed_ids = window_seed_ids(catalog_products, prev_limit, limit)
+        used_limit = limit
+        # If every product in the regular window is new, the window was
+        # probably truncated. Re-fetch once at 250 and diff that set.
+        # Never during initial seeding — every product is new then.
+        if seen:
+            seen_set = {str(i) for i in seen}
+            fetched_ids = [str(p["id"]) for p in products if "id" in p]
+            if fetched_ids and all(pid not in seen_set for pid in fetched_ids):
+                try:
+                    products, catalog_products = fetch_products(
+                        domain, 250, s.get("platform", "shopify"),
+                        collections=store_collections(s),
+                        catalog=s.get("catalog", True))
+                    used_limit = 250
+                except Exception as e:
+                    print(f"[warn] {name}: expanded fetch failed: {e}",
+                          file=sys.stderr)
+        seed_ids = window_seed_ids(catalog_products, prev_limit, used_limit)
         events, current_ids, next_stock = diff_store(
             products, seen, prev_stock, seed_ids=seed_ids)
 
@@ -854,11 +908,13 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
             continue
 
         new_by_store[name] = len(events)
+        store_filters = resolve_filters(s, global_filters)
         for kind, p, extra in events:
-            if not passes_filters(p, filters):
+            if not passes_filters(p, store_filters):
                 continue
             msg = format_message(name, domain, p,
-                                 restocked=extra if kind == "restock" else None)
+                                 restocked=extra if kind == "restock" else None,
+                                 currency=s.get("currency"))
             if dry_run:
                 print("---\n" + msg)
             else:
@@ -917,12 +973,73 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         print("All stores responded in under 2s.")
 
 
+def cmd_filters(cfg, store_query=None):
+    """Fetch each store's current catalogue and show filter pass/fail.
+
+    Read-only: does not write seen.json and does not send Telegram messages.
+    """
+    global_filters = cfg.get("filters", {})
+    poll_cfg = cfg.get("poll", {})
+    limit = poll_cfg.get("products_per_store", 20)
+
+    stores = list(cfg.get("stores") or [])
+    if store_query:
+        q = store_query.lower()
+        stores = [s for s in stores if q in (s.get("name") or "").lower()]
+        if not stores:
+            print(f"No stores whose name contains {store_query!r}.")
+            return
+
+    for i, s in enumerate(stores):
+        name, domain = s["name"], s["domain"]
+        store_filters = resolve_filters(s, global_filters)
+        try:
+            products, _ = fetch_products(
+                domain, limit, s.get("platform", "shopify"),
+                collections=store_collections(s),
+                catalog=s.get("catalog", True))
+        except Exception as e:
+            print(f"=== {name} ({domain}) ===")
+            print(f"fetch failed: {e}")
+            print()
+            continue
+
+        passed, blocked = [], []
+        for p in products:
+            if passes_filters(p, store_filters):
+                passed.append(p)
+            else:
+                blocked.append(p)
+
+        print(f"=== {name} ({domain}) ===")
+        print(f"resolved filters: {json.dumps(store_filters, ensure_ascii=False)}")
+        print(f"{len(passed)} pass / {len(blocked)} filtered out "
+              f"({len(products)} fetched)")
+        print("PASS:")
+        if passed:
+            for p in passed:
+                print(f"  + {p.get('title', 'Untitled')}")
+        else:
+            print("  (none)")
+        print("FILTERED OUT:")
+        if blocked:
+            for p in blocked:
+                print(f"  - {p.get('title', 'Untitled')}")
+        else:
+            print("  (none)")
+        print()
+        if i < len(stores) - 1:
+            time.sleep(1.5)
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["verify", "run"])
+    ap.add_argument("command", choices=["verify", "run", "filters"])
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--all", action="store_true",
                     help="poll every store, including unverified ones")
+    ap.add_argument("--store",
+                    help="only preview stores whose name contains this string")
     args = ap.parse_args()
 
     cfg = load_json(CONFIG_PATH, None)
@@ -931,6 +1048,8 @@ def main():
 
     if args.command == "verify":
         cmd_verify(cfg)
+    elif args.command == "filters":
+        cmd_filters(cfg, store_query=args.store)
     else:
         cmd_run(cfg, dry_run=args.dry_run, poll_all=args.all)
 
