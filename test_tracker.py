@@ -203,6 +203,44 @@ class WindowSeedIdsTests(unittest.TestCase):
         self.assertEqual(tracker.window_seed_ids(catalog, None, 50), set())
 
 
+class ResolveFiltersTests(unittest.TestCase):
+    def test_store_overrides_key_by_key(self):
+        global_f = {
+            "include_keywords": [],
+            "exclude_keywords": ["youth"],
+            "include_product_types": [],
+            "notify_only_available": True,
+        }
+        store = {"filters": {
+            "include_keywords": ["49ers"],
+            "exclude_keywords": ["infant"],
+        }}
+        resolved = tracker.resolve_filters(store, global_f)
+        self.assertEqual(resolved["include_keywords"], ["49ers"])
+        self.assertEqual(resolved["exclude_keywords"], ["infant"])
+        self.assertEqual(resolved["include_product_types"], [])
+        self.assertTrue(resolved["notify_only_available"])
+
+    def test_omitted_keys_fall_through(self):
+        global_f = {"include_keywords": [], "notify_only_available": True}
+        store = {"filters": {"include_keywords": ["lakers"]}}
+        resolved = tracker.resolve_filters(store, global_f)
+        self.assertEqual(resolved["include_keywords"], ["lakers"])
+        self.assertTrue(resolved["notify_only_available"])
+
+    def test_no_store_filters_uses_global(self):
+        global_f = {"include_keywords": ["x"]}
+        self.assertEqual(
+            tracker.resolve_filters({}, global_f),
+            {"include_keywords": ["x"]})
+
+    def test_does_not_mutate_global(self):
+        global_f = {"include_keywords": ["x"]}
+        tracker.resolve_filters(
+            {"filters": {"include_keywords": ["y"]}}, global_f)
+        self.assertEqual(global_f["include_keywords"], ["x"])
+
+
 class FormatMessageTests(unittest.TestCase):
     def test_new_product_keeps_badge_and_url(self):
         msg = tracker.format_message(
@@ -220,6 +258,30 @@ class FormatMessageTests(unittest.TestCase):
         self.assertIn("♻️ Okayamadenim", msg)
         self.assertIn("Restocked: 32, 34", msg)
         self.assertIn("https://www.okayamadenim.com/products/selvedge", msg)
+
+    def test_uses_woo_permalink(self):
+        p = product(10, title="Tee", handle="tee")
+        p["_url"] = "https://example.com/product/tee/"
+        msg = tracker.format_message("Woo", "example.com", p)
+        self.assertIn("https://example.com/product/tee/", msg)
+        self.assertNotIn("/products/tee", msg)
+
+    def test_currency_symbol(self):
+        msg = tracker.format_message(
+            "EU", "eu.com", product(10, title="Cap"), currency="EUR")
+        self.assertIn("€100.00", msg)
+        self.assertNotIn("$100", msg)
+
+    def test_default_currency_is_dollar(self):
+        msg = tracker.format_message("US", "us.com", product(10, title="Cap"))
+        self.assertIn("$100.00", msg)
+
+    def test_no_price_omits_price_line(self):
+        p = product(10, title="Cap", variants=[{"id": 1, "title": "32",
+                                               "available": True}])
+        msg = tracker.format_message("EU", "eu.com", p, currency="EUR")
+        self.assertNotIn("€", msg)
+        self.assertNotIn("$", msg)
 
 
 class FetchShopifyMergeTests(unittest.TestCase):

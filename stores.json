@@ -8,7 +8,37 @@
     {
       "name": "Hat Club",
       "domain": "hatclub.com",
-      "verified": true
+      "verified": true,
+      "filters": {
+        "include_keywords": [
+          "49ers",
+          "san francisco giants",
+          "sf giants",
+          "oakland athletics",
+          "oakland a's",
+          "athletics",
+          "los angeles lakers",
+          "lakers",
+          "golden state",
+          "california golden bears",
+          "cal bears",
+          "ucla"
+        ],
+        "exclude_keywords": [
+          "infant",
+          "toddler",
+          "youth",
+          "kids",
+          "boston bruins",
+          "athletics department",
+          "crewneck",
+          "hoodie",
+          "t-shirt",
+          "sweatshirt",
+          "jersey",
+          "socks"
+        ]
+      }
     },
     {
       "name": "So Fresh Clothing",
@@ -28,7 +58,37 @@
     {
       "name": "New Era Cap",
       "domain": "www.neweracap.com",
-      "verified": true
+      "verified": true,
+      "filters": {
+        "include_keywords": [
+          "49ers",
+          "san francisco giants",
+          "sf giants",
+          "oakland athletics",
+          "oakland a's",
+          "athletics",
+          "los angeles lakers",
+          "lakers",
+          "golden state",
+          "california golden bears",
+          "cal bears",
+          "ucla"
+        ],
+        "exclude_keywords": [
+          "infant",
+          "toddler",
+          "youth",
+          "kids",
+          "boston bruins",
+          "athletics department",
+          "crewneck",
+          "hoodie",
+          "t-shirt",
+          "sweatshirt",
+          "jersey",
+          "socks"
+        ]
+      }
     },
     {
       "name": "Prociety",
