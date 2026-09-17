@@ -9010,6 +9010,7 @@
     "10357165654312",
     "10362570342696",
     "9658222215464",
+    "10445057753384",
     "10027181539624",
     "8920453710120",
     "8228549493032",
@@ -9212,6 +9213,14 @@
     "7691593351262"
   ],
   "statement-store.com": [
+    "12250575634696",
+    "12250572226824",
+    "12249544261896",
+    "12249541083400",
+    "12249537413384",
+    "12249534824712",
+    "12249528369416",
+    "12249442353416",
     "12190054711560",
     "12190047797512",
     "12190041669896",
@@ -9262,8 +9271,6 @@
     "12148547059976",
     "12148530610440",
     "12148523893000",
-    "12250575634696",
-    "12249541083400",
     "12148519928072",
     "10260891205896",
     "12137266512136",
@@ -9896,7 +9903,7 @@
       "Rodeo Japan Pine Avenue": 1789634818,
       "Klaxon Store": 1789605128,
       "Blue Beach Denim": 1788950822,
-      "Dant": 1789609610,
+      "Dant": 1789657357,
       "HINOYA Online Store": 1789642012,
       "HOMEGAME NEW YORK": 1789604224,
       "Redcast Heritage Co.": 1789547522,
@@ -9911,71 +9918,75 @@
       "Sakuraclientele": 1786098711,
       "Cultofindigo": 1789233416,
       "Limbro": 1789358523,
-      "Okayamadenim": 1789570931,
+      "Okayamadenim": 1789657357,
       "Berkeleysupply": 1789598821,
-      "Statement Store": 1789638420,
+      "Statement Store": 1789657357,
       "Cultizm": 1789655533,
       "Motostyle": 1789338875,
-      "Fittedunderground": 1789150618,
+      "Fittedunderground": 1789657357,
       "Snakeoilprovisions": 1789606930,
       "Glasswingshop": 1789612328
     },
     "last_digest": 1789124523,
-    "period_new": 1950
+    "period_new": 1970
   },
   "_last_poll": {
-    "www.myfitteds.com": 1789656313,
-    "hatclub.com": 1789656315,
-    "sofreshclothing.com": 1789656317,
-    "culturekings.com": 1789656319,
-    "exclusivefitted.com": 1789656321,
-    "www.neweracap.com": 1789656323,
-    "procietyshop.com": 1789656324,
-    "4ucaps.com": 1789656326,
-    "www.hatdreams.com": 1789656328,
-    "crownminded.com": 1789656330,
-    "www.ecapcity.com": 1789656332,
-    "www.lidshd.com": 1789656333,
-    "gf-sf.com": 1789656335,
-    "incredideals.ae": 1789656337,
-    "stylisticsjapan.com": 1789656340,
-    "www.cojpgallery.com": 1789656342,
-    "sonofastag.com": 1789656356,
-    "bears-tokyo.myshopify.com": 1789656358,
-    "corlection.com": 1789656360,
-    "ironshopprovisions.com": 1789656362,
-    "franklinandpoe.com": 1789656364,
-    "shopcanoeclub.com": 1789656366,
-    "meadowweb.com": 1789656369,
-    "mildblend.com": 1789656371,
-    "rodeo-japan-pine-avenue.com": 1789656373,
-    "klaxon-store.com": 1789656375,
-    "www.bluebeachdenim.shop": 1789656377,
-    "www.dant.us": 1789656379,
-    "hinoya.shop": 1789656381,
-    "homegame-newyork.com": 1789656383,
-    "redcastheritage.com": 1789656385,
-    "www.panchoandlefty.se": 1789656387,
-    "totemshop.com": 1789656389,
-    "www.blueingreensoho.com": 1789656391,
-    "www.guiltyparty.co": 1789656393,
-    "www.blueowl.us": 1789656395,
-    "standardandstrange.com": 1789656397,
-    "www.witheredfig.com": 1789656399,
-    "www.mentionclothing.com": 1789656401,
-    "sakuraclientele.com": 1789656403,
-    "cultofindigo.com": 1789656405,
-    "www.limbro.id": 1789656406,
-    "www.okayamadenim.com": 1789656411,
-    "berkeleysupply.com": 1789656413,
-    "statement-store.com": 1789656415,
-    "cultizm.com": 1789656417,
-    "www.motostyle.jp": 1789656419,
-    "fittedunderground.com": 1789656422,
-    "www.snakeoilprovisions.com": 1789656424,
-    "glasswingshop.com": 1789656426
+    "www.myfitteds.com": 1789657227,
+    "hatclub.com": 1789657229,
+    "sofreshclothing.com": 1789657231,
+    "culturekings.com": 1789657233,
+    "exclusivefitted.com": 1789657235,
+    "www.neweracap.com": 1789657237,
+    "procietyshop.com": 1789657239,
+    "4ucaps.com": 1789657240,
+    "www.hatdreams.com": 1789657242,
+    "crownminded.com": 1789657244,
+    "www.ecapcity.com": 1789657246,
+    "www.lidshd.com": 1789657248,
+    "gf-sf.com": 1789657250,
+    "incredideals.ae": 1789657251,
+    "stylisticsjapan.com": 1789657253,
+    "www.cojpgallery.com": 1789657255,
+    "sonofastag.com": 1789657257,
+    "bears-tokyo.myshopify.com": 1789657259,
+    "corlection.com": 1789657261,
+    "ironshopprovisions.com": 1789657263,
+    "franklinandpoe.com": 1789657265,
+    "shopcanoeclub.com": 1789657267,
+    "meadowweb.com": 1789657269,
+    "mildblend.com": 1789657270,
+    "rodeo-japan-pine-avenue.com": 1789657272,
+    "klaxon-store.com": 1789657274,
+    "www.bluebeachdenim.shop": 1789657276,
+    "www.dant.us": 1789657278,
+    "hinoya.shop": 1789657291,
+    "homegame-newyork.com": 1789657293,
+    "redcastheritage.com": 1789657295,
+    "www.panchoandlefty.se": 1789657298,
+    "totemshop.com": 1789657300,
+    "www.blueingreensoho.com": 1789657302,
+    "www.guiltyparty.co": 1789657304,
+    "www.blueowl.us": 1789657306,
+    "standardandstrange.com": 1789657307,
+    "www.witheredfig.com": 1789657309,
+    "www.mentionclothing.com": 1789657311,
+    "sakuraclientele.com": 1789657313,
+    "cultofindigo.com": 1789657315,
+    "www.limbro.id": 1789657318,
+    "www.okayamadenim.com": 1789657320,
+    "berkeleysupply.com": 1789657324,
+    "statement-store.com": 1789657326,
+    "cultizm.com": 1789657340,
+    "www.motostyle.jp": 1789657343,
+    "fittedunderground.com": 1789657344,
+    "www.snakeoilprovisions.com": 1789657353,
+    "glasswingshop.com": 1789657355
   },
   "fittedunderground.com": [
+    "7612244164666",
+    "7611007107130",
+    "7612262547514",
+    "7611010908218",
     "7502607777850",
     "7544768856122",
     "7544769773626",
@@ -125095,115 +125106,115 @@
       },
       "9488422731995": {
         "49313615872219": {
-          "available": false,
+          "available": true,
           "title": "5/M"
         },
         "49313615904987": {
-          "available": false,
+          "available": true,
           "title": "6/L"
         },
         "49313615937755": {
-          "available": false,
+          "available": true,
           "title": "7/XL"
         },
         "49313615970523": {
-          "available": false,
+          "available": true,
           "title": "8/XXL"
         }
       },
       "9488415719643": {
         "49313594507483": {
-          "available": false,
+          "available": true,
           "title": "5/M"
         },
         "49313594540251": {
-          "available": false,
+          "available": true,
           "title": "6/L"
         },
         "49313594573019": {
-          "available": false,
+          "available": true,
           "title": "7/XL"
         },
         "49313594605787": {
-          "available": false,
+          "available": true,
           "title": "8/XXL"
         }
       },
       "9488415588571": {
         "49313594147035": {
-          "available": false,
+          "available": true,
           "title": "Default Title"
         }
       },
       "9488413655259": {
         "49313583726811": {
-          "available": false,
+          "available": true,
           "title": "4/S"
         },
         "49313583759579": {
-          "available": false,
+          "available": true,
           "title": "5/M"
         },
         "49313583792347": {
-          "available": false,
+          "available": true,
           "title": "6/L"
         },
         "49313583825115": {
-          "available": false,
+          "available": true,
           "title": "7/XL"
         },
         "49313646117083": {
-          "available": false,
+          "available": true,
           "title": "8/XXL"
         }
       },
       "9488408215771": {
         "49313563607259": {
-          "available": false,
+          "available": true,
           "title": "5/M"
         },
         "49313563640027": {
-          "available": false,
+          "available": true,
           "title": "6/L"
         },
         "49313563672795": {
-          "available": false,
+          "available": true,
           "title": "7/XL"
         },
         "49313563705563": {
-          "available": false,
+          "available": true,
           "title": "8/XXL"
         }
       },
       "9488408051931": {
         "49313562656987": {
-          "available": false,
+          "available": true,
           "title": "5/M"
         },
         "49313562689755": {
-          "available": false,
+          "available": true,
           "title": "6/L"
         },
         "49313562722523": {
-          "available": false,
+          "available": true,
           "title": "7/XL"
         },
         "49313562755291": {
-          "available": false,
+          "available": true,
           "title": "8/XXL"
         }
       },
       "9488407757019": {
         "49313560559835": {
-          "available": false,
+          "available": true,
           "title": "5/M"
         },
         "49313560592603": {
-          "available": false,
+          "available": true,
           "title": "6/L"
         },
         "49313560625371": {
-          "available": false,
+          "available": true,
           "title": "7/XL"
         },
         "49313560658139": {
@@ -168796,6 +168807,20 @@
           "available": true,
           "title": "38"
         }
+      },
+      "10445057753384": {
+        "52396381569320": {
+          "available": true,
+          "title": "S"
+        },
+        "52396381602088": {
+          "available": true,
+          "title": "M"
+        },
+        "52396381634856": {
+          "available": true,
+          "title": "L"
+        }
       }
     },
     "berkeleysupply.com": {
@@ -172519,26 +172544,106 @@
       },
       "12249541083400": {
         "58746975650056": {
-          "available": false,
+          "available": true,
           "title": "Default Title"
         }
       },
       "12250575634696": {
         "58749618159880": {
-          "available": false,
+          "available": true,
           "title": "Large"
         },
         "58749618192648": {
-          "available": false,
+          "available": true,
           "title": "X-Large"
         },
         "58749618225416": {
-          "available": false,
+          "available": true,
           "title": "XX-Large"
         },
         "58749618258184": {
-          "available": false,
+          "available": true,
           "title": "XXX-Large"
+        }
+      },
+      "12250572226824": {
+        "58749614260488": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "12249544261896": {
+        "58746993508616": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "12249537413384": {
+        "58746960085256": {
+          "available": true,
+          "title": "Medium"
+        },
+        "58746960118024": {
+          "available": true,
+          "title": "Large"
+        },
+        "58746960150792": {
+          "available": true,
+          "title": "X-Large"
+        }
+      },
+      "12249534824712": {
+        "58746939048200": {
+          "available": true,
+          "title": "Small"
+        },
+        "58746939080968": {
+          "available": true,
+          "title": "Medium"
+        },
+        "58746939113736": {
+          "available": true,
+          "title": "Large"
+        },
+        "58746939146504": {
+          "available": true,
+          "title": "X-Large"
+        }
+      },
+      "12249528369416": {
+        "58746920861960": {
+          "available": false,
+          "title": "Small"
+        },
+        "58746920894728": {
+          "available": true,
+          "title": "Medium"
+        },
+        "58746920927496": {
+          "available": true,
+          "title": "Large"
+        },
+        "58746920960264": {
+          "available": false,
+          "title": "X-Large"
+        }
+      },
+      "12249442353416": {
+        "58746656751880": {
+          "available": true,
+          "title": "Small"
+        },
+        "58746656784648": {
+          "available": true,
+          "title": "Medium"
+        },
+        "58746656817416": {
+          "available": true,
+          "title": "Large"
+        },
+        "58746656850184": {
+          "available": true,
+          "title": "X-Large"
         }
       }
     },
@@ -183006,6 +183111,134 @@
           "available": true,
           "title": "CUSTOM SIZE"
         }
+      },
+      "7612244164666": {
+        "41657159450682": {
+          "available": true,
+          "title": "30"
+        },
+        "41657159483450": {
+          "available": true,
+          "title": "31"
+        },
+        "41657159516218": {
+          "available": true,
+          "title": "32"
+        },
+        "41657159548986": {
+          "available": true,
+          "title": "33"
+        },
+        "41657159581754": {
+          "available": true,
+          "title": "34"
+        },
+        "41657159614522": {
+          "available": true,
+          "title": "35"
+        },
+        "41657159647290": {
+          "available": true,
+          "title": "36"
+        },
+        "41657159680058": {
+          "available": true,
+          "title": "38"
+        },
+        "41657159712826": {
+          "available": true,
+          "title": "CUSTOM SIZE"
+        }
+      },
+      "7611007107130": {
+        "41654884794426": {
+          "available": true,
+          "title": "XS"
+        },
+        "41654884827194": {
+          "available": true,
+          "title": "S"
+        },
+        "41654884859962": {
+          "available": true,
+          "title": "M"
+        },
+        "41654884892730": {
+          "available": true,
+          "title": "L"
+        },
+        "41654884925498": {
+          "available": true,
+          "title": "XL"
+        },
+        "41654884958266": {
+          "available": true,
+          "title": "2XL"
+        }
+      },
+      "7612262547514": {
+        "41657197756474": {
+          "available": true,
+          "title": "30"
+        },
+        "41657197789242": {
+          "available": true,
+          "title": "31"
+        },
+        "41657197822010": {
+          "available": true,
+          "title": "32"
+        },
+        "41657197854778": {
+          "available": true,
+          "title": "33"
+        },
+        "41657197887546": {
+          "available": true,
+          "title": "34"
+        },
+        "41657197920314": {
+          "available": true,
+          "title": "35"
+        },
+        "41657197953082": {
+          "available": true,
+          "title": "36"
+        },
+        "41657197985850": {
+          "available": true,
+          "title": "38"
+        },
+        "41657198018618": {
+          "available": true,
+          "title": "CUSTOM SIZE"
+        }
+      },
+      "7611010908218": {
+        "41654890397754": {
+          "available": true,
+          "title": "XS"
+        },
+        "41654890430522": {
+          "available": true,
+          "title": "S"
+        },
+        "41654890463290": {
+          "available": true,
+          "title": "M"
+        },
+        "41654890496058": {
+          "available": true,
+          "title": "L"
+        },
+        "41654890528826": {
+          "available": true,
+          "title": "XL"
+        },
+        "41654890561594": {
+          "available": true,
+          "title": "2XL"
+        }
       }
     },
     "www.snakeoilprovisions.com": {
@@ -184941,7 +185174,7 @@
           "title": "30"
         },
         "43064757485686": {
-          "available": true,
+          "available": false,
           "title": "31"
         },
         "43064757518454": {
