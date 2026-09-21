@@ -85,7 +85,6 @@
   ],
   "hatclub.com": [
     "8011439636555",
-    "8011437801547",
     "8011439571019",
     "8020057817163",
     "8020057784395",
@@ -135,6 +134,7 @@
     "7902848909387",
     "7902849138763",
     "7902849040459",
+    "8011437801547",
     "7902848942155",
     "7902849171531",
     "7902849105995",
@@ -10247,55 +10247,55 @@
     "period_new": 1510
   },
   "_last_poll": {
-    "www.myfitteds.com": 1790028913,
-    "hatclub.com": 1790028915,
-    "sofreshclothing.com": 1790028917,
-    "culturekings.com": 1790028918,
-    "exclusivefitted.com": 1790028920,
-    "www.neweracap.com": 1790028922,
-    "procietyshop.com": 1790028924,
-    "4ucaps.com": 1790028926,
-    "www.hatdreams.com": 1790028927,
-    "crownminded.com": 1790028929,
-    "www.ecapcity.com": 1790028931,
-    "www.lidshd.com": 1790028933,
-    "gf-sf.com": 1790028935,
-    "incredideals.ae": 1790028936,
-    "stylisticsjapan.com": 1790028938,
-    "www.cojpgallery.com": 1790028940,
-    "sonofastag.com": 1790028942,
-    "bears-tokyo.myshopify.com": 1790028944,
-    "corlection.com": 1790028946,
-    "ironshopprovisions.com": 1790028947,
-    "franklinandpoe.com": 1790028949,
-    "meadowweb.com": 1790028951,
-    "mildblend.com": 1790028953,
-    "rodeo-japan-pine-avenue.com": 1790028957,
-    "klaxon-store.com": 1790028959,
-    "www.bluebeachdenim.shop": 1790028961,
-    "www.dant.us": 1790028963,
-    "hinoya.shop": 1790028965,
-    "homegame-newyork.com": 1790028967,
-    "redcastheritage.com": 1790028969,
-    "www.panchoandlefty.se": 1790028971,
-    "totemshop.com": 1790028973,
-    "www.blueingreensoho.com": 1790028975,
-    "www.guiltyparty.co": 1790028976,
-    "www.blueowl.us": 1790028978,
-    "standardandstrange.com": 1790028980,
-    "www.witheredfig.com": 1790028982,
-    "www.mentionclothing.com": 1790028984,
-    "sakuraclientele.com": 1790028986,
-    "cultofindigo.com": 1790028987,
-    "www.limbro.id": 1790028989,
-    "www.okayamadenim.com": 1790028992,
-    "berkeleysupply.com": 1790028994,
-    "statement-store.com": 1790028996,
-    "cultizm.com": 1790028998,
-    "www.motostyle.jp": 1790029000,
-    "fittedunderground.com": 1790029002,
-    "www.snakeoilprovisions.com": 1790029004,
-    "glasswingshop.com": 1790029006
+    "www.myfitteds.com": 1790029816,
+    "hatclub.com": 1790029818,
+    "sofreshclothing.com": 1790029820,
+    "culturekings.com": 1790029822,
+    "exclusivefitted.com": 1790029823,
+    "www.neweracap.com": 1790029825,
+    "procietyshop.com": 1790029828,
+    "4ucaps.com": 1790029830,
+    "www.hatdreams.com": 1790029832,
+    "crownminded.com": 1790029834,
+    "www.ecapcity.com": 1790029836,
+    "www.lidshd.com": 1790029838,
+    "gf-sf.com": 1790029840,
+    "incredideals.ae": 1790029843,
+    "stylisticsjapan.com": 1790029845,
+    "www.cojpgallery.com": 1790029847,
+    "sonofastag.com": 1790029849,
+    "bears-tokyo.myshopify.com": 1790029851,
+    "corlection.com": 1790029852,
+    "ironshopprovisions.com": 1790029854,
+    "franklinandpoe.com": 1790029856,
+    "meadowweb.com": 1790029858,
+    "mildblend.com": 1790029860,
+    "rodeo-japan-pine-avenue.com": 1790029862,
+    "klaxon-store.com": 1790029864,
+    "www.bluebeachdenim.shop": 1790029866,
+    "www.dant.us": 1790029868,
+    "hinoya.shop": 1790029870,
+    "homegame-newyork.com": 1790029875,
+    "redcastheritage.com": 1790029877,
+    "www.panchoandlefty.se": 1790029879,
+    "totemshop.com": 1790029881,
+    "www.blueingreensoho.com": 1790029883,
+    "www.guiltyparty.co": 1790029885,
+    "www.blueowl.us": 1790029887,
+    "standardandstrange.com": 1790029889,
+    "www.witheredfig.com": 1790029891,
+    "www.mentionclothing.com": 1790029893,
+    "sakuraclientele.com": 1790029897,
+    "cultofindigo.com": 1790029899,
+    "www.limbro.id": 1790029901,
+    "www.okayamadenim.com": 1790029904,
+    "berkeleysupply.com": 1790029906,
+    "statement-store.com": 1790029908,
+    "cultizm.com": 1790029910,
+    "www.motostyle.jp": 1790029912,
+    "fittedunderground.com": 1790029915,
+    "www.snakeoilprovisions.com": 1790029916,
+    "glasswingshop.com": 1790029918
   },
   "fittedunderground.com": [
     "7612244164666",
@@ -75396,7 +75396,7 @@
           "title": "Size 7 1/8"
         },
         "53195705909429": {
-          "available": true,
+          "available": false,
           "title": "Size 7 1/4"
         },
         "53195705942197": {
@@ -125010,7 +125010,7 @@
           "title": "Black 6 7/8"
         },
         "42710557720622": {
-          "available": true,
+          "available": false,
           "title": "Black 7"
         },
         "42710557753390": {
@@ -125018,7 +125018,7 @@
           "title": "Black 7 1/8"
         },
         "42710557786158": {
-          "available": true,
+          "available": false,
           "title": "Black 7 1/4"
         },
         "42710557818926": {
@@ -125030,7 +125030,7 @@
           "title": "Black 7 1/2"
         },
         "42710557884462": {
-          "available": true,
+          "available": false,
           "title": "Black 7 5/8"
         },
         "42710557917230": {
@@ -125038,11 +125038,11 @@
           "title": "Black 7 3/4"
         },
         "42710557949998": {
-          "available": true,
+          "available": false,
           "title": "Black 7 7/8"
         },
         "42710557982766": {
-          "available": true,
+          "available": false,
           "title": "Black 8"
         }
       },
@@ -125136,7 +125136,7 @@
           "title": "Black 6 7/8"
         },
         "42710385721390": {
-          "available": true,
+          "available": false,
           "title": "Black 7"
         },
         "42710385754158": {
@@ -125144,7 +125144,7 @@
           "title": "Black 7 1/8"
         },
         "42710385786926": {
-          "available": true,
+          "available": false,
           "title": "Black 7 1/4"
         },
         "42710385819694": {
@@ -125156,7 +125156,7 @@
           "title": "Black7 1/2"
         },
         "42710385885230": {
-          "available": true,
+          "available": false,
           "title": "Black 7 5/8"
         },
         "42710385917998": {
@@ -125168,7 +125168,7 @@
           "title": "Black 7 7/8"
         },
         "42710385983534": {
-          "available": true,
+          "available": false,
           "title": "Black 8"
         }
       },
