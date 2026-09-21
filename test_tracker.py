@@ -559,6 +559,24 @@ class NumericPriceTests(unittest.TestCase):
         self.assertIn("\n$0\n", self.message([0, "12.00"]))
 
 
+class StoreFilterConfigTests(unittest.TestCase):
+    SHARED_FILTER_DOMAINS = (
+        "www.neweracap.com",
+        "hatclub.com",
+        "culturekings.com",
+    )
+
+    def test_culture_kings_shares_new_era_and_hat_club_filters(self):
+        cfg = tracker.load_json(tracker.CONFIG_PATH, None)
+        by_domain = {store["domain"]: store for store in cfg["stores"]}
+        expected = by_domain["www.neweracap.com"]["filters"]
+        for domain in self.SHARED_FILTER_DOMAINS:
+            self.assertEqual(
+                by_domain[domain]["filters"],
+                expected,
+                f"{domain} should use the same filters as www.neweracap.com")
+
+
 class FilterRegressionTests(unittest.TestCase):
     def test_nonempty_globals_empty_and_false_overrides(self):
         global_filters = {"include_keywords": ["global"], "exclude_keywords": ["old"],
