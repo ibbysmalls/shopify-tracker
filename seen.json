@@ -1,6 +1,5 @@
 {
   "www.myfitteds.com": [
-    "7483311685683",
     "7876071030835",
     "7968059326515",
     "7968052772915",
@@ -51,6 +50,7 @@
     "7897255149619",
     "7896586453043",
     "7896585830451",
+    "7483311685683",
     "7896524423219",
     "7896281284659",
     "7895413686323",
@@ -84,6 +84,10 @@
     "7912727511091"
   ],
   "hatclub.com": [
+    "7859833995339",
+    "7859833929803",
+    "7859833897035",
+    "7859833339979",
     "8481900232779",
     "8099985457227",
     "8099985424459",
@@ -229,13 +233,9 @@
     "7859833864267",
     "7859833831499",
     "7859834060875",
-    "7859833929803",
     "7859833798731",
     "7859834224715",
     "7859838320715",
-    "7859833339979",
-    "7859833995339",
-    "7859833897035",
     "7859834355787",
     "7859834159179",
     "7764985512011",
@@ -5932,7 +5932,6 @@
     "10981860213082",
     "10981846679898",
     "10961428545882",
-    "10961400430938",
     "10961362059610",
     "10961357341018",
     "10961353081178",
@@ -5973,6 +5972,7 @@
     "10947236528474",
     "10947233218906",
     "10966603563354",
+    "10961400430938",
     "10966601040218",
     "10780274295130",
     "10961185440090",
@@ -10415,7 +10415,7 @@
     "empty_since": {},
     "last_new": {
       "MYFITTEDS": 1790002929,
-      "Hat Club": 1790155007,
+      "Hat Club": 1790182936,
       "So Fresh Clothing": 1789937209,
       "Culture Kings US": 1790166712,
       "Exclusive Fitted Inc.": 1790099213,
@@ -10447,7 +10447,7 @@
       "Pancho and Lefty": 1789800415,
       "Totem Brand Co.": 1790180224,
       "Blue in Green": 1790127113,
-      "Guiltyparty": 1790117232,
+      "Guiltyparty": 1790182936,
       "Blueowl": 1790119013,
       "Standardandstrange": 1790019121,
       "Witheredfig": 1790179346,
@@ -10460,65 +10460,70 @@
       "Statement Store": 1790154119,
       "Cultizm": 1790161320,
       "Motostyle": 1789723911,
-      "Fittedunderground": 1789657357,
+      "Fittedunderground": 1790182936,
       "Snakeoilprovisions": 1790113620,
       "Glasswingshop": 1790125322
     },
     "last_digest": 1789729333,
-    "period_new": 2352
+    "period_new": 2363
   },
   "_last_poll": {
-    "www.myfitteds.com": 1790181915,
-    "hatclub.com": 1790181917,
-    "sofreshclothing.com": 1790181919,
-    "culturekings.com": 1790181920,
-    "exclusivefitted.com": 1790181922,
-    "www.neweracap.com": 1790181924,
-    "procietyshop.com": 1790181926,
-    "4ucaps.com": 1790181927,
-    "www.hatdreams.com": 1790181929,
-    "crownminded.com": 1790181931,
-    "www.ecapcity.com": 1790181933,
-    "www.lidshd.com": 1790181934,
-    "gf-sf.com": 1790181936,
-    "incredideals.ae": 1790181938,
-    "stylisticsjapan.com": 1790181940,
-    "www.cojpgallery.com": 1790181941,
-    "sonofastag.com": 1790181943,
-    "bears-tokyo.myshopify.com": 1790181950,
-    "corlection.com": 1790181952,
-    "ironshopprovisions.com": 1790181953,
-    "franklinandpoe.com": 1790181955,
-    "meadowweb.com": 1790181957,
-    "mildblend.com": 1790181959,
-    "rodeo-japan-pine-avenue.com": 1790181960,
-    "klaxon-store.com": 1790181962,
-    "www.bluebeachdenim.shop": 1790181964,
-    "www.dant.us": 1790181966,
-    "hinoya.shop": 1790181969,
-    "homegame-newyork.com": 1790181971,
-    "redcastheritage.com": 1790181973,
-    "www.panchoandlefty.se": 1790181975,
-    "totemshop.com": 1790181977,
-    "www.blueingreensoho.com": 1790181979,
-    "www.guiltyparty.co": 1790181980,
-    "www.blueowl.us": 1790181982,
-    "standardandstrange.com": 1790181984,
-    "www.witheredfig.com": 1790181986,
-    "www.mentionclothing.com": 1790181987,
-    "sakuraclientele.com": 1790181989,
-    "cultofindigo.com": 1790181991,
-    "www.limbro.id": 1790181993,
-    "www.okayamadenim.com": 1790181995,
-    "berkeleysupply.com": 1790181997,
-    "statement-store.com": 1790181999,
-    "cultizm.com": 1790182001,
-    "www.motostyle.jp": 1790182003,
-    "fittedunderground.com": 1790182005,
-    "www.snakeoilprovisions.com": 1790182007,
-    "glasswingshop.com": 1790182008
+    "www.myfitteds.com": 1790182822,
+    "hatclub.com": 1790182824,
+    "sofreshclothing.com": 1790182826,
+    "culturekings.com": 1790182828,
+    "exclusivefitted.com": 1790182830,
+    "www.neweracap.com": 1790182832,
+    "procietyshop.com": 1790182834,
+    "4ucaps.com": 1790182835,
+    "www.hatdreams.com": 1790182837,
+    "crownminded.com": 1790182839,
+    "www.ecapcity.com": 1790182841,
+    "www.lidshd.com": 1790182843,
+    "gf-sf.com": 1790182845,
+    "incredideals.ae": 1790182846,
+    "stylisticsjapan.com": 1790182848,
+    "www.cojpgallery.com": 1790182850,
+    "sonofastag.com": 1790182852,
+    "bears-tokyo.myshopify.com": 1790182854,
+    "corlection.com": 1790182857,
+    "ironshopprovisions.com": 1790182859,
+    "franklinandpoe.com": 1790182861,
+    "meadowweb.com": 1790182862,
+    "mildblend.com": 1790182864,
+    "rodeo-japan-pine-avenue.com": 1790182866,
+    "klaxon-store.com": 1790182868,
+    "www.bluebeachdenim.shop": 1790182870,
+    "www.dant.us": 1790182872,
+    "hinoya.shop": 1790182874,
+    "homegame-newyork.com": 1790182875,
+    "redcastheritage.com": 1790182877,
+    "www.panchoandlefty.se": 1790182879,
+    "totemshop.com": 1790182881,
+    "www.blueingreensoho.com": 1790182883,
+    "www.guiltyparty.co": 1790182891,
+    "www.blueowl.us": 1790182896,
+    "standardandstrange.com": 1790182898,
+    "www.witheredfig.com": 1790182900,
+    "www.mentionclothing.com": 1790182901,
+    "sakuraclientele.com": 1790182904,
+    "cultofindigo.com": 1790182906,
+    "www.limbro.id": 1790182909,
+    "www.okayamadenim.com": 1790182912,
+    "berkeleysupply.com": 1790182914,
+    "statement-store.com": 1790182916,
+    "cultizm.com": 1790182918,
+    "www.motostyle.jp": 1790182920,
+    "fittedunderground.com": 1790182922,
+    "www.snakeoilprovisions.com": 1790182932,
+    "glasswingshop.com": 1790182934
   },
   "fittedunderground.com": [
+    "7472916660282",
+    "7472916627514",
+    "7472916463674",
+    "7472916594746",
+    "7493987500090",
     "7612244164666",
     "7611007107130",
     "7612262547514",
@@ -21003,31 +21008,31 @@
           "title": "Black on Black / 6 7/8"
         },
         "42636351733835": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7"
         },
         "42636351766603": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/8"
         },
         "42636351799371": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/4"
         },
         "42636351832139": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 3/8"
         },
         "42636351864907": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/2"
         },
         "42636351897675": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 5/8"
         },
         "42636351930443": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 3/4"
         },
         "42636351963211": {
@@ -21035,7 +21040,7 @@
           "title": "Black on Black / 7 7/8"
         },
         "42636351995979": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 8"
         }
       },
@@ -21377,19 +21382,19 @@
       },
       "7859833929803": {
         "42636357763147": {
-          "available": true,
+          "available": false,
           "title": "Black on Black / 6 7/8"
         },
         "42636357795915": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7"
         },
         "42636357828683": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/8"
         },
         "42636357861451": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/4"
         },
         "42636357894219": {
@@ -21401,11 +21406,11 @@
           "title": "Black on Black / 7 1/2"
         },
         "42636357959755": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 5/8"
         },
         "42636357992523": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 3/4"
         },
         "42636358025291": {
@@ -21413,7 +21418,7 @@
           "title": "Black on Black / 7 7/8"
         },
         "42636358058059": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 8"
         }
       },
@@ -21465,31 +21470,31 @@
           "title": "Black on Black / 6 7/8"
         },
         "42636356780107": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7"
         },
         "42636356812875": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/8"
         },
         "42636356845643": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/4"
         },
         "42636356878411": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 3/8"
         },
         "42636356911179": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/2"
         },
         "42636356943947": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 5/8"
         },
         "42636356976715": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 3/4"
         },
         "42636357009483": {
@@ -21507,31 +21512,31 @@
           "title": "Black on Black / 6 7/8"
         },
         "42636356452427": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7"
         },
         "42636356485195": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/8"
         },
         "42636356517963": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/4"
         },
         "42636356550731": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 3/8"
         },
         "42636356583499": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 1/2"
         },
         "42636356616267": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 5/8"
         },
         "42636356649035": {
-          "available": false,
+          "available": true,
           "title": "Black on Black / 7 3/4"
         },
         "42636356681803": {
@@ -78041,7 +78046,7 @@
       },
       "10357722546477": {
         "52374587244845": {
-          "available": true,
+          "available": false,
           "title": "600D Black/Grey (Twill)"
         }
       }
@@ -100663,7 +100668,7 @@
       },
       "9519809265910": {
         "51601681121526": {
-          "available": true,
+          "available": false,
           "title": "Default Title"
         }
       },
@@ -143063,7 +143068,7 @@
       },
       "10835170787638": {
         "54513336746294": {
-          "available": false,
+          "available": true,
           "title": "S"
         },
         "54513336779062": {
@@ -143075,7 +143080,7 @@
           "title": "L"
         },
         "54513336844598": {
-          "available": false,
+          "available": true,
           "title": "XL"
         },
         "54513336877366": {
@@ -143201,7 +143206,7 @@
           "title": "M"
         },
         "54535949123894": {
-          "available": false,
+          "available": true,
           "title": "L"
         },
         "54535949156662": {
@@ -181463,6 +181468,36 @@
         "41654890561594": {
           "available": true,
           "title": "2XL"
+        }
+      },
+      "7472916660282": {
+        "41094410698810": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "7472916627514": {
+        "41094410666042": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "7472916463674": {
+        "41094410240058": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "7472916594746": {
+        "41094410633274": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "7493987500090": {
+        "41182229364794": {
+          "available": true,
+          "title": "Default Title"
         }
       }
     },
