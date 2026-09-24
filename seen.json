@@ -2672,6 +2672,7 @@
     "8818005410045"
   ],
   "4ucaps.com": [
+    "8581137924287",
     "8581138153663",
     "8581138088127",
     "8581138055359",
@@ -6689,6 +6690,7 @@
   ],
   "_tg_offset": 578972119,
   "www.guiltyparty.co": [
+    "10868514783542",
     "10868265156918",
     "10868263911734",
     "10868263059766",
@@ -7865,6 +7867,7 @@
     "8018657050677"
   ],
   "ironshopprovisions.com": [
+    "9519557083443",
     "10478126989619",
     "10478123024691",
     "10478022787379",
@@ -8140,6 +8143,7 @@
     "6681537282132"
   ],
   "franklinandpoe.com": [
+    "9520803741942",
     "8855330783478",
     "8855330488566",
     "8855328194806",
@@ -9390,6 +9394,11 @@
     "9268121207020"
   ],
   "www.mentionclothing.com": [
+    "10383125971235",
+    "10383144091939",
+    "10383148777763",
+    "10384246767907",
+    "10385902305571",
     "10375332626723",
     "10375271874851",
     "10373755633955",
@@ -10641,8 +10650,8 @@
   ],
   "_health": {
     "fails": {
-      "Blue Beach Denim": 1,
-      "HINOYA Online Store": 1
+      "Blue Beach Denim": 2,
+      "HINOYA Online Store": 2
     },
     "alerted": [],
     "empty_since": {},
@@ -10654,7 +10663,7 @@
       "Exclusive Fitted Inc.": 1790190123,
       "New Era Cap": 1790258551,
       "Prociety": 1790202720,
-      "4ucaps.com": 1790266620,
+      "4ucaps.com": 1790267525,
       "DREAMS H2H": 1789941724,
       "CROWN MINDED": 1790211762,
       "ECAPCITY": 1790112737,
@@ -10666,8 +10675,8 @@
       "SON OF A STAG": 1790257619,
       "BEARS' Tokyo": 1790250467,
       "Corlection": 1790150525,
-      "Iron Shop Provisions": 1790226121,
-      "Franklin & Poe": 1790264853,
+      "Iron Shop Provisions": 1790267525,
+      "Franklin & Poe": 1790267525,
       "Meadow": 1790172158,
       "Mildblend Supply Co.": 1790189214,
       "Rodeo Japan Pine Avenue": 1790118167,
@@ -10680,11 +10689,11 @@
       "Pancho and Lefty": 1790242314,
       "Totem Brand Co.": 1790200935,
       "Blue in Green": 1790197377,
-      "Guiltyparty": 1790262157,
+      "Guiltyparty": 1790267525,
       "Blueowl": 1790197377,
       "Standardandstrange": 1790019121,
       "Witheredfig": 1790265772,
-      "Mentionclothing": 1789993912,
+      "Mentionclothing": 1790267525,
       "Sakuraclientele": 1786098711,
       "Cultofindigo": 1790095627,
       "Limbro": 1789721222,
@@ -10698,58 +10707,58 @@
       "Glasswingshop": 1790195517
     },
     "last_digest": 1789729333,
-    "period_new": 2897
+    "period_new": 2906
   },
   "_last_poll": {
-    "www.myfitteds.com": 1790266514,
-    "hatclub.com": 1790266516,
-    "sofreshclothing.com": 1790266518,
-    "culturekings.com": 1790266520,
-    "exclusivefitted.com": 1790266522,
-    "www.neweracap.com": 1790266524,
-    "procietyshop.com": 1790266526,
-    "4ucaps.com": 1790266528,
-    "www.hatdreams.com": 1790266533,
-    "crownminded.com": 1790266535,
-    "www.ecapcity.com": 1790266537,
-    "www.lidshd.com": 1790266539,
-    "gf-sf.com": 1790266540,
-    "incredideals.ae": 1790266543,
-    "stylisticsjapan.com": 1790266545,
-    "www.cojpgallery.com": 1790266547,
-    "sonofastag.com": 1790266549,
-    "bears-tokyo.myshopify.com": 1790266551,
-    "corlection.com": 1790266553,
-    "ironshopprovisions.com": 1790266555,
-    "franklinandpoe.com": 1790266557,
-    "meadowweb.com": 1790266559,
-    "mildblend.com": 1790266561,
-    "rodeo-japan-pine-avenue.com": 1790266563,
-    "klaxon-store.com": 1790266565,
-    "www.bluebeachdenim.shop": 1790266568,
-    "www.dant.us": 1790266568,
-    "hinoya.shop": 1790266570,
-    "homegame-newyork.com": 1790266570,
-    "redcastheritage.com": 1790266572,
-    "www.panchoandlefty.se": 1790266578,
-    "totemshop.com": 1790266581,
-    "www.blueingreensoho.com": 1790266583,
-    "www.guiltyparty.co": 1790266585,
-    "www.blueowl.us": 1790266587,
-    "standardandstrange.com": 1790266589,
-    "www.witheredfig.com": 1790266591,
-    "www.mentionclothing.com": 1790266592,
-    "sakuraclientele.com": 1790266595,
-    "cultofindigo.com": 1790266597,
-    "www.limbro.id": 1790266599,
-    "www.okayamadenim.com": 1790266603,
-    "berkeleysupply.com": 1790266605,
-    "statement-store.com": 1790266607,
-    "cultizm.com": 1790266610,
-    "www.motostyle.jp": 1790266611,
-    "fittedunderground.com": 1790266614,
-    "www.snakeoilprovisions.com": 1790266616,
-    "glasswingshop.com": 1790266618
+    "www.myfitteds.com": 1790267419,
+    "hatclub.com": 1790267421,
+    "sofreshclothing.com": 1790267423,
+    "culturekings.com": 1790267425,
+    "exclusivefitted.com": 1790267427,
+    "www.neweracap.com": 1790267429,
+    "procietyshop.com": 1790267431,
+    "4ucaps.com": 1790267432,
+    "www.hatdreams.com": 1790267436,
+    "crownminded.com": 1790267438,
+    "www.ecapcity.com": 1790267440,
+    "www.lidshd.com": 1790267442,
+    "gf-sf.com": 1790267444,
+    "incredideals.ae": 1790267445,
+    "stylisticsjapan.com": 1790267448,
+    "www.cojpgallery.com": 1790267449,
+    "sonofastag.com": 1790267451,
+    "bears-tokyo.myshopify.com": 1790267453,
+    "corlection.com": 1790267455,
+    "ironshopprovisions.com": 1790267458,
+    "franklinandpoe.com": 1790267461,
+    "meadowweb.com": 1790267464,
+    "mildblend.com": 1790267466,
+    "rodeo-japan-pine-avenue.com": 1790267468,
+    "klaxon-store.com": 1790267470,
+    "www.bluebeachdenim.shop": 1790267473,
+    "www.dant.us": 1790267473,
+    "hinoya.shop": 1790267475,
+    "homegame-newyork.com": 1790267475,
+    "redcastheritage.com": 1790267477,
+    "www.panchoandlefty.se": 1790267479,
+    "totemshop.com": 1790267481,
+    "www.blueingreensoho.com": 1790267483,
+    "www.guiltyparty.co": 1790267485,
+    "www.blueowl.us": 1790267488,
+    "standardandstrange.com": 1790267490,
+    "www.witheredfig.com": 1790267492,
+    "www.mentionclothing.com": 1790267494,
+    "sakuraclientele.com": 1790267503,
+    "cultofindigo.com": 1790267505,
+    "www.limbro.id": 1790267507,
+    "www.okayamadenim.com": 1790267510,
+    "berkeleysupply.com": 1790267512,
+    "statement-store.com": 1790267514,
+    "cultizm.com": 1790267516,
+    "www.motostyle.jp": 1790267518,
+    "fittedunderground.com": 1790267520,
+    "www.snakeoilprovisions.com": 1790267522,
+    "glasswingshop.com": 1790267524
   },
   "fittedunderground.com": [
     "7472916660282",
@@ -21158,7 +21167,7 @@
           "title": "Black on Black / 7 3/8"
         },
         "42636356911179": {
-          "available": true,
+          "available": false,
           "title": "Black on Black / 7 1/2"
         },
         "42636356943947": {
@@ -23794,7 +23803,7 @@
           "title": "Black/Navy / 7 3/4"
         },
         "42636349931595": {
-          "available": true,
+          "available": false,
           "title": "Black/Navy / 7 7/8"
         },
         "42636349964363": {
@@ -23836,7 +23845,7 @@
           "title": "Black / 7 3/4"
         },
         "42636351275083": {
-          "available": true,
+          "available": false,
           "title": "Black / 7 7/8"
         },
         "42636351307851": {
@@ -55738,6 +55747,36 @@
           "title": "3X"
         },
         "46073735053503": {
+          "available": false,
+          "title": "4X"
+        }
+      },
+      "8581137924287": {
+        "46072968773823": {
+          "available": true,
+          "title": "S"
+        },
+        "46073732792511": {
+          "available": true,
+          "title": "M"
+        },
+        "46073732825279": {
+          "available": true,
+          "title": "L"
+        },
+        "46073732858047": {
+          "available": true,
+          "title": "XL"
+        },
+        "46073732890815": {
+          "available": true,
+          "title": "2X"
+        },
+        "46073733546175": {
+          "available": false,
+          "title": "3X"
+        },
+        "46073733742783": {
           "available": false,
           "title": "4X"
         }
@@ -100207,6 +100246,12 @@
           "available": true,
           "title": "XL"
         }
+      },
+      "9519557083443": {
+        "50397976363315": {
+          "available": true,
+          "title": "Default Title"
+        }
       }
     },
     "franklinandpoe.com": {
@@ -103918,6 +103963,28 @@
         "51717094637814": {
           "available": true,
           "title": "L"
+        }
+      },
+      "9520803741942": {
+        "51604797161718": {
+          "available": true,
+          "title": "S"
+        },
+        "51604797194486": {
+          "available": true,
+          "title": "M"
+        },
+        "51604797227254": {
+          "available": true,
+          "title": "L"
+        },
+        "51604797260022": {
+          "available": true,
+          "title": "XL"
+        },
+        "51604797292790": {
+          "available": true,
+          "title": "XXL"
         }
       }
     },
@@ -148973,6 +149040,28 @@
           "available": true,
           "title": "XXL"
         }
+      },
+      "10868514783542": {
+        "54638450999606": {
+          "available": true,
+          "title": "S"
+        },
+        "54638451032374": {
+          "available": true,
+          "title": "M"
+        },
+        "54638451065142": {
+          "available": true,
+          "title": "L"
+        },
+        "54638451097910": {
+          "available": true,
+          "title": "XL"
+        },
+        "54638451130678": {
+          "available": true,
+          "title": "XXL"
+        }
       }
     },
     "www.blueowl.us": {
@@ -163894,6 +163983,148 @@
         "55614264312099": {
           "available": true,
           "title": "One-washed Denim / 40"
+        }
+      },
+      "10383125971235": {
+        "55642312507683": {
+          "available": false,
+          "title": "Natural / 15.5 / M"
+        },
+        "55642312540451": {
+          "available": true,
+          "title": "Natural / 16.5 / L"
+        },
+        "55642312573219": {
+          "available": true,
+          "title": "Natural / 17.5 / XL"
+        },
+        "55642312605987": {
+          "available": true,
+          "title": "Natural / 18.5 / USM"
+        },
+        "55642312638755": {
+          "available": true,
+          "title": "Natural / 19.5 / USL"
+        },
+        "55642317127971": {
+          "available": false,
+          "title": "Navy / 15.5 / M"
+        },
+        "55642317160739": {
+          "available": true,
+          "title": "Navy / 16.5 / L"
+        },
+        "55642317193507": {
+          "available": true,
+          "title": "Navy / 17.5 / XL"
+        },
+        "55642317226275": {
+          "available": true,
+          "title": "Navy / 18.5 / USM"
+        },
+        "55642317259043": {
+          "available": false,
+          "title": "Navy / 19.5 / USL"
+        }
+      },
+      "10383144091939": {
+        "55642364084515": {
+          "available": false,
+          "title": "Indigo Wabash / 15.5"
+        },
+        "55642364117283": {
+          "available": true,
+          "title": "Indigo Wabash / 16.5"
+        },
+        "55642364150051": {
+          "available": true,
+          "title": "Indigo Wabash / 17.5"
+        },
+        "55642364182819": {
+          "available": true,
+          "title": "Indigo Wabash / 18.5"
+        },
+        "55642364215587": {
+          "available": false,
+          "title": "Indigo Wabash / 19.5"
+        }
+      },
+      "10383148777763": {
+        "55642399899939": {
+          "available": false,
+          "title": "One-washed Denim / 15.5 / M"
+        },
+        "55642399932707": {
+          "available": true,
+          "title": "One-washed Denim / 16.5 / L"
+        },
+        "55642399965475": {
+          "available": true,
+          "title": "One-washed Denim / 17.5 / XL"
+        },
+        "55642400129315": {
+          "available": true,
+          "title": "One-washed Denim / 18.5 / USM"
+        },
+        "55642400162083": {
+          "available": true,
+          "title": "One-washed Denim / 19.5 / USL"
+        }
+      },
+      "10384246767907": {
+        "55645306093859": {
+          "available": false,
+          "title": "Navy / M"
+        },
+        "55645306126627": {
+          "available": true,
+          "title": "Navy / L"
+        },
+        "55645306159395": {
+          "available": true,
+          "title": "Navy / XL"
+        },
+        "55645306192163": {
+          "available": true,
+          "title": "Navy / USM"
+        },
+        "55645306224931": {
+          "available": true,
+          "title": "Navy / USL"
+        }
+      },
+      "10385902305571": {
+        "55649043579171": {
+          "available": true,
+          "title": "One-washed Denim / 30"
+        },
+        "55649043611939": {
+          "available": true,
+          "title": "One-washed Denim / 31"
+        },
+        "55649043644707": {
+          "available": true,
+          "title": "One-washed Denim / 32"
+        },
+        "55649043677475": {
+          "available": true,
+          "title": "One-washed Denim / 33"
+        },
+        "55649043710243": {
+          "available": true,
+          "title": "One-washed Denim / 34"
+        },
+        "55649043743011": {
+          "available": true,
+          "title": "One-washed Denim / 35"
+        },
+        "55649043775779": {
+          "available": true,
+          "title": "One-washed Denim / 36"
+        },
+        "55649043808547": {
+          "available": true,
+          "title": "One-washed Denim / 38"
         }
       }
     },
