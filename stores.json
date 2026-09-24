@@ -344,7 +344,9 @@
   ],
   "filters": {
     "include_keywords": [],
-    "exclude_keywords": [],
+    "exclude_keywords": [
+      "socks"
+    ],
     "include_product_types": [],
     "notify_only_available": true
   },

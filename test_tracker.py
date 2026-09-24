@@ -576,6 +576,15 @@ class StoreFilterConfigTests(unittest.TestCase):
                 expected,
                 f"{domain} should use the same filters as www.neweracap.com")
 
+    def test_all_stores_exclude_socks(self):
+        cfg = tracker.load_json(tracker.CONFIG_PATH, None)
+        for store in cfg["stores"]:
+            filters = tracker.resolve_filters(store, cfg["filters"])
+            self.assertIn(
+                "socks",
+                filters.get("exclude_keywords", []),
+                f"{store['domain']} should exclude socks")
+
 
 class FilterRegressionTests(unittest.TestCase):
     def test_nonempty_globals_empty_and_false_overrides(self):
