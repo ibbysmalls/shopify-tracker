@@ -1,3 +1,4 @@
+/Users/ayoob/.zprofile:2: command not found: s
 #!/usr/bin/env python3
 """Unit tests for restock detection and collection-aware polling."""
 
@@ -575,6 +576,15 @@ class StoreFilterConfigTests(unittest.TestCase):
                 by_domain[domain]["filters"],
                 expected,
                 f"{domain} should use the same filters as www.neweracap.com")
+
+    def test_all_stores_exclude_socks(self):
+        cfg = tracker.load_json(tracker.CONFIG_PATH, None)
+        for store in cfg["stores"]:
+            filters = tracker.resolve_filters(store, cfg["filters"])
+            self.assertIn(
+                "socks",
+                filters.get("exclude_keywords", []),
+                f"{store['domain']} should exclude socks")
 
 
 class FilterRegressionTests(unittest.TestCase):
