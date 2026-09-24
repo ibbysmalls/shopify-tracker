@@ -1,4 +1,3 @@
-/Users/ayoob/.zprofile:2: command not found: s
 #!/usr/bin/env python3
 """Unit tests for restock detection and collection-aware polling."""
 
