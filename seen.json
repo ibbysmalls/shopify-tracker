@@ -882,6 +882,7 @@
     "10502942687413"
   ],
   "incredideals.ae": [
+    "10362499203373",
     "10362112475437",
     "10357722906925",
     "10357722775853",
@@ -10650,10 +10651,13 @@
   ],
   "_health": {
     "fails": {
-      "Blue Beach Denim": 2,
-      "HINOYA Online Store": 2
+      "Blue Beach Denim": 3,
+      "HINOYA Online Store": 3
     },
-    "alerted": [],
+    "alerted": [
+      "Blue Beach Denim",
+      "HINOYA Online Store"
+    ],
     "empty_since": {},
     "last_new": {
       "MYFITTEDS": 1790197377,
@@ -10669,7 +10673,7 @@
       "ECAPCITY": 1790112737,
       "LidsHatDrop": 1790265772,
       "Goodfellas SF": 1789499810,
-      "incrediDeals": 1790227910,
+      "incrediDeals": 1790268410,
       "StylisticsJapan.com": 1790224326,
       "COJP Gallery": 1790236007,
       "SON OF A STAG": 1790257619,
@@ -10707,58 +10711,58 @@
       "Glasswingshop": 1790195517
     },
     "last_digest": 1789729333,
-    "period_new": 2906
+    "period_new": 2907
   },
   "_last_poll": {
-    "www.myfitteds.com": 1790267419,
-    "hatclub.com": 1790267421,
-    "sofreshclothing.com": 1790267423,
-    "culturekings.com": 1790267425,
-    "exclusivefitted.com": 1790267427,
-    "www.neweracap.com": 1790267429,
-    "procietyshop.com": 1790267431,
-    "4ucaps.com": 1790267432,
-    "www.hatdreams.com": 1790267436,
-    "crownminded.com": 1790267438,
-    "www.ecapcity.com": 1790267440,
-    "www.lidshd.com": 1790267442,
-    "gf-sf.com": 1790267444,
-    "incredideals.ae": 1790267445,
-    "stylisticsjapan.com": 1790267448,
-    "www.cojpgallery.com": 1790267449,
-    "sonofastag.com": 1790267451,
-    "bears-tokyo.myshopify.com": 1790267453,
-    "corlection.com": 1790267455,
-    "ironshopprovisions.com": 1790267458,
-    "franklinandpoe.com": 1790267461,
-    "meadowweb.com": 1790267464,
-    "mildblend.com": 1790267466,
-    "rodeo-japan-pine-avenue.com": 1790267468,
-    "klaxon-store.com": 1790267470,
-    "www.bluebeachdenim.shop": 1790267473,
-    "www.dant.us": 1790267473,
-    "hinoya.shop": 1790267475,
-    "homegame-newyork.com": 1790267475,
-    "redcastheritage.com": 1790267477,
-    "www.panchoandlefty.se": 1790267479,
-    "totemshop.com": 1790267481,
-    "www.blueingreensoho.com": 1790267483,
-    "www.guiltyparty.co": 1790267485,
-    "www.blueowl.us": 1790267488,
-    "standardandstrange.com": 1790267490,
-    "www.witheredfig.com": 1790267492,
-    "www.mentionclothing.com": 1790267494,
-    "sakuraclientele.com": 1790267503,
-    "cultofindigo.com": 1790267505,
-    "www.limbro.id": 1790267507,
-    "www.okayamadenim.com": 1790267510,
-    "berkeleysupply.com": 1790267512,
-    "statement-store.com": 1790267514,
-    "cultizm.com": 1790267516,
-    "www.motostyle.jp": 1790267518,
-    "fittedunderground.com": 1790267520,
-    "www.snakeoilprovisions.com": 1790267522,
-    "glasswingshop.com": 1790267524
+    "www.myfitteds.com": 1790268314,
+    "hatclub.com": 1790268316,
+    "sofreshclothing.com": 1790268318,
+    "culturekings.com": 1790268320,
+    "exclusivefitted.com": 1790268322,
+    "www.neweracap.com": 1790268324,
+    "procietyshop.com": 1790268326,
+    "4ucaps.com": 1790268328,
+    "www.hatdreams.com": 1790268330,
+    "crownminded.com": 1790268332,
+    "www.ecapcity.com": 1790268333,
+    "www.lidshd.com": 1790268335,
+    "gf-sf.com": 1790268337,
+    "incredideals.ae": 1790268339,
+    "stylisticsjapan.com": 1790268341,
+    "www.cojpgallery.com": 1790268343,
+    "sonofastag.com": 1790268345,
+    "bears-tokyo.myshopify.com": 1790268347,
+    "corlection.com": 1790268349,
+    "ironshopprovisions.com": 1790268352,
+    "franklinandpoe.com": 1790268353,
+    "meadowweb.com": 1790268356,
+    "mildblend.com": 1790268358,
+    "rodeo-japan-pine-avenue.com": 1790268360,
+    "klaxon-store.com": 1790268362,
+    "www.bluebeachdenim.shop": 1790268364,
+    "www.dant.us": 1790268364,
+    "hinoya.shop": 1790268366,
+    "homegame-newyork.com": 1790268366,
+    "redcastheritage.com": 1790268369,
+    "www.panchoandlefty.se": 1790268371,
+    "totemshop.com": 1790268373,
+    "www.blueingreensoho.com": 1790268375,
+    "www.guiltyparty.co": 1790268377,
+    "www.blueowl.us": 1790268379,
+    "standardandstrange.com": 1790268381,
+    "www.witheredfig.com": 1790268383,
+    "www.mentionclothing.com": 1790268385,
+    "sakuraclientele.com": 1790268387,
+    "cultofindigo.com": 1790268389,
+    "www.limbro.id": 1790268391,
+    "www.okayamadenim.com": 1790268394,
+    "berkeleysupply.com": 1790268396,
+    "statement-store.com": 1790268398,
+    "cultizm.com": 1790268400,
+    "www.motostyle.jp": 1790268402,
+    "fittedunderground.com": 1790268404,
+    "www.snakeoilprovisions.com": 1790268406,
+    "glasswingshop.com": 1790268408
   },
   "fittedunderground.com": [
     "7472916660282",
@@ -23441,7 +23445,7 @@
           "title": "Real Tree/Light Navy / 7 7/8"
         },
         "42636395020363": {
-          "available": true,
+          "available": false,
           "title": "Real Tree/Light Navy / 8"
         }
       },
@@ -79250,155 +79254,131 @@
       "10350364524845": {
         "52355776610605": {
           "available": false,
-          "title": "42mm GPS / Black / Sport Band - S/M"
+          "title": "42mm GPS / Black / S/M"
         },
         "52355776643373": {
           "available": false,
-          "title": "42mm GPS / Space Gray / Sport Band - S/M"
+          "title": "42mm GPS / Space Gray / S/M"
         },
         "52355776676141": {
           "available": false,
-          "title": "42mm GPS / Dark Bronze / Sport Band - S/M"
+          "title": "42mm GPS / Dark Bronze / S/M"
         },
         "52355776708909": {
           "available": false,
-          "title": "42mm GPS / Light Gold / Sport Band - S/M"
+          "title": "42mm GPS / Light Gold / S/M"
         },
         "52355776741677": {
           "available": false,
-          "title": "42mm GPS + Cellular / Black / Sport Band - S/M"
+          "title": "42mm GPS + Cellular / Black / S/M"
         },
         "52355776774445": {
           "available": false,
-          "title": "42mm GPS + Cellular / Space Gray / Sport Band - S/M"
+          "title": "42mm GPS + Cellular / Space Gray / S/M"
         },
         "52355776807213": {
           "available": false,
-          "title": "42mm GPS + Cellular / Dark Bronze / Sport Band - S/M"
+          "title": "42mm GPS + Cellular / Dark Bronze / S/M"
         },
         "52355776839981": {
           "available": false,
-          "title": "42mm GPS + Cellular / Light Gold / Sport Band - S/M"
+          "title": "42mm GPS + Cellular / Light Gold / S/M"
         },
         "52355776872749": {
           "available": false,
-          "title": "46mm GPS / Black / Sport Band - S/M"
+          "title": "46mm GPS / Black / S/M"
         },
         "52355776905517": {
           "available": false,
-          "title": "46mm GPS / Space Gray / Sport Band - S/M"
+          "title": "46mm GPS / Space Gray / S/M"
         },
         "52355776938285": {
           "available": false,
-          "title": "46mm GPS / Dark Bronze / Sport Band - S/M"
+          "title": "46mm GPS / Dark Bronze / S/M"
         },
         "52355776971053": {
           "available": false,
-          "title": "46mm GPS / Light Gold / Sport Band - S/M"
+          "title": "46mm GPS / Light Gold / S/M"
         },
         "52355777003821": {
           "available": false,
-          "title": "46mm GPS + Cellular / Black / Sport Band - S/M"
+          "title": "46mm GPS + Cellular / Black / S/M"
         },
         "52355777036589": {
           "available": false,
-          "title": "46mm GPS + Cellular / Space Gray / Sport Band - S/M"
+          "title": "46mm GPS + Cellular / Space Gray / S/M"
         },
         "52355777069357": {
           "available": false,
-          "title": "46mm GPS + Cellular / Dark Bronze / Sport Band - S/M"
+          "title": "46mm GPS + Cellular / Dark Bronze / S/M"
         },
         "52355777102125": {
           "available": false,
-          "title": "46mm GPS + Cellular / Light Gold / Sport Band - S/M"
+          "title": "46mm GPS + Cellular / Light Gold / S/M"
         },
         "52357736792365": {
           "available": false,
-          "title": "42mm GPS / Black / Sport Band - M/L"
+          "title": "42mm GPS / Black / M/L"
         },
         "52357736825133": {
           "available": false,
-          "title": "42mm GPS / Space Gray / Sport Band - M/L"
+          "title": "42mm GPS / Space Gray / M/L"
         },
         "52357736857901": {
           "available": false,
-          "title": "42mm GPS / Dark Bronze / Sport Band - M/L"
+          "title": "42mm GPS / Dark Bronze / M/L"
         },
         "52357736890669": {
           "available": false,
-          "title": "42mm GPS / Light Gold / Sport Band - M/L"
+          "title": "42mm GPS / Light Gold / M/L"
         },
         "52357736923437": {
           "available": false,
-          "title": "42mm GPS + Cellular / Black / Sport Band - M/L"
+          "title": "42mm GPS + Cellular / Black / M/L"
         },
         "52357736956205": {
           "available": false,
-          "title": "42mm GPS + Cellular / Space Gray / Sport Band - M/L"
+          "title": "42mm GPS + Cellular / Space Gray / M/L"
         },
         "52357736988973": {
           "available": false,
-          "title": "42mm GPS + Cellular / Dark Bronze / Sport Band - M/L"
+          "title": "42mm GPS + Cellular / Dark Bronze / M/L"
         },
         "52357737021741": {
           "available": false,
-          "title": "42mm GPS + Cellular / Light Gold / Sport Band - M/L"
+          "title": "42mm GPS + Cellular / Light Gold / M/L"
         },
         "52357737054509": {
           "available": false,
-          "title": "46mm GPS / Black / Sport Band - M/L"
+          "title": "46mm GPS / Black / M/L"
         },
         "52357737087277": {
           "available": false,
-          "title": "46mm GPS / Space Gray / Sport Band - M/L"
+          "title": "46mm GPS / Space Gray / M/L"
         },
         "52357737120045": {
           "available": false,
-          "title": "46mm GPS / Dark Bronze / Sport Band - M/L"
+          "title": "46mm GPS / Dark Bronze / M/L"
         },
         "52357737152813": {
           "available": false,
-          "title": "46mm GPS / Light Gold / Sport Band - M/L"
+          "title": "46mm GPS / Light Gold / M/L"
         },
         "52357737185581": {
           "available": false,
-          "title": "46mm GPS + Cellular / Black / Sport Band - M/L"
+          "title": "46mm GPS + Cellular / Black / M/L"
         },
         "52357737218349": {
           "available": false,
-          "title": "46mm GPS + Cellular / Space Gray / Sport Band - M/L"
+          "title": "46mm GPS + Cellular / Space Gray / M/L"
         },
         "52357737251117": {
           "available": false,
-          "title": "46mm GPS + Cellular / Dark Bronze / Sport Band - M/L"
+          "title": "46mm GPS + Cellular / Dark Bronze / M/L"
         },
         "52357737283885": {
           "available": false,
-          "title": "46mm GPS + Cellular / Light Gold / Sport Band - M/L"
-        },
-        "52385859731757": {
-          "available": false,
-          "title": "42mm GPS / Dark Bronze / Milanese Loop - One Size"
-        },
-        "52385859764525": {
-          "available": false,
-          "title": "46mm GPS / Dark Bronze / Milanese Loop - S/M"
-        },
-        "52385859797293": {
-          "available": false,
-          "title": "46mm GPS / Dark Bronze / Milanese Loop - M/L"
-        },
-        "52385859830061": {
-          "available": false,
-          "title": "42mm GPS + Cellular / Dark Bronze / Milanese Loop - One Size"
-        },
-        "52385859862829": {
-          "available": false,
-          "title": "46mm GPS + Cellular / Dark Bronze / Milanese Loop - S/M"
-        },
-        "52385859895597": {
-          "available": false,
-          "title": "46mm GPS + Cellular / Dark Bronze / Milanese Loop - M/L"
+          "title": "46mm GPS + Cellular / Light Gold / M/L"
         }
       },
       "10320780591405": {
@@ -79981,6 +79961,32 @@
         "52392315945261": {
           "available": true,
           "title": "Sky with Sky Performance Knit Cushions"
+        }
+      },
+      "10362499203373": {
+        "52393625846061": {
+          "available": false,
+          "title": "42mm GPS / Dark Bronze / One Size"
+        },
+        "52393633055021": {
+          "available": false,
+          "title": "46mm GPS / Dark Bronze / S/M"
+        },
+        "52393633087789": {
+          "available": false,
+          "title": "46mm GPS / Dark Bronze / M/L"
+        },
+        "52393633120557": {
+          "available": false,
+          "title": "42mm GPS + Cellular / Dark Bronze / One Size"
+        },
+        "52393633153325": {
+          "available": false,
+          "title": "46mm GPS + Cellular / Dark Bronze / S/M"
+        },
+        "52393633186093": {
+          "available": false,
+          "title": "46mm GPS + Cellular / Dark Bronze / M/L"
         }
       }
     },
