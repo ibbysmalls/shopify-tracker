@@ -5399,6 +5399,9 @@
     "9842021368043"
   ],
   "homegame-newyork.com": [
+    "7632484925486",
+    "7632480305198",
+    "7632471851054",
     "7663954264110",
     "7662526005294",
     "7662526365742",
@@ -5406,8 +5409,6 @@
     "7642299760686",
     "7662527414318",
     "7662526267438",
-    "7645000007726",
-    "7645000106030",
     "7656264466478",
     "7658096164910",
     "7658095411246",
@@ -5448,6 +5449,8 @@
     "7107185213486",
     "7107184164910",
     "7225159581742",
+    "7645000007726",
+    "7645000106030",
     "7225159319598",
     "7225158991918",
     "7225159122990",
@@ -5544,7 +5547,6 @@
     "7640032641070",
     "7635234324526",
     "7646902517806",
-    "7632484925486",
     "7635229900846",
     "7612452044846",
     "7644415393838",
@@ -5570,7 +5572,6 @@
     "7640023662638",
     "7621073109038",
     "7557728567342",
-    "7632471851054",
     "7638495789102",
     "7647411798062",
     "7632493969454",
@@ -5584,7 +5585,6 @@
     "7638500474926",
     "7182470643758",
     "7612461776942",
-    "7632480305198",
     "7607958994990",
     "7638495952942",
     "7646360764462"
@@ -10885,55 +10885,55 @@
     "period_new": 577
   },
   "_last_poll": {
-    "www.myfitteds.com": 1790447418,
-    "hatclub.com": 1790447420,
-    "sofreshclothing.com": 1790447422,
-    "culturekings.com": 1790447423,
-    "exclusivefitted.com": 1790447425,
-    "www.neweracap.com": 1790447427,
-    "procietyshop.com": 1790447429,
-    "4ucaps.com": 1790447431,
-    "www.hatdreams.com": 1790447432,
-    "crownminded.com": 1790447434,
-    "www.ecapcity.com": 1790447436,
-    "www.lidshd.com": 1790447438,
-    "gf-sf.com": 1790447440,
-    "incredideals.ae": 1790447441,
-    "stylisticsjapan.com": 1790447443,
-    "www.cojpgallery.com": 1790447445,
-    "sonofastag.com": 1790447447,
-    "bears-tokyo.myshopify.com": 1790447449,
-    "corlection.com": 1790447451,
-    "ironshopprovisions.com": 1790447453,
-    "franklinandpoe.com": 1790447455,
-    "meadowweb.com": 1790447457,
-    "mildblend.com": 1790447459,
-    "rodeo-japan-pine-avenue.com": 1790447460,
-    "klaxon-store.com": 1790447463,
-    "www.bluebeachdenim.shop": 1790447465,
-    "www.dant.us": 1790447467,
-    "hinoya.shop": 1790447469,
-    "homegame-newyork.com": 1790447471,
-    "redcastheritage.com": 1790447472,
-    "www.panchoandlefty.se": 1790447474,
-    "totemshop.com": 1790447476,
-    "www.blueingreensoho.com": 1790447478,
-    "www.guiltyparty.co": 1790447480,
-    "www.blueowl.us": 1790447482,
-    "standardandstrange.com": 1790447483,
-    "www.witheredfig.com": 1790447485,
-    "www.mentionclothing.com": 1790447487,
-    "sakuraclientele.com": 1790447489,
-    "cultofindigo.com": 1790447491,
-    "www.limbro.id": 1790447493,
-    "www.okayamadenim.com": 1790447496,
-    "berkeleysupply.com": 1790447498,
-    "statement-store.com": 1790447500,
-    "cultizm.com": 1790447502,
-    "www.motostyle.jp": 1790447504,
-    "fittedunderground.com": 1790447506,
-    "www.snakeoilprovisions.com": 1790447508,
-    "glasswingshop.com": 1790447510
+    "www.myfitteds.com": 1790448312,
+    "hatclub.com": 1790448314,
+    "sofreshclothing.com": 1790448316,
+    "culturekings.com": 1790448318,
+    "exclusivefitted.com": 1790448320,
+    "www.neweracap.com": 1790448322,
+    "procietyshop.com": 1790448324,
+    "4ucaps.com": 1790448326,
+    "www.hatdreams.com": 1790448328,
+    "crownminded.com": 1790448330,
+    "www.ecapcity.com": 1790448332,
+    "www.lidshd.com": 1790448334,
+    "gf-sf.com": 1790448335,
+    "incredideals.ae": 1790448337,
+    "stylisticsjapan.com": 1790448339,
+    "www.cojpgallery.com": 1790448341,
+    "sonofastag.com": 1790448343,
+    "bears-tokyo.myshopify.com": 1790448345,
+    "corlection.com": 1790448347,
+    "ironshopprovisions.com": 1790448349,
+    "franklinandpoe.com": 1790448351,
+    "meadowweb.com": 1790448353,
+    "mildblend.com": 1790448355,
+    "rodeo-japan-pine-avenue.com": 1790448357,
+    "klaxon-store.com": 1790448359,
+    "www.bluebeachdenim.shop": 1790448361,
+    "www.dant.us": 1790448363,
+    "hinoya.shop": 1790448365,
+    "homegame-newyork.com": 1790448367,
+    "redcastheritage.com": 1790448369,
+    "www.panchoandlefty.se": 1790448371,
+    "totemshop.com": 1790448374,
+    "www.blueingreensoho.com": 1790448376,
+    "www.guiltyparty.co": 1790448377,
+    "www.blueowl.us": 1790448380,
+    "standardandstrange.com": 1790448382,
+    "www.witheredfig.com": 1790448383,
+    "www.mentionclothing.com": 1790448385,
+    "sakuraclientele.com": 1790448387,
+    "cultofindigo.com": 1790448389,
+    "www.limbro.id": 1790448391,
+    "www.okayamadenim.com": 1790448394,
+    "berkeleysupply.com": 1790448397,
+    "statement-store.com": 1790448399,
+    "cultizm.com": 1790448401,
+    "www.motostyle.jp": 1790448403,
+    "fittedunderground.com": 1790448405,
+    "www.snakeoilprovisions.com": 1790448407,
+    "glasswingshop.com": 1790448409
   },
   "fittedunderground.com": [
     "7472916660282",
@@ -61736,7 +61736,7 @@
           "title": "7 5/8"
         },
         "52525219905752": {
-          "available": true,
+          "available": false,
           "title": "7 3/4"
         },
         "52525219938520": {
@@ -134379,6 +134379,132 @@
           "available": false,
           "title": "Vegas Gold/Yellow/Black 8"
         }
+      },
+      "7632484925486": {
+        "42562815361070": {
+          "available": false,
+          "title": "Red/Khaki/Walnut 6 7/8"
+        },
+        "42562815393838": {
+          "available": false,
+          "title": "Red/Khaki/Walnut 7"
+        },
+        "42562815426606": {
+          "available": false,
+          "title": "Red/Khaki/Walnut 7 1/8"
+        },
+        "42562815459374": {
+          "available": true,
+          "title": "Red/Khaki/Walnut 7 1/4"
+        },
+        "42562815492142": {
+          "available": true,
+          "title": "Red/Khaki/Walnut 7 3/8"
+        },
+        "42562815524910": {
+          "available": true,
+          "title": "Red/Khaki/Walnut 7 1/2"
+        },
+        "42562815557678": {
+          "available": true,
+          "title": "Red/Khaki/Walnut 7 5/8"
+        },
+        "42562815590446": {
+          "available": false,
+          "title": "Red/Khaki/Walnut 7 3/4"
+        },
+        "42562815623214": {
+          "available": false,
+          "title": "Red/Khaki/Walnut 7 7/8"
+        },
+        "42562815655982": {
+          "available": true,
+          "title": "Red/Khaki/Walnut 8"
+        }
+      },
+      "7632480305198": {
+        "42562776072238": {
+          "available": false,
+          "title": "Red/GreenRoyal/Walnut 6 7/8"
+        },
+        "42562776105006": {
+          "available": true,
+          "title": "Red/GreenRoyal/Walnut 7"
+        },
+        "42562776137774": {
+          "available": true,
+          "title": "Red/GreenRoyal/Walnut 7 1/8"
+        },
+        "42562776170542": {
+          "available": true,
+          "title": "Red/GreenRoyal/Walnut 7 1/4"
+        },
+        "42562776203310": {
+          "available": true,
+          "title": "Red/GreenRoyal/Walnut 7 3/8"
+        },
+        "42562776236078": {
+          "available": true,
+          "title": "Red/GreenRoyal/Walnut 7 1/2"
+        },
+        "42562776268846": {
+          "available": false,
+          "title": "Red/GreenRoyal/Walnut 7 5/8"
+        },
+        "42562776301614": {
+          "available": true,
+          "title": "Red/GreenRoyal/Walnut 7 3/4"
+        },
+        "42562776334382": {
+          "available": true,
+          "title": "Red/GreenRoyal/Walnut 7 7/8"
+        },
+        "42562776367150": {
+          "available": true,
+          "title": "Red/GreenRoyal/Walnut 8"
+        }
+      },
+      "7632471851054": {
+        "42562704998446": {
+          "available": false,
+          "title": "Pink/Bright Pink 6 7/8"
+        },
+        "42562705031214": {
+          "available": true,
+          "title": "Pink/Bright Pink 7"
+        },
+        "42562705063982": {
+          "available": true,
+          "title": "Pink/Bright Pink 7 1/8"
+        },
+        "42562705096750": {
+          "available": false,
+          "title": "Pink/Bright Pink 7 1/4"
+        },
+        "42562705129518": {
+          "available": true,
+          "title": "Pink/Bright Pink 7 3/8"
+        },
+        "42562705162286": {
+          "available": true,
+          "title": "Pink/Bright Pink 7 1/2"
+        },
+        "42562705195054": {
+          "available": false,
+          "title": "Pink/Bright Pink 7 5/8"
+        },
+        "42562705227822": {
+          "available": false,
+          "title": "Pink/Bright Pink 7 3/4"
+        },
+        "42562705260590": {
+          "available": false,
+          "title": "Pink/Bright Pink 7 7/8"
+        },
+        "42562705293358": {
+          "available": false,
+          "title": "Pink/Bright Pink 8"
+        }
       }
     },
     "redcastheritage.com": {
@@ -179428,7 +179554,7 @@
           "title": "33"
         },
         "42976641122398": {
-          "available": true,
+          "available": false,
           "title": "34"
         },
         "42976641155166": {
@@ -179852,7 +179978,7 @@
           "title": "S"
         },
         "43346049368158": {
-          "available": true,
+          "available": false,
           "title": "M"
         },
         "43346049400926": {
