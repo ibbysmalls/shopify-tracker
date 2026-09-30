@@ -11256,7 +11256,7 @@
       "ECAPCITY": 1790708534,
       "LidsHatDrop": 1790723810,
       "Goodfellas SF": 1790277409,
-      "incrediDeals": 1790585210,
+      "incrediDeals": 1790765203,
       "StylisticsJapan.com": 1790623945,
       "COJP Gallery": 1790740009,
       "SON OF A STAG": 1790676127,
@@ -11293,57 +11293,57 @@
       "Snakeoilprovisions": 1790718416
     },
     "last_digest": 1790335015,
-    "period_new": 1779
+    "period_new": 1781
   },
   "_last_poll": {
-    "www.myfitteds.com": 1790764219,
-    "hatclub.com": 1790764220,
-    "sofreshclothing.com": 1790764222,
-    "culturekings.com": 1790764224,
-    "exclusivefitted.com": 1790764226,
-    "www.neweracap.com": 1790764227,
-    "procietyshop.com": 1790764229,
-    "4ucaps.com": 1790764231,
-    "www.hatdreams.com": 1790764233,
-    "crownminded.com": 1790764234,
-    "www.ecapcity.com": 1790764236,
-    "www.lidshd.com": 1790764238,
-    "gf-sf.com": 1790764240,
-    "incredideals.ae": 1790764241,
-    "stylisticsjapan.com": 1790764244,
-    "www.cojpgallery.com": 1790764245,
-    "sonofastag.com": 1790764247,
-    "bears-tokyo.myshopify.com": 1790764249,
-    "corlection.com": 1790764251,
-    "ironshopprovisions.com": 1790764252,
-    "franklinandpoe.com": 1790764254,
-    "meadowweb.com": 1790764256,
-    "mildblend.com": 1790764257,
-    "rodeo-japan-pine-avenue.com": 1790764259,
-    "klaxon-store.com": 1790764261,
-    "www.bluebeachdenim.shop": 1790764263,
-    "www.dant.us": 1790764265,
-    "hinoya.shop": 1790764267,
-    "homegame-newyork.com": 1790764269,
-    "redcastheritage.com": 1790764271,
-    "www.panchoandlefty.se": 1790764273,
-    "totemshop.com": 1790764275,
-    "www.blueingreensoho.com": 1790764277,
-    "www.guiltyparty.co": 1790764278,
-    "www.blueowl.us": 1790764280,
-    "standardandstrange.com": 1790764282,
-    "www.witheredfig.com": 1790764284,
-    "www.mentionclothing.com": 1790764286,
-    "sakuraclientele.com": 1790764288,
-    "cultofindigo.com": 1790764290,
-    "www.limbro.id": 1790764292,
-    "www.okayamadenim.com": 1790764294,
-    "berkeleysupply.com": 1790764296,
-    "statement-store.com": 1790764298,
-    "cultizm.com": 1790764300,
-    "www.motostyle.jp": 1790764302,
-    "fittedunderground.com": 1790764304,
-    "www.snakeoilprovisions.com": 1790764306
+    "www.myfitteds.com": 1790765114,
+    "hatclub.com": 1790765116,
+    "sofreshclothing.com": 1790765117,
+    "culturekings.com": 1790765119,
+    "exclusivefitted.com": 1790765121,
+    "www.neweracap.com": 1790765123,
+    "procietyshop.com": 1790765124,
+    "4ucaps.com": 1790765126,
+    "www.hatdreams.com": 1790765128,
+    "crownminded.com": 1790765129,
+    "www.ecapcity.com": 1790765131,
+    "www.lidshd.com": 1790765133,
+    "gf-sf.com": 1790765134,
+    "incredideals.ae": 1790765136,
+    "stylisticsjapan.com": 1790765141,
+    "www.cojpgallery.com": 1790765143,
+    "sonofastag.com": 1790765145,
+    "bears-tokyo.myshopify.com": 1790765147,
+    "corlection.com": 1790765148,
+    "ironshopprovisions.com": 1790765150,
+    "franklinandpoe.com": 1790765152,
+    "meadowweb.com": 1790765154,
+    "mildblend.com": 1790765155,
+    "rodeo-japan-pine-avenue.com": 1790765157,
+    "klaxon-store.com": 1790765159,
+    "www.bluebeachdenim.shop": 1790765161,
+    "www.dant.us": 1790765163,
+    "hinoya.shop": 1790765165,
+    "homegame-newyork.com": 1790765167,
+    "redcastheritage.com": 1790765168,
+    "www.panchoandlefty.se": 1790765170,
+    "totemshop.com": 1790765172,
+    "www.blueingreensoho.com": 1790765174,
+    "www.guiltyparty.co": 1790765176,
+    "www.blueowl.us": 1790765177,
+    "standardandstrange.com": 1790765179,
+    "www.witheredfig.com": 1790765181,
+    "www.mentionclothing.com": 1790765183,
+    "sakuraclientele.com": 1790765184,
+    "cultofindigo.com": 1790765186,
+    "www.limbro.id": 1790765188,
+    "www.okayamadenim.com": 1790765190,
+    "berkeleysupply.com": 1790765192,
+    "statement-store.com": 1790765194,
+    "cultizm.com": 1790765196,
+    "www.motostyle.jp": 1790765197,
+    "fittedunderground.com": 1790765199,
+    "www.snakeoilprovisions.com": 1790765201
   },
   "fittedunderground.com": [
     "7472916660282",
@@ -82288,15 +82288,15 @@
       },
       "10350395425069": {
         "52355822747949": {
-          "available": false,
+          "available": true,
           "title": "Black / 256GB"
         },
         "52355822780717": {
-          "available": false,
+          "available": true,
           "title": "Black / 512GB"
         },
         "52355822813485": {
-          "available": false,
+          "available": true,
           "title": "Black / 1TB"
         },
         "52355822846253": {
@@ -82312,7 +82312,7 @@
           "title": "Silver / 512GB"
         },
         "52355822944557": {
-          "available": false,
+          "available": true,
           "title": "Silver / 1TB"
         },
         "52355822977325": {
@@ -82324,7 +82324,7 @@
           "title": "Glacier / 256GB"
         },
         "52355823042861": {
-          "available": false,
+          "available": true,
           "title": "Glacier / 512GB"
         },
         "52355823075629": {
@@ -82336,7 +82336,7 @@
           "title": "Glacier / 2TB"
         },
         "52355823141165": {
-          "available": false,
+          "available": true,
           "title": "Burgundy / 256GB"
         },
         "52355823173933": {
@@ -82354,11 +82354,11 @@
       },
       "10350392869165": {
         "52355819340077": {
-          "available": true,
+          "available": false,
           "title": "Black / 256GB"
         },
         "52355819372845": {
-          "available": false,
+          "available": true,
           "title": "Black / 512GB"
         },
         "52355819405613": {
@@ -82378,7 +82378,7 @@
           "title": "Silver / 512GB"
         },
         "52355819536685": {
-          "available": false,
+          "available": true,
           "title": "Silver / 1TB"
         },
         "52355819569453": {
@@ -82402,11 +82402,11 @@
           "title": "Glacier / 2TB"
         },
         "52355819733293": {
-          "available": false,
+          "available": true,
           "title": "Burgundy / 256GB"
         },
         "52355819766061": {
-          "available": false,
+          "available": true,
           "title": "Burgundy / 512GB"
         },
         "52355819798829": {
@@ -83134,15 +83134,15 @@
           "title": "Black with Black Performance Knit Cushions"
         },
         "52392315879725": {
-          "available": true,
+          "available": false,
           "title": "Cloud with Cloud Performance Knit Cushions"
         },
         "52392315912493": {
-          "available": true,
+          "available": false,
           "title": "Pink with Pink Performance Knit Cushions"
         },
         "52392315945261": {
-          "available": true,
+          "available": false,
           "title": "Sky with Sky Performance Knit Cushions"
         }
       },
