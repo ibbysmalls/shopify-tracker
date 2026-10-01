@@ -11319,7 +11319,7 @@
       "Meadow": 1790723810,
       "Mildblend Supply Co.": 1790806608,
       "Rodeo Japan Pine Avenue": 1790809336,
-      "Klaxon Store": 1790822802,
+      "Klaxon Store": 1790824611,
       "Blue Beach Denim": 1790679714,
       "Dant": 1790784132,
       "HINOYA Online Store": 1790761605,
@@ -11345,57 +11345,57 @@
       "Snakeoilprovisions": 1790823728
     },
     "last_digest": 1790335015,
-    "period_new": 2017
+    "period_new": 2020
   },
   "_last_poll": {
-    "www.myfitteds.com": 1790823623,
-    "hatclub.com": 1790823625,
-    "sofreshclothing.com": 1790823627,
-    "culturekings.com": 1790823629,
-    "exclusivefitted.com": 1790823631,
-    "www.neweracap.com": 1790823633,
-    "procietyshop.com": 1790823635,
-    "4ucaps.com": 1790823637,
-    "www.hatdreams.com": 1790823639,
-    "crownminded.com": 1790823641,
-    "www.ecapcity.com": 1790823643,
-    "www.lidshd.com": 1790823645,
-    "gf-sf.com": 1790823647,
-    "incredideals.ae": 1790823649,
-    "stylisticsjapan.com": 1790823652,
-    "www.cojpgallery.com": 1790823654,
-    "sonofastag.com": 1790823656,
-    "bears-tokyo.myshopify.com": 1790823658,
-    "corlection.com": 1790823660,
-    "ironshopprovisions.com": 1790823663,
-    "franklinandpoe.com": 1790823665,
-    "meadowweb.com": 1790823667,
-    "mildblend.com": 1790823669,
-    "rodeo-japan-pine-avenue.com": 1790823671,
-    "klaxon-store.com": 1790823673,
-    "www.bluebeachdenim.shop": 1790823676,
-    "www.dant.us": 1790823678,
-    "hinoya.shop": 1790823680,
-    "homegame-newyork.com": 1790823683,
-    "redcastheritage.com": 1790823685,
-    "www.panchoandlefty.se": 1790823687,
-    "totemshop.com": 1790823689,
-    "www.blueingreensoho.com": 1790823691,
-    "www.guiltyparty.co": 1790823694,
-    "www.blueowl.us": 1790823696,
-    "standardandstrange.com": 1790823698,
-    "www.witheredfig.com": 1790823700,
-    "www.mentionclothing.com": 1790823702,
-    "sakuraclientele.com": 1790823705,
-    "cultofindigo.com": 1790823707,
-    "www.limbro.id": 1790823709,
-    "www.okayamadenim.com": 1790823712,
-    "berkeleysupply.com": 1790823715,
-    "statement-store.com": 1790823717,
-    "cultizm.com": 1790823719,
-    "www.motostyle.jp": 1790823721,
-    "fittedunderground.com": 1790823724,
-    "www.snakeoilprovisions.com": 1790823726
+    "www.myfitteds.com": 1790824513,
+    "hatclub.com": 1790824515,
+    "sofreshclothing.com": 1790824517,
+    "culturekings.com": 1790824518,
+    "exclusivefitted.com": 1790824520,
+    "www.neweracap.com": 1790824522,
+    "procietyshop.com": 1790824524,
+    "4ucaps.com": 1790824526,
+    "www.hatdreams.com": 1790824527,
+    "crownminded.com": 1790824529,
+    "www.ecapcity.com": 1790824531,
+    "www.lidshd.com": 1790824533,
+    "gf-sf.com": 1790824535,
+    "incredideals.ae": 1790824536,
+    "stylisticsjapan.com": 1790824539,
+    "www.cojpgallery.com": 1790824540,
+    "sonofastag.com": 1790824542,
+    "bears-tokyo.myshopify.com": 1790824544,
+    "corlection.com": 1790824546,
+    "ironshopprovisions.com": 1790824548,
+    "franklinandpoe.com": 1790824550,
+    "meadowweb.com": 1790824552,
+    "mildblend.com": 1790824554,
+    "rodeo-japan-pine-avenue.com": 1790824556,
+    "klaxon-store.com": 1790824558,
+    "www.bluebeachdenim.shop": 1790824565,
+    "www.dant.us": 1790824567,
+    "hinoya.shop": 1790824569,
+    "homegame-newyork.com": 1790824571,
+    "redcastheritage.com": 1790824572,
+    "www.panchoandlefty.se": 1790824574,
+    "totemshop.com": 1790824576,
+    "www.blueingreensoho.com": 1790824578,
+    "www.guiltyparty.co": 1790824580,
+    "www.blueowl.us": 1790824582,
+    "standardandstrange.com": 1790824584,
+    "www.witheredfig.com": 1790824586,
+    "www.mentionclothing.com": 1790824588,
+    "sakuraclientele.com": 1790824590,
+    "cultofindigo.com": 1790824592,
+    "www.limbro.id": 1790824594,
+    "www.okayamadenim.com": 1790824597,
+    "berkeleysupply.com": 1790824599,
+    "statement-store.com": 1790824601,
+    "cultizm.com": 1790824603,
+    "www.motostyle.jp": 1790824605,
+    "fittedunderground.com": 1790824607,
+    "www.snakeoilprovisions.com": 1790824609
   },
   "fittedunderground.com": [
     "7472916660282",
@@ -123648,75 +123648,75 @@
           "title": "S"
         },
         "67604025868524": {
-          "available": false,
+          "available": true,
           "title": "M"
         },
         "67604025901292": {
-          "available": false,
+          "available": true,
           "title": "L"
         },
         "67604025934060": {
-          "available": false,
+          "available": true,
           "title": "XL"
         },
         "67604025966828": {
-          "available": false,
+          "available": true,
           "title": "XXL"
         },
         "67604025999596": {
-          "available": false,
+          "available": true,
           "title": "XXXL"
         }
       },
       "15399490683116": {
         "67604021674220": {
-          "available": false,
+          "available": true,
           "title": "S"
         },
         "67604021706988": {
-          "available": false,
+          "available": true,
           "title": "M"
         },
         "67604021739756": {
-          "available": false,
+          "available": true,
           "title": "L"
         },
         "67604021772524": {
-          "available": false,
+          "available": true,
           "title": "XL"
         },
         "67604021805292": {
-          "available": false,
+          "available": true,
           "title": "XXL"
         },
         "67604021838060": {
-          "available": false,
+          "available": true,
           "title": "XXXL"
         }
       },
       "15399490355436": {
         "67604019871980": {
-          "available": false,
+          "available": true,
           "title": "S"
         },
         "67604019904748": {
-          "available": false,
+          "available": true,
           "title": "M"
         },
         "67604019937516": {
-          "available": false,
+          "available": true,
           "title": "L"
         },
         "67604019970284": {
-          "available": false,
+          "available": true,
           "title": "XL"
         },
         "67604020003052": {
-          "available": false,
+          "available": true,
           "title": "XXL"
         },
         "67604021084396": {
-          "available": false,
+          "available": true,
           "title": "XXXL"
         }
       }
