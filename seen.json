@@ -7049,6 +7049,21 @@
   ],
   "_tg_offset": 578972120,
   "www.guiltyparty.co": [
+    "15403485987126",
+    "10343227719990",
+    "15399392870710",
+    "15399390970166",
+    "15399384056118",
+    "15399344570678",
+    "15399290437942",
+    "15399241515318",
+    "8461333889334",
+    "15399163658550",
+    "15399054541110",
+    "10343283818806",
+    "8948143784246",
+    "8461385924918",
+    "8461383762230",
     "15399213662518",
     "10459031765302",
     "15394658287926",
@@ -7101,7 +7116,6 @@
     "8854551724342",
     "8503691542838",
     "10832393240886",
-    "15399384056118",
     "10832449012022",
     "10832447504694",
     "10832444752182",
@@ -11490,48 +11504,49 @@
   ],
   "_health": {
     "fails": {
-      "Prociety": 7,
-      "incrediDeals": 7,
-      "StylisticsJapan.com": 7,
-      "COJP Gallery": 7,
-      "BEARS' Tokyo": 7,
-      "Klaxon Store": 7,
-      "HOMEGAME NEW YORK": 7,
-      "Totem Brand Co.": 7,
-      "Guiltyparty": 7,
-      "Witheredfig": 7,
-      "Mentionclothing": 7,
-      "Sakuraclientele": 7,
-      "Limbro": 7,
-      "Berkeleysupply": 7,
-      "Blue Beach Denim": 6,
-      "Statement Store": 6,
-      "Hat Club": 5,
-      "Culture Kings US": 5,
-      "New Era Cap": 5,
-      "SON OF A STAG": 5,
-      "Meadow": 5,
-      "LidsHatDrop": 4,
-      "Fittedunderground": 4,
-      "CROWN MINDED": 3,
-      "Rodeo Japan Pine Avenue": 3,
-      "Standardandstrange": 3,
-      "Cultofindigo": 3,
-      "Okayamadenim": 3,
-      "Cultizm": 3,
-      "Corlection": 2,
-      "Iron Shop Provisions": 2,
-      "Franklin & Poe": 2,
-      "Mildblend Supply Co.": 2,
-      "Dant": 2,
-      "HINOYA Online Store": 2,
-      "Redcast Heritage Co.": 2,
-      "MYFITTEDS": 1,
-      "Exclusive Fitted Inc.": 1,
-      "Pancho and Lefty": 1,
-      "Blue in Green": 1,
-      "Blueowl": 1,
-      "Motostyle": 1
+      "Prociety": 8,
+      "incrediDeals": 8,
+      "StylisticsJapan.com": 8,
+      "COJP Gallery": 8,
+      "BEARS' Tokyo": 8,
+      "Klaxon Store": 8,
+      "HOMEGAME NEW YORK": 8,
+      "Totem Brand Co.": 8,
+      "Witheredfig": 8,
+      "Mentionclothing": 8,
+      "Limbro": 8,
+      "Berkeleysupply": 8,
+      "Blue Beach Denim": 7,
+      "Statement Store": 7,
+      "Culture Kings US": 6,
+      "New Era Cap": 6,
+      "SON OF A STAG": 6,
+      "LidsHatDrop": 5,
+      "Fittedunderground": 5,
+      "CROWN MINDED": 4,
+      "Rodeo Japan Pine Avenue": 4,
+      "Standardandstrange": 4,
+      "Cultofindigo": 4,
+      "Okayamadenim": 4,
+      "Cultizm": 4,
+      "Corlection": 3,
+      "Iron Shop Provisions": 3,
+      "Franklin & Poe": 3,
+      "Mildblend Supply Co.": 3,
+      "Dant": 3,
+      "HINOYA Online Store": 3,
+      "Redcast Heritage Co.": 3,
+      "MYFITTEDS": 2,
+      "Exclusive Fitted Inc.": 2,
+      "Pancho and Lefty": 2,
+      "Blue in Green": 2,
+      "Blueowl": 2,
+      "Motostyle": 2,
+      "4ucaps.com": 1,
+      "DREAMS H2H": 1,
+      "ECAPCITY": 1,
+      "Goodfellas SF": 1,
+      "Snakeoilprovisions": 1
     },
     "alerted": [
       "BEARS' Tokyo",
@@ -11539,24 +11554,27 @@
       "Blue Beach Denim",
       "COJP Gallery",
       "CROWN MINDED",
+      "Corlection",
       "Cultizm",
       "Cultofindigo",
       "Culture Kings US",
+      "Dant",
       "Fittedunderground",
-      "Guiltyparty",
+      "Franklin & Poe",
+      "HINOYA Online Store",
       "HOMEGAME NEW YORK",
-      "Hat Club",
+      "Iron Shop Provisions",
       "Klaxon Store",
       "LidsHatDrop",
       "Limbro",
-      "Meadow",
       "Mentionclothing",
+      "Mildblend Supply Co.",
       "New Era Cap",
       "Okayamadenim",
       "Prociety",
+      "Redcast Heritage Co.",
       "Rodeo Japan Pine Avenue",
       "SON OF A STAG",
-      "Sakuraclientele",
       "Standardandstrange",
       "Statement Store",
       "StylisticsJapan.com",
@@ -11599,7 +11617,7 @@
       "Pancho and Lefty": 1790940730,
       "Totem Brand Co.": 1790890320,
       "Blue in Green": 1790802145,
-      "Guiltyparty": 1790882222,
+      "Guiltyparty": 1790948132,
       "Blueowl": 1790902017,
       "Standardandstrange": 1790890320,
       "Witheredfig": 1790802145,
@@ -11616,57 +11634,57 @@
       "Snakeoilprovisions": 1790902923
     },
     "last_digest": 1790940005,
-    "period_new": 16
+    "period_new": 30
   },
   "_last_poll": {
-    "www.myfitteds.com": 1790946916,
-    "hatclub.com": 1790946922,
-    "sofreshclothing.com": 1790946928,
-    "culturekings.com": 1790946930,
-    "exclusivefitted.com": 1790946937,
-    "www.neweracap.com": 1790946943,
-    "procietyshop.com": 1790946949,
-    "4ucaps.com": 1790946956,
-    "www.hatdreams.com": 1790946964,
-    "crownminded.com": 1790946965,
-    "www.ecapcity.com": 1790946972,
-    "www.lidshd.com": 1790946976,
-    "gf-sf.com": 1790946982,
-    "incredideals.ae": 1790946986,
-    "stylisticsjapan.com": 1790946993,
-    "www.cojpgallery.com": 1790946999,
-    "sonofastag.com": 1790947006,
-    "bears-tokyo.myshopify.com": 1790947012,
-    "corlection.com": 1790947018,
-    "ironshopprovisions.com": 1790947025,
-    "franklinandpoe.com": 1790947031,
-    "meadowweb.com": 1790947037,
-    "mildblend.com": 1790947044,
-    "rodeo-japan-pine-avenue.com": 1790947050,
-    "klaxon-store.com": 1790947057,
-    "www.bluebeachdenim.shop": 1790947064,
-    "www.dant.us": 1790947070,
-    "hinoya.shop": 1790947076,
-    "homegame-newyork.com": 1790947083,
-    "redcastheritage.com": 1790947089,
-    "www.panchoandlefty.se": 1790947096,
-    "totemshop.com": 1790947102,
-    "www.blueingreensoho.com": 1790947109,
-    "www.guiltyparty.co": 1790947115,
-    "www.blueowl.us": 1790947121,
-    "standardandstrange.com": 1790947128,
-    "www.witheredfig.com": 1790947134,
-    "www.mentionclothing.com": 1790947141,
-    "sakuraclientele.com": 1790947147,
-    "cultofindigo.com": 1790947153,
-    "www.limbro.id": 1790947160,
-    "www.okayamadenim.com": 1790947167,
-    "berkeleysupply.com": 1790947173,
-    "statement-store.com": 1790947180,
-    "cultizm.com": 1790947187,
-    "www.motostyle.jp": 1790947193,
-    "fittedunderground.com": 1790947200,
-    "www.snakeoilprovisions.com": 1790947207
+    "www.myfitteds.com": 1790947827,
+    "hatclub.com": 1790947834,
+    "sofreshclothing.com": 1790947835,
+    "culturekings.com": 1790947843,
+    "exclusivefitted.com": 1790947850,
+    "www.neweracap.com": 1790947856,
+    "procietyshop.com": 1790947862,
+    "4ucaps.com": 1790947868,
+    "www.hatdreams.com": 1790947875,
+    "crownminded.com": 1790947881,
+    "www.ecapcity.com": 1790947887,
+    "www.lidshd.com": 1790947894,
+    "gf-sf.com": 1790947900,
+    "incredideals.ae": 1790947906,
+    "stylisticsjapan.com": 1790947913,
+    "www.cojpgallery.com": 1790947919,
+    "sonofastag.com": 1790947925,
+    "bears-tokyo.myshopify.com": 1790947932,
+    "corlection.com": 1790947938,
+    "ironshopprovisions.com": 1790947944,
+    "franklinandpoe.com": 1790947950,
+    "meadowweb.com": 1790947957,
+    "mildblend.com": 1790947961,
+    "rodeo-japan-pine-avenue.com": 1790947967,
+    "klaxon-store.com": 1790947974,
+    "www.bluebeachdenim.shop": 1790947980,
+    "www.dant.us": 1790947986,
+    "hinoya.shop": 1790947993,
+    "homegame-newyork.com": 1790947999,
+    "redcastheritage.com": 1790948006,
+    "www.panchoandlefty.se": 1790948012,
+    "totemshop.com": 1790948018,
+    "www.blueingreensoho.com": 1790948025,
+    "www.guiltyparty.co": 1790948031,
+    "www.blueowl.us": 1790948046,
+    "standardandstrange.com": 1790948053,
+    "www.witheredfig.com": 1790948059,
+    "www.mentionclothing.com": 1790948065,
+    "sakuraclientele.com": 1790948071,
+    "cultofindigo.com": 1790948073,
+    "www.limbro.id": 1790948080,
+    "www.okayamadenim.com": 1790948087,
+    "berkeleysupply.com": 1790948093,
+    "statement-store.com": 1790948099,
+    "cultizm.com": 1790948106,
+    "www.motostyle.jp": 1790948112,
+    "fittedunderground.com": 1790948119,
+    "www.snakeoilprovisions.com": 1790948125
   },
   "fittedunderground.com": [
     "7472916660282",
@@ -162767,6 +162785,342 @@
         "67600648012086": {
           "available": true,
           "title": "L / Red/Gray"
+        }
+      },
+      "15403485987126": {
+        "67618609168694": {
+          "available": true,
+          "title": "30"
+        },
+        "67618609201462": {
+          "available": true,
+          "title": "31"
+        },
+        "67618609234230": {
+          "available": true,
+          "title": "32"
+        },
+        "67618609266998": {
+          "available": true,
+          "title": "33"
+        },
+        "67618609299766": {
+          "available": true,
+          "title": "34"
+        },
+        "67618609332534": {
+          "available": true,
+          "title": "35"
+        },
+        "67618609365302": {
+          "available": true,
+          "title": "36"
+        },
+        "67618609398070": {
+          "available": true,
+          "title": "38"
+        },
+        "67618609430838": {
+          "available": false,
+          "title": "40"
+        }
+      },
+      "10343227719990": {
+        "67600771645750": {
+          "available": true,
+          "title": "M / Ecru"
+        },
+        "67600771678518": {
+          "available": true,
+          "title": "M / Camel"
+        },
+        "53029898256694": {
+          "available": true,
+          "title": "M / Dark Gray"
+        },
+        "67600771711286": {
+          "available": true,
+          "title": "L / Ecru"
+        },
+        "67600771744054": {
+          "available": true,
+          "title": "L / Camel"
+        },
+        "53029898354998": {
+          "available": true,
+          "title": "L / Dark Gray"
+        }
+      },
+      "15399392870710": {
+        "67601230659894": {
+          "available": true,
+          "title": "M / Taupe"
+        },
+        "67601230692662": {
+          "available": true,
+          "title": "M / Ecru"
+        },
+        "67601230725430": {
+          "available": true,
+          "title": "L / Taupe"
+        },
+        "67601230758198": {
+          "available": true,
+          "title": "L / Ecru"
+        }
+      },
+      "15399390970166": {
+        "67601224565046": {
+          "available": true,
+          "title": "Burgundy/Cream / M"
+        },
+        "67601224597814": {
+          "available": true,
+          "title": "Burgundy/Cream / L"
+        },
+        "67601224630582": {
+          "available": true,
+          "title": "Green/Cream / M"
+        },
+        "67601224663350": {
+          "available": true,
+          "title": "Green/Cream / L"
+        },
+        "67601224696118": {
+          "available": true,
+          "title": "Dark Navy/Ivory / M"
+        },
+        "67601224728886": {
+          "available": true,
+          "title": "Dark Navy/Ivory / L"
+        }
+      },
+      "15399344570678": {
+        "67601153327414": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "15399290437942": {
+        "67601096606006": {
+          "available": true,
+          "title": "Terracotta"
+        },
+        "67601096638774": {
+          "available": true,
+          "title": "Black"
+        },
+        "67601096671542": {
+          "available": true,
+          "title": "Olive Green"
+        },
+        "67601096704310": {
+          "available": true,
+          "title": "Red"
+        },
+        "67601096737078": {
+          "available": true,
+          "title": "Royal Blue"
+        }
+      },
+      "15399241515318": {
+        "67600943055158": {
+          "available": true,
+          "title": "M / Khaki"
+        },
+        "67600943087926": {
+          "available": true,
+          "title": "M / Sandbeige"
+        },
+        "67600943120694": {
+          "available": true,
+          "title": "M / Light Beige"
+        },
+        "67600943153462": {
+          "available": true,
+          "title": "L / Khaki"
+        },
+        "67600943186230": {
+          "available": true,
+          "title": "L / Sandbeige"
+        },
+        "67600943218998": {
+          "available": true,
+          "title": "L / Light Beige"
+        }
+      },
+      "8461333889334": {
+        "53026889630006": {
+          "available": true,
+          "title": "M / Blue/Brown"
+        },
+        "45645116768566": {
+          "available": true,
+          "title": "M / Black/Brown"
+        },
+        "47556512809270": {
+          "available": true,
+          "title": "M / Army Green"
+        },
+        "48270728855862": {
+          "available": true,
+          "title": "M / Deep Ocean"
+        },
+        "67599673655606": {
+          "available": true,
+          "title": "M / Charcoal"
+        },
+        "67599673688374": {
+          "available": true,
+          "title": "M / Dark Brown/Brown"
+        },
+        "53026889662774": {
+          "available": true,
+          "title": "L / Blue/Brown"
+        },
+        "45645116866870": {
+          "available": true,
+          "title": "L / Black/Brown"
+        },
+        "47556512907574": {
+          "available": true,
+          "title": "L / Army Green"
+        },
+        "48270728921398": {
+          "available": true,
+          "title": "L / Deep Ocean"
+        },
+        "67599673721142": {
+          "available": true,
+          "title": "L / Charcoal"
+        },
+        "67599673753910": {
+          "available": true,
+          "title": "L / Dark Brown/Brown"
+        }
+      },
+      "15399163658550": {
+        "67600402678070": {
+          "available": true,
+          "title": "M / Navy/Red"
+        },
+        "67600462610742": {
+          "available": true,
+          "title": "M / Navy/Green"
+        },
+        "67600462643510": {
+          "available": true,
+          "title": "L / Navy/Red"
+        },
+        "67600462676278": {
+          "available": true,
+          "title": "L / Navy/Green"
+        }
+      },
+      "15399054541110": {
+        "67600083353910": {
+          "available": true,
+          "title": "M / Dark Green"
+        },
+        "67600083386678": {
+          "available": true,
+          "title": "M / Orange"
+        },
+        "67600083419446": {
+          "available": true,
+          "title": "M / Yellow/Brown"
+        },
+        "67600083452214": {
+          "available": true,
+          "title": "L / Dark Green"
+        },
+        "67600083484982": {
+          "available": true,
+          "title": "L / Orange"
+        },
+        "67600083517750": {
+          "available": true,
+          "title": "L / Yellow/Brown"
+        }
+      },
+      "10343283818806": {
+        "53030118457654": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "8948143784246": {
+        "47556811620662": {
+          "available": true,
+          "title": "M / Dark Green/Red"
+        },
+        "67600274915638": {
+          "available": true,
+          "title": "M / Maroon/Navy Blue"
+        },
+        "47556811653430": {
+          "available": true,
+          "title": "L / Dark Green/Red"
+        },
+        "67600274948406": {
+          "available": true,
+          "title": "L / Maroon/Navy Blue"
+        }
+      },
+      "8461385924918": {
+        "67601052270902": {
+          "available": true,
+          "title": "Faded Blue"
+        },
+        "45645568049462": {
+          "available": true,
+          "title": "Black"
+        },
+        "67601052303670": {
+          "available": true,
+          "title": "Forest Green"
+        },
+        "67601052336438": {
+          "available": true,
+          "title": "Dark Brown"
+        }
+      },
+      "8461383762230": {
+        "50258456740150": {
+          "available": true,
+          "title": "Maroon"
+        },
+        "45645558350134": {
+          "available": true,
+          "title": "Black"
+        },
+        "67600979329334": {
+          "available": true,
+          "title": "Tan Brown"
+        },
+        "50258456805686": {
+          "available": true,
+          "title": "Ivy Green"
+        },
+        "50258456707382": {
+          "available": true,
+          "title": "Navy"
+        },
+        "53030036832566": {
+          "available": true,
+          "title": "Dark Gray"
+        },
+        "45645558317366": {
+          "available": false,
+          "title": "Bright Orange"
+        },
+        "47557074354486": {
+          "available": false,
+          "title": "Blue"
+        },
+        "47557074420022": {
+          "available": false,
+          "title": "Olive"
         }
       }
     },
