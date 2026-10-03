@@ -580,75 +580,139 @@ def process_telegram_commands(cfg, state):
 
 def report_health(state, ok_names, failed, skipped, empty, new_by_store,
                   dry_run, hcfg=None, deferred=None):
-    """Alert on Telegram when a store's health *changes*, not every run, and
-    send a periodic digest of which stores have gone quiet.
+    """Persist health incidents, with silent recovery and rate-limited summaries.
 
-    Alerts (things that are probably broken):
-      - failed `fail_alerts_after` consecutive runs
-      - responded with an empty catalogue for `empty_alert_hours`
-      - deactivated by verify (verified:false), flagged immediately
-    Every alert closes with a recovery message so nothing stays open.
-
-    Digest (things that are merely suspicious): every `digest_every_days`,
-    a summary listing stores with no new listings in `quiet_flag_days`.
-    Deliberately not an alert, because a quiet store is usually just quiet.
+    Product notifications are independent. A widespread failure may escalate
+    during the regular summary cooldown, but that escalation is also bounded.
     """
     hcfg = hcfg or {}
     threshold = hcfg.get("fail_alerts_after", 3)
+    fail_hours = hcfg.get("fail_alert_hours", 1)
+    recovery_polls = hcfg.get("recovery_polls", 3)
+    cooldown_hours = hcfg.get("alert_cooldown_hours", 24)
     empty_hours = hcfg.get("empty_alert_hours", 24)
     digest_days = hcfg.get("digest_every_days", 7)
     quiet_days = hcfg.get("quiet_flag_days", 14)
+    for key, value in (("fail_alerts_after", threshold),
+                       ("recovery_polls", recovery_polls)):
+        if type(value) is not int or value < 1:
+            raise ValueError(f"health.{key} must be a positive integer")
+    for key, value in (("fail_alert_hours", fail_hours),
+                       ("alert_cooldown_hours", cooldown_hours),
+                       ("empty_alert_hours", empty_hours)):
+        if (type(value) not in (int, float) or not 0 < value < float("inf")):
+            raise ValueError(f"health.{key} must be a positive finite number")
 
     now = int(time.time())
-    health = state.setdefault("_health", {})
+    health = state.get("_health")
+    if not isinstance(health, dict):
+        health = {}
+        state["_health"] = health
+    # Old state has none of the new fields. Ignore malformed health-only
+    # bookkeeping without disturbing product IDs, stock history, or polling.
+    for field in ("fails", "fail_since", "successes", "empty_since", "last_new"):
+        values = health.get(field)
+        health[field] = {k: v for k, v in values.items()
+                         if isinstance(k, str) and type(v) is int and v >= 0
+                         } if isinstance(values, dict) else {}
+    if not isinstance(health.get("alerted"), list):
+        health["alerted"] = []
+    health["alerted"] = [n for n in health["alerted"] if isinstance(n, str)]
+    for field in ("last_alert", "last_severe_alert", "last_digest"):
+        value = health.get(field)
+        if type(value) is not int or value < 0:
+            health.pop(field, None)
+    for field in ("period_new", "widespread_fails"):
+        value = health.get(field, 0)
+        if type(value) is not int or value < 0:
+            health[field] = 0
     fails = health.setdefault("fails", {})
+    fail_since = health.setdefault("fail_since", {})
+    successes = health.setdefault("successes", {})
     alerted = set(health.setdefault("alerted", []))
     empty_since = health.setdefault("empty_since", {})
     last_new = health.setdefault("last_new", {})
     period_new = health.get("period_new", 0)
     messages = []
     empty_set = set(empty)
+    live = set(ok_names) | set(failed) | set(skipped) | set(deferred or [])
+    alerted.intersection_update(live)
 
-    # Anything that polled cleanly resets its failure counter.
+    # A single successful poll must not close a flapping incident. Deferred
+    # stores neither recover nor fail: only actual polls count.
     for name in ok_names:
         fails.pop(name, None)
+        fail_since.pop(name, None)
         if name in empty_set:
+            successes.pop(name, None)
             empty_since.setdefault(name, now)
         else:
             empty_since.pop(name, None)
             if name in alerted:
-                alerted.discard(name)
-                messages.append(f"✅ {name} is back. Polling normally again.")
+                successes[name] = successes.get(name, 0) + 1
+                if successes[name] >= recovery_polls:
+                    alerted.discard(name)
+                    successes.pop(name, None)
         n = new_by_store.get(name, 0)
         if n:
             last_new[name] = now
             period_new += n
         last_new.setdefault(name, now)
 
-    # Responding but returning nothing, for long enough that it isn't a blip.
-    for name, since in list(empty_since.items()):
-        if now - since >= empty_hours * 3600 and name not in alerted:
-            alerted.add(name)
-            messages.append(
-                f"🟠 {name} has returned an empty catalogue for "
-                f"{(now - since) // 3600}h. Its endpoint may be gated.")
-
-    # Repeated hard failures cross the threshold and open an alert.
     for name in failed:
+        successes.pop(name, None)
         fails[name] = fails.get(name, 0) + 1
-        if fails[name] >= threshold and name not in alerted:
+        fail_since.setdefault(name, now)
+        if (fails[name] >= threshold
+                and now - fail_since[name] >= fail_hours * 3600):
             alerted.add(name)
-            messages.append(
-                f"🔴 {name} has failed {fails[name]} runs in a row. "
-                f"No drops from this store are being caught.")
 
-    # Deactivated stores are silent holes, so flag them straight away.
-    for name in skipped:
-        if name not in alerted:
+    for name in empty_set:
+        if now - empty_since[name] >= empty_hours * 3600:
             alerted.add(name)
-            messages.append(
-                f"⚠️ {name} is set verified:false and is not being polled. "
-                f"Re-run verify, or fix its domain in stores.json.")
+
+    for name in skipped:
+        successes.pop(name, None)
+        alerted.add(name)
+
+    # Majority failures on three consecutive actual runs are actionable even
+    # before individual timers mature. Count all verified stores, including
+    # deferred ones, so one failing hourly store is not a tracker-wide outage.
+    monitored = set(ok_names) | set(failed) | set(deferred or [])
+    widespread = bool(monitored and len(set(failed)) * 2 > len(monitored))
+    if ok_names or failed:
+        health["widespread_fails"] = (
+            health.get("widespread_fails", 0) + 1 if widespread else 0)
+    severe = widespread and health.get("widespread_fails", 0) >= threshold
+    cooldown = cooldown_hours * 3600
+    last_alert = health.get("last_alert")
+    last_severe = health.get("last_severe_alert")
+    ordinary_due = last_alert is None or now - last_alert >= cooldown
+    severe_due = severe and (last_severe is None or now - last_severe >= cooldown)
+    health_message = None
+    # Keep recovering incidents open internally, but do not notify solely
+    # about stores which have started responding successfully again.
+    affected = alerted - set(successes)
+    if (affected or severe) and (ordinary_due or severe_due):
+        names = affected | (set(failed) if severe else set())
+        lines = ["🔴 Tracker: widespread polling failures" if severe
+                 else "⚠️ Tracker health summary",
+                 f"{len(names)} store(s) affected; drops may be missed."]
+        for name in sorted(names)[:15]:
+            if name in skipped:
+                status = "not being polled (verified:false)"
+            elif name in failed:
+                status = "poll failures"
+            elif name in empty_since:
+                status = "empty catalogue"
+            else:
+                status = "poll failures"
+            lines.append(f"  {name[:120]}: {status}")
+        if len(names) > 15:
+            lines.append(f"  ...and {len(names) - 15} more")
+        lines.append("Check the run logs for details. Polling continues.")
+        health_message = "\n".join(lines)
+        messages.append(health_message)
 
     # Periodic digest of quiet stores.
     last_digest = health.get("last_digest")
@@ -680,6 +744,8 @@ def report_health(state, ok_names, failed, skipped, empty, new_by_store,
     live = set(ok_names) | set(failed) | set(skipped) | set(deferred or [])
     health["alerted"] = sorted(n for n in alerted if n in live)
     health["fails"] = {k: v for k, v in fails.items() if k in live}
+    health["fail_since"] = {k: v for k, v in fail_since.items() if k in live}
+    health["successes"] = {k: v for k, v in successes.items() if k in live}
     health["empty_since"] = {k: v for k, v in empty_since.items() if k in live}
     health["last_new"] = {k: v for k, v in last_new.items() if k in live}
     health["period_new"] = period_new
@@ -693,6 +759,13 @@ def report_health(state, ok_names, failed, skipped, empty, new_by_store,
                 time.sleep(1)
             except Exception as e:
                 print(f"[warn] health alert send failed: {e}", file=sys.stderr)
+                continue
+        # Only successful delivery starts the cooldown; failed sends retry.
+        # Dry runs preview without consuming a real notification's cooldown.
+        if msg == health_message and not dry_run:
+            health["last_alert"] = now
+            if severe:
+                health["last_severe_alert"] = now
 
     return messages
 
@@ -1131,3 +1204,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
