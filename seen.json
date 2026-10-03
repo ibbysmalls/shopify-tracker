@@ -5692,20 +5692,25 @@
     "9842021368043"
   ],
   "homegame-newyork.com": [
+    "7665329471534",
+    "7665270652974",
+    "7665268031534",
+    "7665263902766",
+    "7665328980014",
+    "7665294147630",
+    "7665243815982",
+    "7645003776046",
+    "7644415393838",
     "7666861375534",
     "7666830704686",
     "7666838634542",
-    "7665329274926",
     "7665831346222",
     "7662526922798",
     "7662526005294",
     "7662526365742",
     "7662527414318",
-    "7662526267438",
     "7658089381934",
     "7656214921262",
-    "7658739990574",
-    "7657134587950",
     "7656085094446",
     "7645596352558",
     "7645006528558",
@@ -5737,6 +5742,10 @@
     "7107185246254",
     "7107185213486",
     "7107184164910",
+    "7665329274926",
+    "7662526267438",
+    "7658739990574",
+    "7657134587950",
     "7225159581742",
     "7225159319598",
     "7225158991918",
@@ -5857,7 +5866,6 @@
     "7646902517806",
     "7635229900846",
     "7612452044846",
-    "7644415393838",
     "7647409569838",
     "7641683755054",
     "7561097150510",
@@ -11688,49 +11696,43 @@
   ],
   "_health": {
     "fails": {
-      "Okayamadenim": 34,
-      "4ucaps.com": 18,
-      "HOMEGAME NEW YORK": 18,
-      "MYFITTEDS": 17,
-      "Culture Kings US": 17,
-      "Mentionclothing": 14,
-      "Pancho and Lefty": 12,
-      "Statement Store": 12,
-      "HINOYA Online Store": 11,
-      "COJP Gallery": 10,
-      "Blue Beach Denim": 10,
-      "LidsHatDrop": 9,
-      "incrediDeals": 9,
-      "Prociety": 8,
-      "Franklin & Poe": 8,
-      "Hat Club": 7,
-      "Meadow": 7,
-      "Rodeo Japan Pine Avenue": 7,
-      "Totem Brand Co.": 7,
-      "Blue in Green": 6,
-      "Dant": 5,
-      "Witheredfig": 5,
-      "Exclusive Fitted Inc.": 4,
-      "BEARS' Tokyo": 4,
-      "Iron Shop Provisions": 4,
-      "CROWN MINDED": 3,
-      "Goodfellas SF": 3,
-      "Blueowl": 3,
-      "Limbro": 3,
-      "So Fresh Clothing": 2,
-      "New Era Cap": 2,
-      "SON OF A STAG": 2,
-      "Mildblend Supply Co.": 2,
-      "Klaxon Store": 2,
-      "Fittedunderground": 2,
-      "DREAMS H2H": 1,
-      "ECAPCITY": 1,
-      "Guiltyparty": 1,
-      "Standardandstrange": 1,
-      "Sakuraclientele": 1,
-      "Cultofindigo": 1,
-      "Berkeleysupply": 1,
-      "Snakeoilprovisions": 1
+      "Okayamadenim": 35,
+      "MYFITTEDS": 18,
+      "Culture Kings US": 18,
+      "Statement Store": 13,
+      "HINOYA Online Store": 12,
+      "COJP Gallery": 11,
+      "Blue Beach Denim": 11,
+      "LidsHatDrop": 10,
+      "incrediDeals": 10,
+      "Prociety": 9,
+      "Franklin & Poe": 9,
+      "Meadow": 8,
+      "Rodeo Japan Pine Avenue": 8,
+      "Totem Brand Co.": 8,
+      "Blue in Green": 7,
+      "Dant": 6,
+      "Witheredfig": 6,
+      "Exclusive Fitted Inc.": 5,
+      "BEARS' Tokyo": 5,
+      "Iron Shop Provisions": 5,
+      "Goodfellas SF": 4,
+      "Blueowl": 4,
+      "Limbro": 4,
+      "So Fresh Clothing": 3,
+      "SON OF A STAG": 3,
+      "Mildblend Supply Co.": 3,
+      "Klaxon Store": 3,
+      "Fittedunderground": 3,
+      "DREAMS H2H": 2,
+      "ECAPCITY": 2,
+      "Guiltyparty": 2,
+      "Standardandstrange": 2,
+      "Berkeleysupply": 2,
+      "Snakeoilprovisions": 2,
+      "Redcast Heritage Co.": 1,
+      "Cultizm": 1,
+      "Motostyle": 1
     },
     "alerted": [
       "4ucaps.com",
@@ -11811,7 +11813,7 @@
       "Blue Beach Denim": 1790958013,
       "Dant": 1791045332,
       "HINOYA Online Store": 1791029895,
-      "HOMEGAME NEW YORK": 1790977806,
+      "HOMEGAME NEW YORK": 1791050730,
       "Redcast Heritage Co.": 1790871413,
       "Pancho and Lefty": 1791012932,
       "Totem Brand Co.": 1790982338,
@@ -11833,15 +11835,11 @@
       "Snakeoilprovisions": 1790996722
     },
     "last_digest": 1790940005,
-    "period_new": 536,
+    "period_new": 544,
     "fail_since": {
       "Okayamadenim": 1791019198,
-      "4ucaps.com": 1791034494,
-      "HOMEGAME NEW YORK": 1791034494,
       "MYFITTEDS": 1791035404,
       "Culture Kings US": 1791035404,
-      "Mentionclothing": 1791038124,
-      "Pancho and Lefty": 1791039933,
       "Statement Store": 1791039933,
       "HINOYA Online Store": 1791040806,
       "COJP Gallery": 1791041715,
@@ -11850,7 +11848,6 @@
       "incrediDeals": 1791042601,
       "Prociety": 1791043507,
       "Franklin & Poe": 1791043507,
-      "Hat Club": 1791044398,
       "Meadow": 1791044398,
       "Rodeo Japan Pine Avenue": 1791044398,
       "Totem Brand Co.": 1791044398,
@@ -11860,12 +11857,10 @@
       "Exclusive Fitted Inc.": 1791047118,
       "BEARS' Tokyo": 1791047118,
       "Iron Shop Provisions": 1791047118,
-      "CROWN MINDED": 1791048009,
       "Goodfellas SF": 1791048009,
       "Blueowl": 1791048009,
       "Limbro": 1791048009,
       "So Fresh Clothing": 1791048919,
-      "New Era Cap": 1791048919,
       "SON OF A STAG": 1791048919,
       "Mildblend Supply Co.": 1791048919,
       "Klaxon Store": 1791048919,
@@ -11874,70 +11869,78 @@
       "ECAPCITY": 1791049815,
       "Guiltyparty": 1791049815,
       "Standardandstrange": 1791049815,
-      "Sakuraclientele": 1791049815,
-      "Cultofindigo": 1791049815,
       "Berkeleysupply": 1791049815,
-      "Snakeoilprovisions": 1791049815
+      "Snakeoilprovisions": 1791049815,
+      "Redcast Heritage Co.": 1791050730,
+      "Cultizm": 1791050730,
+      "Motostyle": 1791050730
     },
     "successes": {
-      "StylisticsJapan.com": 1,
-      "Corlection": 1,
-      "Redcast Heritage Co.": 1,
-      "Motostyle": 1
+      "StylisticsJapan.com": 2,
+      "Corlection": 2,
+      "Hat Club": 1,
+      "New Era Cap": 1,
+      "4ucaps.com": 1,
+      "CROWN MINDED": 1,
+      "HOMEGAME NEW YORK": 1,
+      "Pancho and Lefty": 1,
+      "Mentionclothing": 1,
+      "Sakuraclientele": 1,
+      "Cultofindigo": 1
     },
-    "widespread_fails": 22,
+    "widespread_fails": 23,
     "last_alert": 1790999409,
     "last_severe_alert": 1790999409
   },
   "_last_poll": {
-    "www.myfitteds.com": 1791049514,
-    "hatclub.com": 1791049520,
-    "sofreshclothing.com": 1791049526,
-    "culturekings.com": 1791049532,
-    "exclusivefitted.com": 1791049539,
-    "www.neweracap.com": 1791049545,
-    "procietyshop.com": 1791049551,
-    "4ucaps.com": 1791049558,
-    "www.hatdreams.com": 1791049564,
-    "crownminded.com": 1791049570,
-    "www.ecapcity.com": 1791049576,
-    "www.lidshd.com": 1791049583,
-    "gf-sf.com": 1791049589,
-    "incredideals.ae": 1791049595,
-    "stylisticsjapan.com": 1791049602,
-    "www.cojpgallery.com": 1791049606,
-    "sonofastag.com": 1791049612,
-    "bears-tokyo.myshopify.com": 1791049618,
-    "corlection.com": 1791049624,
-    "ironshopprovisions.com": 1791049632,
-    "franklinandpoe.com": 1791049639,
-    "meadowweb.com": 1791049645,
-    "mildblend.com": 1791049651,
-    "rodeo-japan-pine-avenue.com": 1791049658,
-    "klaxon-store.com": 1791049664,
-    "www.bluebeachdenim.shop": 1791049671,
-    "www.dant.us": 1791049677,
-    "hinoya.shop": 1791049683,
-    "homegame-newyork.com": 1791049689,
-    "redcastheritage.com": 1791049696,
-    "www.panchoandlefty.se": 1791049698,
-    "totemshop.com": 1791049704,
-    "www.blueingreensoho.com": 1791049711,
-    "www.guiltyparty.co": 1791049717,
-    "www.blueowl.us": 1791049723,
-    "standardandstrange.com": 1791049729,
-    "www.witheredfig.com": 1791049736,
-    "www.mentionclothing.com": 1791049742,
-    "sakuraclientele.com": 1791049748,
-    "cultofindigo.com": 1791049755,
-    "www.limbro.id": 1791049761,
-    "www.okayamadenim.com": 1791049768,
-    "berkeleysupply.com": 1791049780,
-    "statement-store.com": 1791049787,
-    "cultizm.com": 1791049794,
-    "www.motostyle.jp": 1791049797,
-    "fittedunderground.com": 1791049802,
-    "www.snakeoilprovisions.com": 1791049808
+    "www.myfitteds.com": 1791050421,
+    "hatclub.com": 1791050427,
+    "sofreshclothing.com": 1791050435,
+    "culturekings.com": 1791050442,
+    "exclusivefitted.com": 1791050449,
+    "www.neweracap.com": 1791050455,
+    "procietyshop.com": 1791050459,
+    "4ucaps.com": 1791050466,
+    "www.hatdreams.com": 1791050468,
+    "crownminded.com": 1791050474,
+    "www.ecapcity.com": 1791050476,
+    "www.lidshd.com": 1791050482,
+    "gf-sf.com": 1791050489,
+    "incredideals.ae": 1791050495,
+    "stylisticsjapan.com": 1791050502,
+    "www.cojpgallery.com": 1791050510,
+    "sonofastag.com": 1791050517,
+    "bears-tokyo.myshopify.com": 1791050523,
+    "corlection.com": 1791050530,
+    "ironshopprovisions.com": 1791050534,
+    "franklinandpoe.com": 1791050541,
+    "meadowweb.com": 1791050547,
+    "mildblend.com": 1791050554,
+    "rodeo-japan-pine-avenue.com": 1791050561,
+    "klaxon-store.com": 1791050567,
+    "www.bluebeachdenim.shop": 1791050574,
+    "www.dant.us": 1791050580,
+    "hinoya.shop": 1791050587,
+    "homegame-newyork.com": 1791050593,
+    "redcastheritage.com": 1791050614,
+    "www.panchoandlefty.se": 1791050620,
+    "totemshop.com": 1791050624,
+    "www.blueingreensoho.com": 1791050631,
+    "www.guiltyparty.co": 1791050637,
+    "www.blueowl.us": 1791050644,
+    "standardandstrange.com": 1791050651,
+    "www.witheredfig.com": 1791050657,
+    "www.mentionclothing.com": 1791050664,
+    "sakuraclientele.com": 1791050668,
+    "cultofindigo.com": 1791050672,
+    "www.limbro.id": 1791050677,
+    "www.okayamadenim.com": 1791050684,
+    "berkeleysupply.com": 1791050691,
+    "statement-store.com": 1791050697,
+    "cultizm.com": 1791050704,
+    "www.motostyle.jp": 1791050710,
+    "fittedunderground.com": 1791050717,
+    "www.snakeoilprovisions.com": 1791050724
   },
   "fittedunderground.com": [
     "7472916660282",
@@ -145478,7 +145481,7 @@
           "title": "Multi/Black 7"
         },
         "42710404562990": {
-          "available": true,
+          "available": false,
           "title": "Multi/Black 7 1/8"
         },
         "42710404595758": {
@@ -147140,6 +147143,380 @@
           "title": "7 7/8"
         },
         "42759384924206": {
+          "available": true,
+          "title": "8"
+        }
+      },
+      "7665329471534": {
+        "42753360920622": {
+          "available": true,
+          "title": "Royal 6 7/8"
+        },
+        "42753360953390": {
+          "available": true,
+          "title": "Royal 7"
+        },
+        "42753360986158": {
+          "available": true,
+          "title": "Royal 7 1/8"
+        },
+        "42753361018926": {
+          "available": true,
+          "title": "Royal 7 1/4"
+        },
+        "42753361051694": {
+          "available": true,
+          "title": "Royal 7 3/8"
+        },
+        "42753361084462": {
+          "available": true,
+          "title": "Royal 7 1/2"
+        },
+        "42753361117230": {
+          "available": true,
+          "title": "Royal 7 5/8"
+        },
+        "42753361149998": {
+          "available": true,
+          "title": "Royal 7 3/4"
+        },
+        "42753361182766": {
+          "available": true,
+          "title": "Royal 7 7/8"
+        },
+        "42753361215534": {
+          "available": true,
+          "title": "Royal 8"
+        }
+      },
+      "7665270652974": {
+        "42753067614254": {
+          "available": false,
+          "title": "Navy/Woodland Camo 6 7/8"
+        },
+        "42753067647022": {
+          "available": true,
+          "title": "Navy/Woodland Camo 7"
+        },
+        "42753067679790": {
+          "available": true,
+          "title": "Navy/Woodland Camo 7 1/8"
+        },
+        "42753067712558": {
+          "available": true,
+          "title": "Navy/Woodland Camo 7 1/4"
+        },
+        "42753067745326": {
+          "available": true,
+          "title": "Navy/Woodland Camo 7 3/8"
+        },
+        "42753067778094": {
+          "available": true,
+          "title": "Navy/Woodland Camo 7 1/2"
+        },
+        "42753067810862": {
+          "available": true,
+          "title": "Navy/Woodland Camo 7 5/8"
+        },
+        "42753067843630": {
+          "available": true,
+          "title": "Navy/Woodland Camo 7 3/4"
+        },
+        "42753067876398": {
+          "available": true,
+          "title": "Navy/Woodland Camo 7 7/8"
+        },
+        "42753067909166": {
+          "available": true,
+          "title": "Navy/Woodland Camo 8"
+        }
+      },
+      "7665268031534": {
+        "42753043562542": {
+          "available": false,
+          "title": "Black/Graphite Grey 6 7/8"
+        },
+        "42753043595310": {
+          "available": false,
+          "title": "Black/Graphite Grey 7"
+        },
+        "42753043628078": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 1/8"
+        },
+        "42753043660846": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 1/4"
+        },
+        "42753043693614": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 3/8"
+        },
+        "42753043726382": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 1/2"
+        },
+        "42753043759150": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 5/8"
+        },
+        "42753043791918": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 3/4"
+        },
+        "42753043824686": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 7/8"
+        },
+        "42753043857454": {
+          "available": true,
+          "title": "Black/Graphite Grey 8"
+        }
+      },
+      "7665263902766": {
+        "42753019117614": {
+          "available": false,
+          "title": "Black/Graphite Grey 6 7/8"
+        },
+        "42753019150382": {
+          "available": true,
+          "title": "Black/Graphite Grey 7"
+        },
+        "42753019183150": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 1/8"
+        },
+        "42753019215918": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 1/4"
+        },
+        "42753019248686": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 3/8"
+        },
+        "42753019281454": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 1/2"
+        },
+        "42753019314222": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 5/8"
+        },
+        "42753019346990": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 3/4"
+        },
+        "42753019379758": {
+          "available": true,
+          "title": "Black/Graphite Grey 7 7/8"
+        },
+        "42753019412526": {
+          "available": true,
+          "title": "Black/Graphite Grey 8"
+        }
+      },
+      "7665328980014": {
+        "42753359052846": {
+          "available": false,
+          "title": "Misty Morning/Black 6 7/8"
+        },
+        "42753359085614": {
+          "available": true,
+          "title": "Misty Morning/Black 7"
+        },
+        "42753359118382": {
+          "available": true,
+          "title": "Misty Morning/Black 7 1/8"
+        },
+        "42753359151150": {
+          "available": true,
+          "title": "Misty Morning/Black 7 1/4"
+        },
+        "42753359183918": {
+          "available": true,
+          "title": "Misty Morning/Black 7 3/8"
+        },
+        "42753359216686": {
+          "available": true,
+          "title": "Misty Morning/Black 7 1/2"
+        },
+        "42753359249454": {
+          "available": true,
+          "title": "Misty Morning/Black 7 5/8"
+        },
+        "42753359282222": {
+          "available": true,
+          "title": "Misty Morning/Black 7 3/4"
+        },
+        "42753359314990": {
+          "available": true,
+          "title": "Misty Morning/Black 7 7/8"
+        },
+        "42753359347758": {
+          "available": true,
+          "title": "Misty Morning/Black 8"
+        }
+      },
+      "7665294147630": {
+        "42753230897198": {
+          "available": true,
+          "title": "Woodland Camo/Black Camo/Black 6 7/8"
+        },
+        "42753230929966": {
+          "available": true,
+          "title": "Woodland Camo/Black Camo/Black 7"
+        },
+        "42753230962734": {
+          "available": false,
+          "title": "Woodland Camo/Black Camo/Black 7 1/8"
+        },
+        "42753230995502": {
+          "available": false,
+          "title": "Woodland Camo/Black Camo/Black 7 1/4"
+        },
+        "42753231028270": {
+          "available": false,
+          "title": "Woodland Camo/Black Camo/Black 7 3/8"
+        },
+        "42753231061038": {
+          "available": false,
+          "title": "Woodland Camo/Black Camo/Black 7 1/2"
+        },
+        "42753231093806": {
+          "available": false,
+          "title": "Woodland Camo/Black Camo/Black 7 5/8"
+        },
+        "42753231126574": {
+          "available": true,
+          "title": "Woodland Camo/Black Camo/Black 7 3/4"
+        },
+        "42753231159342": {
+          "available": true,
+          "title": "Woodland Camo/Black Camo/Black 7 7/8"
+        },
+        "42753231192110": {
+          "available": true,
+          "title": "Woodland Camo/Black Camo/Black 8"
+        }
+      },
+      "7665243815982": {
+        "42752886177838": {
+          "available": true,
+          "title": "7"
+        },
+        "42752886210606": {
+          "available": true,
+          "title": "7 1/8"
+        },
+        "42752886243374": {
+          "available": true,
+          "title": "7 1/4"
+        },
+        "42752886276142": {
+          "available": true,
+          "title": "7 3/8"
+        },
+        "42752886308910": {
+          "available": true,
+          "title": "7 1/2"
+        },
+        "42752886341678": {
+          "available": true,
+          "title": "7 5/8"
+        },
+        "42752886374446": {
+          "available": true,
+          "title": "7 3/4"
+        },
+        "42752886407214": {
+          "available": false,
+          "title": "7 7/8"
+        },
+        "42752886439982": {
+          "available": false,
+          "title": "8"
+        }
+      },
+      "7645003776046": {
+        "42615602151470": {
+          "available": false,
+          "title": "6 7/8"
+        },
+        "42615602184238": {
+          "available": false,
+          "title": "7"
+        },
+        "42615602217006": {
+          "available": false,
+          "title": "7 1/8"
+        },
+        "42615602249774": {
+          "available": false,
+          "title": "7 1/4"
+        },
+        "42615602282542": {
+          "available": false,
+          "title": "7 3/8"
+        },
+        "42615602315310": {
+          "available": false,
+          "title": "7 1/2"
+        },
+        "42615602348078": {
+          "available": false,
+          "title": "7 5/8"
+        },
+        "42615602380846": {
+          "available": true,
+          "title": "7 3/4"
+        },
+        "42615602413614": {
+          "available": true,
+          "title": "7 7/8"
+        },
+        "42615602446382": {
+          "available": true,
+          "title": "8"
+        }
+      },
+      "7644415393838": {
+        "42613537243182": {
+          "available": false,
+          "title": "6 7/8"
+        },
+        "42613537275950": {
+          "available": false,
+          "title": "7"
+        },
+        "42613537308718": {
+          "available": true,
+          "title": "7 1/8"
+        },
+        "42613537341486": {
+          "available": true,
+          "title": "7 1/4"
+        },
+        "42613537374254": {
+          "available": true,
+          "title": "7 3/8"
+        },
+        "42613537407022": {
+          "available": false,
+          "title": "7 1/2"
+        },
+        "42613537439790": {
+          "available": false,
+          "title": "7 5/8"
+        },
+        "42613537472558": {
+          "available": true,
+          "title": "7 3/4"
+        },
+        "42613537505326": {
+          "available": false,
+          "title": "7 7/8"
+        },
+        "42613537538094": {
           "available": true,
           "title": "8"
         }
@@ -151718,7 +152095,7 @@
           "title": "3"
         },
         "54845809623386": {
-          "available": true,
+          "available": false,
           "title": "4"
         }
       },
