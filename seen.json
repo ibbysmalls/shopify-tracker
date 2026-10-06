@@ -5528,6 +5528,9 @@
     "9413179932891"
   ],
   "hinoya.shop": [
+    "15396583932139",
+    "15396561748203",
+    "15396401643755",
     "15396432576747",
     "15396415209707",
     "15395335667947",
@@ -11898,48 +11901,47 @@
   ],
   "_health": {
     "fails": {
-      "Okayamadenim": 58,
-      "Snakeoilprovisions": 26,
-      "Sakuraclientele": 22,
-      "Limbro": 22,
-      "HINOYA Online Store": 14,
-      "LidsHatDrop": 13,
-      "Exclusive Fitted Inc.": 11,
-      "Totem Brand Co.": 11,
-      "Franklin & Poe": 10,
-      "Motostyle": 10,
-      "ECAPCITY": 9,
-      "Witheredfig": 8,
-      "DREAMS H2H": 7,
-      "Cultofindigo": 7,
-      "Statement Store": 7,
-      "MYFITTEDS": 6,
-      "BEARS' Tokyo": 6,
-      "CROWN MINDED": 5,
-      "HOMEGAME NEW YORK": 5,
-      "SON OF A STAG": 4,
-      "Meadow": 4,
-      "Pancho and Lefty": 4,
-      "Standardandstrange": 4,
-      "Mildblend Supply Co.": 3,
-      "Mentionclothing": 3,
-      "Hat Club": 2,
-      "So Fresh Clothing": 2,
-      "New Era Cap": 2,
-      "Rodeo Japan Pine Avenue": 2,
-      "Klaxon Store": 2,
-      "Blue Beach Denim": 2,
-      "Dant": 2,
-      "Blue in Green": 2,
-      "Guiltyparty": 2,
-      "Cultizm": 2,
-      "Culture Kings US": 1,
-      "Prociety": 1,
-      "incrediDeals": 1,
-      "COJP Gallery": 1,
-      "Corlection": 1,
-      "Iron Shop Provisions": 1,
-      "Redcast Heritage Co.": 1
+      "Okayamadenim": 59,
+      "Snakeoilprovisions": 27,
+      "Sakuraclientele": 23,
+      "LidsHatDrop": 14,
+      "Exclusive Fitted Inc.": 12,
+      "Totem Brand Co.": 12,
+      "Franklin & Poe": 11,
+      "Motostyle": 11,
+      "ECAPCITY": 10,
+      "Witheredfig": 9,
+      "DREAMS H2H": 8,
+      "Cultofindigo": 8,
+      "Statement Store": 8,
+      "MYFITTEDS": 7,
+      "BEARS' Tokyo": 7,
+      "CROWN MINDED": 6,
+      "HOMEGAME NEW YORK": 6,
+      "SON OF A STAG": 5,
+      "Meadow": 5,
+      "Mildblend Supply Co.": 4,
+      "Mentionclothing": 4,
+      "Hat Club": 3,
+      "So Fresh Clothing": 3,
+      "New Era Cap": 3,
+      "Rodeo Japan Pine Avenue": 3,
+      "Klaxon Store": 3,
+      "Blue Beach Denim": 3,
+      "Blue in Green": 3,
+      "Guiltyparty": 3,
+      "Cultizm": 3,
+      "Culture Kings US": 2,
+      "Prociety": 2,
+      "incrediDeals": 2,
+      "COJP Gallery": 2,
+      "Corlection": 2,
+      "Iron Shop Provisions": 2,
+      "Redcast Heritage Co.": 2,
+      "4ucaps.com": 1,
+      "Blueowl": 1,
+      "Berkeleysupply": 1,
+      "Fittedunderground": 1
     },
     "alerted": [
       "4ucaps.com",
@@ -12020,7 +12022,7 @@
       "Klaxon Store": 1791277521,
       "Blue Beach Denim": 1791218130,
       "Dant": 1791237955,
-      "HINOYA Online Store": 1791282949,
+      "HINOYA Online Store": 1791296406,
       "HOMEGAME NEW YORK": 1791235346,
       "Redcast Heritage Co.": 1791191998,
       "Pancho and Lefty": 1791206416,
@@ -12043,13 +12045,11 @@
       "Snakeoilprovisions": 1791249451
     },
     "last_digest": 1790940005,
-    "period_new": 988,
+    "period_new": 991,
     "fail_since": {
       "Okayamadenim": 1791244218,
       "Snakeoilprovisions": 1791273003,
       "Sakuraclientele": 1791276611,
-      "Limbro": 1791276611,
-      "HINOYA Online Store": 1791283817,
       "LidsHatDrop": 1791284711,
       "Exclusive Fitted Inc.": 1791286524,
       "Totem Brand Co.": 1791286524,
@@ -12066,8 +12066,6 @@
       "HOMEGAME NEW YORK": 1791291938,
       "SON OF A STAG": 1791292826,
       "Meadow": 1791292826,
-      "Pancho and Lefty": 1791292826,
-      "Standardandstrange": 1791292826,
       "Mildblend Supply Co.": 1791293723,
       "Mentionclothing": 1791293723,
       "Hat Club": 1791294622,
@@ -12076,7 +12074,6 @@
       "Rodeo Japan Pine Avenue": 1791294622,
       "Klaxon Store": 1791294622,
       "Blue Beach Denim": 1791294622,
-      "Dant": 1791294622,
       "Blue in Green": 1791294622,
       "Guiltyparty": 1791294622,
       "Cultizm": 1791294622,
@@ -12086,69 +12083,74 @@
       "COJP Gallery": 1791295512,
       "Corlection": 1791295512,
       "Iron Shop Provisions": 1791295512,
-      "Redcast Heritage Co.": 1791295512
+      "Redcast Heritage Co.": 1791295512,
+      "4ucaps.com": 1791296406,
+      "Blueowl": 1791296406,
+      "Berkeleysupply": 1791296406,
+      "Fittedunderground": 1791296406
     },
     "successes": {
-      "4ucaps.com": 1,
-      "Goodfellas SF": 1,
-      "StylisticsJapan.com": 1,
-      "Blueowl": 1,
-      "Berkeleysupply": 1,
-      "Fittedunderground": 1
+      "Goodfellas SF": 2,
+      "StylisticsJapan.com": 2,
+      "Dant": 1,
+      "HINOYA Online Store": 1,
+      "Pancho and Lefty": 1,
+      "Standardandstrange": 1,
+      "Limbro": 1
     },
-    "widespread_fails": 51,
+    "widespread_fails": 52,
     "last_alert": 1791261302,
     "last_severe_alert": 1791261302
   },
   "_last_poll": {
-    "www.myfitteds.com": 1791295224,
-    "hatclub.com": 1791295231,
-    "sofreshclothing.com": 1791295237,
-    "culturekings.com": 1791295243,
-    "exclusivefitted.com": 1791295250,
-    "www.neweracap.com": 1791295256,
-    "procietyshop.com": 1791295262,
-    "4ucaps.com": 1791295269,
-    "www.hatdreams.com": 1791295270,
-    "crownminded.com": 1791295277,
-    "www.ecapcity.com": 1791295283,
-    "www.lidshd.com": 1791295290,
-    "gf-sf.com": 1791295296,
-    "incredideals.ae": 1791295298,
-    "stylisticsjapan.com": 1791295305,
-    "www.cojpgallery.com": 1791295306,
-    "sonofastag.com": 1791295313,
-    "bears-tokyo.myshopify.com": 1791295319,
-    "corlection.com": 1791295325,
-    "ironshopprovisions.com": 1791295331,
-    "franklinandpoe.com": 1791295338,
-    "meadowweb.com": 1791295344,
-    "mildblend.com": 1791295351,
-    "rodeo-japan-pine-avenue.com": 1791295357,
-    "klaxon-store.com": 1791295363,
-    "www.bluebeachdenim.shop": 1791295370,
-    "www.dant.us": 1791295376,
-    "hinoya.shop": 1791295383,
-    "homegame-newyork.com": 1791295389,
-    "redcastheritage.com": 1791295395,
-    "www.panchoandlefty.se": 1791295402,
-    "totemshop.com": 1791295408,
-    "www.blueingreensoho.com": 1791295415,
-    "www.guiltyparty.co": 1791295421,
-    "www.blueowl.us": 1791295427,
-    "standardandstrange.com": 1791295435,
-    "www.witheredfig.com": 1791295441,
-    "www.mentionclothing.com": 1791295448,
-    "sakuraclientele.com": 1791295454,
-    "cultofindigo.com": 1791295460,
-    "www.limbro.id": 1791295467,
-    "www.okayamadenim.com": 1791295473,
-    "berkeleysupply.com": 1791295480,
-    "statement-store.com": 1791295484,
-    "cultizm.com": 1791295491,
-    "www.motostyle.jp": 1791295497,
-    "fittedunderground.com": 1791295504,
-    "www.snakeoilprovisions.com": 1791295506
+    "www.myfitteds.com": 1791296113,
+    "hatclub.com": 1791296119,
+    "sofreshclothing.com": 1791296126,
+    "culturekings.com": 1791296132,
+    "exclusivefitted.com": 1791296138,
+    "www.neweracap.com": 1791296145,
+    "procietyshop.com": 1791296151,
+    "4ucaps.com": 1791296157,
+    "www.hatdreams.com": 1791296164,
+    "crownminded.com": 1791296170,
+    "www.ecapcity.com": 1791296176,
+    "www.lidshd.com": 1791296183,
+    "gf-sf.com": 1791296189,
+    "incredideals.ae": 1791296193,
+    "stylisticsjapan.com": 1791296200,
+    "www.cojpgallery.com": 1791296202,
+    "sonofastag.com": 1791296208,
+    "bears-tokyo.myshopify.com": 1791296214,
+    "corlection.com": 1791296220,
+    "ironshopprovisions.com": 1791296227,
+    "franklinandpoe.com": 1791296233,
+    "meadowweb.com": 1791296240,
+    "mildblend.com": 1791296246,
+    "rodeo-japan-pine-avenue.com": 1791296252,
+    "klaxon-store.com": 1791296259,
+    "www.bluebeachdenim.shop": 1791296266,
+    "www.dant.us": 1791296272,
+    "hinoya.shop": 1791296280,
+    "homegame-newyork.com": 1791296286,
+    "redcastheritage.com": 1791296293,
+    "www.panchoandlefty.se": 1791296300,
+    "totemshop.com": 1791296302,
+    "www.blueingreensoho.com": 1791296308,
+    "www.guiltyparty.co": 1791296314,
+    "www.blueowl.us": 1791296320,
+    "standardandstrange.com": 1791296327,
+    "www.witheredfig.com": 1791296328,
+    "www.mentionclothing.com": 1791296335,
+    "sakuraclientele.com": 1791296341,
+    "cultofindigo.com": 1791296347,
+    "www.limbro.id": 1791296354,
+    "www.okayamadenim.com": 1791296359,
+    "berkeleysupply.com": 1791296367,
+    "statement-store.com": 1791296374,
+    "cultizm.com": 1791296380,
+    "www.motostyle.jp": 1791296387,
+    "fittedunderground.com": 1791296394,
+    "www.snakeoilprovisions.com": 1791296400
   },
   "fittedunderground.com": [
     "7472916660282",
@@ -146278,7 +146280,7 @@
       },
       "10313540010219": {
         "50521275564267": {
-          "available": true,
+          "available": false,
           "title": "Khaki Beige / W38"
         },
         "50521275597035": {
@@ -146474,7 +146476,7 @@
           "title": "Khaki / M"
         },
         "67540514046187": {
-          "available": true,
+          "available": false,
           "title": "Khaki / L"
         },
         "67540514078955": {
@@ -147128,6 +147130,84 @@
         "67870137712875": {
           "available": true,
           "title": "One Wash / w40"
+        }
+      },
+      "15396583932139": {
+        "67883016028395": {
+          "available": true,
+          "title": "Black / w30"
+        },
+        "67883016061163": {
+          "available": true,
+          "title": "Black / w32"
+        },
+        "67883016093931": {
+          "available": true,
+          "title": "Black / w34"
+        }
+      },
+      "15396561748203": {
+        "67882063954155": {
+          "available": true,
+          "title": "Indigo / w32"
+        },
+        "67882063986923": {
+          "available": true,
+          "title": "Indigo / w34"
+        },
+        "67882064019691": {
+          "available": true,
+          "title": "Indigo / w36"
+        }
+      },
+      "15396401643755": {
+        "67868649292011": {
+          "available": true,
+          "title": "Black / S"
+        },
+        "67868649324779": {
+          "available": true,
+          "title": "Black / M"
+        },
+        "67868649357547": {
+          "available": true,
+          "title": "Black / L"
+        },
+        "67868649390315": {
+          "available": true,
+          "title": "Black / XL"
+        },
+        "67868649423083": {
+          "available": true,
+          "title": "Heather Gray / S"
+        },
+        "67868649455851": {
+          "available": true,
+          "title": "Heather Gray / M"
+        },
+        "67868649488619": {
+          "available": true,
+          "title": "Heather Gray / L"
+        },
+        "67868649521387": {
+          "available": true,
+          "title": "Heather Gray / XL"
+        },
+        "67868649554155": {
+          "available": true,
+          "title": "Oatmeal / S"
+        },
+        "67868649586923": {
+          "available": true,
+          "title": "Oatmeal / M"
+        },
+        "67868649619691": {
+          "available": true,
+          "title": "Oatmeal / L"
+        },
+        "67868649652459": {
+          "available": true,
+          "title": "Oatmeal / XL"
         }
       }
     },
@@ -185196,7 +185276,7 @@
           "title": "Medium"
         },
         "47290361512109": {
-          "available": true,
+          "available": false,
           "title": "Large"
         },
         "47290361544877": {
