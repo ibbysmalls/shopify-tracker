@@ -29,6 +29,9 @@ import time
 import urllib.request
 import urllib.parse
 
+import clothing_policy
+from private_clothing_profile import load_profile_with_status
+
 BASE = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(BASE, "stores.json")
 STATE_PATH = os.path.join(BASE, "seen.json")
@@ -821,6 +824,129 @@ def passes_filters(product, filters):
     return True
 
 
+def clothing_context():
+    """Read selected private context and emit exactly one fixed startup line."""
+    profile, status = load_profile_with_status()
+    print("Clothing fit profile: " + status)
+    return profile
+
+
+def legacy_team_apparel(product, store):
+    """Preserve garments matched by an existing store team/city include list."""
+    terms = store.get("filters", {}).get("include_keywords", [])
+    return (clothing_policy.category(product) in ("pants", "jacket", "clothing")
+            and bool(terms) and passes_filters(product, {"include_keywords": terms}))
+
+
+def alert_decision(product, store, cfg, kind=None, extra=None, context=None):
+    """Preserve legacy store filters; apply clothing policy only to clothing.
+
+    New Era is already a configured source. Its brand-specific relevance gate
+    reuses the exact existing source terms and never bypasses store filters.
+    """
+    url = product.get("_url") or f"https://{store['domain']}/products/{product.get('handle', '')}"
+    team_apparel = legacy_team_apparel(product, store)
+    decision = clothing_policy.evaluate(product, {} if team_apparel else cfg.get("clothing_policy", {}),
+                                        kind, extra, url, context)
+    decision["legacy_team_apparel"] = team_apparel
+    if not passes_filters(product, resolve_filters(store, cfg.get("filters", {}))):
+        decision.update(keep=False, reasons=["existing store include/exclude/type/stock filter"])
+    new_era = cfg.get("new_era_policy", {})
+    source_domain = new_era.get("team_filter_source_domain")
+    is_new_era = (store.get("domain") == source_domain or
+                 clothing_policy.is_new_era_name(product.get("vendor")) or
+                 clothing_policy.is_new_era_name(product.get("title")))
+    if new_era.get("enabled") and decision["category"] == "hat" and is_new_era:
+        source = next((s for s in cfg.get("stores", []) if s.get("domain") == source_domain), None)
+        terms = resolve_filters(source, cfg.get("filters", {})).get("include_keywords", []) if source else []
+        # Missing/empty relevance settings must not silently create a broad
+        # New Era feed. Use legacy title matching, including its exact terms.
+        if not terms or not passes_filters(product, {"include_keywords": terms}):
+            decision.update(keep=False, reasons=["New Era hat fails existing team/city terms"])
+        decision["brand"] = "New Era"
+    return decision
+
+
+def clothing_price_events(products, previous, policy, currency=None, skip_ids=()):
+    """Clothing-only per-variant price history; upgrades seed silently.
+
+    A product's minimum price can change solely because its variant set
+    changes. Compare the same variant instead, with percent AND amount floors.
+    Small reductions accumulate against the last meaningful reference price.
+    """
+    if not policy.get("enabled"):
+        return [], previous
+    previous = previous or {}
+    next_prices = dict(previous)
+    events = []
+    skip = {str(i) for i in skip_ids}
+    floor = Decimal(str(policy.get("price_drop_minimum", {}).get(currency or "USD", 20)))
+    percent = Decimal(str(policy.get("price_drop_percent", 15))) / 100
+    for p in products:
+        if (clothing_policy.category(p) not in ("pants", "jacket", "clothing") or "id" not in p
+                or clothing_policy.product_brand(p, policy.get("retailer_vendor_aliases", [])) not in policy.get("core_brands", [])):
+            continue
+        pid = str(p["id"])
+        old = previous.get(pid, {})
+        current = {}
+        drops = []
+        for v in p.get("variants") or []:
+            vid = str(v.get("id") or v.get("title") or "default")
+            price = numeric_price(v.get("price"))
+            if price is None or price <= 0:
+                continue
+            anchor = numeric_price(old.get(vid))
+            current[vid] = str(price)
+            if anchor is not None and anchor > price:
+                change = anchor - price
+                if change >= floor and change / anchor >= percent:
+                    drops.append({"variant": v.get("title", vid), "from": str(anchor), "to": str(price)})
+                else:
+                    current[vid] = str(anchor)
+        next_prices[pid] = current
+        if drops and pid not in skip:
+            events.append(("price_drop", p, drops))
+    return events, next_prices
+
+
+def additional_price_events(products, events, previous, cfg, store, seed_ids=(), context=None):
+    """Prefer an eligible existing event, not a suppressed wrong-size restock."""
+    skip = [p["id"] for kind, p, extra in events
+            if kind == "new" or alert_decision(p, store, cfg, kind, extra, context)["keep"]]
+    clothing = [p for p in products if not legacy_team_apparel(p, store)]
+    return clothing_price_events(clothing, previous, cfg.get("clothing_policy", {}),
+                                 store.get("currency"), skip_ids=skip + list(seed_ids))
+
+
+def format_clothing_message(store, product, kind, extra, decision):
+    """Discovery alerts explicitly distinguish API signals from verified stock."""
+    msg = format_message(store["name"], store["domain"], product, currency=store.get("currency"))
+    if kind == "restock":
+        msg = msg.replace("🆕", "♻️", 1)
+    elif kind == "price_drop":
+        msg = msg.replace("🆕", "💸", 1)
+    lines = msg.splitlines()
+    lines.insert(-1, {"new": "New retailer listing", "restock": "Catalogue reports a restock",
+                      "price_drop": "Meaningful price drop"}.get(kind, "Product change"))
+    if kind == "price_drop":
+        symbol = currency_symbol(store.get("currency"))
+        lines.insert(-1, "; ".join(f"{d['variant']}: {symbol}{d['from']} → {symbol}{d['to']}" for d in extra))
+    lines.insert(-1, "; ".join(decision["reasons"]))
+    evidence = decision.get("measurements", [])
+    rows = decision.get("fit", {}).get("matching_rows", []) or evidence
+    for m in rows[:3]:
+        raw = ", ".join(f"{m.get('labels', {}).get(key, key.replace('_', ' '))} {value}" for key, value in m["raw"].items())
+        lines.insert(-1, f"Chart size {m['size']} ({m['unit'] or 'units unspecified'}): {raw}; source {m['source']}")
+    if len(rows) > 3:
+        lines.insert(-1, "Additional chart rows available at the product source.")
+    # New clothing details must not overflow Telegram's message limit. Hat
+    # formatting/delivery remains exactly the legacy path.
+    content = "\n".join(lines[:-1])
+    warning = "Live product-page inventory and personal size availability unverified."
+    body_limit = max(0, min(3500, 4000 - len(warning) - len(lines[-1]) - 2))
+    return content[:body_limit] + "\n" + warning + "\n" + lines[-1]
+
+
 _CURRENCY_SYMBOLS = {
     "USD": "$",
     "EUR": "€",
@@ -909,6 +1035,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     if type(max_alerts) is not int or max_alerts < 0:
         raise ValueError("poll.max_alerts_per_store must be a nonnegative integer")
     state = load_json(STATE_PATH, {})
+    private_context = clothing_context()
 
     if not dry_run:
         try:
@@ -1026,10 +1153,26 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         events, current_ids, next_stock = diff_store(
             products, seen, prev_stock, seed_ids=seed_ids)
 
+        policy = cfg.get("clothing_policy", {})
+        next_prices = None
+        if policy.get("enabled") and (
+                domain in state.get("_clothing_prices", {}) or any(
+                    clothing_policy.category(p) in ("pants", "jacket", "clothing") and
+                    not legacy_team_apparel(p, s) and clothing_policy.product_brand(p, policy.get("retailer_vendor_aliases", [])) in policy.get("core_brands", []) for p in products)):
+            price_all = state.setdefault("_clothing_prices", {})
+            # Existing new/restock events take precedence: one product, one
+            # alert per poll. First observation of prices seeds silently.
+            price_events, next_prices = additional_price_events(
+                products, events, price_all.get(domain), cfg, s,
+                seed_ids=seed_ids, context=private_context)
+            events += price_events
+
         if not seen:
             # First time seeing this store: seed IDs and stock silently.
             state[domain] = current_ids
             stock_all[domain] = next_stock
+            if next_prices is not None:
+                price_all[domain] = next_prices
             new_by_store[name] = 0
             first_run_stores += 1
             continue
@@ -1039,7 +1182,8 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         new_alerts = 0
         suppressed = 0
         for kind, p, extra in events:
-            if not passes_filters(p, store_filters):
+            decision = alert_decision(p, s, cfg, kind, extra, private_context)
+            if not decision["keep"]:
                 continue
             if no_anchor and kind == "new":
                 if new_alerts >= max_alerts:
@@ -1048,9 +1192,12 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
                 # Count selected alerts, including failed delivery attempts;
                 # delivery failures are not suppression by the cap.
                 new_alerts += 1
-            msg = format_message(name, domain, p,
-                                 restocked=extra if kind == "restock" else None,
-                                 currency=s.get("currency"))
+            if decision["applies"]:
+                msg = format_clothing_message(s, p, kind, extra, decision)
+            else:
+                msg = format_message(name, domain, p,
+                                     restocked=extra if kind == "restock" else None,
+                                     currency=s.get("currency"))
             if dry_run:
                 print("---\n" + msg)
             else:
@@ -1078,6 +1225,8 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         kept = set(state[domain])
         stock_all[domain] = {pid: snap for pid, snap in next_stock.items()
                              if pid in kept}
+        if next_prices is not None:
+            price_all[domain] = {pid: prices for pid, prices in next_prices.items() if pid in kept}
         time.sleep(1.5)  # be gentle with the stores too
 
     # Prune poll timestamps and stock maps for stores that have been removed.
@@ -1086,6 +1235,9 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     if "_stock" in state:
         state["_stock"] = {d: snaps for d, snaps in state["_stock"].items()
                            if d in live_domains}
+    if "_clothing_prices" in state:
+        state["_clothing_prices"] = {d: prices for d, prices in state["_clothing_prices"].items()
+                                     if d in live_domains}
     state["_poll_limit"] = limit
 
     report_health(state, ok_names, failed, skipped_unverified, empty,
@@ -1154,7 +1306,7 @@ def cmd_filters(cfg, store_query=None):
 
         passed, blocked = [], []
         for p in products:
-            if passes_filters(p, store_filters):
+            if alert_decision(p, s, cfg)["keep"]:
                 passed.append(p)
             else:
                 blocked.append(p)

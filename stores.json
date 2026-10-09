@@ -341,5 +341,108 @@
   },
   "poll": {
     "products_per_store": 50
+  },
+  "clothing_policy": {
+    "enabled": true,
+    "core_brands": [
+      "Pure Blue Japan",
+      "ONI Denim",
+      "Samurai Jeans",
+      "Kapital",
+      "Omoto Denim",
+      "Studio D'Artisan",
+      "Maru Sankaku Peke",
+      "Blue Blue Japan",
+      "FDMTL",
+      "Rogue Territory",
+      "Momotaro Jeans",
+      "Tanuki",
+      "Graph Zero"
+    ],
+    "min_interest_score": 3,
+    "price_drop_percent": 15,
+    "price_drop_minimum": {
+      "USD": 20,
+      "EUR": 20,
+      "GBP": 15,
+      "JPY": 2000,
+      "SGD": 25
+    },
+    "interest": {
+      "textures": [
+        "sashiko",
+        "boro",
+        "dobby",
+        "jacquard",
+        "slub",
+        "slubby",
+        "nep",
+        "neppy",
+        "double cloth",
+        "sakiori",
+        "patchwork",
+        "mixed fabric",
+        "textured denim",
+        "heavy texture",
+        "handwoven"
+      ],
+      "exceptional_textures": [
+        "boro",
+        "sakiori",
+        "patchwork",
+        "extreme slub",
+        "double cloth",
+        "handwoven"
+      ],
+      "dyes": [
+        "natural indigo",
+        "hank dyed",
+        "sumi",
+        "kakishibu",
+        "dorozome",
+        "mud dye",
+        "sulfur dyed",
+        "sulphur dyed",
+        "overdye",
+        "overdyed",
+        "layered dye",
+        "indigo black",
+        "black indigo",
+        "mud dyed",
+        "sulfur",
+        "sulphur"
+      ],
+      "construction": [
+        "reconstructed",
+        "reconstruction",
+        "mixed fabrics",
+        "asymmetric",
+        "hand stitched",
+        "hand sewn",
+        "reversible",
+        "panelled",
+        "paneled"
+      ],
+      "collaborations": [
+        "collaboration",
+        "collab",
+        "exclusive collaboration"
+      ],
+      "rarity": [
+        "discontinued",
+        "deadstock",
+        "archival",
+        "limited edition",
+        "rare"
+      ]
+    },
+    "retailer_vendor_aliases": [
+      "Okayama Denim",
+      "OD"
+    ]
+  },
+  "new_era_policy": {
+    "enabled": true,
+    "team_filter_source_domain": "www.neweracap.com"
   }
 }
