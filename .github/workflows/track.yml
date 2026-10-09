@@ -16,6 +16,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CLOTHING_FIT_PROFILE_JSON: ${{ secrets.CLOTHING_FIT_PROFILE_JSON }}
       - name: Persist seen state
         run: |
           git config user.name bot
