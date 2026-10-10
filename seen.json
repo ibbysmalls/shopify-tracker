@@ -86,6 +86,8 @@
     "7912727511091"
   ],
   "hatclub.com": [
+    "7859836059723",
+    "7859835928651",
     "7525956714571",
     "7095463411787",
     "7376244244555",
@@ -583,9 +585,7 @@
     "7765328298059",
     "7765328265291",
     "7765328429131",
-    "7765328330827",
-    "7765328396363",
-    "7765328363595"
+    "7765328330827"
   ],
   "sofreshclothing.com": [
     "15421643620567",
@@ -12442,7 +12442,7 @@
     "empty_since": {},
     "last_new": {
       "MYFITTEDS": 1790284635,
-      "Hat Club": 1791625613,
+      "Hat Club": 1791648112,
       "So Fresh Clothing": 1791564600,
       "Culture Kings US": 1791497993,
       "Exclusive Fitted Inc.": 1791587100,
@@ -12490,7 +12490,7 @@
       "Snakeoilprovisions": 1791585294
     },
     "last_digest": 1791545707,
-    "period_new": 346,
+    "period_new": 348,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -12498,53 +12498,53 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1791647113,
-    "hatclub.com": 1791647115,
-    "sofreshclothing.com": 1791647117,
-    "culturekings.com": 1791647119,
-    "exclusivefitted.com": 1791647121,
-    "www.neweracap.com": 1791647123,
-    "procietyshop.com": 1791647125,
-    "4ucaps.com": 1791647127,
-    "www.hatdreams.com": 1791647129,
-    "crownminded.com": 1791647131,
-    "www.ecapcity.com": 1791647132,
-    "www.lidshd.com": 1791647134,
-    "gf-sf.com": 1791647136,
-    "incredideals.ae": 1791647138,
-    "stylisticsjapan.com": 1791647140,
-    "www.cojpgallery.com": 1791647142,
-    "sonofastag.com": 1791647144,
-    "bears-tokyo.myshopify.com": 1791647146,
-    "corlection.com": 1791647148,
-    "ironshopprovisions.com": 1791647150,
-    "franklinandpoe.com": 1791647152,
-    "meadowweb.com": 1791647155,
-    "mildblend.com": 1791647157,
-    "rodeo-japan-pine-avenue.com": 1791647159,
-    "klaxon-store.com": 1791647161,
-    "www.bluebeachdenim.shop": 1791647164,
-    "www.dant.us": 1791647166,
-    "hinoya.shop": 1791647168,
-    "homegame-newyork.com": 1791647170,
-    "redcastheritage.com": 1791647172,
-    "www.panchoandlefty.se": 1791647174,
-    "www.blueingreensoho.com": 1791647176,
-    "www.guiltyparty.co": 1791647178,
-    "www.blueowl.us": 1791647180,
-    "standardandstrange.com": 1791647182,
-    "www.witheredfig.com": 1791647184,
-    "www.mentionclothing.com": 1791647186,
-    "sakuraclientele.com": 1791647188,
-    "cultofindigo.com": 1791647190,
-    "www.limbro.id": 1791647192,
-    "www.okayamadenim.com": 1791647195,
-    "berkeleysupply.com": 1791647197,
-    "statement-store.com": 1791647199,
-    "cultizm.com": 1791647201,
-    "www.motostyle.jp": 1791647203,
-    "fittedunderground.com": 1791647205,
-    "www.snakeoilprovisions.com": 1791647206
+    "www.myfitteds.com": 1791648021,
+    "hatclub.com": 1791648023,
+    "sofreshclothing.com": 1791648025,
+    "culturekings.com": 1791648027,
+    "exclusivefitted.com": 1791648028,
+    "www.neweracap.com": 1791648030,
+    "procietyshop.com": 1791648032,
+    "4ucaps.com": 1791648034,
+    "www.hatdreams.com": 1791648036,
+    "crownminded.com": 1791648037,
+    "www.ecapcity.com": 1791648039,
+    "www.lidshd.com": 1791648041,
+    "gf-sf.com": 1791648043,
+    "incredideals.ae": 1791648044,
+    "stylisticsjapan.com": 1791648046,
+    "www.cojpgallery.com": 1791648048,
+    "sonofastag.com": 1791648050,
+    "bears-tokyo.myshopify.com": 1791648052,
+    "corlection.com": 1791648054,
+    "ironshopprovisions.com": 1791648056,
+    "franklinandpoe.com": 1791648058,
+    "meadowweb.com": 1791648060,
+    "mildblend.com": 1791648062,
+    "rodeo-japan-pine-avenue.com": 1791648064,
+    "klaxon-store.com": 1791648066,
+    "www.bluebeachdenim.shop": 1791648068,
+    "www.dant.us": 1791648070,
+    "hinoya.shop": 1791648072,
+    "homegame-newyork.com": 1791648074,
+    "redcastheritage.com": 1791648075,
+    "www.panchoandlefty.se": 1791648077,
+    "www.blueingreensoho.com": 1791648080,
+    "www.guiltyparty.co": 1791648082,
+    "www.blueowl.us": 1791648083,
+    "standardandstrange.com": 1791648085,
+    "www.witheredfig.com": 1791648087,
+    "www.mentionclothing.com": 1791648089,
+    "sakuraclientele.com": 1791648091,
+    "cultofindigo.com": 1791648093,
+    "www.limbro.id": 1791648095,
+    "www.okayamadenim.com": 1791648098,
+    "berkeleysupply.com": 1791648100,
+    "statement-store.com": 1791648102,
+    "cultizm.com": 1791648105,
+    "www.motostyle.jp": 1791648107,
+    "fittedunderground.com": 1791648109,
+    "www.snakeoilprovisions.com": 1791648111
   },
   "fittedunderground.com": [
     "7591909654586",
@@ -15216,18 +15216,6 @@
       },
       "7765328330827": {
         "42510150959179": {
-          "available": true,
-          "title": "Navy/Black / Adjustable"
-        }
-      },
-      "7765328396363": {
-        "42510151024715": {
-          "available": true,
-          "title": "Navy/Black / Adjustable"
-        }
-      },
-      "7765328363595": {
-        "42510151090251": {
           "available": true,
           "title": "Navy/Black / Adjustable"
         }
@@ -25688,6 +25676,74 @@
         "41329369448523": {
           "available": false,
           "title": "White / 8"
+        }
+      },
+      "7859836059723": {
+        "42636372770891": {
+          "available": false,
+          "title": "Brick Red/Brown / 7"
+        },
+        "42636372803659": {
+          "available": true,
+          "title": "Brick Red/Brown / 7 1/8"
+        },
+        "42636372836427": {
+          "available": true,
+          "title": "Brick Red/Brown / 7 1/4"
+        },
+        "42636372869195": {
+          "available": true,
+          "title": "Brick Red/Brown / 7 3/8"
+        },
+        "42636372901963": {
+          "available": true,
+          "title": "Brick Red/Brown / 7 1/2"
+        },
+        "42636372934731": {
+          "available": true,
+          "title": "Brick Red/Brown / 7 5/8"
+        },
+        "42636372967499": {
+          "available": true,
+          "title": "Brick Red/Brown / 7 3/4"
+        },
+        "42636373000267": {
+          "available": false,
+          "title": "Brick Red/Brown / 8"
+        }
+      },
+      "7859835928651": {
+        "42636371722315": {
+          "available": false,
+          "title": "Light Blue/Black / 7"
+        },
+        "42636371755083": {
+          "available": true,
+          "title": "Light Blue/Black / 7 1/8"
+        },
+        "42636371787851": {
+          "available": true,
+          "title": "Light Blue/Black / 7 1/4"
+        },
+        "42636371820619": {
+          "available": false,
+          "title": "Light Blue/Black / 7 3/8"
+        },
+        "42636371853387": {
+          "available": false,
+          "title": "Light Blue/Black / 7 1/2"
+        },
+        "42636371886155": {
+          "available": false,
+          "title": "Light Blue/Black / 7 5/8"
+        },
+        "42636371918923": {
+          "available": false,
+          "title": "Light Blue/Black / 7 3/4"
+        },
+        "42636371951691": {
+          "available": true,
+          "title": "Light Blue/Black / 8"
         }
       }
     },
@@ -201170,7 +201226,7 @@
           "title": "Extra Large / Charcoal"
         },
         "55217768268119": {
-          "available": true,
+          "available": false,
           "title": "Double Extra Large / Charcoal"
         }
       },
@@ -201188,7 +201244,7 @@
           "title": "Extra Large / Olive"
         },
         "55217720754519": {
-          "available": true,
+          "available": false,
           "title": "Double Extra Large / Olive"
         }
       }
