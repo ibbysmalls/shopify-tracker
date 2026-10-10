@@ -1860,6 +1860,31 @@
     "6934278504561"
   ],
   "exclusivefitted.com": [
+    "9272005656741",
+    "8248760467621",
+    "9272010735781",
+    "9272010244261",
+    "9272009097381",
+    "9272008179877",
+    "9272016273573",
+    "9272014831781",
+    "9272014209189",
+    "9272270192805",
+    "9272018403493",
+    "9272017780901",
+    "9272017060005",
+    "10479011266725",
+    "9272271995045",
+    "5429401649317",
+    "5429371633829",
+    "5429437923493",
+    "5429402599589",
+    "5429403091109",
+    "5429396537509",
+    "5429381922981",
+    "9272272289957",
+    "8241283661989",
+    "5429394997413",
     "10813783474341",
     "10811739406501",
     "10811734917285",
@@ -12476,7 +12501,7 @@
       "Hat Club": 1791648112,
       "So Fresh Clothing": 1791564600,
       "Culture Kings US": 1791497993,
-      "Exclusive Fitted Inc.": 1791660714,
+      "Exclusive Fitted Inc.": 1791664306,
       "New Era Cap": 1791610513,
       "Prociety": 1791587100,
       "4ucaps.com": 1791494401,
@@ -12521,7 +12546,7 @@
       "Snakeoilprovisions": 1791585294
     },
     "last_digest": 1791545707,
-    "period_new": 391,
+    "period_new": 416,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -12529,53 +12554,53 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1791663313,
-    "hatclub.com": 1791663314,
-    "sofreshclothing.com": 1791663316,
-    "culturekings.com": 1791663318,
-    "exclusivefitted.com": 1791663320,
-    "www.neweracap.com": 1791663322,
-    "procietyshop.com": 1791663323,
-    "4ucaps.com": 1791663325,
-    "www.hatdreams.com": 1791663327,
-    "crownminded.com": 1791663329,
-    "www.ecapcity.com": 1791663331,
-    "www.lidshd.com": 1791663333,
-    "gf-sf.com": 1791663334,
-    "incredideals.ae": 1791663336,
-    "stylisticsjapan.com": 1791663338,
-    "www.cojpgallery.com": 1791663340,
-    "sonofastag.com": 1791663342,
-    "bears-tokyo.myshopify.com": 1791663344,
-    "corlection.com": 1791663346,
-    "ironshopprovisions.com": 1791663348,
-    "franklinandpoe.com": 1791663350,
-    "meadowweb.com": 1791663352,
-    "mildblend.com": 1791663354,
-    "rodeo-japan-pine-avenue.com": 1791663356,
-    "klaxon-store.com": 1791663358,
-    "www.bluebeachdenim.shop": 1791663360,
-    "www.dant.us": 1791663362,
-    "hinoya.shop": 1791663364,
-    "homegame-newyork.com": 1791663366,
-    "redcastheritage.com": 1791663368,
-    "www.panchoandlefty.se": 1791663370,
-    "www.blueingreensoho.com": 1791663372,
-    "www.guiltyparty.co": 1791663374,
-    "www.blueowl.us": 1791663376,
-    "standardandstrange.com": 1791663377,
-    "www.witheredfig.com": 1791663379,
-    "www.mentionclothing.com": 1791663381,
-    "sakuraclientele.com": 1791663384,
-    "cultofindigo.com": 1791663385,
-    "www.limbro.id": 1791663388,
-    "www.okayamadenim.com": 1791663390,
-    "berkeleysupply.com": 1791663393,
-    "statement-store.com": 1791663395,
-    "cultizm.com": 1791663397,
-    "www.motostyle.jp": 1791663399,
-    "fittedunderground.com": 1791663401,
-    "www.snakeoilprovisions.com": 1791663403
+    "www.myfitteds.com": 1791664218,
+    "hatclub.com": 1791664219,
+    "sofreshclothing.com": 1791664221,
+    "culturekings.com": 1791664223,
+    "exclusivefitted.com": 1791664225,
+    "www.neweracap.com": 1791664226,
+    "procietyshop.com": 1791664228,
+    "4ucaps.com": 1791664230,
+    "www.hatdreams.com": 1791664232,
+    "crownminded.com": 1791664233,
+    "www.ecapcity.com": 1791664235,
+    "www.lidshd.com": 1791664237,
+    "gf-sf.com": 1791664239,
+    "incredideals.ae": 1791664241,
+    "stylisticsjapan.com": 1791664243,
+    "www.cojpgallery.com": 1791664244,
+    "sonofastag.com": 1791664246,
+    "bears-tokyo.myshopify.com": 1791664248,
+    "corlection.com": 1791664250,
+    "ironshopprovisions.com": 1791664252,
+    "franklinandpoe.com": 1791664254,
+    "meadowweb.com": 1791664256,
+    "mildblend.com": 1791664257,
+    "rodeo-japan-pine-avenue.com": 1791664259,
+    "klaxon-store.com": 1791664261,
+    "www.bluebeachdenim.shop": 1791664264,
+    "www.dant.us": 1791664265,
+    "hinoya.shop": 1791664267,
+    "homegame-newyork.com": 1791664269,
+    "redcastheritage.com": 1791664271,
+    "www.panchoandlefty.se": 1791664273,
+    "www.blueingreensoho.com": 1791664275,
+    "www.guiltyparty.co": 1791664277,
+    "www.blueowl.us": 1791664279,
+    "standardandstrange.com": 1791664280,
+    "www.witheredfig.com": 1791664282,
+    "www.mentionclothing.com": 1791664284,
+    "sakuraclientele.com": 1791664286,
+    "cultofindigo.com": 1791664288,
+    "www.limbro.id": 1791664290,
+    "www.okayamadenim.com": 1791664292,
+    "berkeleysupply.com": 1791664295,
+    "statement-store.com": 1791664297,
+    "cultizm.com": 1791664298,
+    "www.motostyle.jp": 1791664300,
+    "fittedunderground.com": 1791664302,
+    "www.snakeoilprovisions.com": 1791664304
   },
   "fittedunderground.com": [
     "7591909654586",
@@ -25199,7 +25224,7 @@
           "title": "Pink/White / 7 1/8"
         },
         "40719903391819": {
-          "available": true,
+          "available": false,
           "title": "Pink/White / 7 1/4"
         },
         "40719903424587": {
@@ -25719,7 +25744,7 @@
           "title": "Brick Red/Brown / 7 1/8"
         },
         "42636372836427": {
-          "available": true,
+          "available": false,
           "title": "Brick Red/Brown / 7 1/4"
         },
         "42636372869195": {
@@ -43826,6 +43851,508 @@
         },
         "50629762121893": {
           "available": true,
+          "title": "8"
+        }
+      },
+      "9272005656741": {
+        "46084263116965": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "8248760467621": {
+        "42528203604133": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272010735781": {
+        "46084289134757": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272010244261": {
+        "46084275863717": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272009097381": {
+        "46084271177893": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272008179877": {
+        "46084269310117": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272016273573": {
+        "46084302078117": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272014831781": {
+        "46084298375333": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272014209189": {
+        "46084297195685": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272270192805": {
+        "46085425922213": {
+          "available": false,
+          "title": "7"
+        },
+        "46085425954981": {
+          "available": false,
+          "title": "71/8"
+        },
+        "46085425987749": {
+          "available": false,
+          "title": "71/4"
+        },
+        "46085426020517": {
+          "available": false,
+          "title": "73/8"
+        },
+        "46085426053285": {
+          "available": false,
+          "title": "71/2"
+        },
+        "46085426086053": {
+          "available": false,
+          "title": "75/8"
+        },
+        "46085426118821": {
+          "available": false,
+          "title": "73/4"
+        },
+        "46085426151589": {
+          "available": false,
+          "title": "77/8"
+        },
+        "46085426184357": {
+          "available": false,
+          "title": "8"
+        }
+      },
+      "9272018403493": {
+        "46084305977509": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272017780901": {
+        "46084304928933": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272017060005": {
+        "46084303421605": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "10479011266725": {
+        "47485801857189": {
+          "available": false,
+          "title": "Default Title"
+        }
+      },
+      "9272271995045": {
+        "46085433917605": {
+          "available": false,
+          "title": "7"
+        },
+        "46085433950373": {
+          "available": false,
+          "title": "71/8"
+        },
+        "46085433983141": {
+          "available": false,
+          "title": "71/4"
+        },
+        "46085434015909": {
+          "available": false,
+          "title": "73/8"
+        },
+        "46085434048677": {
+          "available": false,
+          "title": "71/2"
+        },
+        "46085434081445": {
+          "available": false,
+          "title": "75/8"
+        },
+        "46085434114213": {
+          "available": false,
+          "title": "73/4"
+        },
+        "46085434146981": {
+          "available": false,
+          "title": "77/8"
+        },
+        "46085434179749": {
+          "available": false,
+          "title": "8"
+        }
+      },
+      "5429401649317": {
+        "35190673866917": {
+          "available": true,
+          "title": "7"
+        },
+        "35190673899685": {
+          "available": false,
+          "title": "71/8"
+        },
+        "35190673703077": {
+          "available": false,
+          "title": "71/4"
+        },
+        "35190673735845": {
+          "available": false,
+          "title": "73/8"
+        },
+        "35190673768613": {
+          "available": false,
+          "title": "71/2"
+        },
+        "35190673801381": {
+          "available": false,
+          "title": "75/8"
+        },
+        "35190673834149": {
+          "available": false,
+          "title": "73/4"
+        },
+        "35190673637541": {
+          "available": false,
+          "title": "77/8"
+        },
+        "35190673670309": {
+          "available": false,
+          "title": "8"
+        }
+      },
+      "5429371633829": {
+        "35190423847077": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "5429437923493": {
+        "35190924935333": {
+          "available": true,
+          "title": "7"
+        },
+        "35190924804261": {
+          "available": false,
+          "title": "71/8"
+        },
+        "35190924837029": {
+          "available": false,
+          "title": "73/8"
+        },
+        "35190924869797": {
+          "available": false,
+          "title": "71/2"
+        },
+        "35190924902565": {
+          "available": false,
+          "title": "75/8"
+        },
+        "35190924705957": {
+          "available": false,
+          "title": "73/4"
+        },
+        "35190924738725": {
+          "available": false,
+          "title": "77/8"
+        },
+        "35190924771493": {
+          "available": false,
+          "title": "8"
+        }
+      },
+      "5429402599589": {
+        "35190680453285": {
+          "available": false,
+          "title": "7"
+        },
+        "35190680486053": {
+          "available": false,
+          "title": "71/8"
+        },
+        "35190680518821": {
+          "available": false,
+          "title": "71/4"
+        },
+        "35190680289445": {
+          "available": false,
+          "title": "73/8"
+        },
+        "35190680322213": {
+          "available": false,
+          "title": "71/2"
+        },
+        "35190680354981": {
+          "available": false,
+          "title": "75/8"
+        },
+        "35190680387749": {
+          "available": false,
+          "title": "73/4"
+        },
+        "35190680420517": {
+          "available": true,
+          "title": "77/8"
+        },
+        "35190680256677": {
+          "available": false,
+          "title": "8"
+        }
+      },
+      "5429403091109": {
+        "35190686351525": {
+          "available": false,
+          "title": "7"
+        },
+        "35190686384293": {
+          "available": false,
+          "title": "71/8"
+        },
+        "35190686417061": {
+          "available": false,
+          "title": "71/4"
+        },
+        "35190686449829": {
+          "available": false,
+          "title": "73/8"
+        },
+        "35190686482597": {
+          "available": false,
+          "title": "71/2"
+        },
+        "35190686515365": {
+          "available": true,
+          "title": "75/8"
+        },
+        "35190686253221": {
+          "available": false,
+          "title": "73/4"
+        },
+        "35190686285989": {
+          "available": true,
+          "title": "77/8"
+        },
+        "35190686318757": {
+          "available": true,
+          "title": "8"
+        }
+      },
+      "5429396537509": {
+        "35190642802853": {
+          "available": true,
+          "title": "7"
+        },
+        "35190642835621": {
+          "available": false,
+          "title": "71/8"
+        },
+        "35190642868389": {
+          "available": false,
+          "title": "71/4"
+        },
+        "35190642606245": {
+          "available": true,
+          "title": "73/8"
+        },
+        "35190642639013": {
+          "available": false,
+          "title": "71/2"
+        },
+        "35190642671781": {
+          "available": false,
+          "title": "75/8"
+        },
+        "35190642704549": {
+          "available": false,
+          "title": "73/4"
+        },
+        "35190642737317": {
+          "available": false,
+          "title": "77/8"
+        },
+        "35190642770085": {
+          "available": true,
+          "title": "8"
+        }
+      },
+      "5429381922981": {
+        "35190530998437": {
+          "available": false,
+          "title": "7"
+        },
+        "35190531031205": {
+          "available": true,
+          "title": "71\u20448"
+        },
+        "35190531063973": {
+          "available": true,
+          "title": "71\u20444"
+        },
+        "35190531096741": {
+          "available": false,
+          "title": "73\u20448"
+        },
+        "35190531129509": {
+          "available": false,
+          "title": "71\u20442"
+        },
+        "35190531162277": {
+          "available": false,
+          "title": "75\u20448"
+        },
+        "35190531195045": {
+          "available": false,
+          "title": "73\u20444"
+        },
+        "35190531227813": {
+          "available": false,
+          "title": "77\u20448"
+        },
+        "35190531260581": {
+          "available": false,
+          "title": "8"
+        }
+      },
+      "9272272289957": {
+        "46085436047525": {
+          "available": true,
+          "title": "7"
+        },
+        "46085436080293": {
+          "available": true,
+          "title": "71/8"
+        },
+        "46085436113061": {
+          "available": true,
+          "title": "71/4"
+        },
+        "46085436145829": {
+          "available": true,
+          "title": "73/8"
+        },
+        "46085436178597": {
+          "available": true,
+          "title": "71/2"
+        },
+        "46085436211365": {
+          "available": false,
+          "title": "75/8"
+        },
+        "46085436244133": {
+          "available": false,
+          "title": "73/4"
+        },
+        "46085436276901": {
+          "available": false,
+          "title": "77/8"
+        },
+        "46085436309669": {
+          "available": false,
+          "title": "8"
+        }
+      },
+      "8241283661989": {
+        "42510376730789": {
+          "available": false,
+          "title": "67/8"
+        },
+        "42510376763557": {
+          "available": false,
+          "title": "7"
+        },
+        "42510376796325": {
+          "available": true,
+          "title": "71/8"
+        },
+        "42510376829093": {
+          "available": true,
+          "title": "71/4"
+        },
+        "42510376861861": {
+          "available": true,
+          "title": "73/8"
+        },
+        "42510376894629": {
+          "available": true,
+          "title": "71/2"
+        },
+        "42510376927397": {
+          "available": true,
+          "title": "75/8"
+        },
+        "42510376992933": {
+          "available": false,
+          "title": "73/4"
+        },
+        "42510377058469": {
+          "available": false,
+          "title": "77/8"
+        },
+        "42510377091237": {
+          "available": false,
+          "title": "8"
+        }
+      },
+      "5429394997413": {
+        "35190631727269": {
+          "available": false,
+          "title": "7"
+        },
+        "35190631760037": {
+          "available": false,
+          "title": "71/8"
+        },
+        "35190631792805": {
+          "available": true,
+          "title": "71/4"
+        },
+        "35190631825573": {
+          "available": true,
+          "title": "73/8"
+        },
+        "35190631596197": {
+          "available": true,
+          "title": "71/2"
+        },
+        "35190631628965": {
+          "available": true,
+          "title": "75/8"
+        },
+        "35190631661733": {
+          "available": true,
+          "title": "73/4"
+        },
+        "35190631694501": {
+          "available": false,
+          "title": "77/8"
+        },
+        "35190631563429": {
+          "available": false,
           "title": "8"
         }
       }
@@ -163633,7 +164160,7 @@
           "title": "7 7/8"
         },
         "42775455236142": {
-          "available": true,
+          "available": false,
           "title": "8"
         }
       },
