@@ -179,42 +179,38 @@ Run offline regression tests without polling stores or sending Telegram messages
 python3 -m unittest -v
 ```
 
-## Clothing relevance policy
+## Broad clothing feed
 
-`clothing_policy` in `stores.json` applies to garments identified by title or
-product type. Existing store filters remain required. Ordinary clothing first
-passes the 13-brand list; aliases live in `clothing_policy.py`. An explicit
-outside manufacturer cannot be replaced by a preferred-brand title mention.
-Configured retailer vendor labels may resolve the manufacturer from the title.
-Brand, a new page, ordinary black denim, or scarcity alone is insufficient.
-Distinctive fabrics, dyes, construction and collaborations are preferred.
-Standard Type I/II/truckers require stronger distinction. Roomier text fit
-signals still work without a private profile. When private measurement targets
-are present, actual measurements outrank model-number assumptions. A wider hem
-can remain a plausible tailoring candidate.
+`clothing_policy` in `stores.json` admits garments from every brand at the
+currently monitored stores. There is no brand whitelist, interest score,
+preferred-fit threshold or reference-size rejection. Ordinary jeans, slim cuts,
+black denim, standard truckers, shirts, hoodies and team apparel are eligible
+when a new-listing, restock or meaningful price event occurs.
 
-Garments matching an existing store team/city include list retain their legacy
-eligibility and formatting, subject to the same exclusions, type and stock
-filters. They bypass the new clothing whitelist and scoring. This currently
-applies at Hat Club, Culture Kings US and New Era Cap. No include terms change;
-ordinary non-team garments continue through the clothing policy.
+Socks and footwear are excluded by product type/title. Descriptions and
+recommendations cannot reclassify an item. Known accessories/home goods and
+unclassified merchandise are excluded from this clothing/hat feed. Garment
+recognition does not rely on a fabric or preferred-brand mention in the body.
+Stock checks remain required. Clothing bypasses store keyword/team/category
+filters so those hat rules do not reject garments at the same stores.
 
-New Era Cap is already a configured source. `New Era`, `New-Era`, `NEWERA` and
-`neweracap` normalize to the same brand. `new_era_policy` requires New Era hats
-at every source to match the exact existing include terms from New Era Cap.
-Store exclusions, categories and stock filters still apply. Non-New-Era hat
-eligibility is unchanged. No teams, city terms, stores or separate feeds are
-added, and no separate city predicate is invented.
+Hats retain the complete existing store filters and New Era relevance gate.
+New Era hats at every source still match the exact existing team/city terms
+from New Era Cap. No team/city lists, stores, sources or hat formatting change.
 
-New listings and API-reported restocks retain the original ID/variant history.
-Clothing also records per-variant price references in `_clothing_prices`;
-upgrades seed silently. Discounts must reach both the configured percentage
-and currency-specific amount floor. Unchanged listings and trivial discounts
-emit no event. No state reset or manual `seen.json` edit is needed. With private
-size references present, explicit restock/price-change labels must match a
-category/brand reference or a measured fit match. A wrong-size restock does
-not consume a simultaneous qualifying price drop. Team apparel retains its
-legacy events and does not acquire new clothing price events.
+New listings and catalogue-reported restocks retain the original ID/variant
+history. All-brand garments now use the existing per-variant price references
+in `_clothing_prices`; newly included products seed their prices silently.
+Discounts must reach both the unchanged percentage and currency amount floor.
+A simultaneous restock takes precedence over a price drop: one product/event
+per poll. Hats, socks, footwear and other merchandise acquire no clothing price
+events. Unchanged listings emit no event. No state reset, manual `seen.json`
+edit or replay of previously rejected listings is needed.
+
+One aggregate `Feed counts:` line reports garment, hat, sock/footwear and other
+catalogue counts plus eligible/rejected event counts before the existing alert
+cap. It contains integers only, no titles, identities, profile data or sizing
+values. The cap and delivery/health behavior remain unchanged.
 
 ## Private clothing profile
 
@@ -259,11 +255,11 @@ All values and labels below are **synthetic examples**, not personal defaults:
 
 References support multiple labels and numeric brand/category labels. All fit
 numbers are positive inches; waist bounds are ordered. Unsupported/malformed
-profiles are treated as absent without logging their contents. Absent, empty,
-or unusable profiles do not apply personal size gating or measurement fit
-bonuses/penalties. Generic garment fit descriptions and useful discovery remain
-active. Ownership adds context/lower purchase priority, never an exclusion or a
-dedupe key. The repository contains no personal wardrobe list or fit defaults.
+profiles are treated as absent without logging their contents. Fit and size
+references are optional context for every garment and never change alert
+eligibility, including when a profile is valid. Absent, empty or unusable
+profiles simply omit that context. Ownership adds context/lower purchase
+priority, never an exclusion or a dedupe key. The repository contains no personal wardrobe list or fit defaults.
 Owned entries may also use `{"brand": "PBJ", "tokens": ["Synthetic-Model-A"]}`
 so manufacturer aliases and intervening title words do not lose the annotation.
 
@@ -271,9 +267,10 @@ The current tracker has **no live product-page personal-size verifier**.
 Catalogue API stock is an event signal and cannot prove personal size availability.
 Clothing messages retain an explicit unverified inventory/size warning, including
 in fallback mode. Measurement rows retain source, raw values, units and method;
-chart conflicts are retained. Measurements do not prove inventory. Legacy hats
-and team apparel keep their original API-derived stock wording. RSS and
-WooCommerce retain their existing limitations. No per-product crawling or rate
+chart conflicts are retained. Measurements do not prove inventory. Hats keep
+their original API-derived stock wording. All garments use the explicit
+inventory/size warning, including team apparel. RSS and WooCommerce retain
+their existing limitations. No per-product crawling or rate
 limit change is introduced. Recent production runs have reported HTTP 429 rate
 limits. A nine-store replay is regression evidence and does not establish full
 production reachability across the configured stores.
@@ -291,6 +288,6 @@ makes no network calls, sends no alerts and writes no state. Its CLI deliberatel
 does not load a private profile, so private context cannot be copied into review
 artifacts. Tests may supply synthetic context directly. Replay distinguishes
 conditional new-listing eligibility from actual events found against history.
-Sources, crawling, schedules, delivery, health monitoring and legacy filter
+Sources, crawling, schedules, delivery, health monitoring and hat filter
 predicates remain unchanged. Actions environment-secret loading is exercised
 with synthetic data in offline tests, without claiming deployed verification.

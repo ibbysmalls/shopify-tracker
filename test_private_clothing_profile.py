@@ -27,7 +27,7 @@ class ProfileTests(unittest.TestCase):
             p = product(f"Synthetic {brand} Boro {ptype}", brand, product_type=ptype)
             self.assertTrue(tracker.alert_decision(p, STORE, CFG, "restock", [label], loaded)["keep"])
         p = product("Synthetic Kapital Boro Jacket", "Kapital", product_type="Jacket")
-        self.assertFalse(tracker.alert_decision(p, STORE, CFG, "restock", ["8"], loaded)["keep"])
+        self.assertTrue(tracker.alert_decision(p, STORE, CFG, "restock", ["8"], loaded)["keep"])
         aliased = copy.deepcopy(SYNTHETIC_PROFILE)
         aliased["brand_size_references"] = {"PBJ": {"pants": ["S9"]}}
         self.assertTrue(tracker.alert_decision(product(), STORE, CFG, "restock", ["S9"], aliased)["keep"])
@@ -70,7 +70,7 @@ class ProfileTests(unittest.TestCase):
             without = tracker.alert_decision(p, STORE, CFG, kind, extra, {})
             no_chart = tracker.alert_decision(product(), STORE, CFG, kind, extra, {})
             self.assertTrue(without["keep"])
-            self.assertEqual(without["score"], no_chart["score"])
+            self.assertEqual(without["keep"], no_chart["keep"])
             self.assertFalse(without["fit"]["roomy"])
             self.assertFalse(without["fit"]["narrow"])
             self.assertEqual(without["fit"]["selected"], {})
@@ -96,7 +96,7 @@ class ProfileTests(unittest.TestCase):
         owned = tracker.alert_decision(p, STORE, CFG, "new", context=profile)
         plain = tracker.alert_decision(p, STORE, CFG, "new", context={})
         self.assertTrue(owned["owned"])
-        self.assertEqual((owned["keep"], owned["score"]), (plain["keep"], plain["score"]))
+        self.assertEqual(owned["keep"], plain["keep"])
         p["vendor"] = "ONI"
         self.assertFalse(tracker.alert_decision(p, STORE, CFG, "new", context=profile)["owned"])
         self.assertEqual(private.validate_profile({"owned_models": [{"brand": "PBJ", "tokens": []}]}), {})
@@ -128,8 +128,9 @@ class ProfileTests(unittest.TestCase):
             stack.enter_context(redirect_stdout(output))
             stack.enter_context(redirect_stderr(errors))
             tracker.main()
-        # Q2 is suppressed only when the environment profile was consumed.
-        send.assert_not_called()
+        # Q2 remains eligible even with a different private reference label.
+        send.assert_called_once()
+        self.assertIn("Catalogue reports a restock", send.call_args.args[0])
         network.assert_not_called()
         telegram.assert_not_called()
         save.assert_called_once()
@@ -247,36 +248,30 @@ class StartupStatusTests(unittest.TestCase):
 
 
 class TeamApparelTests(unittest.TestCase):
-    def test_existing_lists_retain_legacy_garment_decisions_at_all_three_stores(self):
+    def test_all_garments_at_team_stores_use_broad_clothing_path(self):
         stores = [s for s in CFG["stores"] if s.get("filters", {}).get("include_keywords")]
         self.assertEqual({s["name"] for s in stores}, {"Hat Club", "Culture Kings US", "New Era Cap"})
         for store in stores:
-            for title in ["Synthetic 49ers Work Jacket", "Synthetic SF Giants Linen Shirt",
-                          "Synthetic UCLA Warmup Pants", "Synthetic Yankees Work Jacket",
+            for title in ["Synthetic 49ers Work Jacket", "Synthetic Yankees Work Jacket",
                           "Synthetic Generic Fashion Jacket", "Synthetic Youth 49ers Jacket",
                           "Synthetic 49ers Hoodie", "Synthetic Athletics Department Jacket",
                           "Synthetic Boston Bruins Jacket", "Synthetic 49ers Jersey"]:
                 for vendor in ["Outside Team Supplier", "New Era", "PBJ"]:
                     p = product(title, vendor, product_type="Clothing")
-                    expected = tracker.passes_filters(p, tracker.resolve_filters(store, CFG["filters"]))
-                    decision = tracker.alert_decision(p, store, CFG, "new", context=SYNTHETIC_PROFILE)
+                    d = tracker.alert_decision(p, store, CFG, "new", context=SYNTHETIC_PROFILE)
                     with self.subTest(store=store["name"], title=title, vendor=vendor):
-                        self.assertEqual(decision["keep"], expected)
-                        if decision["legacy_team_apparel"]:
-                            self.assertFalse(decision["applies"])
-            p = product("Synthetic 49ers Work Jacket", "Outside Team Supplier", product_type="Jacket",
-                        variants=[{"id": 11, "title": "Q2", "available": True, "price": "200"}])
-            self.assertTrue(tracker.alert_decision(p, store, CFG, "restock", ["Q2"], SYNTHETIC_PROFILE)["keep"])
+                        self.assertTrue(d["keep"])
+                        self.assertTrue(d["applies"])
+            p = product("Synthetic 49ers Work Jacket", "Outside Team Supplier", product_type="Jacket")
             events, history = tracker.additional_price_events([p], [], {}, CFG, store, context=SYNTHETIC_PROFILE)
-            self.assertEqual((events, history), ([], {}))
-            p["vendor"] = "PBJ"
-            self.assertEqual(tracker.additional_price_events([p], [], {}, CFG, store), ([], {}))
+            self.assertEqual(events, [])
+            self.assertEqual(history, {"1": {"11": "250"}})
 
-    def test_team_mention_does_not_bypass_non_team_store_whitelist(self):
-        p = product("Synthetic 49ers Boro Work Jacket", "Outside Team Supplier", product_type="Jacket")
+    def test_team_mention_is_unnecessary_for_clothing(self):
+        p = product("Synthetic Ordinary Work Jacket", "Outside Team Supplier", product_type="Jacket")
         d = tracker.alert_decision(p, STORE, CFG, "new")
         self.assertFalse(d["legacy_team_apparel"])
-        self.assertFalse(d["keep"])
+        self.assertTrue(d["keep"])
 
 
 class DiscountThresholdTests(unittest.TestCase):
