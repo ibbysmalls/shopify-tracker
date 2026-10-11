@@ -839,18 +839,24 @@ def legacy_team_apparel(product, store):
 
 
 def alert_decision(product, store, cfg, kind=None, extra=None, context=None):
-    """Preserve legacy store filters; apply clothing policy only to clothing.
+    """Allow garments broadly; preserve the complete legacy hat filter path.
 
     New Era is already a configured source. Its brand-specific relevance gate
     reuses the exact existing source terms and never bypasses store filters.
     """
     url = product.get("_url") or f"https://{store['domain']}/products/{product.get('handle', '')}"
     team_apparel = legacy_team_apparel(product, store)
-    decision = clothing_policy.evaluate(product, {} if team_apparel else cfg.get("clothing_policy", {}),
+    decision = clothing_policy.evaluate(product, cfg.get("clothing_policy", {}),
                                         kind, extra, url, context)
     decision["legacy_team_apparel"] = team_apparel
-    if not passes_filters(product, resolve_filters(store, cfg.get("filters", {}))):
-        decision.update(keep=False, reasons=["existing store include/exclude/type/stock filter"])
+    filters = resolve_filters(store, cfg.get("filters", {}))
+    if decision["applies"]:
+        # Team/category/keyword exclusions still belong to hats. Clothing's
+        # only category exclusions are socks/footwear; stock remains required.
+        filters = {"notify_only_available": filters.get("notify_only_available", False)}
+    if not passes_filters(product, filters):
+        decision.update(keep=False, reasons=["stock filter" if decision["applies"] else
+                                            "existing store include/exclude/type/stock filter"])
     new_era = cfg.get("new_era_policy", {})
     source_domain = new_era.get("team_filter_source_domain")
     is_new_era = (store.get("domain") == source_domain or
@@ -883,8 +889,7 @@ def clothing_price_events(products, previous, policy, currency=None, skip_ids=()
     floor = Decimal(str(policy.get("price_drop_minimum", {}).get(currency or "USD", 20)))
     percent = Decimal(str(policy.get("price_drop_percent", 15))) / 100
     for p in products:
-        if (clothing_policy.category(p) not in ("pants", "jacket", "clothing") or "id" not in p
-                or clothing_policy.product_brand(p, policy.get("retailer_vendor_aliases", [])) not in policy.get("core_brands", [])):
+        if clothing_policy.category(p) not in clothing_policy.CLOTHING_CATEGORIES or "id" not in p:
             continue
         pid = str(p["id"])
         old = previous.get(pid, {})
@@ -910,11 +915,10 @@ def clothing_price_events(products, previous, policy, currency=None, skip_ids=()
 
 
 def additional_price_events(products, events, previous, cfg, store, seed_ids=(), context=None):
-    """Prefer an eligible existing event, not a suppressed wrong-size restock."""
+    """One product/event per poll; size labels never suppress a garment event."""
     skip = [p["id"] for kind, p, extra in events
             if kind == "new" or alert_decision(p, store, cfg, kind, extra, context)["keep"]]
-    clothing = [p for p in products if not legacy_team_apparel(p, store)]
-    return clothing_price_events(clothing, previous, cfg.get("clothing_policy", {}),
+    return clothing_price_events(products, previous, cfg.get("clothing_policy", {}),
                                  store.get("currency"), skip_ids=skip + list(seed_ids))
 
 
@@ -1072,6 +1076,8 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     empty = []
     deferred = []
     new_by_store = {}
+    feed_counts = dict.fromkeys(("garments", "hats", "socks_footwear", "other",
+                                 "event_eligible", "event_rejected"), 0)
 
     for s in cfg["stores"]:
         name, domain = s["name"], s["domain"]
@@ -1154,11 +1160,15 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
             products, seen, prev_stock, seed_ids=seed_ids)
 
         policy = cfg.get("clothing_policy", {})
+        for p in products:
+            category = clothing_policy.category(p)
+            key = ("garments" if category in clothing_policy.CLOTHING_CATEGORIES else
+                   "hats" if category == "hat" else "socks_footwear" if category == "socks_footwear" else "other")
+            feed_counts[key] += 1
         next_prices = None
         if policy.get("enabled") and (
                 domain in state.get("_clothing_prices", {}) or any(
-                    clothing_policy.category(p) in ("pants", "jacket", "clothing") and
-                    not legacy_team_apparel(p, s) and clothing_policy.product_brand(p, policy.get("retailer_vendor_aliases", [])) in policy.get("core_brands", []) for p in products)):
+                    clothing_policy.category(p) in clothing_policy.CLOTHING_CATEGORIES for p in products)):
             price_all = state.setdefault("_clothing_prices", {})
             # Existing new/restock events take precedence: one product, one
             # alert per poll. First observation of prices seeds silently.
@@ -1183,6 +1193,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         suppressed = 0
         for kind, p, extra in events:
             decision = alert_decision(p, s, cfg, kind, extra, private_context)
+            feed_counts["event_eligible" if decision["keep"] else "event_rejected"] += 1
             if not decision["keep"]:
                 continue
             if no_anchor and kind == "new":
@@ -1253,6 +1264,9 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
           f"{len(failed)} failed, {len(empty)} returned empty, "
           f"{len(deferred)} not due, "
           f"{len(skipped_unverified)} skipped (unverified).")
+    if any(feed_counts.values()):
+        # Aggregate integers only: no product identities, profile or fit data.
+        print("Feed counts: " + ", ".join(f"{key}={value}" for key, value in feed_counts.items()))
     if failed:
         print(f"  FAILED: {', '.join(failed)}")
     if empty:

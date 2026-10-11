@@ -41,8 +41,9 @@ def chart(hem=7.5, thigh=12.2, rise=10.1, knee=7.3, size="S2", waist=31):
 
 class AliasTests(unittest.TestCase):
     def test_all_thirteen_brands_and_all_common_aliases(self):
-        self.assertEqual(len(POLICY["core_brands"]), 13)
-        self.assertEqual(set(POLICY["core_brands"]), set(policy.BRAND_ALIASES))
+        self.assertEqual(len(policy.BRAND_ALIASES), 13)
+        self.assertNotIn("core_brands", POLICY)
+        self.assertNotIn("min_interest_score", POLICY)
         for canonical, aliases in policy.BRAND_ALIASES.items():
             for alias in aliases:
                 with self.subTest(brand=canonical, alias=alias):
@@ -64,11 +65,15 @@ class AliasTests(unittest.TestCase):
 
     def test_description_mentions_cannot_override_manufacturer(self):
         p = product("Generic Slub Jeans", vendor="Outside Brand", body_html="Similar to Pure Blue Japan")
-        self.assertFalse(tracker.alert_decision(p, STORE, CFG, "new")["keep"])
+        d = tracker.alert_decision(p, STORE, CFG, "new")
+        self.assertTrue(d["keep"])
+        self.assertIsNone(d["brand"])
 
     def test_title_inspiration_cannot_override_explicit_outside_vendor(self):
         p=product("Levi's Kapital-inspired Patchwork Jeans", vendor="Levi's")
-        self.assertFalse(tracker.alert_decision(p, STORE, CFG, 'new')['keep'])
+        d = tracker.alert_decision(p, STORE, CFG, 'new')
+        self.assertTrue(d['keep'])
+        self.assertIsNone(d['brand'])
 
     def test_explicit_retailer_vendor_can_resolve_manufacturer_from_title(self):
         for vendor in ['OD','Okayama Denim','Okayamadenim']:
@@ -83,14 +88,14 @@ class RelevanceTests(unittest.TestCase):
     def decision(self, p, kind="new", extra=None, context=None):
         return tracker.alert_decision(p, STORE, CFG, kind, extra, SYNTHETIC_PROFILE if context is None else context)
 
-    def test_outside_brands_suppressed_even_when_special(self):
+    def test_all_brands_are_eligible(self):
         for brand in ["Iron Heart", "Levi's", "The Flat Head", "Warehouse", "Unbranded"]:
-            self.assertFalse(self.decision(product("Natural Indigo Patchwork Jeans", brand))["keep"])
+            self.assertTrue(self.decision(product("Natural Indigo Patchwork Jeans", brand))["keep"])
 
-    def test_brand_new_rare_low_stock_not_enough(self):
+    def test_ordinary_clothing_needs_no_interest_score(self):
         for text in ["PBJ Standard Straight Jeans", "PBJ New Release Straight Jeans",
                      "PBJ Rare Limited Edition Jeans", "PBJ Low Stock Jeans", "PBJ Sale Jeans"]:
-            self.assertFalse(self.decision(product(text))["keep"])
+            self.assertTrue(self.decision(product(text))["keep"])
 
     def test_special_fabric_with_trigger_kept(self):
         for text in ["PBJ Extreme Slub Relaxed Straight Jeans", "Kapital Boro Haori",
@@ -104,17 +109,17 @@ class RelevanceTests(unittest.TestCase):
         self.assertFalse(policy.title_collaboration(product("Samurai Black x Black Jeans")))
         self.assertTrue(self.decision(product("RGT x Example Shop Sashiko Type I Jacket", "RGT", product_type="Jacket"))["keep"])
 
-    def test_marketplace_uses_same_bar_and_preserves_listing_url(self):
+    def test_listing_url_is_preserved_for_all_brand_clothing(self):
         p = product("Kapital Rare Plain Jeans", "Kapital", _url="https://example-market.invalid/listing/1")
-        self.assertFalse(self.decision(p)["keep"])
+        self.assertTrue(self.decision(p)["keep"])
         p["title"] = "Kapital Discontinued Boro Patchwork Jeans"
         d = self.decision(p)
         self.assertTrue(d["keep"])
         self.assertIn(p["_url"], tracker.format_clothing_message(STORE, p, "new", None, d))
 
-    def test_standard_trucker_more_selective_but_not_excluded(self):
+    def test_standard_truckers_are_eligible(self):
         for title in ["RGT Indigo Sashiko Type I Jacket", "RGT Standard Type II Jacket", "RGT Black Sashiko Trucker Jacket"]:
-            self.assertFalse(self.decision(product(title, "RGT", product_type="Jacket"))["keep"])
+            self.assertTrue(self.decision(product(title, "RGT", product_type="Jacket"))["keep"])
         for title in ["RGT Kakishibu Sashiko Type I Jacket", "Kapital Patchwork Type II Jacket", "RGT Sashiko Type I Collaboration Jacket"]:
             self.assertTrue(self.decision(product(title, "RGT", product_type="Jacket"))["keep"])
 
@@ -129,34 +134,34 @@ class RelevanceTests(unittest.TestCase):
         p = product("Outside Brand Fitted Linen Shirt", "Outside", product_type="Shirt")
         d = self.decision(p)
         self.assertTrue(d["applies"])
-        self.assertFalse(d["keep"])
+        self.assertTrue(d["keep"])
 
-    def test_cap_sleeve_apparel_does_not_bypass_clothing_gate(self):
+    def test_cap_sleeve_apparel_uses_clothing_path(self):
         for ptype in ['T-Shirt','']:
             p=product('Outside Brand Cap Sleeve T-Shirt','Outside',product_type=ptype)
             d=self.decision(p)
             self.assertTrue(d['applies'])
-            self.assertFalse(d['keep'])
+            self.assertTrue(d['keep'])
 
-    def test_hat_words_in_garment_types_do_not_bypass_clothing_gate(self):
+    def test_hat_words_in_garment_types_use_clothing_path(self):
         for ptype in ['Fitted Shirt','Cap Sleeve Tops']:
             d=self.decision(product('Outside Brand Cotton Shirt','Outside',product_type=ptype))
             self.assertTrue(d['applies'])
-            self.assertFalse(d['keep'])
+            self.assertTrue(d['keep'])
 
-    def test_sweats_apparel_type_is_filtered(self):
-        self.assertFalse(self.decision(product('Outside Brand Fleece Set','Outside',product_type='Sweats'))['keep'])
+    def test_sweats_apparel_type_is_eligible(self):
+        self.assertTrue(self.decision(product('Outside Brand Fleece Set','Outside',product_type='Sweats'))['keep'])
 
-    def test_tops_pullovers_and_henleys_cannot_bypass_brand_gate(self):
+    def test_all_brand_tops_pullovers_and_henleys_are_clothing(self):
         for title, ptype in [("Ordinary Crewneck Pullover", "Pullover"), ("Cotton Henley", "Tops")]:
-            self.assertFalse(self.decision(product(title, "Outside", product_type=ptype))["keep"])
+            self.assertTrue(self.decision(product(title, "Outside", product_type=ptype))["keep"])
 
-    def test_black_denim_needs_more_than_normal_black(self):
-        self.assertFalse(self.decision(product("Samurai Black Straight Jeans", "Samurai"))["keep"])
+    def test_ordinary_black_denim_is_eligible(self):
+        self.assertTrue(self.decision(product("Samurai Black Straight Jeans", "Samurai"))["keep"])
         self.assertTrue(self.decision(product("Samurai Extreme Slub Black Straight Jeans", "Samurai"))["keep"])
 
-    def test_slim_penalty_does_not_create_absolute_exclusion(self):
-        self.assertFalse(self.decision(product("PBJ Slub Skinny Jeans"))["keep"])
+    def test_slim_fit_does_not_reject_clothing(self):
+        self.assertTrue(self.decision(product("PBJ Slub Skinny Jeans"))["keep"])
         self.assertTrue(self.decision(product("PBJ Natural Indigo Extreme Slub Skinny Jeans"))["keep"])
 
     def test_pants_use_actual_measurements_over_model_numbers(self):
@@ -171,12 +176,12 @@ class RelevanceTests(unittest.TestCase):
         self.assertTrue(d["keep"])
         self.assertTrue(any("tapering candidate" in reason for reason in d["reasons"]))
 
-    def test_known_narrow_thigh_vetoes_roomy_and_tailoring_claim(self):
+    def test_known_narrow_thigh_is_context_not_rejection(self):
         p=product('PBJ 002 Slub Skinny Jeans',body_html=chart(thigh=10.5,rise=10.5,knee=7.6,hem=8.5))
         d=self.decision(p)
         self.assertFalse(d['fit']['roomy'])
         self.assertTrue(d['fit']['narrow'])
-        self.assertFalse(d['keep'])
+        self.assertTrue(d['keep'])
         self.assertNotIn('tapering candidate',' '.join(d['reasons']))
 
     def test_wide_model_no_chart_stays_discovery_with_fit_uncertain(self):
@@ -190,7 +195,6 @@ class RelevanceTests(unittest.TestCase):
         plain = self.decision(p)
         owned = self.decision(p, context={"owned_models": ["Synthetic-Owned-Model"]})
         self.assertEqual(plain["keep"], owned["keep"])
-        self.assertEqual(plain["score"], owned["score"])
         self.assertTrue(owned["owned"])
         self.assertIn("lower purchase priority", " ".join(owned["reasons"]))
 
@@ -206,8 +210,8 @@ class RelevanceTests(unittest.TestCase):
         self.assertFalse(self.decision(product(), "page_updated")["keep"])
         self.assertFalse(self.decision(product(), "exists")["keep"])
 
-    def test_restock_of_only_wrong_size_suppressed(self):
-        self.assertFalse(self.decision(product(), "restock", ["30", "32"])["keep"])
+    def test_restock_of_any_size_is_eligible(self):
+        self.assertTrue(self.decision(product(), "restock", ["30", "32"])["keep"])
         self.assertTrue(self.decision(product(), "restock", ["S2 / Indigo"])["keep"])
 
     def test_other_tagged_size_allowed_with_actual_matching_measurements(self):
@@ -218,7 +222,7 @@ class RelevanceTests(unittest.TestCase):
         for brand, sizes in [("Kapital", ["7"]), ("FDMTL", ["J2"])]:
             p = product(f"{brand} Boro Haori", brand, product_type="Jacket")
             self.assertTrue(self.decision(p, "restock", sizes)["keep"])
-            self.assertFalse(self.decision(p, "restock", ["S"])["keep"])
+            self.assertTrue(self.decision(p, "restock", ["S"])["keep"])
 
     def test_reference_size_label_variations(self):
         self.assertTrue(self.decision(product(), "restock", ["Indigo / W31"])["keep"])
@@ -326,19 +330,21 @@ class PriceTests(unittest.TestCase):
         p = product("New Era 49ers Fitted Cap", "New Era", product_type="Cap")
         self.assertEqual(tracker.clothing_price_events([p], None, POLICY), ([], {}))
 
-    def test_outside_brand_clothing_has_no_price_history(self):
+    def test_all_brand_clothing_seeds_price_history(self):
         p = product("Outside Brand Patchwork Jeans", "Outside")
-        self.assertEqual(tracker.clothing_price_events([p], None, POLICY), ([], {}))
+        events, history = tracker.clothing_price_events([p], None, POLICY)
+        self.assertEqual(events, [])
+        self.assertEqual(history, {"1": {"11": "250"}})
 
-    def test_wrong_size_discount_is_suppressed(self):
+    def test_any_size_discount_is_eligible(self):
         d = tracker.alert_decision(product(), STORE, CFG, "price_drop",
                                    [{"variant": "30", "from": "250", "to": "200"}], context=SYNTHETIC_PROFILE)
-        self.assertFalse(d["keep"])
+        self.assertTrue(d["keep"])
 
-    def test_meaningful_price_drop_does_not_rescue_ordinary_product(self):
+    def test_meaningful_price_drop_allows_ordinary_clothing(self):
         d = tracker.alert_decision(product("PBJ Standard Straight Jeans"), STORE, CFG, "price_drop",
                                    [{"variant": "S2", "from": "250", "to": "200"}])
-        self.assertFalse(d["keep"])
+        self.assertTrue(d["keep"])
 
     def test_disabled_policy_is_noop(self):
         self.assertEqual(tracker.clothing_price_events([product()], None, {}), ([], None))
@@ -403,7 +409,7 @@ class HatRegressionTests(unittest.TestCase):
 
 
 class IntegrationTests(unittest.TestCase):
-    def test_wrong_size_restock_does_not_consume_reference_size_price_drop(self):
+    def test_any_size_restock_takes_precedence_over_price_drop(self):
         p = product(price='200', variants=[{'id':11,'title':'S2','available':True,'price':'200'},
                                          {'id':12,'title':'30','available':True,'price':'250'}])
         old_stock = {'11':{'title':'S2','available':True},'12':{'title':'30','available':False}}
@@ -412,10 +418,10 @@ class IntegrationTests(unittest.TestCase):
         events,_,_=tracker.diff_store([p],['1'],{'1':old_stock})
         prices,_=tracker.additional_price_events([p],events,state['_clothing_prices']['example.com'],CFG,STORE,context=SYNTHETIC_PROFILE)
         self.assertEqual(events[0][0],'restock')
-        self.assertEqual(prices[0][0],'price_drop')
+        self.assertEqual(prices, [])
         report=replay_policy.replay([{'store':STORE,'products':[p]}],CFG,state,context=SYNTHETIC_PROFILE)
         self.assertTrue(report['results'][0]['would_alert_now'])
-        self.assertEqual(report['results'][0]['event'][0],'price_drop')
+        self.assertEqual(report['results'][0]['event'][0],'restock')
 
     def test_replay_includes_existing_material_price_event(self):
         p=product(price='200')
@@ -482,10 +488,11 @@ class IntegrationTests(unittest.TestCase):
             stack.enter_context(redirect_stdout(io.StringIO()))
             stack.enter_context(redirect_stderr(io.StringIO()))
             tracker.cmd_run(cfg)
-        self.assertEqual(send.call_count, 2)
+        self.assertEqual(send.call_count, 3)
         messages = [c.args[0] for c in send.call_args_list]
         self.assertIn("unverified", messages[0])
         self.assertEqual(messages[1], tracker.format_message(STORE["name"], STORE["domain"], hat))
+        self.assertIn("Outside Brand Patchwork Jeans", messages[2])
         self.assertEqual(state["example.com"], ["1", "2", "3", "0"])
         self.assertIn("0", state["_stock"]["example.com"])
         self.assertNotIn("2", state["_clothing_prices"]["example.com"])

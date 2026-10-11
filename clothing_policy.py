@@ -1,4 +1,4 @@
-"""Clothing-only relevance rules. No network, delivery or state writes.
+"""Broad garment discovery with optional context. No external side effects.
 
 Catalogue stock is an event signal, never proof of live size availability.
 Personal ownership context may be supplied locally; it never changes eligibility.
@@ -53,8 +53,7 @@ def is_new_era_name(value):
 
 
 def product_brand(product, retailer_aliases=()):
-    # Manufacturer/vendor and title only: recommendation copy in a description
-    # must not turn another manufacturer's product into an approved brand.
+    # Manufacturer/vendor and title only; aliases are context, not a whitelist.
     vendor = product.get("vendor") or ""
     brand = canonical_brand(vendor)
     if brand:
@@ -92,7 +91,7 @@ def title_collaboration(product):
     return False
 
 
-def category(product):
+def _category(product):
     # Routing uses title/type only, so a hat's description mentioning a denim
     # jacket, or a clothing page recommending caps, cannot change the path.
     ptype = normalized(product.get("product_type"))
@@ -130,6 +129,63 @@ def category(product):
             "windbreaker", "windbreakers", "jumpsuit", "dresses", "skirts", "sweats", "polo", "polos")):
         return "clothing"
     return None
+
+
+CLOTHING_CATEGORIES = ("pants", "jacket", "clothing")
+EXCLUDED_CATEGORIES = ("sock", "socks", "hosiery", "footwear", "shoe", "shoes",
+                       "sneaker", "sneakers", "trainer", "trainers", "boot", "boots",
+                       "sandal", "sandals", "slipper", "slippers", "loafer", "loafers",
+                       "espadrille", "espadrilles", "clog", "clogs", "mule", "mules",
+                       "brogue", "brogues", "flip flop", "flip flops")
+ACCESSORY_CATEGORIES = ("bag", "bags", "tote", "totes", "wallet", "wallets", "belt", "belts",
+                        "keychain", "keychains", "jewelry", "jewellery", "necklace", "necklaces",
+                        "bracelet", "bracelets", "scarf", "scarves", "bandana", "bandanas",
+                        "glove", "gloves", "sunglasses", "eyewear", "accessories",
+                        "cushion", "cushions", "pillow", "pillows", "blanket", "blankets",
+                        "rug", "rugs", "towel", "towels", "mug", "mugs", "cup", "cups",
+                        "poster", "posters", "book", "books", "fragrance", "perfume",
+                        "homeware", "homewares", "home goods", "yardage")
+
+
+EXTRA_GARMENT_CATEGORIES = (
+    ("pants", ("jogger", "joggers", "leggings", "sweat pants", "sweat shorts")),
+    ("jacket", ("parka", "parkas", "blouson", "blousons", "kimono", "kimonos")),
+    ("clothing", ("underwear", "sleepwear", "swimwear", "boxer", "boxers", "briefs",
+                  "bra", "bras", "tank", "tanks", "blouse", "blouses", "robe", "robes",
+                  "romper", "rompers", "bodysuit", "bodysuits", "suit", "suits", "apron", "aprons")))
+
+
+def _extra_category(text):
+    return next((kind for kind, words in EXTRA_GARMENT_CATEGORIES
+                 if any(contains(text, word) for word in words)), None)
+
+
+def category(product):
+    """Use type/title identity, preserving hat routing and ignoring body copy.
+
+    Specific types outrank incidental print names. Generic apparel/fabric
+    labels still need the title to distinguish garments from merchandise.
+    """
+    ptype = normalized(product.get("product_type"))
+    title = normalized(product.get("title"))
+    for cut in ("boot cut", "shoe cut"):
+        ptype = ptype.replace(cut, cut.replace(" ", ""))
+        title = title.replace(cut, cut.replace(" ", ""))
+    if any(contains(ptype, word) for word in EXCLUDED_CATEGORIES):
+        return "socks_footwear"
+    kind = _category(product)
+    if kind == "hat":
+        return kind
+    if any(contains(ptype, word) for word in ACCESSORY_CATEGORIES if word != "accessories") or ptype in ("fabric", "fabrics", "textiles"):
+        return "other"
+    explicit = _category({"product_type": ptype}) or _extra_category(ptype)
+    if explicit in CLOTHING_CATEGORIES and ptype not in ("clothing", "apparel", "denim"):
+        return explicit
+    if any(contains(title, word) for word in EXCLUDED_CATEGORIES):
+        return "socks_footwear"
+    if contains(ptype, "accessories") or any(contains(title, word) for word in ACCESSORY_CATEGORIES):
+        return "other"
+    return kind or _extra_category(title + " " + ptype)
 
 
 class _Tables(HTMLParser):
@@ -259,7 +315,7 @@ def reference_labels(profile, kind, brand):
     """Category defaults plus optional brand-specific labels; no personal defaults."""
     labels = list(profile.get("size_references", {}).get(kind, []))
     for name, categories in profile.get("brand_size_references", {}).items():
-        if canonical_brand(name) == brand:
+        if brand is not None and canonical_brand(name) == brand:
             labels += categories.get(kind, [])
     return {size_label(label) for label in labels}
 
@@ -295,98 +351,45 @@ def fit_context(product, policy, evidence, profile=None):
 
 
 def evaluate(product, policy, event_kind=None, extra=None, source_url=None, context=None):
-    """Return eligibility and explainable context; ownership never gates it."""
+    """All garments qualify on an event; fit/brand/ownership are context only."""
     context = validate_profile(context)
     kind = category(product)
     brand = product_brand(product, policy.get("retailer_vendor_aliases", []))
-    result = {"applies": bool(policy.get("enabled") and kind in ("pants", "jacket", "clothing")),
+    enabled = bool(policy.get("enabled"))
+    result = {"applies": bool(enabled and kind in CLOTHING_CATEGORIES),
               "keep": True, "reasons": [], "brand": brand, "category": kind,
               "owned": False, "measurements": [], "size_available": None}
-    if not result["applies"]:
+    if not enabled or kind == "hat":
         return result
-    if brand not in policy.get("core_brands", []):
-        result.update(keep=False, reasons=["brand outside clothing whitelist"])
+    if kind == "socks_footwear":
+        result.update(keep=False, reasons=["socks and footwear excluded"])
+        return result
+    if kind not in CLOTHING_CATEGORIES:
+        result.update(keep=False, reasons=["not a garment or hat"])
         return result
     if event_kind is not None and event_kind not in ("new", "restock", "price_drop", "product_update"):
-        result.update(keep=False, reasons=["no meaningful listing/availability/price change"])
+        result.update(keep=False, reasons=["no listing/availability/price change"])
         return result
-    text = product_text(product)
-    signals = {}
-    for group, words in policy.get("interest", {}).items():
-        signals[group] = [word for word in words if contains(text, word)]
-    fabric = bool(signals.get("textures"))
-    exceptional = bool(signals.get("exceptional_textures"))
-    dye = bool(signals.get("dyes"))
-    construction = bool(signals.get("construction"))
-    collaboration = bool(signals.get("collaborations")) or title_collaboration(product)
-    if title_collaboration(product):
-        signals.setdefault("collaborations", []).append("named title collaboration")
-    rare = bool(signals.get("rarity"))
     evidence = measurements(product, source_url)
     fit = fit_context(product, policy, evidence, context)
     result["measurements"] = evidence
     result["fit"] = fit
-    score = (3 if fabric else 0) + (2 if dye else 0) + (3 if construction else 0) + (3 if collaboration else 0)
-    if rare and score:
-        score += 1
-    roomy_words = any(contains(text, s) for s in ("relaxed straight", "relaxed taper", "wide taper",
-                      "wide straight", "wide leg", "loose straight", "roomy", "high rise", "wide cut", "mild taper"))
-    if kind == "pants":
-        if fit["roomy"]:
-            score += 2
-        elif roomy_words:
-            score += 1
-        slim = any(contains(text, s) for s in ("skinny", "slim", "low rise", "aggressive taper", "narrow thigh"))
-        pbj_019 = brand == "Pure Blue Japan" and contains(product.get("title"), "019")
-        if (slim or pbj_019 or fit["narrow"]) and not fit["roomy"]:
-            score -= 2
-        if fit["narrow"]:
-            result["reasons"].append("measured narrow thigh or low rise; lower-leg tailoring does not resolve upper-block fit")
-        hem = fit["selected"].get("hem")
-        max_hem = context.get("fit", {}).get("preferred_max_hem")
-        if hem is not None and max_hem is not None and hem > max_hem:
-            if fit["roomy"] and (fabric or dye or construction):
-                result["reasons"].append("roomy upper block; wider hem is a potential professional tapering candidate")
-            else:
-                result["reasons"].append("wide hem needs upper-block measurements and tailoring assessment")
-        if brand == "Pure Blue Japan" and contains(product.get("title"), "002") and (fabric or dye) and not fit["narrow"]:
-            result["reasons"].append("002 may be a tailoring base; model number is not fit proof")
-        ordinary_black = any(contains(text, s) for s in ("black", "black black", "sumi"))
-        if ordinary_black and not (exceptional or dye or construction or collaboration or (rare and fabric) or fit["roomy"]):
-            score -= 2
-    if kind == "jacket":
-        standard = any(contains(text, s) for s in ("type i", "type 1", "type ii", "type 2", "trucker"))
-        if standard and not (exceptional or construction or collaboration or (fabric and dye) or (rare and fabric)):
-            score -= 2
-            result["reasons"].append("standard trucker silhouette requires an unusually special treatment")
-        if any(contains(text, s) for s in ("chore", "coverall", "coveralls", "haori", "happi", "blazer", "work jacket")) and score:
-            score += 1
-    if event_kind == "price_drop" and (fabric or dye or construction or collaboration):
-        # A material deal can make an overlapping but interesting piece worth
-        # seeing again. A discounted ordinary garment still fails relevance.
-        score += 2
-    if event_kind in ("restock", "price_drop") and extra:
-        refs = reference_labels(context, kind, brand)
-        refs.update(size_label(m["size"]) for m in fit["matching_rows"])
-        # Default/unknown size labels can support discovery, but no size claim.
-        labels = [d["variant"] for d in extra] if event_kind == "price_drop" else extra
-        sized = [v for v in labels if normalized(v) not in {"default", "default title", "one size"}]
-        if refs and sized and not any(any(contains(size_label(v), ref) for ref in refs) for v in sized):
-            result.update(keep=False, reasons=["reported change does not include reference size or a measured fit match"])
-            return result
-    threshold = policy.get("min_interest_score", 3)
-    result["score"] = score
-    result["signals"] = {group: hits for group, hits in signals.items() if hits}
-    result["keep"] = score >= threshold
-    result["reasons"].append("distinctive clothing merits discovery" if result["keep"] else
-                             "insufficient distinction/fit beyond brand, novelty or scarcity")
+    result["reasons"].append("clothing feed: all brands; fit is context only")
+    if fit["narrow"]:
+        result["reasons"].append("measured narrow thigh or low rise; lower-leg tailoring does not resolve upper-block fit")
+    hem = fit["selected"].get("hem")
+    max_hem = context.get("fit", {}).get("preferred_max_hem")
+    if hem is not None and max_hem is not None and hem > max_hem:
+        result["reasons"].append("roomy upper block; wider hem is a potential professional tapering candidate"
+                                 if fit["roomy"] else "wide hem needs upper-block measurements and tailoring assessment")
+    if brand == "Pure Blue Japan" and contains(product.get("title"), "002") and not fit["narrow"]:
+        result["reasons"].append("002 may be a tailoring base; model number is not fit proof")
     if fit["conflict"]:
         result["reasons"].append("conflicting measurement charts retained; fit not asserted")
-    # Caller may provide private model tokens. The repository contains no
-    # wardrobe list; a matching owned model only adds context to the alert.
+    # Private model tokens only add context; no wardrobe or sizing gate exists.
     result["owned"] = any(
         contains(product.get("title"), model) if isinstance(model, str) else
-        canonical_brand(model["brand"]) == brand and all(
+        brand is not None and canonical_brand(model["brand"]) == brand and all(
             contains(product.get("title"), token) for token in model["tokens"])
         for model in context.get("owned_models", []))
     if result["owned"]:
