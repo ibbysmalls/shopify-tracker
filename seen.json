@@ -10806,6 +10806,8 @@
     "9602644902109"
   ],
   "rodeo-japan-pine-avenue.com": [
+    "15429696848108",
+    "15429696717036",
     "15429693538540",
     "15426833088748",
     "15426829353196",
@@ -12608,7 +12610,7 @@
       "Franklin & Poe": 1791653515,
       "Meadow": 1791661608,
       "Mildblend Supply Co.": 1791319813,
-      "Rodeo Japan Pine Avenue": 1791782210,
+      "Rodeo Japan Pine Avenue": 1791783113,
       "Klaxon Store": 1791685904,
       "Blue Beach Denim": 1791721009,
       "Dant": 1791644520,
@@ -12634,7 +12636,7 @@
       "Snakeoilprovisions": 1791585294
     },
     "last_digest": 1791545707,
-    "period_new": 567,
+    "period_new": 569,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -12642,53 +12644,53 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1791782113,
-    "hatclub.com": 1791782115,
-    "sofreshclothing.com": 1791782117,
-    "culturekings.com": 1791782119,
-    "exclusivefitted.com": 1791782120,
-    "www.neweracap.com": 1791782122,
-    "procietyshop.com": 1791782124,
-    "4ucaps.com": 1791782126,
-    "www.hatdreams.com": 1791782128,
-    "crownminded.com": 1791782129,
-    "www.ecapcity.com": 1791782131,
-    "www.lidshd.com": 1791782133,
-    "gf-sf.com": 1791782135,
-    "incredideals.ae": 1791782137,
-    "stylisticsjapan.com": 1791782139,
-    "www.cojpgallery.com": 1791782141,
-    "sonofastag.com": 1791782143,
-    "bears-tokyo.myshopify.com": 1791782145,
-    "corlection.com": 1791782147,
-    "ironshopprovisions.com": 1791782149,
-    "franklinandpoe.com": 1791782150,
-    "meadowweb.com": 1791782154,
-    "mildblend.com": 1791782156,
-    "rodeo-japan-pine-avenue.com": 1791782158,
-    "klaxon-store.com": 1791782162,
-    "www.bluebeachdenim.shop": 1791782164,
-    "www.dant.us": 1791782166,
-    "hinoya.shop": 1791782168,
-    "homegame-newyork.com": 1791782170,
-    "redcastheritage.com": 1791782172,
-    "www.panchoandlefty.se": 1791782174,
-    "www.blueingreensoho.com": 1791782176,
-    "www.guiltyparty.co": 1791782178,
-    "www.blueowl.us": 1791782180,
-    "standardandstrange.com": 1791782182,
-    "www.witheredfig.com": 1791782184,
-    "www.mentionclothing.com": 1791782186,
-    "sakuraclientele.com": 1791782188,
-    "cultofindigo.com": 1791782190,
-    "www.limbro.id": 1791782192,
-    "www.okayamadenim.com": 1791782194,
-    "berkeleysupply.com": 1791782197,
-    "statement-store.com": 1791782200,
-    "cultizm.com": 1791782202,
-    "www.motostyle.jp": 1791782204,
-    "fittedunderground.com": 1791782206,
-    "www.snakeoilprovisions.com": 1791782208
+    "www.myfitteds.com": 1791783017,
+    "hatclub.com": 1791783019,
+    "sofreshclothing.com": 1791783021,
+    "culturekings.com": 1791783023,
+    "exclusivefitted.com": 1791783025,
+    "www.neweracap.com": 1791783026,
+    "procietyshop.com": 1791783028,
+    "4ucaps.com": 1791783030,
+    "www.hatdreams.com": 1791783032,
+    "crownminded.com": 1791783033,
+    "www.ecapcity.com": 1791783035,
+    "www.lidshd.com": 1791783037,
+    "gf-sf.com": 1791783038,
+    "incredideals.ae": 1791783040,
+    "stylisticsjapan.com": 1791783043,
+    "www.cojpgallery.com": 1791783044,
+    "sonofastag.com": 1791783046,
+    "bears-tokyo.myshopify.com": 1791783048,
+    "corlection.com": 1791783050,
+    "ironshopprovisions.com": 1791783052,
+    "franklinandpoe.com": 1791783054,
+    "meadowweb.com": 1791783057,
+    "mildblend.com": 1791783059,
+    "rodeo-japan-pine-avenue.com": 1791783061,
+    "klaxon-store.com": 1791783065,
+    "www.bluebeachdenim.shop": 1791783068,
+    "www.dant.us": 1791783070,
+    "hinoya.shop": 1791783072,
+    "homegame-newyork.com": 1791783074,
+    "redcastheritage.com": 1791783075,
+    "www.panchoandlefty.se": 1791783077,
+    "www.blueingreensoho.com": 1791783080,
+    "www.guiltyparty.co": 1791783082,
+    "www.blueowl.us": 1791783083,
+    "standardandstrange.com": 1791783085,
+    "www.witheredfig.com": 1791783087,
+    "www.mentionclothing.com": 1791783089,
+    "sakuraclientele.com": 1791783091,
+    "cultofindigo.com": 1791783093,
+    "www.limbro.id": 1791783096,
+    "www.okayamadenim.com": 1791783098,
+    "berkeleysupply.com": 1791783100,
+    "statement-store.com": 1791783103,
+    "cultizm.com": 1791783105,
+    "www.motostyle.jp": 1791783107,
+    "fittedunderground.com": 1791783109,
+    "www.snakeoilprovisions.com": 1791783111
   },
   "fittedunderground.com": [
     "7591909654586",
@@ -95950,7 +95952,7 @@
           "title": "7 5/8"
         },
         "48425842016444": {
-          "available": true,
+          "available": false,
           "title": "7 3/4"
         },
         "48425842049212": {
@@ -143586,6 +143588,50 @@
           "title": "Tagged Size 2XL"
         },
         "67704787632364": {
+          "available": true,
+          "title": "Tagged Size 3XL"
+        }
+      },
+      "15429696848108": {
+        "67704804212972": {
+          "available": true,
+          "title": "Tagged Size M"
+        },
+        "67704804245740": {
+          "available": true,
+          "title": "Tagged Size L"
+        },
+        "67704804278508": {
+          "available": true,
+          "title": "Tagged Size XL"
+        },
+        "67704804311276": {
+          "available": true,
+          "title": "Tagged Size 2XL"
+        },
+        "67704804344044": {
+          "available": true,
+          "title": "Tagged Size 3XL"
+        }
+      },
+      "15429696717036": {
+        "67704803492076": {
+          "available": true,
+          "title": "Tagged Size M"
+        },
+        "67704803524844": {
+          "available": true,
+          "title": "Tagged Size L"
+        },
+        "67704803557612": {
+          "available": true,
+          "title": "Tagged Size XL"
+        },
+        "67704803590380": {
+          "available": true,
+          "title": "Tagged Size 2XL"
+        },
+        "67704803623148": {
           "available": true,
           "title": "Tagged Size 3XL"
         }
@@ -246413,6 +246459,20 @@
         "67704787566828": "258.44",
         "67704787599596": "258.44",
         "67704787632364": "258.44"
+      },
+      "15429696848108": {
+        "67704804212972": "241.72",
+        "67704804245740": "241.72",
+        "67704804278508": "241.72",
+        "67704804311276": "241.72",
+        "67704804344044": "241.72"
+      },
+      "15429696717036": {
+        "67704803492076": "241.72",
+        "67704803524844": "241.72",
+        "67704803557612": "241.72",
+        "67704803590380": "241.72",
+        "67704803623148": "241.72"
       }
     },
     "www.dant.us": {
