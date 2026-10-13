@@ -4265,8 +4265,9 @@
     "9612684558524"
   ],
   "thejamesbrand.com": [
-    "8378269794374",
+    "8490622681158",
     "8283370258502",
+    "8378269794374",
     "7619436544070",
     "8047346384966",
     "8047346450502",
@@ -4284,7 +4285,34 @@
     "7732097777734",
     "4701379625030",
     "7722354442310",
-    "7619408855110"
+    "7619408855110",
+    "7557719490630",
+    "7501513064518",
+    "7384527962182",
+    "7298162982982",
+    "7163699888198",
+    "7166764941382",
+    "7166764843078",
+    "7166764810310",
+    "7166738595910",
+    "7156908687430",
+    "3885676888134",
+    "7040130220102",
+    "7040129499206",
+    "7040127533126",
+    "7036255305798",
+    "6936016781382",
+    "7025997742150",
+    "6970206617670",
+    "6702805745734",
+    "6582457040966",
+    "4871561478214",
+    "1348933353573",
+    "4330476929094",
+    "4206779695174",
+    "1325206110309",
+    "1325195526245",
+    "10570957832"
   ],
   "stylisticsjapan.com": [
     "15411496288292",
@@ -6297,6 +6325,9 @@
     "7646360764462"
   ],
   "redcastheritage.com": [
+    "11126861005138",
+    "11126786752850",
+    "11126837444946",
     "11126883156306",
     "11143144341842",
     "11143074677074",
@@ -7633,7 +7664,7 @@
     "8238615429229",
     "7682650439789"
   ],
-  "_tg_offset": 578972121,
+  "_tg_offset": 578972122,
   "www.guiltyparty.co": [
     "15404738773302",
     "15404738576694",
@@ -13104,7 +13135,7 @@
       "Dant": 1791832607,
       "HINOYA Online Store": 1791886638,
       "HOMEGAME NEW YORK": 1791658912,
-      "Redcast Heritage Co.": 1791888415,
+      "Redcast Heritage Co.": 1791891126,
       "Pancho and Lefty": 1791885719,
       "Blue in Green": 1791673313,
       "Guiltyparty": 1791663405,
@@ -13121,10 +13152,11 @@
       "Cultizm": 1791890210,
       "Motostyle": 1791887513,
       "Fittedunderground": 1790182936,
-      "Snakeoilprovisions": 1791585294
+      "Snakeoilprovisions": 1791585294,
+      "Thejamesbrand": 1791891126
     },
     "last_digest": 1791545707,
-    "period_new": 1389,
+    "period_new": 1420,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -13132,53 +13164,54 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1791890115,
-    "hatclub.com": 1791890117,
-    "sofreshclothing.com": 1791890119,
-    "culturekings.com": 1791890121,
-    "exclusivefitted.com": 1791890123,
-    "www.neweracap.com": 1791890125,
-    "procietyshop.com": 1791890127,
-    "4ucaps.com": 1791890128,
-    "www.hatdreams.com": 1791890130,
-    "crownminded.com": 1791890132,
-    "www.ecapcity.com": 1791890134,
-    "www.lidshd.com": 1791890136,
-    "gf-sf.com": 1791890138,
-    "incredideals.ae": 1791890140,
-    "stylisticsjapan.com": 1791890142,
-    "www.cojpgallery.com": 1791890144,
-    "sonofastag.com": 1791890146,
-    "bears-tokyo.myshopify.com": 1791890148,
-    "corlection.com": 1791890150,
-    "ironshopprovisions.com": 1791890152,
-    "franklinandpoe.com": 1791890154,
-    "meadowweb.com": 1791890156,
-    "mildblend.com": 1791890158,
-    "rodeo-japan-pine-avenue.com": 1791890160,
-    "klaxon-store.com": 1791890162,
-    "www.bluebeachdenim.shop": 1791890165,
-    "www.dant.us": 1791890167,
-    "hinoya.shop": 1791890169,
-    "homegame-newyork.com": 1791890171,
-    "redcastheritage.com": 1791890173,
-    "www.panchoandlefty.se": 1791890175,
-    "www.blueingreensoho.com": 1791890177,
-    "www.guiltyparty.co": 1791890179,
-    "www.blueowl.us": 1791890181,
-    "standardandstrange.com": 1791890183,
-    "www.witheredfig.com": 1791890185,
-    "www.mentionclothing.com": 1791890187,
-    "sakuraclientele.com": 1791890189,
-    "cultofindigo.com": 1791890191,
-    "www.limbro.id": 1791890193,
-    "www.okayamadenim.com": 1791890196,
-    "berkeleysupply.com": 1791890198,
-    "statement-store.com": 1791890200,
-    "cultizm.com": 1791890202,
-    "www.motostyle.jp": 1791890204,
-    "fittedunderground.com": 1791890206,
-    "www.snakeoilprovisions.com": 1791890208
+    "www.myfitteds.com": 1791891018,
+    "hatclub.com": 1791891020,
+    "sofreshclothing.com": 1791891022,
+    "culturekings.com": 1791891024,
+    "exclusivefitted.com": 1791891026,
+    "www.neweracap.com": 1791891028,
+    "procietyshop.com": 1791891030,
+    "4ucaps.com": 1791891032,
+    "www.hatdreams.com": 1791891034,
+    "crownminded.com": 1791891036,
+    "www.ecapcity.com": 1791891038,
+    "www.lidshd.com": 1791891040,
+    "gf-sf.com": 1791891042,
+    "incredideals.ae": 1791891043,
+    "stylisticsjapan.com": 1791891046,
+    "www.cojpgallery.com": 1791891048,
+    "sonofastag.com": 1791891050,
+    "bears-tokyo.myshopify.com": 1791891052,
+    "corlection.com": 1791891054,
+    "ironshopprovisions.com": 1791891056,
+    "franklinandpoe.com": 1791891058,
+    "meadowweb.com": 1791891060,
+    "mildblend.com": 1791891062,
+    "rodeo-japan-pine-avenue.com": 1791891064,
+    "klaxon-store.com": 1791891066,
+    "www.bluebeachdenim.shop": 1791891069,
+    "www.dant.us": 1791891071,
+    "hinoya.shop": 1791891073,
+    "homegame-newyork.com": 1791891075,
+    "redcastheritage.com": 1791891077,
+    "www.panchoandlefty.se": 1791891084,
+    "www.blueingreensoho.com": 1791891086,
+    "www.guiltyparty.co": 1791891088,
+    "www.blueowl.us": 1791891090,
+    "standardandstrange.com": 1791891092,
+    "www.witheredfig.com": 1791891094,
+    "www.mentionclothing.com": 1791891096,
+    "sakuraclientele.com": 1791891099,
+    "cultofindigo.com": 1791891101,
+    "www.limbro.id": 1791891103,
+    "www.okayamadenim.com": 1791891107,
+    "berkeleysupply.com": 1791891109,
+    "statement-store.com": 1791891111,
+    "cultizm.com": 1791891113,
+    "www.motostyle.jp": 1791891115,
+    "fittedunderground.com": 1791891118,
+    "www.snakeoilprovisions.com": 1791891119,
+    "thejamesbrand.com": 1791891122
   },
   "fittedunderground.com": [
     "7591909654586",
@@ -163760,7 +163793,7 @@
           "title": "Navy / 38(M)"
         },
         "67752902951147": {
-          "available": true,
+          "available": false,
           "title": "Navy / 40(L)"
         },
         "67752902983915": {
@@ -175138,6 +175171,144 @@
         "54645201338706": {
           "available": true,
           "title": "XXXL"
+        }
+      },
+      "11126861005138": {
+        "54645096546642": {
+          "available": true,
+          "title": "30"
+        },
+        "54645096579410": {
+          "available": true,
+          "title": "31"
+        },
+        "54645096612178": {
+          "available": true,
+          "title": "32"
+        },
+        "54645096644946": {
+          "available": true,
+          "title": "33"
+        },
+        "54645096677714": {
+          "available": true,
+          "title": "34"
+        },
+        "54645096710482": {
+          "available": true,
+          "title": "35"
+        },
+        "54645096743250": {
+          "available": true,
+          "title": "36"
+        },
+        "54645096776018": {
+          "available": true,
+          "title": "38"
+        },
+        "54645096808786": {
+          "available": true,
+          "title": "40"
+        },
+        "54645109129554": {
+          "available": true,
+          "title": "42"
+        },
+        "54645109162322": {
+          "available": true,
+          "title": "44"
+        }
+      },
+      "11126786752850": {
+        "54644795638098": {
+          "available": true,
+          "title": "30"
+        },
+        "54644795670866": {
+          "available": true,
+          "title": "31"
+        },
+        "54644795703634": {
+          "available": true,
+          "title": "32"
+        },
+        "54644795736402": {
+          "available": true,
+          "title": "33"
+        },
+        "54644795769170": {
+          "available": true,
+          "title": "34"
+        },
+        "54644795801938": {
+          "available": true,
+          "title": "35"
+        },
+        "54644795834706": {
+          "available": true,
+          "title": "36"
+        },
+        "54644795867474": {
+          "available": true,
+          "title": "38"
+        },
+        "54644795900242": {
+          "available": true,
+          "title": "40"
+        },
+        "54644795933010": {
+          "available": true,
+          "title": "42"
+        },
+        "54644807860562": {
+          "available": true,
+          "title": "44"
+        }
+      },
+      "11126837444946": {
+        "54644990771538": {
+          "available": true,
+          "title": "30"
+        },
+        "54644990804306": {
+          "available": true,
+          "title": "31"
+        },
+        "54644990837074": {
+          "available": true,
+          "title": "32"
+        },
+        "54644990869842": {
+          "available": true,
+          "title": "33"
+        },
+        "54644990902610": {
+          "available": true,
+          "title": "34"
+        },
+        "54644990935378": {
+          "available": true,
+          "title": "35"
+        },
+        "54644990968146": {
+          "available": true,
+          "title": "36"
+        },
+        "54644991000914": {
+          "available": true,
+          "title": "38"
+        },
+        "54644991033682": {
+          "available": true,
+          "title": "40"
+        },
+        "54645003157842": {
+          "available": true,
+          "title": "42"
+        },
+        "54645003190610": {
+          "available": true,
+          "title": "44"
         }
       }
     },
@@ -246544,6 +246715,816 @@
           "title": "XXL"
         }
       }
+    },
+    "thejamesbrand.com": {
+      "8490622681158": {
+        "45945851347014": {
+          "available": true,
+          "title": "Black + Stainless"
+        },
+        "45945842040902": {
+          "available": false,
+          "title": "Black + Black"
+        },
+        "45945851412550": {
+          "available": true,
+          "title": "Grove + Stainless"
+        },
+        "45945852887110": {
+          "available": false,
+          "title": "Buttermilk + Black"
+        }
+      },
+      "8283370258502": {
+        "44847090171974": {
+          "available": true,
+          "title": "Black + Fire"
+        },
+        "44725345845318": {
+          "available": true,
+          "title": "Black + Black"
+        },
+        "44725345878086": {
+          "available": true,
+          "title": "Grove + Stainless"
+        },
+        "44725345648710": {
+          "available": true,
+          "title": "Black + Stainless"
+        },
+        "45945875791942": {
+          "available": true,
+          "title": "Pink Haze + Stainless"
+        },
+        "45945876545606": {
+          "available": true,
+          "title": "Butter + Black"
+        }
+      },
+      "8378269794374": {
+        "44962132394054": {
+          "available": true,
+          "title": "Grove"
+        },
+        "44962131869766": {
+          "available": true,
+          "title": "Black + Black"
+        },
+        "44962128003142": {
+          "available": true,
+          "title": "Black"
+        }
+      },
+      "7619436544070": {
+        "41894494634054": {
+          "available": true,
+          "title": "Black + Yellow"
+        }
+      },
+      "8047346384966": {
+        "44112420143174": {
+          "available": true,
+          "title": "Black + Yellow"
+        }
+      },
+      "8047346450502": {
+        "44112420339782": {
+          "available": false,
+          "title": "Black + Yellow"
+        }
+      },
+      "6706523045958": {
+        "39550763827270": {
+          "available": true,
+          "title": "Black + Stainless"
+        },
+        "39550763761734": {
+          "available": true,
+          "title": "Black + Black"
+        },
+        "39550763794502": {
+          "available": true,
+          "title": "OD Green Micarta + Stainless"
+        },
+        "44410080919622": {
+          "available": true,
+          "title": "Marbled Carbon + Stainless"
+        },
+        "44449733607494": {
+          "available": true,
+          "title": "Orange + Stainless"
+        }
+      },
+      "8022245146694": {
+        "44003511238726": {
+          "available": true,
+          "title": "Titanium"
+        }
+      },
+      "7946410557510": {
+        "43784309309510": {
+          "available": true,
+          "title": "Silver + Black"
+        },
+        "43784309407814": {
+          "available": true,
+          "title": "Silver + Grove"
+        },
+        "43784309375046": {
+          "available": true,
+          "title": "Black + Black"
+        },
+        "43784309276742": {
+          "available": true,
+          "title": "Black + Fire"
+        },
+        "43816186576966": {
+          "available": true,
+          "title": "Black + Alpine Liquid Blue"
+        }
+      },
+      "7965577084998": {
+        "43851784388678": {
+          "available": true,
+          "title": "Black + Stonewash"
+        },
+        "43851787993158": {
+          "available": true,
+          "title": "Tidal Blue + Stonewash"
+        }
+      },
+      "7928614813766": {
+        "43712840400966": {
+          "available": true,
+          "title": "Silver"
+        },
+        "46522176077894": {
+          "available": true,
+          "title": "Titanium"
+        },
+        "43712840269894": {
+          "available": true,
+          "title": "Black"
+        },
+        "43712840695878": {
+          "available": true,
+          "title": "Black + Gold"
+        }
+      },
+      "7911360757830": {
+        "43627773198406": {
+          "available": true,
+          "title": "Silver"
+        },
+        "43627773657158": {
+          "available": true,
+          "title": "Grove"
+        },
+        "43627772477510": {
+          "available": true,
+          "title": "Black"
+        },
+        "43627773591622": {
+          "available": true,
+          "title": "Gold + Black"
+        },
+        "46127214821446": {
+          "available": true,
+          "title": "Black + Alpine Liquid Blue"
+        },
+        "43627773362246": {
+          "available": true,
+          "title": "Purple Haze"
+        },
+        "44635939176518": {
+          "available": true,
+          "title": "Butter + Polish"
+        },
+        "44635939897414": {
+          "available": true,
+          "title": "Titanium"
+        }
+      },
+      "7873234305094": {
+        "43325429579846": {
+          "available": true,
+          "title": "Titanium"
+        },
+        "43325426368582": {
+          "available": true,
+          "title": "Black"
+        },
+        "43325419782214": {
+          "available": true,
+          "title": "Liquid Blue"
+        }
+      },
+      "6568487714886": {
+        "44556217024582": {
+          "available": true,
+          "title": "Stonewash + Damasteel"
+        },
+        "39273114140742": {
+          "available": true,
+          "title": "Titanium + Stainless"
+        },
+        "40124777136198": {
+          "available": true,
+          "title": "Black + Black"
+        },
+        "39273114173510": {
+          "available": true,
+          "title": "Black + Stainless"
+        },
+        "45086365515846": {
+          "available": false,
+          "title": "Titanium + Solidwool"
+        },
+        "43784168177734": {
+          "available": false,
+          "title": "OD Green Micarta + Damasteel"
+        },
+        "44124165931078": {
+          "available": false,
+          "title": "Orange Dark Matter Carbon + Black"
+        }
+      },
+      "7825119576134": {
+        "42788816257094": {
+          "available": true,
+          "title": "Tidal Blue + Stonewash"
+        },
+        "42788815831110": {
+          "available": true,
+          "title": "Black + Stonewash"
+        }
+      },
+      "4844362203206": {
+        "39455891062854": {
+          "available": true,
+          "title": "Rosewood + Damasteel"
+        },
+        "32286870470726": {
+          "available": false,
+          "title": "Rosewood + Stainless"
+        },
+        "42303939117126": {
+          "available": false,
+          "title": "Ebony + Black"
+        }
+      },
+      "2025092612166": {
+        "20548820107334": {
+          "available": false,
+          "title": "OD Green Micarta + Stainless"
+        },
+        "20670217814086": {
+          "available": false,
+          "title": "Black Micarta + Black"
+        }
+      },
+      "7732097777734": {
+        "42530316222534": {
+          "available": true,
+          "title": "Stainless"
+        },
+        "43037579706438": {
+          "available": true,
+          "title": "Black"
+        },
+        "42296009621574": {
+          "available": true,
+          "title": "Titanium"
+        }
+      },
+      "4701379625030": {
+        "39455894175814": {
+          "available": true,
+          "title": "Rosewood + Damasteel"
+        },
+        "44364959252550": {
+          "available": false,
+          "title": "Black + Black"
+        },
+        "42303940984902": {
+          "available": false,
+          "title": "Ebony + Black"
+        },
+        "32118365945926": {
+          "available": false,
+          "title": "Rosewood + Stainless"
+        }
+      },
+      "7722354442310": {
+        "42262151364678": {
+          "available": true,
+          "title": "Titanium + Black"
+        },
+        "42262151626822": {
+          "available": true,
+          "title": "Black + Black"
+        },
+        "42899363496006": {
+          "available": true,
+          "title": "Sea Wave"
+        },
+        "43913315287110": {
+          "available": true,
+          "title": "Gold"
+        }
+      },
+      "7619408855110": {
+        "41894397018182": {
+          "available": true,
+          "title": "Black"
+        }
+      },
+      "7557719490630": {
+        "41725227270214": {
+          "available": true,
+          "title": "Black"
+        }
+      },
+      "7501513064518": {
+        "42311606796358": {
+          "available": false,
+          "title": "Titanium + Damasteel"
+        },
+        "41700625023046": {
+          "available": false,
+          "title": "Titanium + Stainless"
+        },
+        "41700614176838": {
+          "available": false,
+          "title": "Black + Black"
+        },
+        "41613151895622": {
+          "available": true,
+          "title": "Bone + Black"
+        }
+      },
+      "7384527962182": {
+        "41334655221830": {
+          "available": true,
+          "title": "Black"
+        },
+        "43325151576134": {
+          "available": true,
+          "title": "Liquid Blue + Sport Pink"
+        },
+        "45064904900678": {
+          "available": false,
+          "title": "Grove"
+        },
+        "45188315054150": {
+          "available": false,
+          "title": "Coyote Tan"
+        }
+      },
+      "7298162982982": {
+        "41091258810438": {
+          "available": true,
+          "title": "Titanium"
+        },
+        "41091256418374": {
+          "available": true,
+          "title": "Black"
+        },
+        "43913268330566": {
+          "available": true,
+          "title": "Gold"
+        }
+      },
+      "7163699888198": {
+        "40699011498054": {
+          "available": false,
+          "title": "Black"
+        }
+      },
+      "7166764941382": {
+        "40707036086342": {
+          "available": true,
+          "title": "Black"
+        }
+      },
+      "7166764843078": {
+        "40707035988038": {
+          "available": true,
+          "title": "Black"
+        }
+      },
+      "7166764810310": {
+        "40707035889734": {
+          "available": true,
+          "title": "Black"
+        }
+      },
+      "7166738595910": {
+        "40706938634310": {
+          "available": true,
+          "title": "Silver / Silver"
+        },
+        "40706938601542": {
+          "available": true,
+          "title": "Black"
+        },
+        "41700551983174": {
+          "available": true,
+          "title": "Titanium"
+        },
+        "44449755168838": {
+          "available": false,
+          "title": "Rose Gold"
+        }
+      },
+      "7156908687430": {
+        "40685250019398": {
+          "available": true,
+          "title": "Raw Aluminum + Stainless / Straight"
+        },
+        "40905353396294": {
+          "available": true,
+          "title": "Black + Rose Gold / Straight"
+        },
+        "44449756872774": {
+          "available": true,
+          "title": "Black + Stainless / Straight"
+        },
+        "40685249986630": {
+          "available": false,
+          "title": "Black + Black / Straight"
+        }
+      },
+      "3885676888134": {
+        "29362263687238": {
+          "available": true,
+          "title": "Titanium + Stainless"
+        },
+        "40586046636102": {
+          "available": true,
+          "title": "Black + Stainless"
+        }
+      },
+      "7040130220102": {
+        "40388179820614": {
+          "available": true,
+          "title": "Black"
+        }
+      },
+      "7040129499206": {
+        "40388179918918": {
+          "available": false,
+          "title": "White"
+        }
+      },
+      "7040127533126": {
+        "40388179853382": {
+          "available": false,
+          "title": "Black"
+        }
+      },
+      "7036255305798": {
+        "40379589132358": {
+          "available": true,
+          "title": "Steel"
+        }
+      },
+      "6936016781382": {
+        "42190712504390": {
+          "available": true,
+          "title": "Clear Charcoal + Stainless"
+        },
+        "42190713094214": {
+          "available": true,
+          "title": "Clear Electric Green + Stainless"
+        },
+        "45063034044486": {
+          "available": true,
+          "title": "Clear Olive Stone + Stainless"
+        },
+        "45063033520198": {
+          "available": true,
+          "title": "Clear Mulberry + Deep Blue"
+        },
+        "42190712668230": {
+          "available": true,
+          "title": "Clear Turquoise + Stainless"
+        },
+        "42190712897606": {
+          "available": true,
+          "title": "Clear Atomic Purple + Stainless"
+        },
+        "44449720205382": {
+          "available": true,
+          "title": "Clear Coral + Stainless"
+        },
+        "40379198734406": {
+          "available": true,
+          "title": "Black + Stainless"
+        },
+        "40379198898246": {
+          "available": true,
+          "title": "OD Green + Stainless"
+        },
+        "45063032471622": {
+          "available": true,
+          "title": "Mulberry + Deep Blue"
+        },
+        "45063028342854": {
+          "available": true,
+          "title": "Buttermilk + Raspberry"
+        },
+        "40379198832710": {
+          "available": false,
+          "title": "Cerulean + Stainless"
+        },
+        "42262111420486": {
+          "available": true,
+          "title": "Emerald + Stainless"
+        },
+        "40611353460806": {
+          "available": true,
+          "title": "Atomic Purple + Stainless"
+        },
+        "44449724104774": {
+          "available": true,
+          "title": "Coral + Stainless"
+        },
+        "40379198767174": {
+          "available": false,
+          "title": "Canary + Stainless"
+        },
+        "43325069197382": {
+          "available": true,
+          "title": "Liquid Blue + Sport Pink"
+        },
+        "43549977247814": {
+          "available": false,
+          "title": "Moblow Edition"
+        }
+      },
+      "7025997742150": {
+        "40362871586886": {
+          "available": false,
+          "title": "Black + Yellow"
+        }
+      },
+      "6970206617670": {
+        "40217717637190": {
+          "available": true,
+          "title": "Titanium"
+        }
+      },
+      "6702805745734": {
+        "45063078051910": {
+          "available": true,
+          "title": "Sherbet + Pink Haze / Serrated"
+        },
+        "39541759410246": {
+          "available": true,
+          "title": "Black + Black / Serrated"
+        },
+        "40608792969286": {
+          "available": true,
+          "title": "OD Green Orange + Black / Serrated"
+        },
+        "42899449118790": {
+          "available": true,
+          "title": "Tidal Blue + Stonewash / Serrated"
+        },
+        "41243405582406": {
+          "available": true,
+          "title": "Coyote Tan + Black / Serrated"
+        },
+        "45063077068870": {
+          "available": true,
+          "title": "Buttermilk + Butter + Black / Serrated"
+        }
+      },
+      "6582457040966": {
+        "39293459005510": {
+          "available": true,
+          "title": "Titanium"
+        }
+      },
+      "4871561478214": {
+        "32324040130630": {
+          "available": true,
+          "title": "Titanium"
+        }
+      },
+      "1348933353573": {
+        "40644172709958": {
+          "available": true,
+          "title": "$25.00"
+        },
+        "40644172742726": {
+          "available": true,
+          "title": "$50.00"
+        },
+        "40644172775494": {
+          "available": true,
+          "title": "$100.00"
+        },
+        "40644172808262": {
+          "available": true,
+          "title": "$150.00"
+        },
+        "40644172841030": {
+          "available": true,
+          "title": "$200.00"
+        }
+      },
+      "4330476929094": {
+        "45255825719366": {
+          "available": true,
+          "title": "Primer Gray + Stainless / Straight / Medium"
+        },
+        "43913286910022": {
+          "available": true,
+          "title": "Black + Fire / Straight / Medium"
+        },
+        "40905353166918": {
+          "available": true,
+          "title": "Black + Rose Gold / Straight / Medium"
+        },
+        "41243411382342": {
+          "available": true,
+          "title": "Coyote Tan + Black / Straight / Medium"
+        },
+        "40608791756870": {
+          "available": true,
+          "title": "OD Green + Orange + Black / Straight / Medium"
+        },
+        "40608792870982": {
+          "available": false,
+          "title": "OD Green + Orange + Black / Straight / XL"
+        },
+        "31072157958214": {
+          "available": true,
+          "title": "Black + Black / Straight / Medium"
+        },
+        "39449357058118": {
+          "available": true,
+          "title": "Black + Black / Straight / XL"
+        },
+        "31072154648646": {
+          "available": true,
+          "title": "Black + Stainless / Straight / Medium"
+        },
+        "39449357844550": {
+          "available": true,
+          "title": "Black + Stainless / Straight / XL"
+        },
+        "41790644650054": {
+          "available": true,
+          "title": "Carryology / Straight / Medium"
+        },
+        "39353807962182": {
+          "available": true,
+          "title": "Black Micarta + Damascus / Straight / Medium"
+        },
+        "42159798943814": {
+          "available": false,
+          "title": "Carbon Fiber + Stainless / Straight / Medium"
+        },
+        "42899335610438": {
+          "available": false,
+          "title": "Tidal Blue + Stonewash / Straight / Medium"
+        },
+        "31315915210822": {
+          "available": true,
+          "title": "OD Green Micarta + Stainless / Straight / Medium"
+        },
+        "31459597451334": {
+          "available": true,
+          "title": "Bone + Black / Straight / Medium"
+        },
+        "43841656488006": {
+          "available": false,
+          "title": "Racer Blue / Straight / Medium"
+        },
+        "32315632615494": {
+          "available": false,
+          "title": "Black Micarta + Stainless / Straight / Medium"
+        }
+      },
+      "4206779695174": {
+        "44707081945158": {
+          "available": true,
+          "title": "Tumbleweed + Dark Green"
+        },
+        "44707082633286": {
+          "available": true,
+          "title": "Wine Red + Silver"
+        },
+        "40542202626118": {
+          "available": true,
+          "title": "Orange + Black"
+        },
+        "39371540561990": {
+          "available": true,
+          "title": "Black + Electric Moss"
+        },
+        "42899338985542": {
+          "available": true,
+          "title": "Sea Wave + Cerulean"
+        },
+        "30552406851654": {
+          "available": true,
+          "title": "Black"
+        },
+        "40590745010246": {
+          "available": true,
+          "title": "Silver"
+        },
+        "40542203052102": {
+          "available": true,
+          "title": "Cerulean + Red"
+        },
+        "32111332393030": {
+          "available": false,
+          "title": "Canary"
+        },
+        "31392046874694": {
+          "available": true,
+          "title": "Purple"
+        }
+      },
+      "1325206110309": {
+        "12247123394661": {
+          "available": true,
+          "title": "Black"
+        },
+        "44852608925766": {
+          "available": true,
+          "title": "Pink Haze + Sherbet"
+        },
+        "12247124967525": {
+          "available": true,
+          "title": "Silver"
+        },
+        "44852609024070": {
+          "available": true,
+          "title": "Racer Blue + Olive Stone"
+        },
+        "43325186670662": {
+          "available": true,
+          "title": "Black + Alpine Liquid Blue"
+        },
+        "41790633607238": {
+          "available": true,
+          "title": "Carryology"
+        },
+        "31237578227782": {
+          "available": true,
+          "title": "Titanium"
+        }
+      },
+      "1325195526245": {
+        "20472851234886": {
+          "available": true,
+          "title": "Titanium"
+        },
+        "12247075717221": {
+          "available": true,
+          "title": "Black"
+        },
+        "43325228351558": {
+          "available": true,
+          "title": "Alpine Black"
+        }
+      },
+      "10570957832": {
+        "32179499565126": {
+          "available": true,
+          "title": "Black + Stainless / Straight"
+        },
+        "32179497926726": {
+          "available": true,
+          "title": "Black + Black / Straight"
+        },
+        "42899402752070": {
+          "available": true,
+          "title": "Tidal Blue + Stonewash / Straight"
+        },
+        "40608791920710": {
+          "available": true,
+          "title": "OD Green + Orange + Black / Straight"
+        },
+        "39599195291718": {
+          "available": false,
+          "title": "OD Green Micarta + Stainless / Straight"
+        },
+        "44449776435270": {
+          "available": true,
+          "title": "Moblow Edition / Straight"
+        },
+        "44449778860102": {
+          "available": true,
+          "title": "Bone + Black / Straight"
+        }
+      }
     }
   },
   "_poll_limit": 50,
@@ -252182,6 +253163,45 @@
         "54645201273170": "92.00",
         "54645201305938": "92.00",
         "54645201338706": "92.00"
+      },
+      "11126861005138": {
+        "54645096546642": "315.00",
+        "54645096579410": "315.00",
+        "54645096612178": "315.00",
+        "54645096644946": "315.00",
+        "54645096677714": "315.00",
+        "54645096710482": "315.00",
+        "54645096743250": "315.00",
+        "54645096776018": "315.00",
+        "54645096808786": "315.00",
+        "54645109129554": "315.00",
+        "54645109162322": "315.00"
+      },
+      "11126786752850": {
+        "54644795638098": "356.00",
+        "54644795670866": "356.00",
+        "54644795703634": "356.00",
+        "54644795736402": "356.00",
+        "54644795769170": "356.00",
+        "54644795801938": "356.00",
+        "54644795834706": "356.00",
+        "54644795867474": "356.00",
+        "54644795900242": "356.00",
+        "54644795933010": "356.00",
+        "54644807860562": "356.00"
+      },
+      "11126837444946": {
+        "54644990771538": "305.00",
+        "54644990804306": "305.00",
+        "54644990837074": "305.00",
+        "54644990869842": "305.00",
+        "54644990902610": "305.00",
+        "54644990935378": "305.00",
+        "54644990968146": "305.00",
+        "54644991000914": "305.00",
+        "54644991033682": "305.00",
+        "54645003157842": "305.00",
+        "54645003190610": "305.00"
       }
     },
     "www.guiltyparty.co": {
