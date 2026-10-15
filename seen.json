@@ -12100,6 +12100,12 @@
     "9615049130280"
   ],
   "berkeleysupply.com": [
+    "15399004536926",
+    "15399000408158",
+    "15398999261278",
+    "15398998376542",
+    "15398998212702",
+    "15397495439454",
     "15439903555678",
     "15440420634718",
     "7300047929438",
@@ -13502,7 +13508,7 @@
       "Cultofindigo": 1791821816,
       "Limbro": 1792031528,
       "Okayamadenim": 1792022522,
-      "Berkeleysupply": 1792015335,
+      "Berkeleysupply": 1792044126,
       "Statement Store": 1791797508,
       "Cultizm": 1792015335,
       "Motostyle": 1791887513,
@@ -13511,7 +13517,7 @@
       "Thejamesbrand": 1791910923
     },
     "last_digest": 1791545707,
-    "period_new": 2356,
+    "period_new": 2362,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -13519,54 +13525,54 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1792043114,
-    "hatclub.com": 1792043116,
-    "sofreshclothing.com": 1792043117,
-    "culturekings.com": 1792043119,
-    "exclusivefitted.com": 1792043121,
-    "www.neweracap.com": 1792043123,
-    "procietyshop.com": 1792043125,
-    "4ucaps.com": 1792043126,
-    "www.hatdreams.com": 1792043128,
-    "crownminded.com": 1792043130,
-    "www.ecapcity.com": 1792043132,
-    "www.lidshd.com": 1792043134,
-    "gf-sf.com": 1792043136,
-    "incredideals.ae": 1792043138,
-    "stylisticsjapan.com": 1792043140,
-    "www.cojpgallery.com": 1792043142,
-    "sonofastag.com": 1792043144,
-    "bears-tokyo.myshopify.com": 1792043146,
-    "corlection.com": 1792043148,
-    "ironshopprovisions.com": 1792043150,
-    "franklinandpoe.com": 1792043152,
-    "meadowweb.com": 1792043154,
-    "mildblend.com": 1792043156,
-    "rodeo-japan-pine-avenue.com": 1792043158,
-    "klaxon-store.com": 1792043160,
-    "www.bluebeachdenim.shop": 1792043162,
-    "www.dant.us": 1792043164,
-    "hinoya.shop": 1792043166,
-    "homegame-newyork.com": 1792043168,
-    "redcastheritage.com": 1792043170,
-    "www.panchoandlefty.se": 1792043172,
-    "www.blueingreensoho.com": 1792043174,
-    "www.guiltyparty.co": 1792043176,
-    "www.blueowl.us": 1792043178,
-    "standardandstrange.com": 1792043179,
-    "www.witheredfig.com": 1792043181,
-    "www.mentionclothing.com": 1792043183,
-    "sakuraclientele.com": 1792043186,
-    "cultofindigo.com": 1792043187,
-    "www.limbro.id": 1792043189,
-    "www.okayamadenim.com": 1792043193,
-    "berkeleysupply.com": 1792043195,
-    "statement-store.com": 1792043197,
-    "cultizm.com": 1792043199,
-    "www.motostyle.jp": 1792043201,
-    "fittedunderground.com": 1792043203,
-    "www.snakeoilprovisions.com": 1792043205,
-    "thejamesbrand.com": 1792043207
+    "www.myfitteds.com": 1792044022,
+    "hatclub.com": 1792044024,
+    "sofreshclothing.com": 1792044026,
+    "culturekings.com": 1792044028,
+    "exclusivefitted.com": 1792044029,
+    "www.neweracap.com": 1792044031,
+    "procietyshop.com": 1792044033,
+    "4ucaps.com": 1792044035,
+    "www.hatdreams.com": 1792044037,
+    "crownminded.com": 1792044039,
+    "www.ecapcity.com": 1792044041,
+    "www.lidshd.com": 1792044042,
+    "gf-sf.com": 1792044044,
+    "incredideals.ae": 1792044046,
+    "stylisticsjapan.com": 1792044048,
+    "www.cojpgallery.com": 1792044050,
+    "sonofastag.com": 1792044053,
+    "bears-tokyo.myshopify.com": 1792044054,
+    "corlection.com": 1792044056,
+    "ironshopprovisions.com": 1792044058,
+    "franklinandpoe.com": 1792044060,
+    "meadowweb.com": 1792044062,
+    "mildblend.com": 1792044064,
+    "rodeo-japan-pine-avenue.com": 1792044066,
+    "klaxon-store.com": 1792044068,
+    "www.bluebeachdenim.shop": 1792044070,
+    "www.dant.us": 1792044073,
+    "hinoya.shop": 1792044075,
+    "homegame-newyork.com": 1792044077,
+    "redcastheritage.com": 1792044079,
+    "www.panchoandlefty.se": 1792044081,
+    "www.blueingreensoho.com": 1792044083,
+    "www.guiltyparty.co": 1792044085,
+    "www.blueowl.us": 1792044087,
+    "standardandstrange.com": 1792044088,
+    "www.witheredfig.com": 1792044090,
+    "www.mentionclothing.com": 1792044092,
+    "sakuraclientele.com": 1792044095,
+    "cultofindigo.com": 1792044097,
+    "www.limbro.id": 1792044099,
+    "www.okayamadenim.com": 1792044102,
+    "berkeleysupply.com": 1792044105,
+    "statement-store.com": 1792044114,
+    "cultizm.com": 1792044116,
+    "www.motostyle.jp": 1792044118,
+    "fittedunderground.com": 1792044120,
+    "www.snakeoilprovisions.com": 1792044122,
+    "thejamesbrand.com": 1792044124
   },
   "fittedunderground.com": [
     "7591909654586",
@@ -232486,6 +232492,118 @@
           "available": true,
           "title": "XXL"
         }
+      },
+      "15399004536926": {
+        "67596342526046": {
+          "available": true,
+          "title": "S"
+        },
+        "67596342558814": {
+          "available": true,
+          "title": "M"
+        },
+        "67596342591582": {
+          "available": true,
+          "title": "L"
+        },
+        "67596342624350": {
+          "available": false,
+          "title": "XL"
+        }
+      },
+      "15399000408158": {
+        "67596328534110": {
+          "available": true,
+          "title": "S"
+        },
+        "67596328566878": {
+          "available": true,
+          "title": "M"
+        },
+        "67596328599646": {
+          "available": true,
+          "title": "L"
+        },
+        "67596328632414": {
+          "available": true,
+          "title": "XL"
+        }
+      },
+      "15398999261278": {
+        "67596326109278": {
+          "available": true,
+          "title": "S"
+        },
+        "67596326142046": {
+          "available": true,
+          "title": "M"
+        },
+        "67596326174814": {
+          "available": true,
+          "title": "L"
+        },
+        "67596326207582": {
+          "available": true,
+          "title": "XL"
+        }
+      },
+      "15398998376542": {
+        "67596324208734": {
+          "available": true,
+          "title": "S"
+        },
+        "67596324241502": {
+          "available": true,
+          "title": "M"
+        },
+        "67596324274270": {
+          "available": true,
+          "title": "L"
+        },
+        "67596324307038": {
+          "available": true,
+          "title": "XL"
+        }
+      },
+      "15398998212702": {
+        "67596323946590": {
+          "available": true,
+          "title": "S"
+        },
+        "67596323979358": {
+          "available": true,
+          "title": "M"
+        },
+        "67596324012126": {
+          "available": true,
+          "title": "L"
+        },
+        "67596324044894": {
+          "available": true,
+          "title": "XL"
+        }
+      },
+      "15397495439454": {
+        "67587109060702": {
+          "available": false,
+          "title": "S"
+        },
+        "67587109093470": {
+          "available": true,
+          "title": "M"
+        },
+        "67587109126238": {
+          "available": true,
+          "title": "L"
+        },
+        "67587109159006": {
+          "available": true,
+          "title": "XL"
+        },
+        "67587109191774": {
+          "available": true,
+          "title": "XXL"
+        }
       }
     },
     "statement-store.com": {
@@ -262540,6 +262658,37 @@
         "67745571373150": "250.00",
         "67745571405918": "250.00",
         "67745571438686": "250.00"
+      },
+      "15399000408158": {
+        "67596328534110": "440.00",
+        "67596328566878": "440.00",
+        "67596328599646": "440.00",
+        "67596328632414": "440.00"
+      },
+      "15398999261278": {
+        "67596326109278": "350.00",
+        "67596326142046": "350.00",
+        "67596326174814": "350.00",
+        "67596326207582": "350.00"
+      },
+      "15398998376542": {
+        "67596324208734": "375.00",
+        "67596324241502": "375.00",
+        "67596324274270": "375.00",
+        "67596324307038": "375.00"
+      },
+      "15398998212702": {
+        "67596323946590": "375.00",
+        "67596323979358": "375.00",
+        "67596324012126": "375.00",
+        "67596324044894": "375.00"
+      },
+      "15397495439454": {
+        "67587109060702": "310.00",
+        "67587109093470": "310.00",
+        "67587109126238": "310.00",
+        "67587109159006": "310.00",
+        "67587109191774": "310.00"
       }
     },
     "www.okayamadenim.com": {
