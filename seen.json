@@ -12006,6 +12006,8 @@
     "10447588655400",
     "10436850712872",
     "10436853236008",
+    "10197700149544",
+    "15427141304616",
     "15427135177000",
     "15427128787240",
     "15427113976104",
@@ -13660,7 +13662,7 @@
       "Sakuraclientele": 1786098711,
       "Cultofindigo": 1791821816,
       "Limbro": 1792031528,
-      "Okayamadenim": 1792115214,
+      "Okayamadenim": 1792116125,
       "Berkeleysupply": 1792102680,
       "Statement Store": 1792076571,
       "Cultizm": 1792101737,
@@ -13670,7 +13672,7 @@
       "Thejamesbrand": 1792084613
     },
     "last_digest": 1791545707,
-    "period_new": 2751,
+    "period_new": 2753,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -13678,54 +13680,54 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1792115113,
-    "hatclub.com": 1792115115,
-    "sofreshclothing.com": 1792115117,
-    "culturekings.com": 1792115119,
-    "exclusivefitted.com": 1792115121,
-    "www.neweracap.com": 1792115123,
-    "procietyshop.com": 1792115125,
-    "4ucaps.com": 1792115126,
-    "www.hatdreams.com": 1792115128,
-    "crownminded.com": 1792115130,
-    "www.ecapcity.com": 1792115132,
-    "www.lidshd.com": 1792115134,
-    "gf-sf.com": 1792115136,
-    "incredideals.ae": 1792115138,
-    "stylisticsjapan.com": 1792115140,
-    "www.cojpgallery.com": 1792115142,
-    "sonofastag.com": 1792115144,
-    "bears-tokyo.myshopify.com": 1792115146,
-    "corlection.com": 1792115148,
-    "ironshopprovisions.com": 1792115150,
-    "franklinandpoe.com": 1792115152,
-    "meadowweb.com": 1792115154,
-    "mildblend.com": 1792115156,
-    "rodeo-japan-pine-avenue.com": 1792115158,
-    "klaxon-store.com": 1792115160,
-    "www.bluebeachdenim.shop": 1792115162,
-    "www.dant.us": 1792115165,
-    "hinoya.shop": 1792115167,
-    "homegame-newyork.com": 1792115169,
-    "redcastheritage.com": 1792115171,
-    "www.panchoandlefty.se": 1792115173,
-    "www.blueingreensoho.com": 1792115175,
-    "www.guiltyparty.co": 1792115177,
-    "www.blueowl.us": 1792115179,
-    "standardandstrange.com": 1792115181,
-    "www.witheredfig.com": 1792115182,
-    "www.mentionclothing.com": 1792115184,
-    "sakuraclientele.com": 1792115187,
-    "cultofindigo.com": 1792115189,
-    "www.limbro.id": 1792115190,
-    "www.okayamadenim.com": 1792115193,
-    "berkeleysupply.com": 1792115199,
-    "statement-store.com": 1792115201,
-    "cultizm.com": 1792115203,
-    "www.motostyle.jp": 1792115205,
-    "fittedunderground.com": 1792115208,
-    "www.snakeoilprovisions.com": 1792115210,
-    "thejamesbrand.com": 1792115212
+    "www.myfitteds.com": 1792116024,
+    "hatclub.com": 1792116026,
+    "sofreshclothing.com": 1792116028,
+    "culturekings.com": 1792116030,
+    "exclusivefitted.com": 1792116032,
+    "www.neweracap.com": 1792116034,
+    "procietyshop.com": 1792116036,
+    "4ucaps.com": 1792116038,
+    "www.hatdreams.com": 1792116039,
+    "crownminded.com": 1792116041,
+    "www.ecapcity.com": 1792116043,
+    "www.lidshd.com": 1792116045,
+    "gf-sf.com": 1792116047,
+    "incredideals.ae": 1792116049,
+    "stylisticsjapan.com": 1792116052,
+    "www.cojpgallery.com": 1792116054,
+    "sonofastag.com": 1792116056,
+    "bears-tokyo.myshopify.com": 1792116058,
+    "corlection.com": 1792116060,
+    "ironshopprovisions.com": 1792116062,
+    "franklinandpoe.com": 1792116064,
+    "meadowweb.com": 1792116066,
+    "mildblend.com": 1792116068,
+    "rodeo-japan-pine-avenue.com": 1792116070,
+    "klaxon-store.com": 1792116072,
+    "www.bluebeachdenim.shop": 1792116074,
+    "www.dant.us": 1792116076,
+    "hinoya.shop": 1792116078,
+    "homegame-newyork.com": 1792116081,
+    "redcastheritage.com": 1792116083,
+    "www.panchoandlefty.se": 1792116085,
+    "www.blueingreensoho.com": 1792116087,
+    "www.guiltyparty.co": 1792116089,
+    "www.blueowl.us": 1792116091,
+    "standardandstrange.com": 1792116093,
+    "www.witheredfig.com": 1792116095,
+    "www.mentionclothing.com": 1792116097,
+    "sakuraclientele.com": 1792116099,
+    "cultofindigo.com": 1792116101,
+    "www.limbro.id": 1792116103,
+    "www.okayamadenim.com": 1792116105,
+    "berkeleysupply.com": 1792116111,
+    "statement-store.com": 1792116113,
+    "cultizm.com": 1792116115,
+    "www.motostyle.jp": 1792116117,
+    "fittedunderground.com": 1792116120,
+    "www.snakeoilprovisions.com": 1792116121,
+    "thejamesbrand.com": 1792116123
   },
   "fittedunderground.com": [
     "7646123720762",
@@ -55528,7 +55530,7 @@
           "title": "7 3/4"
         },
         "67690322723043": {
-          "available": true,
+          "available": false,
           "title": "7 7/8"
         },
         "67690322755811": {
@@ -230393,6 +230395,38 @@
           "available": true,
           "title": "46"
         }
+      },
+      "10197700149544": {
+        "51587044606248": {
+          "available": true,
+          "title": "M"
+        },
+        "51587044639016": {
+          "available": true,
+          "title": "L"
+        },
+        "51587044671784": {
+          "available": true,
+          "title": "XL"
+        }
+      },
+      "15427141304616": {
+        "67907723985192": {
+          "available": true,
+          "title": "M"
+        },
+        "67907724017960": {
+          "available": true,
+          "title": "L"
+        },
+        "67907724050728": {
+          "available": true,
+          "title": "XL"
+        },
+        "67907724083496": {
+          "available": true,
+          "title": "XXL"
+        }
       }
     },
     "berkeleysupply.com": {
@@ -268021,6 +268055,17 @@
         "67907573383464": "95.00",
         "67907573416232": "95.00",
         "67907573449000": "95.00"
+      },
+      "10197700149544": {
+        "51587044606248": "225.00",
+        "51587044639016": "225.00",
+        "51587044671784": "225.00"
+      },
+      "15427141304616": {
+        "67907723985192": "130.00",
+        "67907724017960": "130.00",
+        "67907724050728": "130.00",
+        "67907724083496": "130.00"
       }
     },
     "www.myfitteds.com": {
