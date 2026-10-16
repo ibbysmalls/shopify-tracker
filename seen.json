@@ -588,6 +588,9 @@
     "8020078526539"
   ],
   "sofreshclothing.com": [
+    "5626398671005",
+    "7552080019671",
+    "7552123306199",
     "4164979097737",
     "5626460111005",
     "7552121307351",
@@ -4404,6 +4407,9 @@
     "10570957832"
   ],
   "stylisticsjapan.com": [
+    "15421084368932",
+    "15421084205092",
+    "15421084106788",
     "15421046849572",
     "15421046685732",
     "15419036172324",
@@ -4900,10 +4906,7 @@
     "11161173622820",
     "11161173590052",
     "11161173557284",
-    "11160857313316",
-    "11160857280548",
-    "11160857247780",
-    "11160857215012"
+    "11160857313316"
   ],
   "sonofastag.com": [
     "16607883690375",
@@ -5628,6 +5631,7 @@
     "10122870325545"
   ],
   "www.dant.us": [
+    "8889767395547",
     "10346767843547",
     "10346707353819",
     "10346672783579",
@@ -11150,6 +11154,7 @@
     "8679687127388"
   ],
   "mildblend.com": [
+    "15435521720541",
     "15435315970269",
     "15435370954973",
     "15434040475869",
@@ -12333,6 +12338,7 @@
     "9615049130280"
   ],
   "berkeleysupply.com": [
+    "15449030131806",
     "15448996511838",
     "15448995889246",
     "15401322053726",
@@ -13760,7 +13766,7 @@
     "last_new": {
       "MYFITTEDS": 1790284635,
       "Hat Club": 1792178213,
-      "So Fresh Clothing": 1792186321,
+      "So Fresh Clothing": 1792187216,
       "Culture Kings US": 1792183611,
       "Exclusive Fitted Inc.": 1792180096,
       "New Era Cap": 1792174616,
@@ -13772,7 +13778,7 @@
       "LidsHatDrop": 1792166581,
       "Goodfellas SF": 1792174616,
       "incrediDeals": 1791967607,
-      "StylisticsJapan.com": 1792186321,
+      "StylisticsJapan.com": 1792187216,
       "COJP Gallery": 1792030609,
       "SON OF A STAG": 1792181116,
       "BEARS' Tokyo": 1792181116,
@@ -13780,11 +13786,11 @@
       "Iron Shop Provisions": 1792126927,
       "Franklin & Poe": 1792175539,
       "Meadow": 1792164720,
-      "Mildblend Supply Co.": 1792177322,
+      "Mildblend Supply Co.": 1792187216,
       "Rodeo Japan Pine Avenue": 1792181116,
       "Klaxon Store": 1792134131,
       "Blue Beach Denim": 1791811024,
-      "Dant": 1792185413,
+      "Dant": 1792187216,
       "HINOYA Online Store": 1792144925,
       "HOMEGAME NEW YORK": 1792092737,
       "Redcast Heritage Co.": 1792180096,
@@ -13799,7 +13805,7 @@
       "Cultofindigo": 1792169216,
       "Limbro": 1792132312,
       "Okayamadenim": 1792162935,
-      "Berkeleysupply": 1792185413,
+      "Berkeleysupply": 1792187216,
       "Statement Store": 1792076571,
       "Cultizm": 1792163814,
       "Motostyle": 1792127810,
@@ -13808,7 +13814,7 @@
       "Thejamesbrand": 1792084613
     },
     "last_digest": 1792151212,
-    "period_new": 484,
+    "period_new": 494,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -13816,54 +13822,54 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1792186219,
-    "hatclub.com": 1792186221,
-    "sofreshclothing.com": 1792186222,
-    "culturekings.com": 1792186229,
-    "exclusivefitted.com": 1792186231,
-    "www.neweracap.com": 1792186233,
-    "procietyshop.com": 1792186234,
-    "4ucaps.com": 1792186236,
-    "www.hatdreams.com": 1792186238,
-    "crownminded.com": 1792186240,
-    "www.ecapcity.com": 1792186242,
-    "www.lidshd.com": 1792186244,
-    "gf-sf.com": 1792186245,
-    "incredideals.ae": 1792186247,
-    "stylisticsjapan.com": 1792186250,
-    "www.cojpgallery.com": 1792186254,
-    "sonofastag.com": 1792186255,
-    "bears-tokyo.myshopify.com": 1792186257,
-    "corlection.com": 1792186259,
-    "ironshopprovisions.com": 1792186261,
-    "franklinandpoe.com": 1792186263,
-    "meadowweb.com": 1792186265,
-    "mildblend.com": 1792186267,
-    "rodeo-japan-pine-avenue.com": 1792186269,
-    "klaxon-store.com": 1792186271,
-    "www.bluebeachdenim.shop": 1792186274,
-    "www.dant.us": 1792186276,
-    "hinoya.shop": 1792186278,
-    "homegame-newyork.com": 1792186280,
-    "redcastheritage.com": 1792186282,
-    "www.panchoandlefty.se": 1792186284,
-    "www.blueingreensoho.com": 1792186286,
-    "www.guiltyparty.co": 1792186287,
-    "www.blueowl.us": 1792186289,
-    "standardandstrange.com": 1792186291,
-    "www.witheredfig.com": 1792186293,
-    "www.mentionclothing.com": 1792186295,
-    "sakuraclientele.com": 1792186297,
-    "cultofindigo.com": 1792186299,
-    "www.limbro.id": 1792186301,
-    "www.okayamadenim.com": 1792186304,
-    "berkeleysupply.com": 1792186306,
-    "statement-store.com": 1792186308,
-    "cultizm.com": 1792186310,
-    "www.motostyle.jp": 1792186312,
-    "fittedunderground.com": 1792186315,
-    "www.snakeoilprovisions.com": 1792186317,
-    "thejamesbrand.com": 1792186319
+    "www.myfitteds.com": 1792187114,
+    "hatclub.com": 1792187115,
+    "sofreshclothing.com": 1792187117,
+    "culturekings.com": 1792187121,
+    "exclusivefitted.com": 1792187122,
+    "www.neweracap.com": 1792187124,
+    "procietyshop.com": 1792187126,
+    "4ucaps.com": 1792187128,
+    "www.hatdreams.com": 1792187130,
+    "crownminded.com": 1792187131,
+    "www.ecapcity.com": 1792187133,
+    "www.lidshd.com": 1792187135,
+    "gf-sf.com": 1792187137,
+    "incredideals.ae": 1792187139,
+    "stylisticsjapan.com": 1792187141,
+    "www.cojpgallery.com": 1792187148,
+    "sonofastag.com": 1792187150,
+    "bears-tokyo.myshopify.com": 1792187152,
+    "corlection.com": 1792187154,
+    "ironshopprovisions.com": 1792187155,
+    "franklinandpoe.com": 1792187157,
+    "meadowweb.com": 1792187159,
+    "mildblend.com": 1792187161,
+    "rodeo-japan-pine-avenue.com": 1792187165,
+    "klaxon-store.com": 1792187167,
+    "www.bluebeachdenim.shop": 1792187169,
+    "www.dant.us": 1792187171,
+    "hinoya.shop": 1792187173,
+    "homegame-newyork.com": 1792187175,
+    "redcastheritage.com": 1792187177,
+    "www.panchoandlefty.se": 1792187179,
+    "www.blueingreensoho.com": 1792187181,
+    "www.guiltyparty.co": 1792187183,
+    "www.blueowl.us": 1792187184,
+    "standardandstrange.com": 1792187186,
+    "www.witheredfig.com": 1792187188,
+    "www.mentionclothing.com": 1792187190,
+    "sakuraclientele.com": 1792187192,
+    "cultofindigo.com": 1792187194,
+    "www.limbro.id": 1792187196,
+    "www.okayamadenim.com": 1792187198,
+    "berkeleysupply.com": 1792187200,
+    "statement-store.com": 1792187204,
+    "cultizm.com": 1792187206,
+    "www.motostyle.jp": 1792187208,
+    "fittedunderground.com": 1792187210,
+    "www.snakeoilprovisions.com": 1792187212,
+    "thejamesbrand.com": 1792187214
   },
   "fittedunderground.com": [
     "7648226345018",
@@ -30226,12 +30232,30 @@
       },
       "7552121307351": {
         "42425892372695": {
-          "available": false,
+          "available": true,
           "title": "Default Title"
         }
       },
       "7552122290391": {
         "42425894240471": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "5626398671005": {
+        "36206081474717": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "7552080019671": {
+        "42425767985367": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "7552123306199": {
+        "42425896239319": {
           "available": true,
           "title": "Default Title"
         }
@@ -103802,24 +103826,6 @@
           "title": "Default Title"
         }
       },
-      "11160857280548": {
-        "51306926833700": {
-          "available": true,
-          "title": "Default Title"
-        }
-      },
-      "11160857247780": {
-        "51306926800932": {
-          "available": true,
-          "title": "Default Title"
-        }
-      },
-      "11160857215012": {
-        "51306926211108": {
-          "available": false,
-          "title": "Default Title"
-        }
-      },
       "11161173688356": {
         "51307873861668": {
           "available": true,
@@ -108612,6 +108618,24 @@
       },
       "15421046685732": {
         "67700755136548": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "15421084368932": {
+        "67700877852708": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "15421084205092": {
+        "67700877590564": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "15421084106788": {
+        "67700877492260": {
           "available": true,
           "title": "Default Title"
         }
@@ -148507,6 +148531,48 @@
           "available": true,
           "title": "12"
         }
+      },
+      "15435521720541": {
+        "68210367889629": {
+          "available": true,
+          "title": "28"
+        },
+        "68210367922397": {
+          "available": true,
+          "title": "29"
+        },
+        "68210367955165": {
+          "available": true,
+          "title": "30"
+        },
+        "68210367987933": {
+          "available": true,
+          "title": "31"
+        },
+        "68210368020701": {
+          "available": true,
+          "title": "32"
+        },
+        "68210368053469": {
+          "available": true,
+          "title": "33"
+        },
+        "68210368086237": {
+          "available": true,
+          "title": "34"
+        },
+        "68210368119005": {
+          "available": true,
+          "title": "36"
+        },
+        "68210368151773": {
+          "available": true,
+          "title": "38"
+        },
+        "68210368184541": {
+          "available": false,
+          "title": "40"
+        }
       }
     },
     "rodeo-japan-pine-avenue.com": {
@@ -163049,6 +163115,28 @@
           "available": false,
           "title": "5"
         }
+      },
+      "8889767395547": {
+        "46793020014811": {
+          "available": false,
+          "title": "1"
+        },
+        "46793020047579": {
+          "available": false,
+          "title": "2"
+        },
+        "46793020080347": {
+          "available": false,
+          "title": "3"
+        },
+        "46793020113115": {
+          "available": false,
+          "title": "4"
+        },
+        "46793020145883": {
+          "available": false,
+          "title": "5"
+        }
       }
     },
     "hinoya.shop": {
@@ -168284,7 +168372,7 @@
           "title": "One Wash / 42"
         },
         "68034368831723": {
-          "available": true,
+          "available": false,
           "title": "One Wash / 44"
         }
       },
@@ -238384,7 +238472,7 @@
           "title": "S"
         },
         "48957316300894": {
-          "available": true,
+          "available": false,
           "title": "M"
         },
         "48957316333662": {
@@ -238774,6 +238862,12 @@
       },
       "15448995889246": {
         "67767856988254": {
+          "available": true,
+          "title": "Default Title"
+        }
+      },
+      "15449030131806": {
+        "67767903191134": {
           "available": true,
           "title": "Default Title"
         }
@@ -259866,7 +259960,7 @@
           "title": "33"
         },
         "49019217674358": {
-          "available": true,
+          "available": false,
           "title": "34"
         },
         "49031763787894": {
@@ -260039,7 +260133,7 @@
       "8378269794374": {
         "44962132394054": {
           "available": true,
-          "title": "Grove"
+          "title": "Grove + Stainless"
         },
         "44962131869766": {
           "available": true,
@@ -260047,7 +260141,7 @@
         },
         "44962128003142": {
           "available": true,
-          "title": "Black"
+          "title": "Black + Stainless"
         }
       },
       "7619436544070": {
@@ -263357,6 +263451,15 @@
       },
       "15421046849572": {
         "67700755791908": "99.00"
+      },
+      "15421084368932": {
+        "67700877852708": "109.00"
+      },
+      "15421084205092": {
+        "67700877590564": "69.00"
+      },
+      "15421084106788": {
+        "67700877492260": "119.00"
       }
     },
     "hinoya.shop": {
@@ -266548,6 +266651,18 @@
         "68202593419485": "295.00",
         "68202593452253": "295.00",
         "68202593485021": "295.00"
+      },
+      "15435521720541": {
+        "68210367889629": "238.00",
+        "68210367922397": "238.00",
+        "68210367955165": "238.00",
+        "68210367987933": "238.00",
+        "68210368020701": "238.00",
+        "68210368053469": "238.00",
+        "68210368086237": "238.00",
+        "68210368119005": "238.00",
+        "68210368151773": "238.00",
+        "68210368184541": "238.00"
       }
     },
     "www.bluebeachdenim.shop": {
@@ -273614,6 +273729,13 @@
         "50683316142299": "156.00",
         "50683316175067": "156.00",
         "50683316207835": "156.00"
+      },
+      "8889767395547": {
+        "46793020014811": "235.00",
+        "46793020047579": "235.00",
+        "46793020080347": "235.00",
+        "46793020113115": "235.00",
+        "46793020145883": "235.00"
       }
     },
     "homegame-newyork.com": {
