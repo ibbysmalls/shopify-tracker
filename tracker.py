@@ -21,6 +21,7 @@ Designed to be run on a schedule: launchd/cron on a Mac, or GitHub Actions.
 """
 
 import argparse
+import copy
 from decimal import Decimal, InvalidOperation
 import json
 import os
@@ -1092,6 +1093,25 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         outbox.close()
 
 
+def reconcile_delivery_observations(outbox, state, domain, products, seen, stock):
+    """Use durable public observations when the ordinary history commit was lost."""
+    if not outbox:
+        return seen, stock
+    observed = outbox.data.get("observations", {}).get(domain, {})
+    ids = {str(p["id"]) for p in products if "id" in p}
+    for pid in ids & observed.keys():
+        cursor = observed[pid]
+        if pid not in seen:
+            seen.append(pid)
+        if stock is None:
+            stock = {}
+        stock[pid] = copy.deepcopy(cursor["stock"])
+        if "prices" in cursor:
+            state.setdefault("_clothing_prices", {}).setdefault(domain, {})[pid] = copy.deepcopy(cursor["prices"])
+        state.setdefault("_delivery_seq", {}).setdefault(domain, {})[pid] = cursor["next_sequence"]
+    return seen, stock
+
+
 def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
     poll_cfg = cfg.get("poll", {})
     max_alerts = poll_cfg.get("max_alerts_per_store", 25)
@@ -1217,7 +1237,9 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
 
         seen = list(state.get(domain, []))
         stock_all = state.setdefault("_stock", {})
-        prev_stock = stock_all.get(domain)  # None until variant state is seeded
+        prev_stock = copy.deepcopy(stock_all.get(domain))  # None until variant state is seeded
+        seen, prev_stock = reconcile_delivery_observations(
+            outbox, state, domain, products, seen, prev_stock)
         expanded = False
         # If every product in the regular window is new, the window was
         # probably truncated. Re-fetch once at 250 and diff that set.
@@ -1235,6 +1257,8 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
                 except Exception as e:
                     print(f"[warn] {name}: expanded fetch failed: {e}",
                           file=sys.stderr)
+        seen, prev_stock = reconcile_delivery_observations(
+            outbox, state, domain, products, seen, prev_stock)
         seen_set = {str(i) for i in seen}
         fetched_ids = [str(p["id"]) for p in products if "id" in p]
         no_anchor = bool(seen and fetched_ids
@@ -1320,8 +1344,34 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
                                            "product": p, "extra": extra}, msg))
                 sequences[pid] = sequence + 1
 
+        if outbox:
+            # Persist no-event stock/price transitions too. Otherwise a lost main
+            # commit can leave a stale sequence that suppresses a later restock.
+            cursors = outbox.data.get("observations", {}).get(domain, {})
+            sequences = state.get("_delivery_seq", {}).get(domain, {})
+            observations = {}
+            queued_ids = {str(payload["product"]["id"]) for _, payload, _ in queued}
+            for p in products:
+                if "id" not in p:
+                    continue
+                pid = str(p["id"])
+                sequence = sequences.get(pid, 0)
+                legacy = delivery.event_key(domain, pid, 0) in outbox.data["events"]
+                if pid not in cursors and pid not in queued_ids and not legacy:
+                    continue
+                # Migrate existing receipts without changing or resetting them.
+                while delivery.event_key(domain, pid, sequence) in outbox.data["events"]:
+                    sequence += 1
+                observation = {"stock": next_stock[pid], "next_sequence": sequence}
+                if next_prices is not None and pid in next_prices:
+                    observation["prices"] = next_prices[pid]
+                elif "prices" in cursors.get(pid, {}):
+                    observation["prices"] = cursors[pid]["prices"]
+                observations[pid] = observation
+            outbox.queue_many([(key, payload) for key, payload, _ in queued],
+                              domain=domain, observations=observations)
+
         if queued:
-            outbox.queue_many([(key, payload) for key, payload, _ in queued])
             for event_id, _, msg in queued:
                 try:
                     if outbox.deliver(event_id, lambda: send_telegram(msg)):

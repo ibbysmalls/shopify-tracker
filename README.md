@@ -301,7 +301,10 @@ uses `delivery.json` on the dedicated `delivery-state` branch, through its exist
 message ID there. This journal is independent of the end-of-run `seen.json`
 commit, so a failed or cancelled runner cannot replay confirmed journal events.
 Existing history and filter predicates are preserved. Per-product event sequences
-allow later genuine restocks and price drops to remain eligible.
+and public stock/price observations are checkpointed atomically with queued events,
+including polls with no eligible event. These durable observations reconcile stale
+main history, preserving later genuine restocks and price drops while suppressing
+unchanged-catalogue replay. Existing journals migrate without resetting receipts.
 
 Failed sends remain queued even after the catalogue changes. Queued public
 product data is rechecked against current store/filter rules before retrying;
@@ -310,7 +313,8 @@ responses persist `retry_after` across runs and defer all sends until it expires
 Explicit rejections retry after at least a minute. A transport failure, interrupted
 send, or lost acknowledgement is **ambiguous**: Telegram offers no idempotency
 key or bot-message-history API. Such an event retries after at least 15 minutes
-and may produce one duplicate. This provides recoverable delivery, not exactly-once
+and duplicates remain possible on ambiguous Telegram outcomes, including repeated
+ambiguous retries. This provides recoverable delivery, not exactly-once
 semantics; successes from runs before this repair have no journal receipt and
 cannot be retrospectively identified without Telegram readback.
 
