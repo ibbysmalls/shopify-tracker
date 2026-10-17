@@ -1190,9 +1190,12 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
     feed_counts = dict.fromkeys(("garments", "hats", "socks_footwear", "other",
                                  "event_eligible", "event_rejected"), 0)
 
-    for index, s in enumerate(cfg["stores"]):
+    # Stable ties preserve configured order; an interrupted run resumes with
+    # the stores left longest without a poll instead of restarting at row one.
+    poll_stores = sorted(cfg["stores"], key=lambda store: last_poll.get(store["domain"], 0))
+    for index, s in enumerate(poll_stores):
         if outbox and time.monotonic() + 5 >= outbox.deadline:
-            deferred.extend(item["name"] for item in cfg["stores"][index:])
+            deferred.extend(item["name"] for item in poll_stores[index:])
             print("Soft runtime limit reached; remaining stores deferred")
             break
         name, domain = s["name"], s["domain"]

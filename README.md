@@ -320,7 +320,11 @@ cannot be retrospectively identified without Telegram readback.
 
 Runs use a 240-second soft budget with bounded network calls, leaving room for
 checkpointing before the existing six-minute job timeout. `Persist seen state`
-also runs after failure/cancellation. Workflow concurrency remains serialized;
+also runs after failure/cancellation. Polling prioritizes the oldest store poll
+timestamps, with configured order preserved for ties, so a budget-limited run
+continues with previously deferred stores on the next regular dispatch. Minimum
+interval checks and the external trigger cadence are unchanged.
+Workflow concurrency remains serialized;
 the journal additionally uses compare-and-swap and a 15-minute lease, refusing
 concurrent writers. A killed runner's lease expires naturally. Local runs use
 an atomic, fsynced journal and a process lock next to the script. Do not remove
