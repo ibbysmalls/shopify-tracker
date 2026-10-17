@@ -20,7 +20,7 @@ class JournalError(RuntimeError):
 
 
 class Deferred(RuntimeError):
-    pass
+    """Request was not attempted (or an explicit response deferred it)."""
 
 
 class Rejected(Deferred):
@@ -121,7 +121,8 @@ class GitHubBackend:
 class Outbox:
     def __init__(self, backend, seconds=240):
         self.backend = backend
-        self.deadline = time.monotonic() + seconds
+        self.started_at = time.monotonic()
+        self.deadline = self.started_at + seconds
         self.owner = uuid.uuid4().hex
         self.data = backend.read()
         if self.data.get('version') != 1 or not isinstance(self.data.get('events'), dict):
@@ -190,6 +191,12 @@ class Outbox:
             self.checkpoint()
             raise
         except JournalError:
+            raise
+        except Deferred:
+            # The caller's budget/cooldown preflight made no HTTP request.
+            event['status'] = 'pending'
+            event.pop('retry_at', None)
+            self.checkpoint()
             raise
         except Exception:
             # Includes transport timeout after Telegram may have accepted it.

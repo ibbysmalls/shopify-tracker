@@ -1423,7 +1423,8 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
                   new_by_store, dry_run, cfg.get("health", {}), deferred)
 
     save_json(STATE_PATH, state)
-    total = time.time() - run_start
+    total = time.monotonic() - outbox.started_at if outbox else time.time() - run_start
+    notified = outbox.sent if outbox else notified
     print(f"Done in {total:.1f}s. Seeded {first_run_stores} store(s), "
           f"sent {notified} notification(s).")
 
