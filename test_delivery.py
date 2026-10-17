@@ -230,6 +230,19 @@ class TrackerDeliveryTests(unittest.TestCase):
         self.assertEqual(caught.exception.seconds, 321)
         self.assertNotIn('secret-url', str(caught.exception))
 
+    def test_budget_stop_mid_fetch_is_deferred_without_failure_or_poll_timestamp(self):
+        state = {'example.com': ['1'], '_last_poll': {'example.com': 42}}
+        cfg = {'stores': [{'domain': 'example.com', 'name': 'Example', 'verified': True}]}
+        with patch.object(tracker, 'load_json', return_value=state), \
+                patch.object(tracker, 'save_json'), \
+                patch.object(tracker, 'fetch_products', side_effect=delivery.Deferred('budget')), \
+                patch.object(tracker, 'process_telegram_commands', return_value=False), \
+                patch.object(tracker, 'report_health') as health, redirect_stdout(io.StringIO()):
+            tracker._cmd_run(cfg, outbox=fresh_outbox())
+        self.assertEqual(state['_last_poll']['example.com'], 42)
+        self.assertEqual(health.call_args.args[2], [])  # no failed store
+        self.assertEqual(health.call_args.args[-1], ['Example'])
+
     def test_soft_deadline_defers_fetches_and_preserves_unpolled_history(self):
         backend = MemoryBackend()
         box = delivery.Outbox(backend)

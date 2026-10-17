@@ -1171,7 +1171,7 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
                                  "event_eligible", "event_rejected"), 0)
 
     for index, s in enumerate(cfg["stores"]):
-        if outbox and time.monotonic() >= outbox.deadline:
+        if outbox and time.monotonic() + 5 >= outbox.deadline:
             deferred.extend(item["name"] for item in cfg["stores"][index:])
             print("Soft runtime limit reached; remaining stores deferred")
             break
@@ -1186,6 +1186,7 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
         if interval and since_last < interval - grace:
             deferred.append(name)
             continue
+        previous_poll = last_poll.get(domain)
         last_poll[domain] = int(time.time())
 
         t0 = time.time()
@@ -1199,6 +1200,14 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
             ok_names.append(name)
             if not products:
                 empty.append(name)
+        except delivery.Deferred:
+            # A soft-budget stop is a deferral, not an upstream outage or poll.
+            if previous_poll is None:
+                last_poll.pop(domain, None)
+            else:
+                last_poll[domain] = previous_poll
+            deferred.append(name)
+            continue
         except Exception as e:
             timings.append((time.time() - t0, name, f"FAILED: {e}"))
             failed.append(name)
