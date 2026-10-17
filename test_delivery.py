@@ -323,6 +323,27 @@ class TrackerDeliveryTests(unittest.TestCase):
         self.assertEqual(caught.exception.seconds, 321)
         self.assertNotIn('secret-url', str(caught.exception))
 
+    def test_budget_limited_polls_prioritize_previously_deferred_stores(self):
+        state = {'a.example': ['1'], 'b.example': ['1']}
+        cfg = {'stores': [{'domain': domain, 'name': domain, 'verified': True}
+                          for domain in ['a.example', 'b.example']]}
+        fetched = []
+        for _ in range(2):
+            box = fresh_outbox()
+            def fetch(domain, *args, **kwargs):
+                fetched.append(domain)
+                box.deadline = 0  # this store used the remaining polling budget
+                p = dict(self.product(), id=1)
+                return [p], [p]
+            with patch.object(tracker, 'load_json', return_value=state), \
+                    patch.object(tracker, 'save_json'), patch.object(tracker, 'fetch_products', side_effect=fetch), \
+                    patch.object(tracker, 'process_telegram_commands', return_value=False), \
+                    patch.object(tracker, 'report_health'), patch.object(tracker.time, 'sleep'), \
+                    redirect_stdout(io.StringIO()):
+                tracker._cmd_run(cfg, outbox=box)
+        self.assertEqual(fetched, ['a.example', 'b.example'])
+        self.assertEqual(list(state['_last_poll']), ['a.example', 'b.example'])
+
     def test_budget_stop_mid_fetch_is_deferred_without_failure_or_poll_timestamp(self):
         state = {'example.com': ['1'], '_last_poll': {'example.com': 42}}
         cfg = {'stores': [{'domain': 'example.com', 'name': 'Example', 'verified': True}]}
