@@ -1919,6 +1919,7 @@
     "6839133995121"
   ],
   "exclusivefitted.com": [
+    "10829236830373",
     "10827176116389",
     "10827173232805",
     "10824608219301",
@@ -13857,10 +13858,10 @@
     "empty_since": {},
     "last_new": {
       "MYFITTEDS": 1792262057,
-      "Hat Club": 1792262948,
+      "Hat Club": 1792267459,
       "So Fresh Clothing": 1792262057,
       "Culture Kings US": 1792198926,
-      "Exclusive Fitted Inc.": 1792191725,
+      "Exclusive Fitted Inc.": 1792267459,
       "New Era Cap": 1792174616,
       "Prociety": 1792188127,
       "4ucaps.com": 1792262057,
@@ -13906,7 +13907,7 @@
       "Thejamesbrand": 1792084613
     },
     "last_digest": 1792151212,
-    "period_new": 1287,
+    "period_new": 1289,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -13915,15 +13916,15 @@
   },
   "_last_poll": {
     "www.myfitteds.com": 1792266546,
-    "hatclub.com": 1792264529,
-    "sofreshclothing.com": 1792264531,
-    "culturekings.com": 1792264533,
-    "exclusivefitted.com": 1792264535,
-    "www.neweracap.com": 1792264537,
-    "procietyshop.com": 1792264539,
-    "4ucaps.com": 1792264541,
-    "www.hatdreams.com": 1792264543,
-    "crownminded.com": 1792264546,
+    "hatclub.com": 1792267441,
+    "sofreshclothing.com": 1792267443,
+    "culturekings.com": 1792267445,
+    "exclusivefitted.com": 1792267447,
+    "www.neweracap.com": 1792267449,
+    "procietyshop.com": 1792267451,
+    "4ucaps.com": 1792267453,
+    "www.hatdreams.com": 1792267455,
+    "crownminded.com": 1792267457,
     "www.ecapcity.com": 1792264548,
     "www.lidshd.com": 1792264550,
     "gf-sf.com": 1792264552,
@@ -26750,7 +26751,7 @@
           "title": "Pink / 6 7/8"
         },
         "42374203211851": {
-          "available": false,
+          "available": true,
           "title": "Pink / 7"
         },
         "42374203244619": {
@@ -26762,19 +26763,19 @@
           "title": "Pink / 7 1/4"
         },
         "42374203310155": {
-          "available": false,
+          "available": true,
           "title": "Pink / 7 3/8"
         },
         "42374203342923": {
-          "available": false,
+          "available": true,
           "title": "Pink / 7 1/2"
         },
         "42374203375691": {
-          "available": false,
+          "available": true,
           "title": "Pink / 7 5/8"
         },
         "42374203408459": {
-          "available": false,
+          "available": true,
           "title": "Pink / 7 3/4"
         },
         "42374203441227": {
@@ -47019,6 +47020,44 @@
         },
         "50678486499493": {
           "available": false,
+          "title": "8"
+        }
+      },
+      "10829236830373": {
+        "50685388685477": {
+          "available": true,
+          "title": "7"
+        },
+        "50685388718245": {
+          "available": true,
+          "title": "7 1/8"
+        },
+        "50685388751013": {
+          "available": true,
+          "title": "7 1/4"
+        },
+        "50685388783781": {
+          "available": true,
+          "title": "7 3/8"
+        },
+        "50685388816549": {
+          "available": true,
+          "title": "7 1/2"
+        },
+        "50685388849317": {
+          "available": true,
+          "title": "7 5/8"
+        },
+        "50685388882085": {
+          "available": true,
+          "title": "7 3/4"
+        },
+        "50685388914853": {
+          "available": true,
+          "title": "7 7/8"
+        },
+        "50685388947621": {
+          "available": true,
           "title": "8"
         }
       }
@@ -75430,7 +75469,7 @@
           "title": "7 1/4"
         },
         "52665613091032": {
-          "available": true,
+          "available": false,
           "title": "7 3/8"
         },
         "52665613123800": {
@@ -75568,7 +75607,7 @@
           "title": "7 5/8"
         },
         "52691956596952": {
-          "available": true,
+          "available": false,
           "title": "7 3/4"
         },
         "52691956629720": {
