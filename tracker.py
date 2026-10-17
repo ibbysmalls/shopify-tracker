@@ -1114,7 +1114,9 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
                 try:
                     outbox.deliver(event_id, lambda: send_telegram(payload["summary"]))
                 except delivery.Deferred:
-                    break
+                    if (outbox.data.get("retry_at", 0) > time.time() or
+                            time.monotonic() + 25 >= outbox.deadline):
+                        break
                 continue
             kind, product, extra = payload["kind"], payload["product"], payload["extra"]
             decision = alert_decision(product, store, cfg, kind, extra, private_context)
@@ -1124,7 +1126,9 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
                     if outbox.deliver(event_id, lambda: send_telegram(msg)):
                         time.sleep(1)
                 except delivery.Deferred:
-                    break
+                    if (outbox.data.get("retry_at", 0) > time.time() or
+                            time.monotonic() + 25 >= outbox.deadline):
+                        break
 
     if not dry_run:
         try:
@@ -1475,5 +1479,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

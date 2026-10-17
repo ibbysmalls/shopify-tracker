@@ -189,6 +189,19 @@ class TrackerDeliveryTests(unittest.TestCase):
         send.assert_called_once()
         self.assertTrue(all(e['status'] == 'sent' for e in backend.data['events'].values()))
 
+    def test_one_rejected_pending_event_does_not_block_other_pending_events(self):
+        backend = MemoryBackend()
+        box = delivery.Outbox(backend)
+        for pid in [2, 3]:
+            p = dict(self.product(), id=pid)
+            box.queue(str(pid), {'domain': 'example.com', 'kind': 'new', 'product': p, 'extra': []})
+        box.close()
+        send = Mock(side_effect=[delivery.Rejected('bad request'), 10])
+        self.run_tracker(backend, {'example.com': ['1']}, [], send)
+        self.assertEqual(send.call_count, 2)
+        self.assertEqual(backend.data['events']['2']['status'], 'pending')
+        self.assertEqual(backend.data['events']['3']['status'], 'sent')
+
     def test_confirmed_event_does_not_repeat_when_main_history_commit_lost(self):
         backend = MemoryBackend()
         old = {'example.com': ['1'], '_poll_limit': 50}
