@@ -112,6 +112,16 @@ class OutboxTests(unittest.TestCase):
         with patch('delivery.time.time', return_value=161):
             self.assertTrue(box.deliver('a', lambda: 2))
 
+    def test_budget_preflight_stop_is_pending_not_an_ambiguous_send(self):
+        backend = MemoryBackend()
+        box = delivery.Outbox(backend)
+        box.queue('a', {})
+        with self.assertRaises(delivery.Deferred):
+            box.deliver('a', Mock(side_effect=delivery.Deferred('request not started: budget')))
+        self.assertEqual(backend.data['events']['a']['status'], 'pending')
+        self.assertEqual(backend.data['events']['a'].get('retry_at', 0), 0)
+        self.assertTrue(box.deliver('a', lambda: 123))
+
     def test_cancellation_during_send_is_ambiguous(self):
         backend = MemoryBackend()
         box = delivery.Outbox(backend)
@@ -178,9 +188,10 @@ class TrackerDeliveryTests(unittest.TestCase):
             stack.enter_context(patch.object(tracker, 'process_telegram_commands', return_value=False))
             stack.enter_context(patch.object(tracker, 'clothing_context', return_value={}))
             stack.enter_context(patch.object(tracker.time, 'sleep'))
-            stack.enter_context(redirect_stdout(io.StringIO()))
+            output = stack.enter_context(redirect_stdout(io.StringIO()))
             stack.enter_context(redirect_stderr(io.StringIO()))
             tracker.cmd_run(cfg)
+        return output.getvalue()
 
     @staticmethod
     def product(available=True):
@@ -211,6 +222,15 @@ class TrackerDeliveryTests(unittest.TestCase):
         self.assertEqual(send.call_count, 2)
         self.assertEqual(backend.data['events']['2']['status'], 'pending')
         self.assertEqual(backend.data['events']['3']['status'], 'sent')
+
+    def test_recovery_deliveries_are_included_in_run_summary(self):
+        backend = MemoryBackend()
+        box = delivery.Outbox(backend)
+        box.queue('queued', {'domain': 'example.com', 'kind': 'new',
+                             'product': self.product(), 'extra': None})
+        box.close()
+        output = self.run_tracker(backend, {'example.com': ['2']}, [], Mock(return_value=10))
+        self.assertIn('sent 1 notification(s)', output)
 
     def test_confirmed_event_does_not_repeat_when_main_history_commit_lost(self):
         backend = MemoryBackend()
