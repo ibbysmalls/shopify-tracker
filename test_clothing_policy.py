@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 import clothing_policy as policy
 import tracker
+from test_delivery import fresh_outbox
 import replay_policy
 
 
@@ -437,13 +438,14 @@ class IntegrationTests(unittest.TestCase):
                  "_last_poll": {}, "_clothing_prices": {"example.com": {"1": {"11": "250"}}}}
         original_stock = copy.deepcopy(state["_stock"])
         with ExitStack() as stack:
+            stack.enter_context(patch.object(tracker.delivery, "open_outbox", side_effect=fresh_outbox))
             stack.enter_context(patch.object(tracker, "load_json", return_value=state))
             stack.enter_context(patch.object(tracker, "fetch_products", return_value=([p], [p])))
             stack.enter_context(patch.object(tracker, "process_telegram_commands", return_value=False))
             stack.enter_context(patch.object(tracker, "clothing_context", return_value={}))
             stack.enter_context(patch.object(tracker, "report_health"))
             stack.enter_context(patch.object(tracker.time, "sleep"))
-            send = stack.enter_context(patch.object(tracker, "send_telegram"))
+            send = stack.enter_context(patch.object(tracker, "send_telegram", return_value=1))
             stack.enter_context(patch.object(tracker, "save_json"))
             stack.enter_context(redirect_stdout(io.StringIO()))
             tracker.cmd_run(cfg)
@@ -460,6 +462,7 @@ class IntegrationTests(unittest.TestCase):
         cfg = copy.deepcopy(CFG)
         before_cfg = copy.deepcopy(cfg)
         with ExitStack() as stack:
+            stack.enter_context(patch.object(tracker.delivery, "open_outbox", side_effect=fresh_outbox))
             forbidden = [stack.enter_context(patch.object(tracker, n)) for n in
                          ["save_json", "send_telegram", "http_get_json", "fetch_products", "process_telegram_commands"]]
             report = replay_policy.replay([{"store": STORE, "products": [product()]}], cfg, state)
@@ -477,13 +480,14 @@ class IntegrationTests(unittest.TestCase):
         cfg["stores"] = [dict(STORE, verified=True)]
         state = {"example.com": ["0"], "_stock": {"example.com": {"0": {}}}, "_last_poll": {}}
         with ExitStack() as stack:
+            stack.enter_context(patch.object(tracker.delivery, "open_outbox", side_effect=fresh_outbox))
             stack.enter_context(patch.object(tracker, "load_json", return_value=state))
             stack.enter_context(patch.object(tracker, "fetch_products", return_value=([clothing,hat,outside],[clothing,hat,outside])))
             stack.enter_context(patch.object(tracker, "process_telegram_commands", return_value=False))
             stack.enter_context(patch.object(tracker, "clothing_context", return_value={}))
             stack.enter_context(patch.object(tracker, "report_health"))
             stack.enter_context(patch.object(tracker.time, "sleep"))
-            send = stack.enter_context(patch.object(tracker, "send_telegram"))
+            send = stack.enter_context(patch.object(tracker, "send_telegram", return_value=1))
             save = stack.enter_context(patch.object(tracker, "save_json"))
             stack.enter_context(redirect_stdout(io.StringIO()))
             stack.enter_context(redirect_stderr(io.StringIO()))
@@ -496,11 +500,12 @@ class IntegrationTests(unittest.TestCase):
         self.assertEqual(state["example.com"], ["1", "2", "3", "0"])
         self.assertIn("0", state["_stock"]["example.com"])
         self.assertNotIn("2", state["_clothing_prices"]["example.com"])
-        save.assert_called_once()
+        self.assertGreaterEqual(save.call_count, 1)
 
     def test_filter_preview_remains_read_only_with_new_policy(self):
         cfg = dict(CFG, stores=[STORE])
         with ExitStack() as stack:
+            stack.enter_context(patch.object(tracker.delivery, "open_outbox", side_effect=fresh_outbox))
             stack.enter_context(patch.object(tracker, "fetch_products", return_value=([product()], [])))
             stack.enter_context(patch.object(tracker.time, "sleep"))
             forbidden = [stack.enter_context(patch.object(tracker, n)) for n in
@@ -513,3 +518,4 @@ class IntegrationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

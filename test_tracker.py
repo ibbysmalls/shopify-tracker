@@ -9,6 +9,7 @@ from contextlib import ExitStack, redirect_stdout, redirect_stderr
 from unittest.mock import patch
 
 import tracker
+from test_delivery import fresh_outbox
 
 
 def variant(vid, title, available=True, inventory_quantity=None):
@@ -356,6 +357,7 @@ class AdaptiveRunTests(unittest.TestCase):
         if expanded is not None:
             responses.append(expanded)
         with ExitStack() as stack:
+            stack.enter_context(patch.object(tracker.delivery, "open_outbox", side_effect=fresh_outbox))
             fetch = stack.enter_context(patch.object(
                 tracker, "fetch_products", side_effect=responses))
             stack.enter_context(patch.object(tracker, "load_json", return_value=state))
@@ -518,9 +520,9 @@ class AdaptiveRunTests(unittest.TestCase):
     def test_delivery_failures_do_not_increase_suppression(self):
         _, send, _, _, _, err = self.run_poll(
             self.batch(range(101, 151)), self.batch(range(101, 161)), send_error=True)
-        self.assertEqual(send.call_count, 26)
+        self.assertEqual(send.call_count, 2)  # first failure defers the queued batch
         self.assertIn("suppressed 35", send.call_args.args[0])
-        self.assertIn("delivery failed", err)
+        self.assertIn("retry deferred", err)
 
     def test_below_cap_logs_without_summary(self):
         _, send, _, _, _, err = self.run_poll(self.batch([101]), self.batch([101]))
@@ -621,3 +623,4 @@ class FilterRegressionTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
