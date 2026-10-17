@@ -291,3 +291,37 @@ conditional new-listing eligibility from actual events found against history.
 Sources, crawling, schedules, delivery, health monitoring and hat filter
 predicates remain unchanged. Actions environment-secret loading is exercised
 with synthetic data in offline tests, without claiming deployed verification.
+
+
+## Durable delivery recovery
+
+Product events are queued before observation history advances. GitHub Actions
+uses `delivery.json` on the dedicated `delivery-state` branch, through its existing
+`contents: write` token. Each Telegram confirmation immediately checkpoints the
+message ID there. This journal is independent of the end-of-run `seen.json`
+commit, so a failed or cancelled runner cannot replay confirmed journal events.
+Existing history and filter predicates are preserved. Per-product event sequences
+allow later genuine restocks and price drops to remain eligible.
+
+Failed sends remain queued even after the catalogue changes. Queued public
+product data is rechecked against current store/filter rules before retrying;
+rendered private profile context is never stored in the journal. Telegram 429
+responses persist `retry_after` across runs and defer all sends until it expires.
+Explicit rejections retry after at least a minute. A transport failure, interrupted
+send, or lost acknowledgement is **ambiguous**: Telegram offers no idempotency
+key or bot-message-history API. Such an event retries after at least 15 minutes
+and may produce one duplicate. This provides recoverable delivery, not exactly-once
+semantics; successes from runs before this repair have no journal receipt and
+cannot be retrospectively identified without Telegram readback.
+
+Runs use a 240-second soft budget with bounded network calls, leaving room for
+checkpointing before the existing six-minute job timeout. `Persist seen state`
+also runs after failure/cancellation. Workflow concurrency remains serialized;
+the journal additionally uses compare-and-swap and a 15-minute lease, refusing
+concurrent writers. A killed runner's lease expires naturally. Local runs use
+an atomic, fsynced journal and a process lock next to the script. Do not remove
+or reset a delivery journal to resolve an error: doing so loses deduplication.
+
+Offline coverage: `python3 -m unittest -v` includes success, failure, 429 cooldown,
+restart/cancellation, lost main-history commits, concurrency and existing filter,
+hat/team/city, restock and clothing-price regressions. No test sends live messages.

@@ -30,6 +30,7 @@ import urllib.request
 import urllib.parse
 
 import clothing_policy
+import delivery
 from private_clothing_profile import load_profile_with_status
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -55,12 +56,21 @@ UA = {
 }
 
 
+def request_timeout(seconds):
+    if _OUTBOX:
+        remaining = _OUTBOX.deadline - time.monotonic()
+        if remaining < 5:
+            raise delivery.Deferred("Soft runtime limit reached")
+        return min(seconds, remaining)
+    return seconds
+
+
 def http_get_json(url, timeout=20, retries=3):
     last_err = None
     for attempt in range(retries):
         try:
             req = urllib.request.Request(url, headers=UA)
-            with urllib.request.urlopen(req, timeout=timeout) as r:
+            with urllib.request.urlopen(req, timeout=request_timeout(timeout)) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except urllib.error.HTTPError as e:
             last_err = e
@@ -335,7 +345,7 @@ def probe_json(url, timeout=10):
     404 apart from a Cloudflare block apart from a timeout."""
     try:
         req = urllib.request.Request(url, headers=UA)
-        with urllib.request.urlopen(req, timeout=timeout) as r:
+        with urllib.request.urlopen(req, timeout=request_timeout(timeout)) as r:
             body = r.read().decode("utf-8", errors="replace")
         try:
             return json.loads(body), "ok"
@@ -366,7 +376,7 @@ def probe_rss(domain, limit=20, timeout=15):
     import xml.etree.ElementTree as ET
     try:
         req = urllib.request.Request(rss_url(domain), headers=dict(UA, Accept="application/rss+xml, text/xml"))
-        with urllib.request.urlopen(req, timeout=timeout) as r:
+        with urllib.request.urlopen(req, timeout=request_timeout(timeout)) as r:
             raw = r.read()
     except urllib.error.HTTPError as e:
         body = ""
@@ -760,6 +770,8 @@ def report_health(state, ok_names, failed, skipped, empty, new_by_store,
             try:
                 send_telegram(msg)
                 time.sleep(1)
+            except delivery.JournalError:
+                raise
             except Exception as e:
                 print(f"[warn] health alert send failed: {e}", file=sys.stderr)
                 continue
@@ -1017,7 +1029,21 @@ def format_message(store_name, domain, product, restocked=None, currency=None):
     return "\n".join(lines)
 
 
+def event_message(store, product, kind, extra, decision):
+    if decision["applies"]:
+        return format_clothing_message(store, product, kind, extra, decision)
+    return format_message(store["name"], store["domain"], product,
+                          restocked=extra if kind == "restock" else None,
+                          currency=store.get("currency"))
+
+
+_OUTBOX = None
+
+
 def send_telegram(text):
+    if _OUTBOX and (time.monotonic() + 25 >= _OUTBOX.deadline or
+                    _OUTBOX.data.get("retry_at", 0) > time.time()):
+        raise delivery.Deferred("Telegram delivery deferred")
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID")
     if not token or not chat_id:
@@ -1029,11 +1055,44 @@ def send_telegram(text):
     }).encode()
     req = urllib.request.Request(
         f"https://api.telegram.org/bot{token}/sendMessage", data=payload, headers=UA)
-    with urllib.request.urlopen(req, timeout=20) as r:
-        r.read()
+    try:
+        with urllib.request.urlopen(req, timeout=request_timeout(20)) as r:
+            response = json.load(r)
+    except urllib.error.HTTPError as e:
+        if e.code == 429:
+            try:
+                seconds = json.loads(e.read()).get("parameters", {}).get("retry_after", 60)
+            except (ValueError, TypeError):
+                seconds = 60
+            if _OUTBOX:
+                _OUTBOX.data["retry_at"] = time.time() + max(1, int(seconds))
+                _OUTBOX.checkpoint()
+            raise delivery.RateLimited(seconds) from None
+        raise delivery.Rejected(f"Telegram rejected request (HTTP {e.code}); delivery deferred") from None
+    except Exception:
+        raise RuntimeError("Telegram transport or response failed") from None
+    if not response.get("ok"):
+        raise delivery.Rejected("Telegram rejected delivery; retry deferred")
+    return response["result"]["message_id"]
 
 
 def cmd_run(cfg, dry_run=False, poll_all=False):
+    global _OUTBOX
+    cap = cfg.get("poll", {}).get("max_alerts_per_store", 25)
+    if type(cap) is not int or cap < 0:
+        raise ValueError("poll.max_alerts_per_store must be a nonnegative integer")
+    if dry_run:
+        return _cmd_run(cfg, dry_run, poll_all)
+    outbox = delivery.open_outbox(BASE)
+    _OUTBOX = outbox
+    try:
+        return _cmd_run(cfg, dry_run, poll_all, outbox)
+    finally:
+        _OUTBOX = None
+        outbox.close()
+
+
+def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
     poll_cfg = cfg.get("poll", {})
     max_alerts = poll_cfg.get("max_alerts_per_store", 25)
     if type(max_alerts) is not int or max_alerts < 0:
@@ -1041,11 +1100,43 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     state = load_json(STATE_PATH, {})
     private_context = clothing_context()
 
+    # Recover queued public events even if the catalogue no longer returns them.
+    if outbox:
+        stores = {s["domain"]: s for s in cfg["stores"]}
+        for event_id, event in list(outbox.data["events"].items()):
+            if event["status"] == "sent":
+                continue
+            payload = event["payload"]
+            store = stores.get(payload["domain"])
+            if not store or not (poll_all or store.get("verified")):
+                continue
+            if "summary" in payload:
+                try:
+                    outbox.deliver(event_id, lambda: send_telegram(payload["summary"]))
+                except delivery.Deferred:
+                    if (outbox.data.get("retry_at", 0) > time.time() or
+                            time.monotonic() + 25 >= outbox.deadline):
+                        break
+                continue
+            kind, product, extra = payload["kind"], payload["product"], payload["extra"]
+            decision = alert_decision(product, store, cfg, kind, extra, private_context)
+            if decision["keep"]:
+                msg = event_message(store, product, kind, extra, decision)
+                try:
+                    if outbox.deliver(event_id, lambda: send_telegram(msg)):
+                        time.sleep(1)
+                except delivery.Deferred:
+                    if (outbox.data.get("retry_at", 0) > time.time() or
+                            time.monotonic() + 25 >= outbox.deadline):
+                        break
+
     if not dry_run:
         try:
             cfg_changed = process_telegram_commands(cfg, state)
             if cfg_changed:
                 save_json(CONFIG_PATH, cfg)
+        except delivery.JournalError:
+            raise
         except Exception as e:
             print(f"[warn] telegram command processing failed: {e}", file=sys.stderr)
 
@@ -1079,7 +1170,11 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
     feed_counts = dict.fromkeys(("garments", "hats", "socks_footwear", "other",
                                  "event_eligible", "event_rejected"), 0)
 
-    for s in cfg["stores"]:
+    for index, s in enumerate(cfg["stores"]):
+        if outbox and time.monotonic() >= outbox.deadline:
+            deferred.extend(item["name"] for item in cfg["stores"][index:])
+            print("Soft runtime limit reached; remaining stores deferred")
+            break
         name, domain = s["name"], s["domain"]
         if not poll_all and not s.get("verified", False):
             skipped_unverified.append(name)
@@ -1191,6 +1286,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
         store_filters = resolve_filters(s, global_filters)
         new_alerts = 0
         suppressed = 0
+        queued = []
         for kind, p, extra in events:
             decision = alert_decision(p, s, cfg, kind, extra, private_context)
             feed_counts["event_eligible" if decision["keep"] else "event_rejected"] += 1
@@ -1203,21 +1299,28 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
                 # Count selected alerts, including failed delivery attempts;
                 # delivery failures are not suppression by the cap.
                 new_alerts += 1
-            if decision["applies"]:
-                msg = format_clothing_message(s, p, kind, extra, decision)
-            else:
-                msg = format_message(name, domain, p,
-                                     restocked=extra if kind == "restock" else None,
-                                     currency=s.get("currency"))
+            msg = event_message(s, p, kind, extra, decision)
             if dry_run:
                 print("---\n" + msg)
             else:
+                sequences = state.setdefault("_delivery_seq", {}).setdefault(domain, {})
+                pid = str(p["id"])
+                sequence = sequences.get(pid, 0)
+                event_id = delivery.event_key(domain, pid, sequence)
+                queued.append((event_id, {"domain": domain, "kind": kind,
+                                           "product": p, "extra": extra}, msg))
+                sequences[pid] = sequence + 1
+
+        if queued:
+            outbox.queue_many([(key, payload) for key, payload, _ in queued])
+            for event_id, _, msg in queued:
                 try:
-                    send_telegram(msg)
-                    notified += 1
-                    time.sleep(1)  # be gentle with Telegram rate limits
-                except Exception as e:
-                    print(f"[warn] Telegram send failed: {e}", file=sys.stderr)
+                    if outbox.deliver(event_id, lambda: send_telegram(msg)):
+                        notified += 1
+                        time.sleep(1)
+                except delivery.Deferred as e:
+                    print(f"[warn] {e}", file=sys.stderr)
+                    break
 
         if suppressed:
             summary = (f"⚠️ {name}: suppressed {suppressed} new-product alerts "
@@ -1226,10 +1329,15 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
             if dry_run:
                 print("---\n" + summary)
             else:
+                sequences = state.setdefault("_delivery_seq", {}).setdefault(domain, {})
+                sequence = sequences.get("_summary", 0)
+                event_id = delivery.event_key(domain, "_summary", sequence)
+                outbox.queue(event_id, {"domain": domain, "summary": summary})
+                sequences["_summary"] = sequence + 1
                 try:
-                    send_telegram(summary)
-                except Exception as e:
-                    print(f"[warn] Telegram send failed: {e}", file=sys.stderr)
+                    outbox.deliver(event_id, lambda: send_telegram(summary))
+                except delivery.Deferred as e:
+                    print(f"[warn] {e}", file=sys.stderr)
 
         # Keep a rolling window of known IDs so state doesn't grow forever.
         state[domain] = list(dict.fromkeys(current_ids + seen))[:500]
@@ -1238,6 +1346,7 @@ def cmd_run(cfg, dry_run=False, poll_all=False):
                              if pid in kept}
         if next_prices is not None:
             price_all[domain] = {pid: prices for pid, prices in next_prices.items() if pid in kept}
+        save_json(STATE_PATH, state)  # local checkpoint; remote outbox already protects sends
         time.sleep(1.5)  # be gentle with the stores too
 
     # Prune poll timestamps and stock maps for stores that have been removed.
@@ -1370,4 +1479,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

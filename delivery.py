@@ -1,0 +1,214 @@
+"""Durable outbox. Telegram has no idempotency key: ambiguous sends may repeat.
+
+Only public catalogue event data is queued; rendered private fit context is never
+persisted. GitHub Contents CAS and a bounded lease serialize disposable runners.
+"""
+import base64
+import copy
+import fcntl
+import hashlib
+import json
+import os
+import time
+import urllib.error
+import urllib.request
+import uuid
+
+
+class JournalError(RuntimeError):
+    pass
+
+
+class Deferred(RuntimeError):
+    pass
+
+
+class Rejected(Deferred):
+    """Telegram explicitly rejected this send; safe to retry later."""
+
+
+class RateLimited(Deferred):
+    def __init__(self, seconds):
+        self.seconds = max(1, int(seconds))
+        super().__init__('Telegram rate limited; delivery deferred')
+
+
+class LocalBackend:
+    def __init__(self, path):
+        self.path = path
+        self.lock = open(path + '.lock', 'a')
+        try:
+            fcntl.flock(self.lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            self.lock.close()
+            raise JournalError('Another tracker holds the delivery journal') from None
+
+    def read(self):
+        try:
+            with open(self.path) as f:
+                return json.load(f)
+        except FileNotFoundError:
+            return {'version': 1, 'events': {}}
+
+    def write(self, data):
+        tmp = self.path + '.tmp'
+        with open(tmp, 'w') as f:
+            json.dump(data, f)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, self.path)
+
+    def close(self):
+        self.lock.close()
+
+
+class GitHubBackend:
+    def __init__(self, repository, branch, token, source_sha):
+        self.root = 'https://api.github.com/repos/' + repository
+        self.branch, self.token, self.sha = branch, token, None
+        # Create only the dedicated journal branch; never overwrite an existing ref.
+        try:
+            self.request('/git/refs/heads/' + branch)
+        except urllib.error.HTTPError as e:
+            if e.code != 404:
+                raise JournalError('Cannot read delivery journal branch') from None
+            try:
+                self.request('/git/refs', 'POST', {'ref': 'refs/heads/' + branch, 'sha': source_sha})
+            except urllib.error.HTTPError as e:
+                if e.code != 422:  # a concurrent initializer may have won
+                    raise JournalError('Cannot initialize delivery journal branch') from None
+                self.request('/git/refs/heads/' + branch)
+
+    def request(self, path, method='GET', data=None):
+        req = urllib.request.Request(self.root + path, method=method,
+            data=json.dumps(data).encode() if data is not None else None,
+            headers={'Authorization': 'Bearer ' + self.token,
+                     'Accept': 'application/vnd.github+json',
+                     'Content-Type': 'application/json', 'User-Agent': 'shopify-tracker'})
+        with urllib.request.urlopen(req, timeout=10) as response:
+            return json.load(response)
+
+    def read(self):
+        try:
+            response = self.request('/contents/delivery.json?ref=' + self.branch)
+        except urllib.error.HTTPError as e:
+            if e.code != 404:
+                raise JournalError('Cannot read delivery journal') from None
+            self.sha = None
+            return {'version': 1, 'events': {}}
+        self.sha = response['sha']
+        content = response.get('content')
+        if not content:
+            content = self.request('/git/blobs/' + self.sha)['content']
+        return json.loads(base64.b64decode(content))
+
+    def write(self, data):
+        body = {'message': 'Checkpoint delivery journal', 'branch': self.branch,
+                'content': base64.b64encode(json.dumps(data).encode()).decode()}
+        if self.sha:
+            body['sha'] = self.sha
+        try:
+            result = self.request('/contents/delivery.json', 'PUT', body)
+            self.sha = result['content']['sha']
+        except Exception:
+            # CAS conflict or uncertain write: stop; do not send from stale state.
+            raise JournalError('Delivery journal checkpoint failed; stopping sends') from None
+
+    def close(self):
+        pass
+
+
+class Outbox:
+    def __init__(self, backend, seconds=240):
+        self.backend = backend
+        self.deadline = time.monotonic() + seconds
+        self.owner = uuid.uuid4().hex
+        self.data = backend.read()
+        if self.data.get('version') != 1 or not isinstance(self.data.get('events'), dict):
+            raise JournalError('Invalid delivery journal; refusing to reset it')
+        if self.data.get('lease', {}).get('until', 0) > time.time():
+            backend.close()
+            raise JournalError('Another tracker holds the delivery journal lease')
+        self.data['lease'] = {'owner': self.owner, 'until': time.time() + 900}
+        self.checkpoint()
+        self.sent = 0
+
+    def checkpoint(self):
+        self.backend.write(self.data)
+
+    def close(self):
+        try:
+            self.data.pop('lease', None)
+            self.checkpoint()
+        finally:
+            self.backend.close()
+
+    def queue(self, event_id, payload):
+        self.queue_many([(event_id, payload)])
+
+    def queue_many(self, events):
+        changed = False
+        for event_id, payload in events:
+            if event_id not in self.data['events']:
+                self.data['events'][event_id] = {'status': 'pending', 'payload': copy.deepcopy(payload)}
+                changed = True
+        if changed:
+            self.checkpoint()  # whole store is durable before advancing observations
+
+    def deliver(self, event_id, send):
+        event = self.data['events'][event_id]
+        now = time.time()
+        if event['status'] == 'sent':
+            return False
+        if time.monotonic() + 25 >= self.deadline:
+            raise Deferred('Delivery budget exhausted')
+        if max(self.data.get('retry_at', 0), event.get('retry_at', 0)) > now:
+            raise Deferred('Delivery deferred until retry time')
+        if event['status'] == 'sending':
+            print('Delivery recovery: retrying an ambiguous event; a duplicate is possible')
+        event['status'] = 'sending'
+        event['retry_at'] = now + 900
+        self.checkpoint()  # cancellation after this is an ambiguous send, never a confirmed success
+        try:
+            result = send()
+        except RateLimited as e:
+            event['status'] = 'pending'
+            event['retry_at'] = time.time() + e.seconds
+            self.data['retry_at'] = time.time() + e.seconds
+            self.checkpoint()
+            raise
+        except Rejected:
+            event['status'] = 'pending'
+            event['retry_at'] = time.time() + 60
+            self.checkpoint()
+            raise
+        except JournalError:
+            raise
+        except Exception:
+            # Includes transport timeout after Telegram may have accepted it.
+            # Retain payload and retry after 15 minutes; do not log URLs/tokens.
+            event['status'] = 'sending'
+            self.checkpoint()
+            raise Deferred('Telegram outcome uncertain; retry deferred for 15 minutes') from None
+        event.clear()
+        event.update(status='sent', message_id=result, sent_at=int(time.time()))
+        self.checkpoint()  # every confirmed send survives failure of the main history commit
+        self.sent += 1
+        print('Delivery confirmed: ' + event_id)
+        return True
+
+
+def event_key(domain, pid, sequence):
+    return hashlib.sha256(json.dumps([domain, str(pid), sequence]).encode()).hexdigest()[:32]
+
+
+def open_outbox(base):
+    branch = os.environ.get('TRACKER_JOURNAL_BRANCH')
+    if os.environ.get('GITHUB_ACTIONS') == 'true' and not branch:
+        raise JournalError('Actions delivery requires a durable remote journal')
+    if branch:
+        backend = GitHubBackend(os.environ['GITHUB_REPOSITORY'], branch,
+                                os.environ['GITHUB_TOKEN'], os.environ['GITHUB_SHA'])
+    else:
+        backend = LocalBackend(os.path.join(base, 'delivery.json'))
+    return Outbox(backend)

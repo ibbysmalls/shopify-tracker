@@ -160,7 +160,7 @@ class HealthTests(unittest.TestCase):
         self.assertEqual(send.call_count, 1)
         self.assertTrue(send.call_args.args[0].startswith("🆕"))
         self.assertEqual(result["_health"]["last_alert"], self.now)
-        save.assert_called_once()
+        self.assertGreaterEqual(save.call_count, 1)
 
     def test_invalid_noise_settings_rejected(self):
         for key in ["fail_alerts_after", "recovery_polls", "fail_alert_hours",

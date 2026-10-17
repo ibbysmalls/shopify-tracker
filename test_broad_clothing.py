@@ -7,6 +7,7 @@ from unittest.mock import patch
 
 import clothing_policy as policy
 import tracker
+from test_delivery import fresh_outbox
 from test_clothing_policy import CFG, POLICY, STORE, SYNTHETIC_PROFILE, chart, product
 
 
@@ -113,6 +114,7 @@ class BroadClothingTests(unittest.TestCase):
         cfg = dict(CFG, stores=[dict(STORE, verified=True)])
         output = io.StringIO()
         with ExitStack() as stack:
+            stack.enter_context(patch.object(tracker.delivery, "open_outbox", side_effect=fresh_outbox))
             stack.enter_context(patch.object(tracker, "load_json", return_value=state))
             stack.enter_context(patch.object(tracker, "fetch_products", return_value=(products, products)))
             stack.enter_context(patch.object(tracker, "process_telegram_commands", return_value=False))
@@ -122,7 +124,7 @@ class BroadClothingTests(unittest.TestCase):
             stack.enter_context(patch.object(tracker, "save_json"))
             network = stack.enter_context(patch.object(tracker, "http_get_json"))
             telegram = stack.enter_context(patch.object(tracker, "telegram_api"))
-            send = stack.enter_context(patch.object(tracker, "send_telegram"))
+            send = stack.enter_context(patch.object(tracker, "send_telegram", return_value=1))
             stack.enter_context(redirect_stdout(output))
             tracker.cmd_run(cfg)
         network.assert_not_called()

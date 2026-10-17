@@ -13,6 +13,7 @@ from unittest.mock import patch
 import clothing_policy
 import private_clothing_profile as private
 import tracker
+from test_delivery import fresh_outbox
 from test_clothing_policy import CFG, POLICY, STORE, SYNTHETIC_PROFILE, chart, product
 
 
@@ -114,6 +115,7 @@ class ProfileTests(unittest.TestCase):
         raw = json.dumps(secret)
         output, errors = io.StringIO(), io.StringIO()
         with ExitStack() as stack:
+            stack.enter_context(patch.object(tracker.delivery, "open_outbox", side_effect=fresh_outbox))
             stack.enter_context(patch.dict(os.environ, {"CLOTHING_FIT_PROFILE_JSON": raw}, clear=True))
             stack.enter_context(patch.object(sys, "argv", ["tracker.py", "run"]))
             stack.enter_context(patch.object(tracker, "load_json", side_effect=lambda path, default: cfg if path == tracker.CONFIG_PATH else state))
@@ -122,7 +124,7 @@ class ProfileTests(unittest.TestCase):
             stack.enter_context(patch.object(tracker, "report_health"))
             stack.enter_context(patch.object(tracker.time, "sleep"))
             save = stack.enter_context(patch.object(tracker, "save_json"))
-            send = stack.enter_context(patch.object(tracker, "send_telegram"))
+            send = stack.enter_context(patch.object(tracker, "send_telegram", return_value=1))
             network = stack.enter_context(patch.object(tracker, "http_get_json"))
             telegram = stack.enter_context(patch.object(tracker, "telegram_api"))
             stack.enter_context(redirect_stdout(output))
@@ -133,7 +135,7 @@ class ProfileTests(unittest.TestCase):
         self.assertIn("Catalogue reports a restock", send.call_args.args[0])
         network.assert_not_called()
         telegram.assert_not_called()
-        save.assert_called_once()
+        self.assertGreaterEqual(save.call_count, 1)
         self.assertTrue(output.getvalue().startswith("Clothing fit profile: loaded\n"))
         self.assertEqual(output.getvalue().count("Clothing fit profile:"), 1)
         self.assertEqual(errors.getvalue(), "")
@@ -160,6 +162,7 @@ class ProfileTests(unittest.TestCase):
                 env = {} if raw is None else {"CLOTHING_FIT_PROFILE_JSON": raw}
                 output, errors = io.StringIO(), io.StringIO()
                 with ExitStack() as stack:
+                    stack.enter_context(patch.object(tracker.delivery, "open_outbox", side_effect=fresh_outbox))
                     stack.enter_context(patch.dict(os.environ, env, clear=True))
                     stack.enter_context(patch.object(sys, "argv", ["tracker.py", "run"]))
                     stack.enter_context(patch.object(tracker, "load_json", side_effect=lambda path, default: cfg if path == tracker.CONFIG_PATH else state))
@@ -168,7 +171,7 @@ class ProfileTests(unittest.TestCase):
                     stack.enter_context(patch.object(tracker, "report_health"))
                     stack.enter_context(patch.object(tracker.time, "sleep"))
                     stack.enter_context(patch.object(tracker, "save_json"))
-                    send = stack.enter_context(patch.object(tracker, "send_telegram"))
+                    send = stack.enter_context(patch.object(tracker, "send_telegram", return_value=1))
                     network = stack.enter_context(patch.object(tracker, "http_get_json"))
                     stack.enter_context(redirect_stdout(output))
                     stack.enter_context(redirect_stderr(errors))
@@ -192,6 +195,7 @@ class StartupStatusTests(unittest.TestCase):
         state = {}
         output, errors = io.StringIO(), io.StringIO()
         with ExitStack() as stack:
+            stack.enter_context(patch.object(tracker.delivery, "open_outbox", side_effect=fresh_outbox))
             stack.enter_context(patch.dict(os.environ, env, clear=True))
             stack.enter_context(patch.object(sys, "argv", ["tracker.py", "run"]))
             stack.enter_context(patch.object(tracker, "load_json", side_effect=lambda path, default: cfg if path == tracker.CONFIG_PATH else state))
@@ -214,7 +218,7 @@ class StartupStatusTests(unittest.TestCase):
         self.assertEqual(errors.getvalue(), "")
         self.assertEqual(output.getvalue().count("Clothing fit profile:"), 1)
         self.assertNotIn("Synthetic-Secret-Startup-Canary", output.getvalue() + errors.getvalue() + json.dumps(state))
-        save.assert_called_once()
+        self.assertGreaterEqual(save.call_count, 1)
         for call in forbidden:
             call.assert_not_called()
 
