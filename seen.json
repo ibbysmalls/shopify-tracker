@@ -13856,7 +13856,7 @@
     "empty_since": {},
     "last_new": {
       "MYFITTEDS": 1792262057,
-      "Hat Club": 1792252946,
+      "Hat Club": 1792262948,
       "So Fresh Clothing": 1792262057,
       "Culture Kings US": 1792198926,
       "Exclusive Fitted Inc.": 1792191725,
@@ -13905,7 +13905,7 @@
       "Thejamesbrand": 1792084613
     },
     "last_digest": 1792151212,
-    "period_new": 984,
+    "period_new": 985,
     "fail_since": {
       "Klaxon Store": 1792262057,
       "Blue Beach Denim": 1792262057,
@@ -13938,15 +13938,15 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1792261820,
-    "hatclub.com": 1792261822,
-    "sofreshclothing.com": 1792261824,
-    "culturekings.com": 1792261843,
-    "exclusivefitted.com": 1792261845,
-    "www.neweracap.com": 1792261847,
-    "procietyshop.com": 1792261849,
-    "4ucaps.com": 1792261851,
-    "www.hatdreams.com": 1792261872,
+    "www.myfitteds.com": 1792262930,
+    "hatclub.com": 1792262932,
+    "sofreshclothing.com": 1792262934,
+    "culturekings.com": 1792262936,
+    "exclusivefitted.com": 1792262938,
+    "www.neweracap.com": 1792262940,
+    "procietyshop.com": 1792262942,
+    "4ucaps.com": 1792262944,
+    "www.hatdreams.com": 1792262946,
     "crownminded.com": 1792261878,
     "www.ecapcity.com": 1792261880,
     "www.lidshd.com": 1792261882,
@@ -15898,7 +15898,7 @@
           "title": "7 3/4"
         },
         "44764235399219": {
-          "available": true,
+          "available": false,
           "title": "7 7/8"
         },
         "44764235431987": {
@@ -16520,7 +16520,7 @@
           "title": "7 1/2"
         },
         "45089574813747": {
-          "available": true,
+          "available": false,
           "title": "7 5/8"
         },
         "45089574846515": {
@@ -26782,7 +26782,7 @@
           "title": "Pink / 7 1/8"
         },
         "42374203277387": {
-          "available": false,
+          "available": true,
           "title": "Pink / 7 1/4"
         },
         "42374203310155": {
