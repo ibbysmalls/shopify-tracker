@@ -146,13 +146,20 @@ class Outbox:
     def queue(self, event_id, payload):
         self.queue_many([(event_id, payload)])
 
-    def queue_many(self, events):
+    def queue_many(self, events, domain=None, observations=None):
         changed = False
         for event_id, payload in events:
             if event_id not in self.data['events']:
                 self.data['events'][event_id] = {'status': 'pending', 'payload': copy.deepcopy(payload)}
                 changed = True
+        if observations:
+            saved = self.data.setdefault('observations', {}).setdefault(domain, {})
+            for pid, observation in observations.items():
+                if saved.get(pid) != observation:
+                    saved[pid] = copy.deepcopy(observation)
+                    changed = True
         if changed:
+            # The event, next sequence and stock/price observation commit together.
             self.checkpoint()  # whole store is durable before advancing observations
 
     def deliver(self, event_id, send):

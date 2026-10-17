@@ -91,6 +91,16 @@ class OutboxTests(unittest.TestCase):
             self.assertTrue(restarted.deliver('a', lambda: 3))
         self.assertIn('ambiguous', output.getvalue())
 
+    def test_event_and_observation_are_one_atomic_checkpoint(self):
+        backend = MemoryBackend()
+        box = delivery.Outbox(backend)
+        before = backend.writes
+        cursor = {'stock': {'v': {'available': True}}, 'next_sequence': 1}
+        box.queue_many([('a', {'product': 'public'})], domain='example.com', observations={'p': cursor})
+        self.assertEqual(backend.writes, before + 1)
+        self.assertEqual(backend.data['events']['a']['status'], 'pending')
+        self.assertEqual(backend.data['observations']['example.com']['p'], cursor)
+
     def test_explicit_rejection_remains_pending_and_retries(self):
         backend = MemoryBackend()
         with patch('delivery.time.time', return_value=100):
@@ -156,9 +166,9 @@ class OutboxTests(unittest.TestCase):
 
 
 class TrackerDeliveryTests(unittest.TestCase):
-    def run_tracker(self, backend, state, products, send):
-        cfg = {'stores': [{'domain': 'example.com', 'name': 'Example', 'verified': True}],
-               'poll': {'products_per_store': 50}}
+    def run_tracker(self, backend, state, products, send, cfg=None):
+        cfg = cfg or {'stores': [{'domain': 'example.com', 'name': 'Example', 'verified': True}],
+                      'poll': {'products_per_store': 50}}
         with ExitStack() as stack:
             stack.enter_context(patch.object(delivery, 'open_outbox', side_effect=lambda _: delivery.Outbox(backend)))
             stack.enter_context(patch.object(tracker, 'load_json', return_value=state))
@@ -209,6 +219,69 @@ class TrackerDeliveryTests(unittest.TestCase):
         self.run_tracker(backend, copy.deepcopy(old), [self.product()], send)
         self.run_tracker(backend, copy.deepcopy(old), [self.product()], send)
         send.assert_called_once()
+
+    def test_lost_history_then_out_of_stock_then_genuine_restock_is_delivered(self):
+        backend = MemoryBackend()
+        unavailable = self.product(False)
+        original = {'example.com': ['2'], '_poll_limit': 50,
+                    '_stock': {'example.com': {'2': tracker.snapshot_variants(unavailable)}}}
+        send = Mock(return_value=10)
+        self.run_tracker(backend, copy.deepcopy(original), [self.product()], send)
+        # The send's history commit is lost. Even the subsequent out-of-stock
+        # observation's history commit may be lost independently.
+        self.run_tracker(backend, copy.deepcopy(original), [unavailable], send)
+        self.run_tracker(backend, copy.deepcopy(original), [self.product()], send)
+        self.assertEqual(send.call_count, 2)
+        self.assertEqual(sum(e['status'] == 'sent' for e in backend.data['events'].values()), 2)
+
+    def test_lost_history_unchanged_restock_is_not_replayed(self):
+        backend = MemoryBackend()
+        original = {'example.com': ['2'], '_poll_limit': 50,
+                    '_stock': {'example.com': {'2': tracker.snapshot_variants(self.product(False))}}}
+        send = Mock(return_value=10)
+        for _ in range(3):
+            self.run_tracker(backend, copy.deepcopy(original), [self.product()], send)
+        send.assert_called_once()
+
+    def test_legacy_receipts_migrate_without_reset_or_future_restock_loss(self):
+        backend = MemoryBackend()
+        original = {'example.com': ['2'], '_poll_limit': 50,
+                    '_stock': {'example.com': {'2': tracker.snapshot_variants(self.product(False))}}}
+        send = Mock(return_value=10)
+        self.run_tracker(backend, copy.deepcopy(original), [self.product()], send)
+        backend.data.pop('observations')  # deployed pre-observation journal schema
+        original_receipts = copy.deepcopy(backend.data['events'])
+        self.run_tracker(backend, copy.deepcopy(original), [self.product(False)], send)
+        self.assertEqual(backend.data['events'], original_receipts)
+        self.run_tracker(backend, copy.deepcopy(original), [self.product()], send)
+        self.assertEqual(send.call_count, 2)
+        for key, receipt in original_receipts.items():
+            self.assertEqual(backend.data['events'][key], receipt)
+
+    def test_legacy_unchanged_restock_does_not_replay_during_migration(self):
+        backend = MemoryBackend()
+        original = {'example.com': ['2'], '_poll_limit': 50,
+                    '_stock': {'example.com': {'2': tracker.snapshot_variants(self.product(False))}}}
+        send = Mock(return_value=10)
+        self.run_tracker(backend, copy.deepcopy(original), [self.product()], send)
+        backend.data.pop('observations')
+        self.run_tracker(backend, copy.deepcopy(original), [self.product()], send)
+        send.assert_called_once()
+
+    def test_price_references_survive_lost_history_without_replay_or_lost_later_drop(self):
+        backend = MemoryBackend()
+        original = {'example.com': ['2'], '_poll_limit': 50,
+                    '_stock': {'example.com': {'2': tracker.snapshot_variants(self.product())}},
+                    '_clothing_prices': {'example.com': {'2': {'20': '100'}}}}
+        cfg = {'stores': [{'domain': 'example.com', 'name': 'Example', 'verified': True}],
+               'poll': {'products_per_store': 50}, 'clothing_policy': {'enabled': True}}
+        send = Mock(return_value=10)
+        for price in ['50', '50', '100', '50']:
+            p = self.product()
+            p['variants'][0]['price'] = price
+            self.run_tracker(backend, copy.deepcopy(original), [p], send, cfg)
+        self.assertEqual(send.call_count, 2)
+        self.assertTrue(all('Meaningful price drop' in call.args[0] for call in send.call_args_list))
 
     def test_later_genuine_restock_gets_new_event_after_success(self):
         backend = MemoryBackend()
