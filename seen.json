@@ -91,6 +91,9 @@
     "7912727511091"
   ],
   "hatclub.com": [
+    "7859835863115",
+    "7859835961419",
+    "8053356527691",
     "7644644638795",
     "7859838419019",
     "7859838255179",
@@ -337,7 +340,6 @@
     "7509223276619",
     "8113564647499",
     "8011438587979",
-    "7859835863115",
     "7881594273867",
     "8027764064331",
     "8087562158155",
@@ -588,9 +590,7 @@
     "7549561897035",
     "8011439571019",
     "8020057817163",
-    "8020057784395",
-    "8020057718859",
-    "8020057653323"
+    "8020057784395"
   ],
   "sofreshclothing.com": [
     "15419119534295",
@@ -11318,6 +11318,7 @@
     "8679687127388"
   ],
   "mildblend.com": [
+    "15439776973021",
     "15439775957213",
     "9674358522077",
     "9674361274589",
@@ -14002,7 +14003,7 @@
     "empty_since": {},
     "last_new": {
       "MYFITTEDS": 1792438334,
-      "Hat Club": 1792439273,
+      "Hat Club": 1792450023,
       "So Fresh Clothing": 1792396150,
       "Culture Kings US": 1792439273,
       "Exclusive Fitted Inc.": 1792440139,
@@ -14023,7 +14024,7 @@
       "Iron Shop Provisions": 1792426644,
       "Franklin & Poe": 1792439273,
       "Meadow": 1792439273,
-      "Mildblend Supply Co.": 1792449129,
+      "Mildblend Supply Co.": 1792450023,
       "Rodeo Japan Pine Avenue": 1792397062,
       "Klaxon Store": 1792306946,
       "Blue Beach Denim": 1792423947,
@@ -14051,7 +14052,7 @@
       "Thejamesbrand": 1792436555
     },
     "last_digest": 1792151212,
-    "period_new": 2212,
+    "period_new": 2215,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -14059,54 +14060,54 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1792449093,
-    "hatclub.com": 1792449095,
-    "sofreshclothing.com": 1792449097,
-    "culturekings.com": 1792449100,
-    "exclusivefitted.com": 1792449102,
-    "www.neweracap.com": 1792449104,
-    "procietyshop.com": 1792449106,
-    "4ucaps.com": 1792449108,
-    "www.hatdreams.com": 1792449110,
-    "crownminded.com": 1792449112,
-    "www.ecapcity.com": 1792449114,
-    "www.lidshd.com": 1792449116,
-    "gf-sf.com": 1792449118,
-    "incredideals.ae": 1792449120,
-    "stylisticsjapan.com": 1792449122,
-    "www.cojpgallery.com": 1792449124,
-    "sonofastag.com": 1792449126,
-    "bears-tokyo.myshopify.com": 1792449019,
-    "corlection.com": 1792449021,
-    "ironshopprovisions.com": 1792449024,
-    "franklinandpoe.com": 1792449026,
-    "meadowweb.com": 1792449028,
-    "mildblend.com": 1792449030,
-    "rodeo-japan-pine-avenue.com": 1792449038,
-    "klaxon-store.com": 1792449040,
-    "www.bluebeachdenim.shop": 1792449042,
-    "www.dant.us": 1792449044,
-    "hinoya.shop": 1792449047,
-    "homegame-newyork.com": 1792449049,
-    "redcastheritage.com": 1792449051,
-    "www.panchoandlefty.se": 1792449054,
-    "www.blueingreensoho.com": 1792449056,
-    "www.guiltyparty.co": 1792449058,
-    "www.blueowl.us": 1792449060,
-    "standardandstrange.com": 1792449062,
-    "www.witheredfig.com": 1792449064,
-    "www.mentionclothing.com": 1792449066,
-    "sakuraclientele.com": 1792449069,
-    "cultofindigo.com": 1792449071,
-    "www.limbro.id": 1792449073,
-    "www.okayamadenim.com": 1792449076,
-    "berkeleysupply.com": 1792449078,
-    "statement-store.com": 1792449081,
-    "cultizm.com": 1792449083,
-    "www.motostyle.jp": 1792449085,
-    "fittedunderground.com": 1792449087,
-    "www.snakeoilprovisions.com": 1792449089,
-    "thejamesbrand.com": 1792449091
+    "www.myfitteds.com": 1792449986,
+    "hatclub.com": 1792449988,
+    "sofreshclothing.com": 1792449990,
+    "culturekings.com": 1792449993,
+    "exclusivefitted.com": 1792449994,
+    "www.neweracap.com": 1792449996,
+    "procietyshop.com": 1792449998,
+    "4ucaps.com": 1792450000,
+    "www.hatdreams.com": 1792450002,
+    "crownminded.com": 1792450004,
+    "www.ecapcity.com": 1792450006,
+    "www.lidshd.com": 1792450008,
+    "gf-sf.com": 1792450010,
+    "incredideals.ae": 1792450012,
+    "stylisticsjapan.com": 1792450015,
+    "www.cojpgallery.com": 1792450019,
+    "sonofastag.com": 1792450021,
+    "bears-tokyo.myshopify.com": 1792449913,
+    "corlection.com": 1792449915,
+    "ironshopprovisions.com": 1792449917,
+    "franklinandpoe.com": 1792449919,
+    "meadowweb.com": 1792449921,
+    "mildblend.com": 1792449923,
+    "rodeo-japan-pine-avenue.com": 1792449930,
+    "klaxon-store.com": 1792449932,
+    "www.bluebeachdenim.shop": 1792449935,
+    "www.dant.us": 1792449937,
+    "hinoya.shop": 1792449939,
+    "homegame-newyork.com": 1792449941,
+    "redcastheritage.com": 1792449943,
+    "www.panchoandlefty.se": 1792449945,
+    "www.blueingreensoho.com": 1792449948,
+    "www.guiltyparty.co": 1792449950,
+    "www.blueowl.us": 1792449952,
+    "standardandstrange.com": 1792449954,
+    "www.witheredfig.com": 1792449957,
+    "www.mentionclothing.com": 1792449958,
+    "sakuraclientele.com": 1792449961,
+    "cultofindigo.com": 1792449963,
+    "www.limbro.id": 1792449966,
+    "www.okayamadenim.com": 1792449969,
+    "berkeleysupply.com": 1792449971,
+    "statement-store.com": 1792449973,
+    "cultizm.com": 1792449975,
+    "www.motostyle.jp": 1792449977,
+    "fittedunderground.com": 1792449980,
+    "www.snakeoilprovisions.com": 1792449982,
+    "thejamesbrand.com": 1792449984
   },
   "fittedunderground.com": [
     "7342886355002",
@@ -17260,82 +17261,6 @@
         "42942575214667": {
           "available": false,
           "title": "Green/Black / 8"
-        }
-      },
-      "8020057718859": {
-        "42942574657611": {
-          "available": true,
-          "title": "Real Tree Camo/Green / 6 7/8"
-        },
-        "42942574690379": {
-          "available": true,
-          "title": "Real Tree Camo/Green / 7"
-        },
-        "42942574723147": {
-          "available": true,
-          "title": "Real Tree Camo/Green / 7 1/8"
-        },
-        "42942574755915": {
-          "available": true,
-          "title": "Real Tree Camo/Green / 7 1/4"
-        },
-        "42942574788683": {
-          "available": true,
-          "title": "Real Tree Camo/Green / 7 3/8"
-        },
-        "42942574821451": {
-          "available": true,
-          "title": "Real Tree Camo/Green / 7 1/2"
-        },
-        "42942574854219": {
-          "available": true,
-          "title": "Real Tree Camo/Green / 7 5/8"
-        },
-        "42942574886987": {
-          "available": true,
-          "title": "Real Tree Camo/Green / 7 3/4"
-        },
-        "42942574919755": {
-          "available": false,
-          "title": "Real Tree Camo/Green / 8"
-        }
-      },
-      "8020057653323": {
-        "42942573445195": {
-          "available": true,
-          "title": "Black / 6 7/8"
-        },
-        "42942573477963": {
-          "available": true,
-          "title": "Black / 7"
-        },
-        "42942573510731": {
-          "available": true,
-          "title": "Black / 7 1/8"
-        },
-        "42942573543499": {
-          "available": true,
-          "title": "Black / 7 1/4"
-        },
-        "42942573576267": {
-          "available": true,
-          "title": "Black / 7 3/8"
-        },
-        "42942573609035": {
-          "available": true,
-          "title": "Black / 7 1/2"
-        },
-        "42942573641803": {
-          "available": true,
-          "title": "Black / 7 5/8"
-        },
-        "42942573674571": {
-          "available": true,
-          "title": "Black / 7 3/4"
-        },
-        "42942573707339": {
-          "available": false,
-          "title": "Black / 8"
         }
       },
       "8020078166091": {
@@ -27402,6 +27327,46 @@
         "42291339657291": {
           "available": true,
           "title": "White/Navy/Mint / 8"
+        }
+      },
+      "7859835961419": {
+        "42636371984459": {
+          "available": true,
+          "title": "Black / 7"
+        },
+        "42636372017227": {
+          "available": true,
+          "title": "Black / 7 1/8"
+        },
+        "42636372049995": {
+          "available": true,
+          "title": "Black / 7 1/4"
+        },
+        "42636372082763": {
+          "available": true,
+          "title": "Black / 7 3/8"
+        },
+        "42636372115531": {
+          "available": true,
+          "title": "Black / 7 1/2"
+        },
+        "42636372148299": {
+          "available": true,
+          "title": "Black / 7 5/8"
+        },
+        "42636372181067": {
+          "available": true,
+          "title": "Black / 7 3/4"
+        },
+        "42636372213835": {
+          "available": false,
+          "title": "Black / 8"
+        }
+      },
+      "8053356527691": {
+        "43033012797515": {
+          "available": true,
+          "title": "Kelly Green/Brown/Stone / Adjustable"
         }
       }
     },
@@ -47392,7 +47357,7 @@
           "title": "73/4"
         },
         "50685389308069": {
-          "available": true,
+          "available": false,
           "title": "77/8"
         },
         "50685389340837": {
@@ -68778,7 +68743,7 @@
           "title": "75/8"
         },
         "67625353478335": {
-          "available": true,
+          "available": false,
           "title": "73/4"
         },
         "67625360326847": {
@@ -153460,6 +153425,24 @@
           "title": "L"
         },
         "68229940478173": {
+          "available": false,
+          "title": "XL"
+        }
+      },
+      "15439776973021": {
+        "68229944606941": {
+          "available": true,
+          "title": "S"
+        },
+        "68229944639709": {
+          "available": true,
+          "title": "M"
+        },
+        "68229944672477": {
+          "available": true,
+          "title": "L"
+        },
+        "68229944705245": {
           "available": false,
           "title": "XL"
         }
@@ -274933,6 +274916,12 @@
         "68229940412637": "650.00",
         "68229940445405": "650.00",
         "68229940478173": "650.00"
+      },
+      "15439776973021": {
+        "68229944606941": "700.00",
+        "68229944639709": "700.00",
+        "68229944672477": "700.00",
+        "68229944705245": "700.00"
       }
     },
     "www.bluebeachdenim.shop": {
@@ -284654,7 +284643,8 @@
       "15439731392733": 1,
       "9674358522077": 1,
       "9674361274589": 1,
-      "15439775957213": 1
+      "15439775957213": 1,
+      "15439776973021": 1
     },
     "rodeo-japan-pine-avenue.com": {
       "15440262168812": 2,
