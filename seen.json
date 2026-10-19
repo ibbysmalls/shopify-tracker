@@ -2238,6 +2238,8 @@
     "10660375232677"
   ],
   "www.neweracap.com": [
+    "9449805644003",
+    "9449804890339",
     "8923057127651",
     "8923056996579",
     "8923057389795",
@@ -2735,9 +2737,7 @@
     "15399648985315",
     "15399649870051",
     "15399649968355",
-    "15399650492643",
-    "15399651901667",
-    "15399651967203"
+    "15399650492643"
   ],
   "procietyshop.com": [
     "15404744311037",
@@ -13977,7 +13977,7 @@
   ],
   "_health": {
     "fails": {
-      "MYFITTEDS": 2
+      "MYFITTEDS": 3
     },
     "alerted": [],
     "empty_since": {},
@@ -13987,7 +13987,7 @@
       "So Fresh Clothing": 1792396150,
       "Culture Kings US": 1792426644,
       "Exclusive Fitted Inc.": 1792364528,
-      "New Era Cap": 1792431129,
+      "New Era Cap": 1792432934,
       "Prociety": 1792188127,
       "4ucaps.com": 1792396150,
       "DREAMS H2H": 1792262057,
@@ -14032,7 +14032,7 @@
       "Thejamesbrand": 1792084613
     },
     "last_digest": 1792151212,
-    "period_new": 2150,
+    "period_new": 2152,
     "fail_since": {
       "MYFITTEDS": 1792431129
     },
@@ -14042,54 +14042,54 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1792431983,
-    "hatclub.com": 1792431983,
-    "sofreshclothing.com": 1792431985,
-    "culturekings.com": 1792431987,
-    "exclusivefitted.com": 1792431989,
-    "www.neweracap.com": 1792431991,
-    "procietyshop.com": 1792431993,
-    "4ucaps.com": 1792431996,
-    "www.hatdreams.com": 1792431998,
-    "crownminded.com": 1792432000,
-    "www.ecapcity.com": 1792432002,
-    "www.lidshd.com": 1792432004,
-    "gf-sf.com": 1792432006,
-    "incredideals.ae": 1792432008,
-    "stylisticsjapan.com": 1792432010,
-    "www.cojpgallery.com": 1792432012,
-    "sonofastag.com": 1792432015,
-    "bears-tokyo.myshopify.com": 1792431916,
-    "corlection.com": 1792431918,
-    "ironshopprovisions.com": 1792431920,
-    "franklinandpoe.com": 1792431922,
-    "meadowweb.com": 1792431924,
-    "mildblend.com": 1792431926,
-    "rodeo-japan-pine-avenue.com": 1792431928,
-    "klaxon-store.com": 1792431930,
-    "www.bluebeachdenim.shop": 1792431932,
-    "www.dant.us": 1792431935,
-    "hinoya.shop": 1792431937,
-    "homegame-newyork.com": 1792431939,
-    "redcastheritage.com": 1792431941,
-    "www.panchoandlefty.se": 1792431943,
-    "www.blueingreensoho.com": 1792431946,
-    "www.guiltyparty.co": 1792431948,
-    "www.blueowl.us": 1792431950,
-    "standardandstrange.com": 1792431952,
-    "www.witheredfig.com": 1792431954,
-    "www.mentionclothing.com": 1792431956,
-    "sakuraclientele.com": 1792431959,
-    "cultofindigo.com": 1792431961,
-    "www.limbro.id": 1792431963,
-    "www.okayamadenim.com": 1792431965,
-    "berkeleysupply.com": 1792431968,
-    "statement-store.com": 1792431970,
-    "cultizm.com": 1792431972,
-    "www.motostyle.jp": 1792431974,
-    "fittedunderground.com": 1792431976,
-    "www.snakeoilprovisions.com": 1792431978,
-    "thejamesbrand.com": 1792431981
+    "www.myfitteds.com": 1792432900,
+    "hatclub.com": 1792432900,
+    "sofreshclothing.com": 1792432902,
+    "culturekings.com": 1792432904,
+    "exclusivefitted.com": 1792432906,
+    "www.neweracap.com": 1792432908,
+    "procietyshop.com": 1792432910,
+    "4ucaps.com": 1792432912,
+    "www.hatdreams.com": 1792432914,
+    "crownminded.com": 1792432917,
+    "www.ecapcity.com": 1792432919,
+    "www.lidshd.com": 1792432921,
+    "gf-sf.com": 1792432923,
+    "incredideals.ae": 1792432925,
+    "stylisticsjapan.com": 1792432928,
+    "www.cojpgallery.com": 1792432930,
+    "sonofastag.com": 1792432932,
+    "bears-tokyo.myshopify.com": 1792432830,
+    "corlection.com": 1792432833,
+    "ironshopprovisions.com": 1792432835,
+    "franklinandpoe.com": 1792432837,
+    "meadowweb.com": 1792432840,
+    "mildblend.com": 1792432842,
+    "rodeo-japan-pine-avenue.com": 1792432844,
+    "klaxon-store.com": 1792432846,
+    "www.bluebeachdenim.shop": 1792432848,
+    "www.dant.us": 1792432851,
+    "hinoya.shop": 1792432853,
+    "homegame-newyork.com": 1792432855,
+    "redcastheritage.com": 1792432857,
+    "www.panchoandlefty.se": 1792432859,
+    "www.blueingreensoho.com": 1792432862,
+    "www.guiltyparty.co": 1792432864,
+    "www.blueowl.us": 1792432866,
+    "standardandstrange.com": 1792432868,
+    "www.witheredfig.com": 1792432870,
+    "www.mentionclothing.com": 1792432873,
+    "sakuraclientele.com": 1792432875,
+    "cultofindigo.com": 1792432877,
+    "www.limbro.id": 1792432879,
+    "www.okayamadenim.com": 1792432882,
+    "berkeleysupply.com": 1792432885,
+    "statement-store.com": 1792432887,
+    "cultizm.com": 1792432889,
+    "www.motostyle.jp": 1792432891,
+    "fittedunderground.com": 1792432894,
+    "www.snakeoilprovisions.com": 1792432896,
+    "thejamesbrand.com": 1792432898
   },
   "fittedunderground.com": [
     "7342886355002",
@@ -47679,18 +47679,6 @@
           "title": "One Size"
         }
       },
-      "15399651901667": {
-        "67599741944035": {
-          "available": true,
-          "title": "One Size"
-        }
-      },
-      "15399651967203": {
-        "67599742009571": {
-          "available": true,
-          "title": "One Size"
-        }
-      },
       "8990406869219": {
         "47263015403747": {
           "available": true,
@@ -57083,6 +57071,18 @@
         "46915731652835": {
           "available": true,
           "title": "8"
+        }
+      },
+      "9449805644003": {
+        "49197533855971": {
+          "available": true,
+          "title": "One Size"
+        }
+      },
+      "9449804890339": {
+        "49197533102307": {
+          "available": true,
+          "title": "One Size"
         }
       }
     },
@@ -98553,7 +98553,7 @@
           "title": "7"
         },
         "48446511055036": {
-          "available": true,
+          "available": false,
           "title": "7 1/8"
         },
         "48446511087804": {
