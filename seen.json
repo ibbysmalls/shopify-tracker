@@ -6348,8 +6348,8 @@
     "9842021368043"
   ],
   "homegame-newyork.com": [
+    "7676671885358",
     "7672138137646",
-    "7662479933486",
     "7669215199278",
     "7670571991086",
     "7670571204654",
@@ -6398,6 +6398,7 @@
     "7505042341934",
     "7224785731630",
     "7229047177262",
+    "7662479933486",
     "7108689035310",
     "7107185246254",
     "7107185213486",
@@ -14130,10 +14131,10 @@
       "Blue Beach Denim": 1792423947,
       "Dant": 1792523953,
       "HINOYA Online Store": 1792496948,
-      "HOMEGAME NEW YORK": 1792523953,
+      "HOMEGAME NEW YORK": 1792532054,
       "Redcast Heritage Co.": 1792524855,
       "Pancho and Lefty": 1792522095,
-      "Blue in Green": 1792524855,
+      "Blue in Green": 1792532054,
       "Guiltyparty": 1792524855,
       "Blueowl": 1792524855,
       "Standardandstrange": 1792184527,
@@ -14152,7 +14153,7 @@
       "Thejamesbrand": 1792436555
     },
     "last_digest": 1792151212,
-    "period_new": 3620,
+    "period_new": 3622,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -14188,13 +14189,13 @@
     "www.bluebeachdenim.shop": 1792531143,
     "www.dant.us": 1792531145,
     "hinoya.shop": 1792531148,
-    "homegame-newyork.com": 1792523949,
-    "redcastheritage.com": 1792524837,
-    "www.panchoandlefty.se": 1792524841,
-    "www.blueingreensoho.com": 1792524845,
-    "www.guiltyparty.co": 1792524849,
-    "www.blueowl.us": 1792524853,
-    "standardandstrange.com": 1792525732,
+    "homegame-newyork.com": 1792532035,
+    "redcastheritage.com": 1792532037,
+    "www.panchoandlefty.se": 1792532039,
+    "www.blueingreensoho.com": 1792532044,
+    "www.guiltyparty.co": 1792532048,
+    "www.blueowl.us": 1792532050,
+    "standardandstrange.com": 1792532052,
     "www.witheredfig.com": 1792525734,
     "www.mentionclothing.com": 1792525737,
     "sakuraclientele.com": 1792525742,
@@ -181712,6 +181713,48 @@
           "available": false,
           "title": "8"
         }
+      },
+      "7676671885358": {
+        "42831822553134": {
+          "available": false,
+          "title": "6 7/8"
+        },
+        "42831822585902": {
+          "available": false,
+          "title": "7"
+        },
+        "42831822618670": {
+          "available": true,
+          "title": "7 1/8"
+        },
+        "42831822651438": {
+          "available": true,
+          "title": "7 1/4"
+        },
+        "42831822684206": {
+          "available": false,
+          "title": "7 3/8"
+        },
+        "42831822716974": {
+          "available": true,
+          "title": "7 1/2"
+        },
+        "42831822749742": {
+          "available": true,
+          "title": "7 5/8"
+        },
+        "42831822782510": {
+          "available": true,
+          "title": "7 3/4"
+        },
+        "42831822815278": {
+          "available": true,
+          "title": "7 7/8"
+        },
+        "42831822848046": {
+          "available": false,
+          "title": "8"
+        }
       }
     },
     "redcastheritage.com": {
@@ -195231,11 +195274,11 @@
           "title": "35"
         },
         "8311759617": {
-          "available": false,
+          "available": true,
           "title": "36"
         },
         "8311759745": {
-          "available": true,
+          "available": false,
           "title": "38"
         },
         "8311759873": {
@@ -286004,7 +286047,7 @@
       "8222849073409": 3,
       "8982192193793": 3,
       "4471286923316": 3,
-      "2473315969": 3,
+      "2473315969": 4,
       "8388044292353": 3,
       "8223627575553": 3,
       "8223627313409": 3,
