@@ -3417,6 +3417,7 @@
     "9340301738200"
   ],
   "crownminded.com": [
+    "15463384612995",
     "15446804398211",
     "15446790701187",
     "15446775267459",
@@ -14098,9 +14099,9 @@
       "Prociety": 1792188127,
       "4ucaps.com": 1792523064,
       "DREAMS H2H": 1792262057,
-      "CROWN MINDED": 1792285345,
+      "CROWN MINDED": 1792528455,
       "ECAPCITY": 1792252946,
-      "LidsHatDrop": 1792513927,
+      "LidsHatDrop": 1792528455,
       "Goodfellas SF": 1792174616,
       "incrediDeals": 1792329423,
       "StylisticsJapan.com": 1792318734,
@@ -14139,7 +14140,7 @@
       "Thejamesbrand": 1792436555
     },
     "last_digest": 1792151212,
-    "period_new": 3606,
+    "period_new": 3608,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -14153,13 +14154,13 @@
     "culturekings.com": 1792527544,
     "exclusivefitted.com": 1792527547,
     "www.neweracap.com": 1792527549,
-    "procietyshop.com": 1792522832,
-    "4ucaps.com": 1792522834,
-    "www.hatdreams.com": 1792522862,
-    "crownminded.com": 1792522864,
-    "www.ecapcity.com": 1792522866,
-    "www.lidshd.com": 1792522868,
-    "gf-sf.com": 1792522870,
+    "procietyshop.com": 1792528439,
+    "4ucaps.com": 1792528441,
+    "www.hatdreams.com": 1792528443,
+    "crownminded.com": 1792528445,
+    "www.ecapcity.com": 1792528447,
+    "www.lidshd.com": 1792528449,
+    "gf-sf.com": 1792528453,
     "incredideals.ae": 1792522872,
     "stylisticsjapan.com": 1792522875,
     "www.cojpgallery.com": 1792522877,
@@ -75062,7 +75063,7 @@
           "title": "7 3/8"
         },
         "52676753064152": {
-          "available": true,
+          "available": false,
           "title": "7 1/2"
         },
         "52676753096920": {
@@ -82342,6 +82343,40 @@
           "title": "7 3/4"
         },
         "67913125757059": {
+          "available": true,
+          "title": "8"
+        }
+      },
+      "15463384612995": {
+        "67978577707139": {
+          "available": true,
+          "title": "7"
+        },
+        "67978577739907": {
+          "available": true,
+          "title": "7 1/8"
+        },
+        "67978577772675": {
+          "available": true,
+          "title": "7 1/4"
+        },
+        "67978577805443": {
+          "available": true,
+          "title": "7 3/8"
+        },
+        "67978577838211": {
+          "available": true,
+          "title": "7 1/2"
+        },
+        "67978577870979": {
+          "available": true,
+          "title": "7 5/8"
+        },
+        "67978577903747": {
+          "available": true,
+          "title": "7 3/4"
+        },
+        "67978577936515": {
           "available": true,
           "title": "8"
         }
@@ -98078,7 +98113,7 @@
           "title": "L"
         },
         "47498359832764": {
-          "available": false,
+          "available": true,
           "title": "XL"
         },
         "47498359865532": {
@@ -285905,7 +285940,7 @@
       "9624676270268": 1,
       "9592791171260": 1,
       "9592791138492": 1,
-      "9592791007420": 1,
+      "9592791007420": 2,
       "9403856126140": 1,
       "9592791105724": 1,
       "9624582160572": 1,
