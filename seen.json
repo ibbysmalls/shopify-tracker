@@ -14254,10 +14254,10 @@
       "Motostyle": 1792400660,
       "Fittedunderground": 1792526662,
       "Snakeoilprovisions": 1792552625,
-      "Thejamesbrand": 1792436555
+      "Thejamesbrand": 1792601225
     },
     "last_digest": 1792151212,
-    "period_new": 3947,
+    "period_new": 3948,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -14265,54 +14265,54 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1792600296,
-    "hatclub.com": 1792600298,
-    "sofreshclothing.com": 1792600300,
-    "culturekings.com": 1792600302,
-    "exclusivefitted.com": 1792600304,
-    "www.neweracap.com": 1792600306,
-    "procietyshop.com": 1792600308,
-    "4ucaps.com": 1792600310,
-    "www.hatdreams.com": 1792600312,
-    "crownminded.com": 1792600314,
-    "www.ecapcity.com": 1792600316,
-    "www.lidshd.com": 1792600318,
-    "gf-sf.com": 1792600321,
-    "incredideals.ae": 1792600221,
-    "stylisticsjapan.com": 1792600224,
-    "www.cojpgallery.com": 1792600226,
-    "sonofastag.com": 1792600228,
-    "bears-tokyo.myshopify.com": 1792600230,
-    "corlection.com": 1792600232,
-    "ironshopprovisions.com": 1792600234,
-    "franklinandpoe.com": 1792600236,
-    "meadowweb.com": 1792600238,
-    "mildblend.com": 1792600240,
-    "rodeo-japan-pine-avenue.com": 1792600242,
-    "klaxon-store.com": 1792600245,
-    "www.bluebeachdenim.shop": 1792600247,
-    "www.dant.us": 1792600249,
-    "hinoya.shop": 1792600251,
-    "homegame-newyork.com": 1792600253,
-    "redcastheritage.com": 1792600255,
-    "www.panchoandlefty.se": 1792600257,
-    "www.blueingreensoho.com": 1792600260,
-    "www.guiltyparty.co": 1792600262,
-    "www.blueowl.us": 1792600264,
-    "standardandstrange.com": 1792600266,
-    "www.witheredfig.com": 1792600268,
-    "www.mentionclothing.com": 1792600270,
-    "sakuraclientele.com": 1792600272,
-    "cultofindigo.com": 1792600274,
-    "www.limbro.id": 1792600277,
-    "www.okayamadenim.com": 1792600279,
-    "berkeleysupply.com": 1792600282,
-    "statement-store.com": 1792600284,
-    "cultizm.com": 1792600286,
-    "www.motostyle.jp": 1792600288,
-    "fittedunderground.com": 1792600290,
-    "www.snakeoilprovisions.com": 1792600292,
-    "thejamesbrand.com": 1792600294
+    "www.myfitteds.com": 1792601199,
+    "hatclub.com": 1792601201,
+    "sofreshclothing.com": 1792601203,
+    "culturekings.com": 1792601205,
+    "exclusivefitted.com": 1792601207,
+    "www.neweracap.com": 1792601209,
+    "procietyshop.com": 1792601211,
+    "4ucaps.com": 1792601213,
+    "www.hatdreams.com": 1792601215,
+    "crownminded.com": 1792601217,
+    "www.ecapcity.com": 1792601219,
+    "www.lidshd.com": 1792601221,
+    "gf-sf.com": 1792601223,
+    "incredideals.ae": 1792601117,
+    "stylisticsjapan.com": 1792601119,
+    "www.cojpgallery.com": 1792601121,
+    "sonofastag.com": 1792601123,
+    "bears-tokyo.myshopify.com": 1792601125,
+    "corlection.com": 1792601127,
+    "ironshopprovisions.com": 1792601129,
+    "franklinandpoe.com": 1792601131,
+    "meadowweb.com": 1792601133,
+    "mildblend.com": 1792601136,
+    "rodeo-japan-pine-avenue.com": 1792601138,
+    "klaxon-store.com": 1792601140,
+    "www.bluebeachdenim.shop": 1792601142,
+    "www.dant.us": 1792601144,
+    "hinoya.shop": 1792601147,
+    "homegame-newyork.com": 1792601149,
+    "redcastheritage.com": 1792601151,
+    "www.panchoandlefty.se": 1792601153,
+    "www.blueingreensoho.com": 1792601155,
+    "www.guiltyparty.co": 1792601159,
+    "www.blueowl.us": 1792601163,
+    "standardandstrange.com": 1792601165,
+    "www.witheredfig.com": 1792601167,
+    "www.mentionclothing.com": 1792601169,
+    "sakuraclientele.com": 1792601171,
+    "cultofindigo.com": 1792601173,
+    "www.limbro.id": 1792601177,
+    "www.okayamadenim.com": 1792601180,
+    "berkeleysupply.com": 1792601182,
+    "statement-store.com": 1792601186,
+    "cultizm.com": 1792601188,
+    "www.motostyle.jp": 1792601190,
+    "fittedunderground.com": 1792601193,
+    "www.snakeoilprovisions.com": 1792601195,
+    "thejamesbrand.com": 1792601197
   },
   "fittedunderground.com": [
     "7342886355002",
@@ -27408,7 +27408,7 @@
       },
       "8011438391371": {
         "42930768314443": {
-          "available": true,
+          "available": false,
           "title": "Black / 6 7/8"
         },
         "42930768347211": {
@@ -99442,7 +99442,7 @@
           "title": "7 3/4"
         },
         "48451073015996": {
-          "available": true,
+          "available": false,
           "title": "7 7/8"
         },
         "48451073048764": {
@@ -99452,7 +99452,7 @@
       },
       "9625313018044": {
         "48451070984380": {
-          "available": true,
+          "available": false,
           "title": "6 7/8"
         },
         "48451071017148": {
@@ -194896,7 +194896,7 @@
           "title": "Sumi x Sumi / 33"
         },
         "48268246548737": {
-          "available": true,
+          "available": false,
           "title": "Sumi x Sumi / 34"
         },
         "48268246581505": {
@@ -200364,7 +200364,7 @@
           "title": "M"
         },
         "67746299380022": {
-          "available": true,
+          "available": false,
           "title": "L"
         },
         "67746299412790": {
@@ -229854,7 +229854,7 @@
           "title": "31"
         },
         "42477755629720": {
-          "available": true,
+          "available": false,
           "title": "32"
         },
         "42477755662488": {
@@ -249042,7 +249042,7 @@
       },
       "15464453636190": {
         "67799641292894": {
-          "available": true,
+          "available": false,
           "title": "M"
         },
         "67799641325662": {
@@ -270794,7 +270794,7 @@
       },
       "7025997742150": {
         "40362871586886": {
-          "available": false,
+          "available": true,
           "title": "Black + Yellow"
         }
       },
