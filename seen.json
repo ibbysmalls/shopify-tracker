@@ -3919,6 +3919,18 @@
     "8600666931331"
   ],
   "www.lidshd.com": [
+    "9628654764220",
+    "9628654633148",
+    "9628654567612",
+    "9628654534844",
+    "9628654502076",
+    "9628654469308",
+    "9628654436540",
+    "9628654403772",
+    "9628654371004",
+    "9628654338236",
+    "9628654305468",
+    "9628654272700",
     "9624692129980",
     "9624692097212",
     "9624691998908",
@@ -4406,19 +4418,7 @@
     "9620610973884",
     "9620612481212",
     "9620611662012",
-    "9620611498172",
-    "9620610875580",
-    "9620612645052",
-    "9620612022460",
-    "9620611956924",
-    "9620611465404",
-    "9620612350140",
-    "9620611793084",
-    "9620611236028",
-    "9620610941116",
-    "9620612874428",
-    "9620611825852",
-    "9620611760316"
+    "9620611498172"
   ],
   "thejamesbrand.com": [
     "8490622681158",
@@ -14201,7 +14201,7 @@
       "DREAMS H2H": 1792262057,
       "CROWN MINDED": 1792538230,
       "ECAPCITY": 1792252946,
-      "LidsHatDrop": 1792537352,
+      "LidsHatDrop": 1792592264,
       "Goodfellas SF": 1792174616,
       "incrediDeals": 1792329423,
       "StylisticsJapan.com": 1792567067,
@@ -14240,7 +14240,7 @@
       "Thejamesbrand": 1792436555
     },
     "last_digest": 1792151212,
-    "period_new": 3885,
+    "period_new": 3897,
     "fail_since": {},
     "successes": {},
     "widespread_fails": 0,
@@ -14248,54 +14248,54 @@
     "last_severe_alert": 1791609575
   },
   "_last_poll": {
-    "www.myfitteds.com": 1792591299,
-    "hatclub.com": 1792591301,
-    "sofreshclothing.com": 1792591303,
-    "culturekings.com": 1792591305,
-    "exclusivefitted.com": 1792591307,
-    "www.neweracap.com": 1792591310,
-    "procietyshop.com": 1792591447,
-    "4ucaps.com": 1792591449,
-    "www.hatdreams.com": 1792591451,
-    "crownminded.com": 1792591454,
-    "www.ecapcity.com": 1792591456,
-    "www.lidshd.com": 1792591458,
-    "gf-sf.com": 1792591460,
-    "incredideals.ae": 1792590436,
-    "stylisticsjapan.com": 1792590439,
-    "www.cojpgallery.com": 1792590441,
-    "sonofastag.com": 1792590443,
-    "bears-tokyo.myshopify.com": 1792590445,
-    "corlection.com": 1792591230,
-    "ironshopprovisions.com": 1792591233,
-    "franklinandpoe.com": 1792591235,
-    "meadowweb.com": 1792591237,
-    "mildblend.com": 1792591239,
-    "rodeo-japan-pine-avenue.com": 1792591242,
-    "klaxon-store.com": 1792591244,
-    "www.bluebeachdenim.shop": 1792591246,
-    "www.dant.us": 1792591248,
-    "hinoya.shop": 1792591250,
-    "homegame-newyork.com": 1792591253,
-    "redcastheritage.com": 1792591255,
-    "www.panchoandlefty.se": 1792591257,
-    "www.blueingreensoho.com": 1792591260,
-    "www.guiltyparty.co": 1792591262,
-    "www.blueowl.us": 1792591264,
-    "standardandstrange.com": 1792591266,
-    "www.witheredfig.com": 1792591268,
-    "www.mentionclothing.com": 1792591271,
-    "sakuraclientele.com": 1792591273,
-    "cultofindigo.com": 1792591275,
-    "www.limbro.id": 1792591277,
-    "www.okayamadenim.com": 1792591280,
-    "berkeleysupply.com": 1792591283,
-    "statement-store.com": 1792591285,
-    "cultizm.com": 1792591288,
-    "www.motostyle.jp": 1792591290,
-    "fittedunderground.com": 1792591292,
-    "www.snakeoilprovisions.com": 1792591295,
-    "thejamesbrand.com": 1792591297
+    "www.myfitteds.com": 1792592238,
+    "hatclub.com": 1792592240,
+    "sofreshclothing.com": 1792592242,
+    "culturekings.com": 1792592244,
+    "exclusivefitted.com": 1792592246,
+    "www.neweracap.com": 1792592248,
+    "procietyshop.com": 1792592250,
+    "4ucaps.com": 1792592252,
+    "www.hatdreams.com": 1792592254,
+    "crownminded.com": 1792592256,
+    "www.ecapcity.com": 1792592258,
+    "www.lidshd.com": 1792592260,
+    "gf-sf.com": 1792592262,
+    "incredideals.ae": 1792592160,
+    "stylisticsjapan.com": 1792592162,
+    "www.cojpgallery.com": 1792592164,
+    "sonofastag.com": 1792592167,
+    "bears-tokyo.myshopify.com": 1792592169,
+    "corlection.com": 1792592171,
+    "ironshopprovisions.com": 1792592173,
+    "franklinandpoe.com": 1792592175,
+    "meadowweb.com": 1792592177,
+    "mildblend.com": 1792592180,
+    "rodeo-japan-pine-avenue.com": 1792592182,
+    "klaxon-store.com": 1792592184,
+    "www.bluebeachdenim.shop": 1792592186,
+    "www.dant.us": 1792592188,
+    "hinoya.shop": 1792592190,
+    "homegame-newyork.com": 1792592193,
+    "redcastheritage.com": 1792592195,
+    "www.panchoandlefty.se": 1792592198,
+    "www.blueingreensoho.com": 1792592200,
+    "www.guiltyparty.co": 1792592202,
+    "www.blueowl.us": 1792592204,
+    "standardandstrange.com": 1792592206,
+    "www.witheredfig.com": 1792592208,
+    "www.mentionclothing.com": 1792592210,
+    "sakuraclientele.com": 1792592213,
+    "cultofindigo.com": 1792592215,
+    "www.limbro.id": 1792592217,
+    "www.okayamadenim.com": 1792592220,
+    "berkeleysupply.com": 1792592222,
+    "statement-store.com": 1792592224,
+    "cultizm.com": 1792592227,
+    "www.motostyle.jp": 1792592229,
+    "fittedunderground.com": 1792592231,
+    "www.snakeoilprovisions.com": 1792592233,
+    "thejamesbrand.com": 1792592236
   },
   "fittedunderground.com": [
     "7342886355002",
@@ -85935,78 +85935,6 @@
           "title": "Pin"
         }
       },
-      "9620610875580": {
-        "48427131044028": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620612645052": {
-        "48427132780732": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620612022460": {
-        "48427132190908": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620611956924": {
-        "48427132125372": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620611465404": {
-        "48427131633852": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620612350140": {
-        "48427132485820": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620611793084": {
-        "48427132027068": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620611236028": {
-        "48427131437244": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620610941116": {
-        "48427131109564": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620612874428": {
-        "48427133042876": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620611825852": {
-        "48427131961532": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
-      "9620611760316": {
-        "48427131928764": {
-          "available": true,
-          "title": "Pin"
-        }
-      },
       "9619367067836": {
         "48422714605756": {
           "available": true,
@@ -99257,6 +99185,78 @@
         "48446564532412": {
           "available": false,
           "title": "8"
+        }
+      },
+      "9628654764220": {
+        "48466195513532": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654633148": {
+        "48466195415228": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654567612": {
+        "48466195316924": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654534844": {
+        "48466195284156": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654502076": {
+        "48466195251388": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654469308": {
+        "48466195153084": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654436540": {
+        "48466195218620": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654403772": {
+        "48466195185852": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654371004": {
+        "48466195120316": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654338236": {
+        "48466195054780": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654305468": {
+        "48466195022012": {
+          "available": true,
+          "title": "Pin"
+        }
+      },
+      "9628654272700": {
+        "48466195087548": {
+          "available": true,
+          "title": "Pin"
         }
       }
     },
