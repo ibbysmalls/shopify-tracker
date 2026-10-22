@@ -194,9 +194,12 @@ recognition does not rely on a fabric or preferred-brand mention in the body.
 Stock checks remain required. Clothing bypasses store keyword/team/category
 filters so those hat rules do not reject garments at the same stores.
 
-Hats retain the complete existing store filters and New Era relevance gate.
-New Era hats at every source still match the exact existing team/city terms
-from New Era Cap. No team/city lists, stores, sources or hat formatting change.
+Hats retain the complete existing per-store filters. Hat Club (`hatclub.com`),
+Culture Kings US (`culturekings.com`) and New Era Cap (`www.neweracap.com`)
+apply their own existing team/city terms. Home Game and other stores do not
+inherit those terms because a hat is New Era. Their ordinary keyword, type
+and availability filters still apply. Brand recognition is only annotation;
+no team/city lists, stores, sources or hat formatting change.
 
 New listings and catalogue-reported restocks retain the original ID/variant
 history. All-brand garments now use the existing per-variant price references

@@ -154,9 +154,9 @@ class BroadClothingTests(unittest.TestCase):
                     product("Leather Wallet", "Outside", id=6, product_type="Accessories")]
         state = {"example.com": ["1"], "_stock": {"example.com": {"1": tracker.snapshot_variants(products[0])}}, "_last_poll": {}}
         send, output = self.run_mocked(products, state)
-        send.assert_called_once()
+        self.assertEqual(send.call_count, 2)  # garment plus now-unrestricted New Era hat
         line = next(line for line in output.splitlines() if line.startswith("Feed counts:"))
-        self.assertEqual(line, "Feed counts: garments=2, hats=1, socks_footwear=2, other=1, event_eligible=1, event_rejected=4")
+        self.assertEqual(line, "Feed counts: garments=2, hats=1, socks_footwear=2, other=1, event_eligible=2, event_rejected=3")
         self.assertRegex(line, r"^Feed counts: [a-z_]+=\d+(, [a-z_]+=\d+){5}$")
         for token in ["Synthetic-Private-Canary", "size_references", "waist_range", "owned_models"]:
             self.assertNotIn(token, output)
