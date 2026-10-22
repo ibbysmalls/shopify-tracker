@@ -855,8 +855,8 @@ def legacy_team_apparel(product, store):
 def alert_decision(product, store, cfg, kind=None, extra=None, context=None):
     """Allow garments broadly; preserve the complete legacy hat filter path.
 
-    New Era is already a configured source. Its brand-specific relevance gate
-    reuses the exact existing source terms and never bypasses store filters.
+    Hat relevance uses each store's own resolved filters. Brand recognition
+    annotates a hat without borrowing another store's team/city terms.
     """
     url = product.get("_url") or f"https://{store['domain']}/products/{product.get('handle', '')}"
     team_apparel = legacy_team_apparel(product, store)
@@ -877,12 +877,6 @@ def alert_decision(product, store, cfg, kind=None, extra=None, context=None):
                  clothing_policy.is_new_era_name(product.get("vendor")) or
                  clothing_policy.is_new_era_name(product.get("title")))
     if new_era.get("enabled") and decision["category"] == "hat" and is_new_era:
-        source = next((s for s in cfg.get("stores", []) if s.get("domain") == source_domain), None)
-        terms = resolve_filters(source, cfg.get("filters", {})).get("include_keywords", []) if source else []
-        # Missing/empty relevance settings must not silently create a broad
-        # New Era feed. Use legacy title matching, including its exact terms.
-        if not terms or not passes_filters(product, {"include_keywords": terms}):
-            decision.update(keep=False, reasons=["New Era hat fails existing team/city terms"])
         decision["brand"] = "New Era"
     return decision
 

@@ -371,8 +371,7 @@ class HatRegressionTests(unittest.TestCase):
                     with self.subTest(store=store["name"], vendor=vendor, title=title):
                         d = tracker.alert_decision(p, store, CFG, "new")
                         self.assertFalse(d["applies"])
-                        team_match = any(term in title.lower() for term in CFG['stores'][1]['filters']['include_keywords'])
-                        self.assertEqual(d["keep"], expected and (vendor == "Legacy Brand" or team_match))
+                        self.assertEqual(d["keep"], expected)
 
     def test_new_era_team_relevance_still_required_on_configured_sources(self):
         for store in CFG["stores"]:
@@ -383,31 +382,31 @@ class HatRegressionTests(unittest.TestCase):
                 for title in ["Yankees Fitted Cap", "Generic Fashion Cap", "Youth 49ers Cap"]:
                     self.assertFalse(tracker.alert_decision(product(title, vendor, product_type="Hat"), store, CFG, "new")["keep"])
 
-    def test_unfiltered_sources_now_gate_only_new_era_using_existing_terms(self):
+    def test_unfiltered_sources_do_not_inherit_new_era_team_terms(self):
         store = next(s for s in CFG['stores'] if s['name'] == 'MYFITTEDS')
         for vendor in ['New Era', 'NEWERA', 'New-Era', 'us-neweracap-production']:
             unrelated = product('Texas Rangers Fitted Cap', vendor, product_type='Hat')
             self.assertTrue(tracker.passes_filters(unrelated, tracker.resolve_filters(store, CFG['filters'])))
-            self.assertFalse(tracker.alert_decision(unrelated, store, CFG, 'new')['keep'])
+            self.assertTrue(tracker.alert_decision(unrelated, store, CFG, 'new')['keep'])
             qualifying = product('49ers Fitted Cap', vendor, product_type='Hat')
             self.assertTrue(tracker.alert_decision(qualifying, store, CFG, 'new')['keep'])
         legacy = product('Texas Rangers Fitted Cap', 'Other Brand', product_type='Hat')
         self.assertTrue(tracker.alert_decision(legacy, store, CFG, 'new')['keep'])
 
-    def test_new_era_title_and_named_collaboration_cannot_bypass_gate(self):
+    def test_new_era_titles_and_collaborations_do_not_add_cross_store_gate(self):
         store = next(s for s in CFG['stores'] if s['name'] == 'MYFITTEDS')
         for title in ['New Era Yankees Hat', 'Kapital x New Era Yankees Hat']:
-            self.assertFalse(tracker.alert_decision(product(title, 'Kapital', product_type='Hat'), store, CFG, 'new')['keep'])
+            self.assertTrue(tracker.alert_decision(product(title, 'Kapital', product_type='Hat'), store, CFG, 'new')['keep'])
 
-    def test_new_era_headwear_type_cannot_bypass_gate(self):
+    def test_new_era_headwear_uses_own_store_filters(self):
         p=product('Yankees Adjustable','New Era',product_type='Headwear')
-        self.assertFalse(tracker.alert_decision(p,STORE,CFG,'new')['keep'])
+        self.assertTrue(tracker.alert_decision(p,STORE,CFG,'new')['keep'])
         p['vendor']='Legacy Brand'
         self.assertTrue(tracker.alert_decision(p,STORE,CFG,'new')['keep'])
 
-    def test_new_era_missing_relevance_config_fails_closed(self):
+    def test_missing_other_store_config_does_not_reject_unrestricted_hat(self):
         cfg = dict(CFG, stores=[])
-        self.assertFalse(tracker.alert_decision(product('49ers Cap', 'New Era', product_type='Hat'), STORE, cfg, 'new')['keep'])
+        self.assertTrue(tracker.alert_decision(product('49ers Cap', 'New Era', product_type='Hat'), STORE, cfg, 'new')['keep'])
 
 
 class IntegrationTests(unittest.TestCase):
