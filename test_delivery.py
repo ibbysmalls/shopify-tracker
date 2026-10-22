@@ -176,14 +176,14 @@ class OutboxTests(unittest.TestCase):
 
 
 class TrackerDeliveryTests(unittest.TestCase):
-    def run_tracker(self, backend, state, products, send, cfg=None):
+    def run_tracker(self, backend, state, products, send, cfg=None, fetch=None):
         cfg = cfg or {'stores': [{'domain': 'example.com', 'name': 'Example', 'verified': True}],
                       'poll': {'products_per_store': 50}}
         with ExitStack() as stack:
             stack.enter_context(patch.object(delivery, 'open_outbox', side_effect=lambda _: delivery.Outbox(backend)))
             stack.enter_context(patch.object(tracker, 'load_json', return_value=state))
             stack.enter_context(patch.object(tracker, 'save_json'))
-            stack.enter_context(patch.object(tracker, 'fetch_products', return_value=(products, products)))
+            stack.enter_context(patch.object(tracker, 'fetch_products', return_value=(products, products), side_effect=fetch))
             stack.enter_context(patch.object(tracker, 'send_telegram', send))
             stack.enter_context(patch.object(tracker, 'process_telegram_commands', return_value=False))
             stack.enter_context(patch.object(tracker, 'clothing_context', return_value={}))
@@ -195,7 +195,7 @@ class TrackerDeliveryTests(unittest.TestCase):
 
     @staticmethod
     def product(available=True):
-        return {'id': 2, 'title': 'Shirt', 'product_type': 'Shirt', 'handle': 'shirt',
+        return {'id': 2, 'title': 'Shirt', 'product_type': 'Shirt', 'handle': 'shirt', 'currency': 'USD',
                 'variants': [{'id': 20, 'title': 'M', 'available': available, 'price': '50'}]}
 
     def test_failed_event_retries_even_after_seen_advanced_and_product_disappears(self):
@@ -292,11 +292,13 @@ class TrackerDeliveryTests(unittest.TestCase):
         backend = MemoryBackend()
         original = {'example.com': ['2'], '_poll_limit': 50,
                     '_stock': {'example.com': {'2': tracker.snapshot_variants(self.product())}},
-                    '_clothing_prices': {'example.com': {'2': {'20': '100'}}}}
+                    '_clothing_prices': {'example.com': tracker.clothing_price_events(
+                        [dict(self.product(), variants=[dict(self.product()['variants'][0], price='100')])],
+                        None, {'enabled': True})[1]}}
         cfg = {'stores': [{'domain': 'example.com', 'name': 'Example', 'verified': True}],
                'poll': {'products_per_store': 50}, 'clothing_policy': {'enabled': True}}
         send = Mock(return_value=10)
-        for price in ['50', '50', '100', '50']:
+        for price in ['50', '50', '100', '50', '25']:
             p = self.product()
             p['variants'][0]['price'] = price
             self.run_tracker(backend, copy.deepcopy(original), [p], send, cfg)

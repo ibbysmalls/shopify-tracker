@@ -28,7 +28,7 @@ SYNTHETIC_PROFILE = {
 
 def product(title="PBJ Extreme Slub Relaxed Straight Jeans", vendor="PBJ", price="250", **kwargs):
     p = {"id": 1, "title": title, "vendor": vendor, "product_type": "Jeans",
-         "handle": "synthetic-item", "variants": [{"id": 11, "title": "S2", "available": True, "price": price}]}
+         "handle": "synthetic-item", "currency": "USD", "variants": [{"id": 11, "title": "S2", "available": True, "price": price}]}
     p.update(kwargs)
     return p
 
@@ -335,7 +335,8 @@ class PriceTests(unittest.TestCase):
         p = product("Outside Brand Patchwork Jeans", "Outside")
         events, history = tracker.clothing_price_events([p], None, POLICY)
         self.assertEqual(events, [])
-        self.assertEqual(history, {"1": {"11": "250"}})
+        self.assertEqual(history["1"]["11"], "250")
+        self.assertIn("_advertised", history["1"])
 
     def test_any_size_discount_is_eligible(self):
         d = tracker.alert_decision(product(), STORE, CFG, "price_drop",
@@ -427,7 +428,7 @@ class IntegrationTests(unittest.TestCase):
     def test_replay_includes_existing_material_price_event(self):
         p=product(price='200')
         state={'example.com':['1'],'_stock':{'example.com':{'1':tracker.snapshot_variants(p)}},
-               '_clothing_prices':{'example.com':{'1':{'11':'250'}}}}
+               '_clothing_prices':{'example.com':tracker.clothing_price_events([product()], None, POLICY)[1]}}
         report=replay_policy.replay([{'store':STORE,'products':[p]}],CFG,state)
         self.assertEqual(report['summary']['would_alert_now'],1)
         self.assertEqual(report['results'][0]['event'][0],'price_drop')
@@ -435,7 +436,7 @@ class IntegrationTests(unittest.TestCase):
         p = product(price="200")
         cfg = dict(CFG, stores=[dict(STORE, verified=True)])
         state = {"example.com": ["1"], "_stock": {"example.com": {"1": tracker.snapshot_variants(p)}},
-                 "_last_poll": {}, "_clothing_prices": {"example.com": {"1": {"11": "250"}}}}
+                 "_last_poll": {}, "_clothing_prices": {"example.com": tracker.clothing_price_events([product()], None, POLICY)[1]}}
         original_stock = copy.deepcopy(state["_stock"])
         with ExitStack() as stack:
             stack.enter_context(patch.object(tracker.delivery, "open_outbox", side_effect=fresh_outbox))

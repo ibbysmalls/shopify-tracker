@@ -13,6 +13,7 @@ import time
 import urllib.error
 import urllib.request
 import uuid
+import price_history
 
 
 class JournalError(RuntimeError):
@@ -57,6 +58,11 @@ class LocalBackend:
             f.flush()
             os.fsync(f.fileno())
         os.replace(tmp, self.path)
+        directory = os.open(os.path.dirname(self.path) or '.', os.O_RDONLY)
+        try:
+            os.fsync(directory)
+        finally:
+            os.close(directory)
 
     def close(self):
         self.lock.close()
@@ -135,12 +141,19 @@ class Outbox:
         self.sent = 0
 
     def checkpoint(self):
-        self.backend.write(self.data)
+        if getattr(self, 'failed', False):
+            raise JournalError('Delivery journal is unavailable; stopping writes')
+        try:
+            self.backend.write(self.data)
+        except Exception:
+            self.failed = True
+            raise
 
     def close(self):
         try:
-            self.data.pop('lease', None)
-            self.checkpoint()
+            if not getattr(self, 'failed', False):
+                self.data.pop('lease', None)
+                self.checkpoint()
         finally:
             self.backend.close()
 
@@ -156,6 +169,19 @@ class Outbox:
         if observations:
             saved = self.data.setdefault('observations', {}).setdefault(domain, {})
             for pid, observation in observations.items():
+                observation = copy.deepcopy(observation)
+                old_cursor = saved.get(pid, {})
+                if ('_revision' in old_cursor and
+                        observation.get('_revision', -1) <= old_cursor['_revision']):
+                    continue
+                old_prices = saved.get(pid, {}).get('prices', {})
+                new_prices = observation.get('prices', {})
+                if (price_history.META in old_prices and
+                        old_prices[price_history.META]['revision'] >
+                        new_prices.get(price_history.META, {}).get('revision', -1)):
+                    # A stale migration/observation must not undo a newer send
+                    # checkpoint. Keep the authoritative durable price cursor.
+                    continue
                 if saved.get(pid) != observation:
                     saved[pid] = copy.deepcopy(observation)
                     changed = True
@@ -163,10 +189,10 @@ class Outbox:
             # The event, next sequence and stock/price observation commit together.
             self.checkpoint()  # whole store is durable before advancing observations
 
-    def deliver(self, event_id, send):
+    def deliver(self, event_id, send, confirmed=None):
         event = self.data['events'][event_id]
         now = time.time()
-        if event['status'] == 'sent':
+        if event['status'] == 'sent' or event.get('suppressed'):
             return False
         if time.monotonic() + 25 >= self.deadline:
             raise Deferred('Delivery budget exhausted')
@@ -204,6 +230,8 @@ class Outbox:
             event['status'] = 'sending'
             self.checkpoint()
             raise Deferred('Telegram outcome uncertain; retry deferred for 15 minutes') from None
+        if confirmed:
+            confirmed()
         event.clear()
         event.update(status='sent', message_id=result, sent_at=int(time.time()))
         self.checkpoint()  # every confirmed send survives failure of the main history commit

@@ -32,6 +32,7 @@ import urllib.parse
 
 import clothing_policy
 import delivery
+import price_history
 from private_clothing_profile import load_profile_with_status
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -896,34 +897,23 @@ def clothing_price_events(products, previous, policy, currency=None, skip_ids=()
     if not policy.get("enabled"):
         return [], previous
     previous = previous or {}
-    next_prices = dict(previous)
+    next_prices = copy.deepcopy(previous)
     events = []
     skip = {str(i) for i in skip_ids}
-    floor = Decimal(str(policy.get("price_drop_minimum", {}).get(currency or "USD", 20)))
-    percent = Decimal(str(policy.get("price_drop_percent", 15))) / 100
+    now = time.time()
     for p in products:
         if clothing_policy.category(p) not in clothing_policy.CLOTHING_CATEGORIES or "id" not in p:
             continue
         pid = str(p["id"])
-        old = previous.get(pid, {})
-        current = {}
-        drops = []
-        for v in p.get("variants") or []:
-            vid = str(v.get("id") or v.get("title") or "default")
-            price = numeric_price(v.get("price"))
-            if price is None or price <= 0:
-                continue
-            anchor = numeric_price(old.get(vid))
-            current[vid] = str(price)
-            if anchor is not None and anchor > price:
-                change = anchor - price
-                if change >= floor and change / anchor >= percent:
-                    drops.append({"variant": v.get("title", vid), "from": str(anchor), "to": str(price)})
-                else:
-                    current[vid] = str(anchor)
-        next_prices[pid] = current
-        if drops and pid not in skip:
+        drops, next_prices[pid] = price_history.observe(
+            p, previous.get(pid, {}), policy, currency, numeric_price, now, pid in skip)
+        if drops:
             events.append(("price_drop", p, drops))
+    # A variant/product disappearing from a successful response interrupts its
+    # higher-price sequence, without discarding its advertised reference.
+    observed = {str(p["id"]) for p in products if "id" in p}
+    for pid in next_prices.keys() - observed:
+        next_prices[pid] = price_history.interrupt({pid: next_prices[pid]})[pid]
     return events, next_prices
 
 
@@ -932,7 +922,7 @@ def additional_price_events(products, events, previous, cfg, store, seed_ids=(),
     skip = [p["id"] for kind, p, extra in events
             if kind == "new" or alert_decision(p, store, cfg, kind, extra, context)["keep"]]
     return clothing_price_events(products, previous, cfg.get("clothing_policy", {}),
-                                 store.get("currency"), skip_ids=skip + list(seed_ids))
+                                 store, skip_ids=skip + list(seed_ids))
 
 
 def format_clothing_message(store, product, kind, extra, decision):
@@ -1101,15 +1091,124 @@ def reconcile_delivery_observations(outbox, state, domain, products, seen, stock
     ids = {str(p["id"]) for p in products if "id" in p}
     for pid in ids & observed.keys():
         cursor = observed[pid]
-        if pid not in seen:
-            seen.append(pid)
-        if stock is None:
-            stock = {}
-        stock[pid] = copy.deepcopy(cursor["stock"])
+        if "stock" in cursor:
+            if pid not in seen:
+                seen.append(pid)
+            if stock is None:
+                stock = {}
+            stock[pid] = copy.deepcopy(cursor["stock"])
         if "prices" in cursor:
             state.setdefault("_clothing_prices", {}).setdefault(domain, {})[pid] = copy.deepcopy(cursor["prices"])
-        state.setdefault("_delivery_seq", {}).setdefault(domain, {})[pid] = cursor["next_sequence"]
+        if "next_sequence" in cursor:
+            state.setdefault("_delivery_seq", {}).setdefault(domain, {})[pid] = cursor["next_sequence"]
     return seen, stock
+
+
+def migrate_price_history(outbox, state, cfg):
+    """Initialize missing metadata only; durable metadata always wins main state.
+
+    Historical sent receipts deliberately have no payload. Do not infer what
+    they advertised from a different variant or fabricate a delivery receipt.
+    """
+    if not cfg.get("clothing_policy", {}).get("enabled"):
+        return
+    observed = outbox.data.setdefault("observations", {})
+    for store in cfg["stores"]:
+        domain = store["domain"]
+        saved = observed.setdefault(domain, {})
+        sources = copy.deepcopy(state.get("_clothing_prices", {}).get(domain, {}))
+        sources.update({pid: copy.deepcopy(cursor["prices"]) for pid, cursor in saved.items()
+                        if "prices" in cursor})
+        payloads = {}
+        for event in outbox.data["events"].values():
+            payload = event.get("payload", {})
+            if payload.get("domain") == domain and payload.get("kind") == "price_drop":
+                pid = str(payload["product"]["id"])
+                payloads.setdefault(pid, []).append(payload["product"])
+                sources.setdefault(pid, {})
+        updates = {}
+        for pid, prices in sources.items():
+            if price_history.META in saved.get(pid, {}).get("prices", {}):
+                continue
+            if price_history.META not in prices:
+                products = payloads.get(pid) or [{"variants": [
+                    {"id": vid, "price": price} for vid, price in prices.items()]}]
+                for product in products:
+                    _, prices = price_history.observe(product, prices,
+                        cfg["clothing_policy"], store, numeric_price,
+                        time.time(), skip=True, migration=True)
+            cursor = copy.deepcopy(saved.get(pid, {}))
+            cursor["prices"] = prices
+            cursor["_revision"] = cursor.get("_revision", 0) + 1
+            updates[pid] = cursor
+        if updates:
+            outbox.queue_many([], domain=domain, observations=updates)
+
+
+def interrupt_price_history(outbox, state, domain):
+    """A failed fetch cannot count as part of a successful higher sequence."""
+    prices = state.get("_clothing_prices", {}).get(domain, {})
+    if outbox:
+        prices = {pid: copy.deepcopy(cursor["prices"]) for pid, cursor in
+                  outbox.data.get("observations", {}).get(domain, {}).items() if "prices" in cursor}
+    prices = price_history.interrupt(prices)
+    if outbox:
+        updates = {}
+        for pid, price in prices.items():
+            cursor = copy.deepcopy(outbox.data["observations"][domain][pid])
+            cursor["prices"] = price
+            cursor["_revision"] = cursor.get("_revision", 0) + 1
+            updates[pid] = cursor
+        outbox.queue_many([], domain=domain, observations=updates)
+    if prices:
+        state.setdefault("_clothing_prices", {})[domain] = prices
+
+
+def recheck_price_event(outbox, event_id, cfg):
+    event = outbox.data["events"][event_id]
+    payload = event.get("payload", {})
+    if payload.get("kind") != "price_drop":
+        return True
+    store = next((s for s in cfg["stores"] if s["domain"] == payload["domain"]), {})
+    prices = outbox.data.get("observations", {}).get(payload["domain"], {}).get(
+        str(payload["product"]["id"]), {}).get("prices", {})
+    extra = price_history.eligible(prices, payload, event_id, cfg.get("clothing_policy", {}),
+                                   store, numeric_price)
+    if not cfg.get("clothing_policy", {}).get("enabled") or not extra:
+        # Retain pending/ambiguous distinctions and the original payload. This
+        # is suppression, never a made-up successful Telegram confirmation.
+        event["suppressed"] = "stale_or_unknown_price_reference"
+        outbox.checkpoint()
+        return False
+    return True
+
+
+def deliver_event(outbox, event_id, cfg, private_context=None):
+    if outbox.data['events'][event_id]['status'] == 'sent' or outbox.data['events'][event_id].get('suppressed'):
+        return False
+    if not recheck_price_event(outbox, event_id, cfg):
+        return False
+    payload = outbox.data["events"][event_id].get("payload", {})
+    store = next(s for s in cfg["stores"] if s["domain"] == payload["domain"])
+    extra = payload["extra"]
+    if payload.get("kind") == "price_drop":
+        prices = outbox.data["observations"][payload["domain"]][str(payload["product"]["id"])]["prices"]
+        extra = price_history.eligible(prices, payload, event_id, cfg["clothing_policy"],
+                                       store, numeric_price)
+    decision = alert_decision(payload["product"], store, cfg, payload["kind"], extra, private_context)
+    if not decision["keep"]:
+        return False
+    msg = event_message(store, payload["product"], payload["kind"], extra, decision)
+    def confirmed():
+        if payload.get("kind") != "price_drop":
+            return
+        domain, pid = payload["domain"], str(payload["product"]["id"])
+        store = next(s for s in cfg["stores"] if s["domain"] == domain)
+        cursor = outbox.data["observations"][domain][pid]
+        cursor["prices"] = price_history.confirmed(cursor["prices"], payload, event_id,
+            cfg["clothing_policy"], store, numeric_price)
+        cursor["_revision"] = cursor.get("_revision", 0) + 1
+    return outbox.deliver(event_id, lambda: send_telegram(msg), confirmed=confirmed)
 
 
 def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
@@ -1120,11 +1219,15 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
     state = load_json(STATE_PATH, {})
     private_context = clothing_context()
 
+    # Migration precedes recovery and never replaces newer durable metadata.
+    if outbox:
+        migrate_price_history(outbox, state, cfg)
+
     # Recover queued public events even if the catalogue no longer returns them.
     if outbox:
         stores = {s["domain"]: s for s in cfg["stores"]}
         for event_id, event in list(outbox.data["events"].items()):
-            if event["status"] == "sent":
+            if event["status"] == "sent" or event.get("suppressed"):
                 continue
             payload = event["payload"]
             store = stores.get(payload["domain"])
@@ -1138,17 +1241,13 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
                             time.monotonic() + 25 >= outbox.deadline):
                         break
                 continue
-            kind, product, extra = payload["kind"], payload["product"], payload["extra"]
-            decision = alert_decision(product, store, cfg, kind, extra, private_context)
-            if decision["keep"]:
-                msg = event_message(store, product, kind, extra, decision)
-                try:
-                    if outbox.deliver(event_id, lambda: send_telegram(msg)):
-                        time.sleep(1)
-                except delivery.Deferred:
-                    if (outbox.data.get("retry_at", 0) > time.time() or
-                            time.monotonic() + 25 >= outbox.deadline):
-                        break
+            try:
+                if deliver_event(outbox, event_id, cfg, private_context):
+                    time.sleep(1)
+            except delivery.Deferred:
+                if (outbox.data.get("retry_at", 0) > time.time() or
+                        time.monotonic() + 25 >= outbox.deadline):
+                    break
 
     if not dry_run:
         try:
@@ -1224,6 +1323,7 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
             if not products:
                 empty.append(name)
         except delivery.Deferred:
+            interrupt_price_history(outbox, state, domain)
             # A soft-budget stop is a deferral, not an upstream outage or poll.
             if previous_poll is None:
                 last_poll.pop(domain, None)
@@ -1232,6 +1332,7 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
             deferred.append(name)
             continue
         except Exception as e:
+            interrupt_price_history(outbox, state, domain)
             timings.append((time.time() - t0, name, f"FAILED: {e}"))
             failed.append(name)
             print(f"[warn] {name}: fetch failed after {time.time()-t0:.1f}s: {e}",
@@ -1297,6 +1398,11 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
                    "hats" if category == "hat" else "socks_footwear" if category == "socks_footwear" else "other")
             feed_counts[key] += 1
         next_prices = None
+        if outbox and policy.get("enabled"):
+            durable_prices = {pid: copy.deepcopy(cursor["prices"]) for pid, cursor in
+                outbox.data.get("observations", {}).get(domain, {}).items() if "prices" in cursor}
+            if durable_prices:
+                state.setdefault("_clothing_prices", {}).setdefault(domain, {}).update(durable_prices)
         if policy.get("enabled") and (
                 domain in state.get("_clothing_prices", {}) or any(
                     clothing_policy.category(p) in clothing_policy.CLOTHING_CATEGORIES for p in products)):
@@ -1314,6 +1420,12 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
             stock_all[domain] = next_stock
             if next_prices is not None:
                 price_all[domain] = next_prices
+            if outbox and next_prices is not None:
+                outbox.queue_many([], domain=domain, observations={
+                    pid: {"stock": next_stock[pid], "next_sequence": 0, "prices": prices,
+                          "_revision": outbox.data.get("observations", {}).get(domain, {}).get(
+                              pid, {}).get("_revision", 0) + 1}
+                    for pid, prices in next_prices.items() if pid in next_stock})
             new_by_store[name] = 0
             first_run_stores += 1
             continue
@@ -1343,6 +1455,8 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
                 pid = str(p["id"])
                 sequence = sequences.get(pid, 0)
                 event_id = delivery.event_key(domain, pid, sequence)
+                if kind == "price_drop":
+                    price_history.reserve(next_prices[pid], extra, event_id)
                 queued.append((event_id, {"domain": domain, "kind": kind,
                                            "product": p, "extra": extra}, msg))
                 sequences[pid] = sequence + 1
@@ -1360,29 +1474,42 @@ def _cmd_run(cfg, dry_run=False, poll_all=False, outbox=None):
                 pid = str(p["id"])
                 sequence = sequences.get(pid, 0)
                 legacy = delivery.event_key(domain, pid, 0) in outbox.data["events"]
-                if pid not in cursors and pid not in queued_ids and not legacy:
+                if (pid not in cursors and pid not in queued_ids and not legacy
+                        and not (next_prices is not None and pid in next_prices)):
                     continue
                 # Migrate existing receipts without changing or resetting them.
                 while delivery.event_key(domain, pid, sequence) in outbox.data["events"]:
                     sequence += 1
-                observation = {"stock": next_stock[pid], "next_sequence": sequence}
+                observation = {"stock": next_stock[pid], "next_sequence": sequence,
+                               "_revision": cursors.get(pid, {}).get("_revision", 0) + 1}
                 if next_prices is not None and pid in next_prices:
                     observation["prices"] = next_prices[pid]
                 elif "prices" in cursors.get(pid, {}):
                     observation["prices"] = cursors[pid]["prices"]
                 observations[pid] = observation
+            if next_prices is not None:
+                for pid in next_prices.keys() - observations.keys():
+                    cursor = copy.deepcopy(cursors.get(pid, {}))
+                    cursor["prices"] = next_prices[pid]
+                    cursor["_revision"] = cursor.get("_revision", 0) + 1
+                    observations[pid] = cursor
             outbox.queue_many([(key, payload) for key, payload, _ in queued],
                               domain=domain, observations=observations)
 
         if queued:
             for event_id, _, msg in queued:
                 try:
-                    if outbox.deliver(event_id, lambda: send_telegram(msg)):
+                    if deliver_event(outbox, event_id, cfg, private_context):
                         notified += 1
                         time.sleep(1)
                 except delivery.Deferred as e:
                     print(f"[warn] {e}", file=sys.stderr)
                     break
+
+        if outbox and next_prices is not None:
+            for pid, cursor in outbox.data.get("observations", {}).get(domain, {}).items():
+                if "prices" in cursor:
+                    next_prices[pid] = copy.deepcopy(cursor["prices"])
 
         if suppressed:
             summary = (f"⚠️ {name}: suppressed {suppressed} new-product alerts "
