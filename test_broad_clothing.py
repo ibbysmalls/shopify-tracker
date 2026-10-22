@@ -142,7 +142,7 @@ class BroadClothingTests(unittest.TestCase):
         send.assert_not_called()
         self.assertEqual(state["example.com"], before["example.com"])
         self.assertEqual(state["_stock"], before["_stock"])
-        self.assertEqual(state["_clothing_prices"]["example.com"], {"1": {"11": "250"}, "2": {"11": "250"}})
+        self.assertEqual({pid: prices["11"] for pid, prices in state["_clothing_prices"]["example.com"].items()}, {"1": "250", "2": "250"})
         self.assertIn("event_eligible=0, event_rejected=0", output)
 
     def test_counts_are_aggregate_integers_and_rejected_ids_still_dedupe(self):

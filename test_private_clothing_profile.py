@@ -269,7 +269,7 @@ class TeamApparelTests(unittest.TestCase):
             p = product("Synthetic 49ers Work Jacket", "Outside Team Supplier", product_type="Jacket")
             events, history = tracker.additional_price_events([p], [], {}, CFG, store, context=SYNTHETIC_PROFILE)
             self.assertEqual(events, [])
-            self.assertEqual(history, {"1": {"11": "250"}})
+            self.assertEqual(history["1"]["11"], "250")
 
     def test_team_mention_is_unnecessary_for_clothing(self):
         p = product("Synthetic Ordinary Work Jacket", "Outside Team Supplier", product_type="Jacket")
@@ -282,7 +282,10 @@ class DiscountThresholdTests(unittest.TestCase):
     def test_percent_and_currency_floor_are_both_required(self):
         def drops(anchor, price, currency="USD"):
             p = product(price=str(price))
-            return tracker.clothing_price_events([p], {"1": {"11": str(anchor)}}, POLICY, currency)[0]
+            p["currency"] = currency
+            initial = product(price=str(anchor), currency=currency)
+            _, history = tracker.clothing_price_events([initial], None, POLICY, currency)
+            return tracker.clothing_price_events([p], history, POLICY, currency)[0]
         self.assertEqual(drops(100, 85), [])  # percentage alone is insufficient
         self.assertEqual(drops(1000, 980), [])  # amount alone is insufficient
         self.assertTrue(drops(100, 80))

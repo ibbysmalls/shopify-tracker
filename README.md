@@ -333,3 +333,62 @@ or reset a delivery journal to resolve an error: doing so loses deduplication.
 Offline coverage: `python3 -m unittest -v` includes success, failure, 429 cooldown,
 restart/cancellation, lost main-history commits, concurrency and existing filter,
 hat/team/city, restock and clothing-price regressions. No test sends live messages.
+
+## Advertised clothing price references
+
+Clothing prices retain independent references for each variant and compatible
+currency/market context in `_clothing_prices` and the durable delivery journal.
+A higher observation does not immediately replace the advertised reference.
+Rearming requires both at least 24 hours since the first uninterrupted higher
+observation and at least three successful higher observations in that same
+context. The new reference is the lowest price in that higher sequence. A
+return to the reference, invalid/missing price, missing variant/product, failed
+fetch, or context change interrupts that sequence. Ordinary polling intervals,
+store order, alert thresholds, hat/team/city filters and NEW/restock detection
+are unchanged. Further meaningful reductions remain eligible.
+When NEW/restock takes precedence, a lower observed price updates only that
+variant's reference, including a small reduction already advertised by that
+event. Higher observations still require the rearm guard.
+
+References reserve queued reductions before sending, in the same checkpoint
+as the event and stock/sequence observations. This prevents semantic repeats
+under fresh event keys even when the main history commit is lost. A queued
+price alert is rechecked immediately before delivery; equal, higher,
+below-threshold, incompatible and unknown-context offers are suppressed.
+Only eligible variant reductions appear in its message. Suppression retains
+its original payload and pending/ambiguous status, without creating a receipt.
+Confirmed receipts remain unchanged. A confirmation updates price metadata
+atomically with the receipt. Failed checkpoints stop further writes and sends;
+local journal replacement also fsyncs the containing directory.
+
+Currency must be explicit in request configuration or catalogue data, agree
+across sources, and use a recognized supported currency code. The display
+fallback `$` supplies no currency evidence. Market/country fields, when
+provided, are part of the context; conflicts or empty explicit fields are
+quarantined. A new or changed context seeds silently before comparisons resume.
+No exchange-rate inference or conversion is performed. Shopify payloads with
+no currency evidence therefore produce no price alerts until explicit context
+is available; their NEW/restock alerts remain eligible.
+
+Legacy scalar price history and historical pre-send payloads migrate without
+resetting state or modifying receipts. Legacy history lacks advertised-price
+and context provenance: migration seeds conservatively, using the lower known
+per-variant price when possible. Unknown-history/context seeding, and a queued
+reduction that never successfully sends, can suppress a genuine price alert.
+This deliberate tradeoff prevents inventing repeat offers. It never suppresses
+NEW/restock events. Migration is idempotent, and newer durable metadata wins
+over stale main state or older observation checkpoints. Migration does not
+reconstruct deleted payloads from receipts or assume a product minimum applies
+to every variant. Historical ambiguous Telegram outcomes remain ambiguous.
+Whole observation records carry a revision so stale checkpoints cannot roll
+back stock or event sequences while preserving newer prices. Rearming and
+context reentry advance an offer generation; a superseded queued offer cannot
+regain eligibility against a newer higher reference. Unversioned historical
+offers after such a generation change are conservatively suppressed.
+Legacy and newly discovered contexts without advertisement provenance remain
+unproven until the first lower observation is silently absorbed, a lower
+NEW/restock advertisement establishes a reference, or a fresh higher sequence
+meets both rearm requirements. This avoids treating a surviving higher legacy
+scalar as proof that an already advertised lower price is a new discount.
+New queued price events must still own their exact per-variant reservation;
+an event from a rejected stale observation cannot use a newer reference.
