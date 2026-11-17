@@ -16545,10 +16545,10 @@
     "procietyshop.com": 1794949447,
     "4ucaps.com": 1794949452,
     "www.hatdreams.com": 1794949457,
-    "crownminded.com": 1794947654,
-    "www.ecapcity.com": 1794948441,
-    "www.lidshd.com": 1794948445,
-    "gf-sf.com": 1794948449,
+    "crownminded.com": 1794950330,
+    "www.ecapcity.com": 1794950335,
+    "www.lidshd.com": 1794950340,
+    "gf-sf.com": 1794950345,
     "incredideals.ae": 1794948454,
     "stylisticsjapan.com": 1794948456,
     "www.cojpgallery.com": 1794948523,
@@ -118174,7 +118174,7 @@
       },
       "10680710201525": {
         "53765251662005": {
-          "available": true,
+          "available": false,
           "title": "Size 7 5/8"
         }
       },
@@ -449830,7 +449830,7 @@
         "67993816498307": "110.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67993816400003": {
               "active": null,
@@ -449858,7 +449858,7 @@
         "67625705865347": "100.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67625705767043": {
               "active": null,
@@ -449886,7 +449886,7 @@
         "67625697640579": "95.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67625697542275": {
               "active": null,
@@ -449914,7 +449914,7 @@
         "67625550315651": "95.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67625550217347": {
               "active": null,
@@ -449941,7 +449941,7 @@
         "67625793486979": "250.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67625793421443": {
               "active": null,
@@ -449965,7 +449965,7 @@
         "67748968366211": "120.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67748968267907": {
               "active": null,
@@ -449995,7 +449995,7 @@
         "67748963188867": "120.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67748963025027": {
               "active": null,
@@ -450031,7 +450031,7 @@
         "67748958011523": "55.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67748957913219": {
               "active": null,
@@ -450059,7 +450059,7 @@
         "67748952506499": "110.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67748952408195": {
               "active": null,
@@ -450087,7 +450087,7 @@
         "67748938023043": "130.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67748937924739": {
               "active": null,
@@ -450117,7 +450117,7 @@
         "67748924948611": "120.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67748924784771": {
               "active": null,
@@ -450155,7 +450155,7 @@
         "67748919509123": "120.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67748919476355": {
               "active": null,
@@ -450191,7 +450191,7 @@
         "67748911382659": "55.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67748911284355": {
               "active": null,
@@ -450219,7 +450219,7 @@
         "67748902600835": "110.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67748902502531": {
               "active": null,
@@ -450247,7 +450247,7 @@
         "67748886511747": "130.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67748886413443": {
               "active": null,
@@ -450277,7 +450277,7 @@
         "67841200488579": "110.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67841200324739": {
               "active": null,
@@ -450313,7 +450313,7 @@
         "67841055948931": "100.00",
         "_advertised": {
           "version": 1,
-          "revision": 2384,
+          "revision": 2385,
           "variants": {
             "67841055850627": {
               "active": null,
@@ -450337,7 +450337,7 @@
       "9086431756419": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "47197623189635": {
               "active": null,
@@ -450365,7 +450365,7 @@
       "9086431592579": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "47197621682307": {
               "active": null,
@@ -450393,7 +450393,7 @@
       "9086431494275": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "47197621289091": {
               "active": null,
@@ -450421,7 +450421,7 @@
       "9086431330435": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "47197619912835": {
               "active": null,
@@ -450449,7 +450449,7 @@
       "9086431199363": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "47197619126403": {
               "active": null,
@@ -450477,7 +450477,7 @@
       "10311638810755": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "50520674173059": {
               "active": null,
@@ -450515,7 +450515,7 @@
       "10311632912515": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "50520560500867": {
               "active": null,
@@ -450553,7 +450553,7 @@
       "10311620755587": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "50520488018051": {
               "active": null,
@@ -450591,7 +450591,7 @@
       "10311608959107": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "50520460230787": {
               "active": null,
@@ -450629,7 +450629,7 @@
       "10311596507267": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "50520434212995": {
               "active": null,
@@ -450657,7 +450657,7 @@
       "10311586087043": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "50520411373699": {
               "active": null,
@@ -450695,7 +450695,7 @@
       "10311583039619": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "50520397316227": {
               "active": null,
@@ -450733,7 +450733,7 @@
       "10311577305219": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "50520378048643": {
               "active": null,
@@ -450761,7 +450761,7 @@
       "10311567933571": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "50520353702019": {
               "active": null,
@@ -450789,7 +450789,7 @@
       "9276565684355": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "48179322847363": {
               "active": null,
@@ -450827,7 +450827,7 @@
       "9276565618819": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "48179321569411": {
               "active": null,
@@ -450865,7 +450865,7 @@
       "9276565487747": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "48179317604483": {
               "active": null,
@@ -450893,7 +450893,7 @@
       "9276565356675": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "48179315605635": {
               "active": null,
@@ -450931,7 +450931,7 @@
       "9276565258371": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "48179314524291": {
               "active": null,
@@ -450969,7 +450969,7 @@
       "9276565225603": {
         "_advertised": {
           "version": 1,
-          "revision": 2158,
+          "revision": 2159,
           "variants": {
             "48179314131075": {
               "active": null,
@@ -450997,7 +450997,7 @@
       "7925100281987": {
         "_advertised": {
           "version": 1,
-          "revision": 1802,
+          "revision": 1803,
           "variants": {
             "43304697168003": {
               "active": null,
@@ -451030,7 +451030,7 @@
       "15493434376323": {
         "_advertised": {
           "version": 1,
-          "revision": 608,
+          "revision": 609,
           "variants": {
             "68222265491587": {
               "active": null,
@@ -451058,7 +451058,7 @@
       "15493429330051": {
         "_advertised": {
           "version": 1,
-          "revision": 608,
+          "revision": 609,
           "variants": {
             "68222252187779": {
               "active": null,
@@ -451086,7 +451086,7 @@
       "15493427069059": {
         "_advertised": {
           "version": 1,
-          "revision": 608,
+          "revision": 609,
           "variants": {
             "68222243242115": {
               "active": null,
@@ -451114,7 +451114,7 @@
       "15493425987715": {
         "_advertised": {
           "version": 1,
-          "revision": 608,
+          "revision": 609,
           "variants": {
             "68222237442179": {
               "active": null,
@@ -451142,7 +451142,7 @@
       "15493424513155": {
         "_advertised": {
           "version": 1,
-          "revision": 608,
+          "revision": 609,
           "variants": {
             "68222232985731": {
               "active": null,
@@ -451170,7 +451170,7 @@
       "15493421236355": {
         "_advertised": {
           "version": 1,
-          "revision": 608,
+          "revision": 609,
           "variants": {
             "68222222499971": {
               "active": null,
@@ -451198,7 +451198,7 @@
       "15493417173123": {
         "_advertised": {
           "version": 1,
-          "revision": 608,
+          "revision": 609,
           "variants": {
             "68222208704643": {
               "active": null,
@@ -451226,7 +451226,7 @@
       "15493406425219": {
         "_advertised": {
           "version": 1,
-          "revision": 608,
+          "revision": 609,
           "variants": {
             "68222177738883": {
               "active": null,
@@ -451259,7 +451259,7 @@
         "53223903330485": "32.00",
         "_advertised": {
           "version": 1,
-          "revision": 2385,
+          "revision": 2386,
           "variants": {
             "53223902085301": {
               "active": null,
@@ -451285,7 +451285,7 @@
         "51945020260533": "129.99",
         "_advertised": {
           "version": 1,
-          "revision": 2385,
+          "revision": 2386,
           "variants": {
             "51945020096693": {
               "active": null,
@@ -451317,7 +451317,7 @@
       "10678982213813": {
         "_advertised": {
           "version": 1,
-          "revision": 453,
+          "revision": 454,
           "variants": {
             "53754330874037": {
               "active": null,
@@ -484836,7 +484836,7 @@
       "9649297227964": {
         "_advertised": {
           "version": 1,
-          "revision": 898,
+          "revision": 899,
           "variants": {
             "71125399404732": {
               "active": null,
@@ -484874,7 +484874,7 @@
       "9649297162428": {
         "_advertised": {
           "version": 1,
-          "revision": 898,
+          "revision": 899,
           "variants": {
             "71125399175356": {
               "active": null,
